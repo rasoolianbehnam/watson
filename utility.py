@@ -72,7 +72,7 @@ def readMat(fileName, delimiter="\t", ignoreHeader=False):
     for line in file:
         strings = line.split(delimiter)
         lineNums = []
-        for i in range(0, len(strings)-1):
+        for i in range(0, len(strings)):
             num = strings[i]
             lineNums.append(float(num))
         x.append(lineNums)

@@ -1,3 +1,5 @@
 virt/*
 *.pyc
 *.swp
+*.aux
+*.out
