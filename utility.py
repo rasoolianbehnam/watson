@@ -223,7 +223,7 @@ def convertBinaryMatToOrcaReadable(image, outputFileName=None):
     for index in range(len(positives[0])):
          i = positives[0][index]
          j = positives[1][index]
-         if i <= j:
+         if i < j:
              if outputFileName != None:
                  file.write("%d, %d\n"%(i+1, j+1))
              else:
