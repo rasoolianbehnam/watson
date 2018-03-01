@@ -1,0 +1,4 @@
+I have added a piece of code, extractAllData.py,
+which receives a contact file data and splits 
+it into chromosome-by-chromosome interaction matrices
+for all chromosomes.

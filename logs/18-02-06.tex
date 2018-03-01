@@ -1,0 +1,75 @@
+\documentclass{article}
+%easy margins
+\usepackage[top=.2in, bottom=.4in, left=.8in, right=.8in]{geometry}
+%http links in text
+\usepackage{hyperref}
+%pictures
+\usepackage{graphicx}
+%quotes
+\usepackage{csquotes}
+%landscape single pages
+\usepackage{lscape}
+%inline enumeration
+\usepackage[inline]{enumitem}
+%for double spaces
+\usepackage{setspace}
+%****************************************************************
+% changing font family
+\renewcommand{\familydefault}{\sfdefault} %change font
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Adding title and authors
+%\title{Cell classification by applying graphlets on HiC data}
+%\author{Behnam Rasoolian  \and Liangliang Xu \and Zheng Zhang}
+%\date{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Chaning font to a local font
+%\setmainfont[
+%SmallCapsFont = Fontin-SmallCaps.otf,
+%BoldFont = Fontin-Bold.otf,
+%ItalicFont = Fontin-Italic.otf
+%]
+%{Fontin.otf}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%page title
+%\maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setstretch{2}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%micromanage font size, the first argument is
+%%size of the font, the second line distance
+\fontsize{13pt}{13pt}\selectfont
+
+%No page numbers.
+\pagenumbering{gobble}
+%no indentaion for new paragraphs.
+\setlength{\parindent}{0pt}
+I have downloaded some files from 
+\url{https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE63525}
+there are lots of intrachromosomal data in there, corresponding
+to (I think!) 11 cell lines. During the correspondense that I had
+with University of Missouri (Mr. Oluwadare), he told me that I have
+to used the  GM12878 data set it there, which is much larger than
+the original \cite{lieberman2009comprehensive} dataset.
+There are two inter- and intra-chromosomal data sets there:
+
+\begin{enumerate}
+\fontsize{13pt}{3pt}\selectfont
+    \item GSE63525\_GM12878\_primary\_interchromosomal\_contact\_matrices.tar.gz\\
+          GSE63525\_GM12878\_primary\_intrachromosomal\_contact\_matrices.tar.gz
+      \item GSE63525\_GM12878\_combined\_interchromosomal\_contact\_matrices.tar.gz\\
+          GSE63525\_GM12878\_combined\_intrachromosomal\_contact\_matrices.tar.gz
+\end{enumerate}
+I wonder which ones I should use at the moment.
+
+\section*{Things to consider}
+\begin{enumerate}
+    \item effect of multiple pearson normalizations
+    \item revised SCN algorithm
+\end{enumerate}
+\end{document}
+

@@ -1,0 +1,8 @@
+kernel.py
+---------------------------------------------------------------------
+I have considered adaptively thresholding the HiC matrices. This 
+process is inspired by the same process in image processing,
+I want to use a guassian filter (F) the same size as the image itself
+the values of F[i, j] are determined by theire distance from the main
+diagonal of the filter. The algorithm is coded as function kern2 in
+kernel.py.

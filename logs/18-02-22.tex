@@ -1,0 +1,85 @@
+\documentclass{article}
+%easy margins
+\usepackage[top=.2in, bottom=.4in, left=.8in, right=.8in]{geometry}
+%http links in text
+\usepackage{hyperref}
+%pictures
+\usepackage{graphicx}
+%quotes
+\usepackage{csquotes}
+%landscape single pages
+\usepackage{lscape}
+%inline enumeration
+\usepackage[inline]{enumitem}
+%to change spacing
+\usepackage{setspace}
+
+\usepackage{float}
+%****************************************************************
+% changing font family
+\renewcommand{\familydefault}{\sfdefault} %change font
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Adding title and authors
+%\title{Cell classification by applying graphlets on HiC data}
+%\author{Behnam Rasoolian  \and Liangliang Xu \and Zheng Zhang}
+%\date{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Chaning font to a local font
+%\setmainfont[
+%SmallCapsFont = Fontin-SmallCaps.otf,
+%BoldFont = Fontin-Bold.otf,
+%ItalicFont = Fontin-Italic.otf
+%]
+%{Fontin.otf}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%page title
+%\maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\doublespacing
+% ****setstrech should always go before fontsize
+%\setstretch{2.0}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%micromanage font size, the first argument is
+%%size of the font, the second line distance
+\fontsize{13pt}{26pt}\selectfont
+
+%No page numbers.
+\pagenumbering{gobble}
+%no indentaion for new paragraphs.
+\setlength{\parindent}{0pt}
+I have extracted graphlets for all 23 chromosomes from
+the contact maps, using ice normalization and I
+have thresholed it (test.py). I then separated individual
+orbitals from each cell category and put them together.
+That is, I have put orbital 0 from MIT, ALL, RL and CALL4
+together and put them in a file. Then I did the same for orbital
+1 and put them in a separate file and so forth. I then ran MINE.jar
+for each file and captured pairwise MIC values for each orbital.
+By doing so, the result would have a dataset of the follwoing shape:
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        Cell 1 & Cell 2 & Orbital & MIC value\\ \hline
+    \end{tabular}
+\end{table}
+My plan was to find a signinficance of pair-wice MIC values 
+fo example, using a
+null hypothesis of $H_0: MIC_{MIT-ALL} = 0$. This would mean
+That MIT-ALL are totally independent of each other. However,
+What we are trying to prove is that they are not the same,
+which is different. Actually I have to test this null hypothesis:\\
+$H_0: MIC_{MIT-ALL} = 1$\\
+which if cannot be rejected, means that the two sets of MIT and ALL
+are similar to each other.
+
+In order to validate my method, I have to be able to compare the two
+normal cell data that I have, namely, MIT and the one from Rao et. al.
+I have to be able to get a high value between the two.
+
+\end{document}
