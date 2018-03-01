@@ -3,3 +3,4 @@ virt/*
 *.swp
 *.aux
 *.out
+logs/*.log
