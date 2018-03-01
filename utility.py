@@ -37,6 +37,9 @@ def writeMatToFile(mat, fileName, delimiter=','):
     delimiter: string
         the delimiter that separates the cells in
         each row.
+
+    Output:
+        Nothing
     """
     file = open(fileName, 'w')
     n, m = mat.shape
@@ -288,3 +291,100 @@ def approveToContinue(message):
         print("Exitting."),
         sys.exit(2)
     return answer
+
+def graphlet_distance(g1, g2):
+    """
+    ----------------------------------------------
+    Function:                                    #
+    ----------------------------------------------
+    Receives two matrices of graphlets of size 
+    N * O.  Each column correspons to the 
+    orbital with the corresponsing index.
+
+    ----------------------------------------------
+    Inputs:                                      #
+    ----------------------------------------------
+    - g1 and g2: two N * O matrix as explained above
+
+    ----------------------------------------------
+    Returns:                                     #
+    ----------------------------------------------
+    - out: an N * 1 matrix where each cell 
+    out[i, 0] is the graphlet signature
+    DISSIMILARITY between the ith rows of g1 and g2.
+    """
+    raw_weights = np.array([2, 4, 3, 9, 6, 10, 12, 4,
+                   24, 4, 10, 7, 6, 6, 28, 8,
+                   14, 8, 5, 12, 9, 11, 32, 15,
+                   12, 8, 22, 5, 9, 14, 11,
+                   16, 18, 15, 45, 7, 9, 20,
+                   13, 8, 20, 11, 15, 36, 15,
+                   7, 9, 13, 22, 36, 28, 22,
+                   10, 26, 36, 30, 8, 33, 15,
+                   22, 26, 15, 12, 28, 26, 12,
+                   26, 30, 56, 15, 28, 45, 50])
+    raw_numbers = np.array([2, 2, 1, 3, 2, 2, 3, 1,
+                   4, 1, 2, 1, 2, 2, 4, 2,
+                   2, 1, 1, 2, 1, 1, 4, 1,
+                   2, 1, 2, 1, 1, 2, 1,
+                   2, 2, 1, 5, 1, 1, 2, 
+                   1, 1, 2, 1, 1, 4, 1, 
+                   1, 1, 1, 2, 3, 2, 2,
+                   1, 2, 3, 2, 1, 3, 1,
+                   2, 2, 1, 1, 2, 2, 1,
+                   2, 2, 4, 1, 2, 3, 5])
+    #print(raw_weights.shape)
+    #print(raw_numbers.shape)
+    try:
+        n1, o1 = g1.shape
+    except:
+        o1 = g1.shape[0]
+        g1 = g1.reshape(-1, o1)
+
+    try:
+        n2, o2 = g2.shape
+    except:
+        o2 = g2.shape[0]
+        g2 = g2.reshape(-1, o2)
+
+    n1, o1 = g1.shape
+    n2, o2 = g2.shape
+    assert(n1 == n2)
+    assert(o1 == o2)
+    normalized_weights = (raw_weights / raw_numbers)[:o1].reshape(1, -1)
+    normalized_weights = np.ones((n1, 1)).dot(normalized_weights)
+    normalized_weights = 1 - np.log(normalized_weights) / np.log(73)
+    #print(normalized_weights.shape)
+    pairwise_distance \
+            = normalized_weights * np.abs(np.log(g1 + 1) - np.log(g2 + 1)) / \
+            np.log(np.maximum(g1, g2) + 2)
+    out = np.linalg.norm(pairwise_distance) 
+    return out
+
+def graphlet_correlational_distance(g1, g2):
+    """
+    -------------------------------------------------------
+    Function
+    ------------------------------------------------------
+    Calculate correlation between two matrices of graphlets
+    -------------------------------------------------------
+    Inputs:
+    -------------------------------------------------------
+    - g1, g2 : N * O matrices
+    -------------------------------------------------------
+    Returns:
+    -------------------------------------------------------
+
+    - out: an N * N matrix where each cell 
+    out[i, j] is the graphlet DISSIMILARITY between
+    orbit i in g1 and orbit j in g2.
+    """
+    n1, o1 = g1.shape
+    n2, o2 = g2.shape
+    assert(n1 == n2)
+    assert(o1 == o2)
+    out = np.zeros((n1, n2))
+    for i in range(n1):
+        for j in range(n2):
+            out[i, j] = graphlet_distance(g1[i, :], g2[j, :])
+    return out
