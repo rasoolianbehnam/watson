@@ -185,12 +185,14 @@ def scn(a, minDiff=1e-3, numIterations=1000):
         a[i, :] = a[:, i]
     return a
 
-def normalize(heatmap):
+def gaussian_normalize(heatmap):
     return (heatmap - np.mean(heatmap) ) / np.std(heatmap)
+
 def showImages(imageList, rows):
     cols = (len(imageList) + rows - 1) / rows
     print "Number of columnts:", cols
     count = 1
+    plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=0.2, hspace=None)
     for image in imageList:
         ax = plt.subplot(rows, cols, count)
         count += 1
@@ -414,7 +416,7 @@ def pair_orbits(graphlets, chromosome, delimiter=','):
         file.close()
 
 def get_mic_from_file(file_name, delimiter=','):
-    print(file_name)
+    #print(file_name)
     file = open(file_name)
     line = [x for x in file.readline().split(delimiter)]
     #print(line)
@@ -425,5 +427,5 @@ def get_mic_from_file(file_name, delimiter=','):
         content = [x for x in line.split(delimiter)]
         f1.append(content[0])
         f2.append(content[1])
-        mic.append(content[2])
+        mic.append(float(content[2]))
     return f1, f2, mic
