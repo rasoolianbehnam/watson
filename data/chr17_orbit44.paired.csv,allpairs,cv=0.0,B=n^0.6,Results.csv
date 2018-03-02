@@ -1,0 +1,4 @@
+X var,Y var,MIC (strength),MIC-p^2 (nonlinearity),MAS (non-monotonicity),MEV (functionality),MCN (complexity),Linear regression (p)
+mit,all,0.24087,0.23670147,0.10447,0.21821,4.321928,-0.06456414
+mit,rl,0.20111,0.19700252,0.047240004,0.18262,4.321928,-0.06408967
+all,rl,0.20045,-0.3664167,0.020160004,0.19045,4.321928,0.7529055

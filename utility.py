@@ -388,3 +388,42 @@ def graphlet_correlational_distance(g1, g2):
         for j in range(n2):
             out[i, j] = graphlet_distance(g1[i, :], g2[j, :])
     return out
+
+def pair_orbits(graphlets, chromosome, delimiter=','):
+    count = 0
+    for key in graphlets:
+        n, o = graphlets[key].shape
+        print("shape of graphlet for chromosome %d of cell %s: \
+                %d by %d"%(chromosome, key, n, o))
+        count += 1
+    print("number of matrices:", count)
+    for orbit in range(0, 73):
+        file_name = "data/chr%02d_orbit%02d.paired.csv"\
+                %(chromosome, orbit)
+        print(file_name)
+        file = open(file_name, 'w')
+        for key in graphlets:
+            file.write(key)
+            file.write(delimiter)
+        file.write("\n")
+        for i in range(n):
+            for key in graphlets:
+                file.write("%d"%graphlets[key][i, orbit])
+                file.write(delimiter)
+            file.write("\n")
+        file.close()
+
+def get_mic_from_file(file_name, delimiter=','):
+    print(file_name)
+    file = open(file_name)
+    line = [x for x in file.readline().split(delimiter)]
+    #print(line)
+    f1 = []
+    f2 = []
+    mic = []
+    for line in file:
+        content = [x for x in line.split(delimiter)]
+        f1.append(content[0])
+        f2.append(content[1])
+        mic.append(content[2])
+    return f1, f2, mic
