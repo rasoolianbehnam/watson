@@ -1,6 +1,7 @@
 virt/*
 *.pyc
 *.swp
+*.swo
 *.aux
 *.out
 logs/*.log

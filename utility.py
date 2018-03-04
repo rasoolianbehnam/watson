@@ -64,7 +64,7 @@ def scale(m):
 
 #used to be simple read
 def readMat(fileName, delimiter="\t", ignoreHeader=False):
-    print "file directory:", fileName
+    #print "file directory:", fileName
     if not os.path.isfile(fileName):
         print "File %s does not exist"%fileName
         sys.exit(2)
@@ -351,16 +351,19 @@ def graphlet_distance(g1, g2):
 
     n1, o1 = g1.shape
     n2, o2 = g2.shape
-    assert(n1 == n2)
-    assert(o1 == o2)
-    normalized_weights = (raw_weights / raw_numbers)[:o1].reshape(1, -1)
-    normalized_weights = np.ones((n1, 1)).dot(normalized_weights)
+    n = np.min([n1, n2])
+    o = np.min([o1, o2])
+    g1 = g1[:n, :o]
+    g2 = g2[:n, :o]
+
+    normalized_weights = (raw_weights / raw_numbers)[:o].reshape(1, -1)
+    normalized_weights = np.ones((n, 1)).dot(normalized_weights)
     normalized_weights = 1 - np.log(normalized_weights) / np.log(73)
     #print(normalized_weights.shape)
     pairwise_distance \
             = normalized_weights * np.abs(np.log(g1 + 1) - np.log(g2 + 1)) / \
             np.log(np.maximum(g1, g2) + 2)
-    out = np.linalg.norm(pairwise_distance) 
+    out = np.linalg.norm(pairwise_distance, axis=1) 
     return out
 
 def graphlet_correlational_distance(g1, g2):
@@ -383,7 +386,6 @@ def graphlet_correlational_distance(g1, g2):
     """
     n1, o1 = g1.shape
     n2, o2 = g2.shape
-    assert(n1 == n2)
     assert(o1 == o2)
     out = np.zeros((n1, n2))
     for i in range(n1):
@@ -393,8 +395,11 @@ def graphlet_correlational_distance(g1, g2):
 
 def pair_orbits(graphlets, chromosome, delimiter=','):
     count = 0
+    n = o = sys.maxint
     for key in graphlets:
-        n, o = graphlets[key].shape
+        ni, oi = graphlets[key].shape
+        n = np.min([n, ni])
+        o = np.min([o, oi])
         print("shape of graphlet for chromosome %d of cell %s: \
                 %d by %d"%(chromosome, key, n, o))
         count += 1
@@ -429,3 +434,43 @@ def get_mic_from_file(file_name, delimiter=','):
         f2.append(content[1])
         mic.append(float(content[2]))
     return f1, f2, mic
+def log(image):
+    out = image * 1.
+    out[np.where(out <= 0)] = 1
+    return np.log(out)
+
+def pearsonII(image):
+    out = pearson(image)
+    out[np.where(out <= 0)] = 0
+    return out
+
+def rel_error(m1 ,m2):
+    diff = np.abs(m1 - m2)
+    return diff / (np.abs(np.minimum(m1, m2))+1e-5)
+
+def print_statistics(m1, text = "", print_results=True):
+    max = np.max(m1)
+    min = np.min(m1)
+    mean = m1.mean()
+    median = np.percentile(m1, 50)
+    std = m1.std()
+    if (print_results):
+        print("#-----------------------------------------------------------------------#")
+        print("Stats for %s: "% text)
+        print("max: %f | min: %f | median: %f | mean: %f | std: %f"%(max, min, median, mean, std))
+        print("#-----------------------------------------------------------------------#")
+    return max, min, mean, std
+
+def t_test(m1, m2=None):
+    if m2 == None:
+        diff = m1.reshape(1, -1)
+    else:
+        diff = (m1 - m2).reshape(1, -1)
+    n = diff.shape[0] * diff.shape[1]
+    std = np.sqrt(np.sum(diff * diff) / (n - 1))
+    t0 = diff.mean() * np.sqrt(n) / std
+    return t0
+
+def threshold_within_std(m1, k):
+    min, max, mean, std = print_statistics(m1, print_results=False)
+    return (m1 > mean - k * std) * (m1 < mean + k * std)
