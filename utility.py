@@ -5,6 +5,11 @@ import cv2
 import sys
 from scipy.stats.stats import pearsonr   
 import matplotlib.pyplot as plt
+
+def rel_error(x, y):
+    """ returns relative error """
+    return np.max(np.abs(x - y) / (np.maximum(1e-8, np.abs(x) + np.abs(y))))
+
 #TODO: not used
 def eigendecompose(a):
     w, v = np.linalg.eig(a)
@@ -435,18 +440,12 @@ def get_mic_from_file(file_name, delimiter=','):
         mic.append(float(content[2]))
     return f1, f2, mic
 def log(image):
-    out = image * 1.
-    out[np.where(out <= 0)] = 1
-    return np.log(out)
+    return np.where(out > 0, np.log(out), 0)
 
 def pearsonII(image):
     out = pearson(image)
     out[np.where(out <= 0)] = 0
     return out
-
-def rel_error(m1 ,m2):
-    diff = np.abs(m1 - m2)
-    return diff / (np.abs(np.minimum(m1, m2))+1e-5)
 
 def print_statistics(m1, text = "", print_results=True):
     max = np.max(m1)
@@ -474,3 +473,49 @@ def t_test(m1, m2=None):
 def threshold_within_std(m1, k):
     min, max, mean, std = print_statistics(m1, print_results=False)
     return (m1 > mean - k * std) * (m1 < mean + k * std)
+
+def kl_div(m1, m2, num_bins=10, same_range = False, normalization=False):
+    ''''
+    performs KL-divergence between two matrices m1 and m2.
+    m1 and m2 should be vectors of size 1 * N.
+    -----------------------------------------------------
+    inputs:
+    ----------------------------------------------------
+    m1 , m2: matrices of size(1 * N)  
+    '''
+    n1 = m1.shape
+    n2 = m2.shape
+    N = np.min([n1, n2])
+    m1 = m1[:N]
+    m2 = m2[:N]
+    if (normalization):
+        print("normalizatoin is on")
+        m1 = gaussian_normalize(m1)
+        m2 = gaussian_normalize(m2)
+    if same_range:
+        max_val1 = np.max(m1)
+        max_val2 = np.max(m2)
+        max_val = np.max([max_val1, max_val2])
+        min_val1 = np.min(m1)
+        min_val2 = np.min(m2)
+        min_val = np.min([min_val1, min_val2])
+        bins = np.arange(0, 1, 1./num_bins) * (max_val - min_val) + min_val
+        hist1 = np.histogram(m1, bins=bins)
+        hist2 = np.histogram(m2, bins=bins)
+    else:
+        hist1 = np.histogram(m1, bins=num_bins)
+        hist2 = np.histogram(m2, bins=num_bins)
+    p = np.array(hist1[0], dtype='float32')
+    q = np.array(hist2[0], dtype='float32')
+    return np.sum(np.where((p*q) != 0,(p) * np.log10(p / q), 0))
+def svd_reconstruct(mat, nums):
+    u, sig, v = np.linalg.svd(mat)
+    print("finished with svd, commencing reconstruction ...")
+    #print(sig)
+    outputs = []
+    for k in nums:
+        b = np.zeros_like(mat)
+        for i in k:
+            b += sig[i] * np.outer(u[:, i], v[i, :])
+        outputs.append(b)
+    return outputs
