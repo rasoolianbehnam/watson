@@ -3,8 +3,10 @@ import numpy as np
 import os, errno
 import cv2
 import sys
+import scipy.misc
 from scipy.stats.stats import pearsonr   
 import matplotlib.pyplot as plt
+from matplotlib import colors
 
 def rel_error(x, y):
     """ returns relative error """
@@ -21,6 +23,9 @@ def eigendecompose(a):
     print "result of multiplying eigenvalues and eigenvectors:"
     print v.dot(np.diag(w)).dot(np.linalg.inv(v))*t
     return w, v/t/t
+
+def writeMatToImage(mat, fileName):
+    scipy.misc.imsave(fileName, mat)
 
 def writeMatToFile(mat, fileName, delimiter=','):
     """
@@ -47,6 +52,7 @@ def writeMatToFile(mat, fileName, delimiter=','):
         Nothing
     """
     file = open(fileName, 'w')
+    print("writing to %s"%fileName)
     n, m = mat.shape
     for i in range(n):
         for j in range(m):
@@ -69,7 +75,7 @@ def scale(m):
 
 #used to be simple read
 def readMat(fileName, delimiter="\t", ignoreHeader=False, remove_blanks=False):
-    #print "file directory:", fileName
+    print "file directory:", fileName
     if not os.path.isfile(fileName):
         print "File %s does not exist"%fileName
         sys.exit(2)
@@ -196,15 +202,22 @@ def scn(a, minDiff=1e-3, numIterations=1000):
 def gaussian_normalize(heatmap):
     return (heatmap - np.mean(heatmap) ) / np.std(heatmap)
 
-def showImages(imageList, rows):
+def showImages(imageList, rows, color_bar=False):
     cols = (len(imageList) + rows - 1) / rows
     print "Number of columnts:", cols
-    count = 1
     plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=0.2, hspace=None)
+    fig, axes = plt.subplots(nrows=rows, ncols=cols)
+    count = 0
     for image in imageList:
-        ax = plt.subplot(rows, cols, count)
+        if rows * cols == 1:
+            m = axes.imshow(image, cmap="RdBu_r", norm=colors.SymLogNorm(1))
+        elif rows == 1 or cols == 1:
+            m = axes[count].imshow(image, cmap="RdBu_r", norm=colors.SymLogNorm(1))
+        else:
+            m = axes[count // cols, count % cols].imshow(image, cmap="RdBu_r", norm=colors.SymLogNorm(1))
+        if color_bar:
+            cb = fig.colorbar(m)
         count += 1
-        ax.imshow(image)
     plt.show()
 def cvShowImages(imageList):
     count = 1
@@ -511,14 +524,19 @@ def kl_div(m1, m2, num_bins=10, same_range = False, normalization=False):
     p = np.array(hist1[0], dtype='float32')
     q = np.array(hist2[0], dtype='float32')
     return np.sum(np.where((p*q) != 0,(p) * np.log10(p / q), 0))
-def svd_reconstruct(mat, nums):
-    u, sig, v = np.linalg.svd(mat)
-    print("finished with svd, commencing reconstruction ...")
+def svd_reconstruct(mat, k, u='empty', sig='empty', v='empty'):
+    if u == 'empty' or v == 'empty' or sig == 'empty':
+        print("calculating u, sig and v ...")
+        u, sig, v = np.linalg.svd(mat)
+        print("finished with svd, commencing reconstruction ...")
+    else:
+        print("u, sig and v already provided, commencing reconstruction ...")
     #print(sig)
-    outputs = []
-    for k in nums:
-        b = np.zeros_like(mat)
-        for i in k:
-            b += sig[i] * np.outer(u[:, i], v[i, :])
-        outputs.append(b)
-    return outputs
+    if isinstance(k, int):
+        iterable = range(k)
+    else:
+        iterable = k
+    b = np.zeros_like(mat)
+    for i in iterable:
+        b += sig[i] * np.outer(u[:, i], v[i, :])
+    return b, u, sig, v
