@@ -68,7 +68,7 @@ def scale(m):
     return n
 
 #used to be simple read
-def readMat(fileName, delimiter="\t", ignoreHeader=False):
+def readMat(fileName, delimiter="\t", ignoreHeader=False, remove_blanks=False):
     #print "file directory:", fileName
     if not os.path.isfile(fileName):
         print "File %s does not exist"%fileName
@@ -85,9 +85,11 @@ def readMat(fileName, delimiter="\t", ignoreHeader=False):
             lineNums.append(float(num))
         x.append(lineNums)
     observed = np.array(x).astype("float")
+    if remove_blanks:
+        observed, a, b = removeBlankRowsAndColumns(observed)
     return observed
 
-def readYaml(filename, res, delimiter="\t"):
+def readYamlIntensities(filename, res, delimiter="\t", remove_blanks=False):
     file = open(filename, 'r')
     n = 0
     lines = []
@@ -106,10 +108,11 @@ def readYaml(filename, res, delimiter="\t"):
         #print line
         img[line[0], line[1]] = line[2]
         img[line[1], line[0]] = line[2]
-    img  = removeBlankRowsAndColumns(img)
+    if remove_blanks:
+        img, a, b  = removeBlankRowsAndColumns(img)
     return img
 
-def removeBlankRowsAndColumns(mat, thresh=5):
+def removeBlankRowsAndColumns(mat, thresh=1):
     n, m = mat.shape
     symmetric = True
     if n != m:
@@ -117,6 +120,7 @@ def removeBlankRowsAndColumns(mat, thresh=5):
         symmetric = False
     matrixWithRowAndColumnsRemoved = mat
     blankRows = []
+    blankCols = []
     for i in range(0, n):
         if np.sum(mat[i, :] > 0) <= thresh:
             blankRows.append(i)
@@ -127,7 +131,6 @@ def removeBlankRowsAndColumns(mat, thresh=5):
             matrixWithRowAndColumnsRemoved = np.delete(matrixWithRowAndColumnsRemoved, i, 0)
             matrixWithRowAndColumnsRemoved = np.delete(matrixWithRowAndColumnsRemoved, i, 1)
     else:
-        blankCols = []
         for i in range(0, m):
             if np.sum(mat[:, i] > 0) <= thresh:
                 blankCols.append(i)
@@ -138,7 +141,7 @@ def removeBlankRowsAndColumns(mat, thresh=5):
         for i in blankCols:
             matrixWithRowAndColumnsRemoved = np.delete(matrixWithRowAndColumnsRemoved, i, 1)
     print "size of new matrix:", matrixWithRowAndColumnsRemoved.shape
-    return matrixWithRowAndColumnsRemoved
+    return matrixWithRowAndColumnsRemoved, blankRows, blankCols
 
 def pearson(counter, iterations=1):
     n = counter.shape[0]
@@ -240,7 +243,7 @@ def convertBinaryMatToOrcaReadable(image, outputFileName=None):
                  print i+1, j+1
 
 
-def writeYamlToMat(fileName, symmetric=False):
+def readYaml(fileName, delimiter ="\t", symmetric=False, remove_blank=False):
     print "file name =", fileName
     file = open(fileName, 'r')
     lines = []
@@ -251,8 +254,7 @@ def writeYamlToMat(fileName, symmetric=False):
     for line in file:
         #print line
         try:
-            spl = line.split("\t")
-            spl = [int(spl[0]), int(spl[1])]
+            spl = [int(x) for x in line.split("\t")]
             #print "spl = ", spl
             lines.append(spl)
             if (spl[0] < min_rows):
@@ -266,10 +268,10 @@ def writeYamlToMat(fileName, symmetric=False):
             #print spl
         except:
             continue
-    print "min_rows, max_rows:"
-    print min_rows, max_rows
-    print "min_cols, max_cols:"
-    print min_cols, max_cols
+    print "min_rows = %d, max_rows = %d" %(min_rows, max_rows)
+    print "min_cols = %d, max_cols = %d"%( min_cols, max_cols)
+    if symmetric:
+        print("Symmetric on")
     
     if max_rows < 0 or max_cols < 0:
         print("file seems not to be in the correct format. exitting function.")
@@ -284,11 +286,12 @@ def writeYamlToMat(fileName, symmetric=False):
         counter[line[0], line[1]] += 1
         if symmetric:
             counter[line[1], line[0]] += 1
-    print "size of original matrix:", counter.shape
     n = counter.shape[0]
-    counter = removeBlankRowsAndColumns(counter)
-    outputFileName =  fileName.replace('.yaml', '.mat')
-    writeMatToFile(counter, outputFileName, delimiter='\t')
+    if remove_blank:
+        counter, a, b = removeBlankRowsAndColumns(counter)
+    return counter
+    #outputFileName =  fileName.replace('.yaml', '.mat')
+    #writeMatToFile(counter, outputFileName, delimiter='\t')
     #cv2.imshow("counter", scale(counter)*100)
     #cv2.waitKey()
 def approveToContinue(message):
