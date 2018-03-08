@@ -7,6 +7,7 @@ import scipy.misc
 from scipy.stats.stats import pearsonr   
 import matplotlib.pyplot as plt
 from matplotlib import colors
+from sets import Set
 
 def rel_error(x, y):
     """ returns relative error """
@@ -117,39 +118,61 @@ def readYamlIntensities(filename, res, delimiter="\t", remove_blanks=False):
     if remove_blanks:
         img, a, b  = removeBlankRowsAndColumns(img)
     return img
+def getBlankRowsAndColumns(mat, thresh=1):
+    n, m = mat.shape
+    blankRows = Set([])
+    blankCols = Set([])
+    for i in range(0, n):
+        if np.sum(mat[i, :] > 0) <= thresh:
+            blankRows.add(i)
+    for i in range(0, m):
+        if np.sum(mat[:, i] > 0) <= thresh:
+            blankCols.add(i)
+    return blankRows, blankCols
+
+def removeRowsAndColumns(mat, blankRows, blankCols):
+    print "size of old matrix:", mat.shape
+    blankRows = sorted(blankRows, reverse=True)
+    blankCols = sorted(blankCols, reverse=True)
+    matrixWithRowAndColumnsRemoved = mat
+    for i in blankRows:
+        matrixWithRowAndColumnsRemoved = np.delete(matrixWithRowAndColumnsRemoved, i, 0)
+    for i in blankCols:
+        matrixWithRowAndColumnsRemoved = np.delete(matrixWithRowAndColumnsRemoved, i, 1)
+    print "size of new matrix:", matrixWithRowAndColumnsRemoved.shape
+    return matrixWithRowAndColumnsRemoved
 
 def removeBlankRowsAndColumns(mat, thresh=1):
+    print "size of old matrix:", mat.shape
     n, m = mat.shape
+    blankRows, blankCols = getBlankRowsAndColumns(mat, thresh=thresh)
     symmetric = True
     if n != m:
         print("Matrix is not symmetric!")
         symmetric = False
-    matrixWithRowAndColumnsRemoved = mat
-    blankRows = []
-    blankCols = []
-    for i in range(0, n):
-        if np.sum(mat[i, :] > 0) <= thresh:
-            blankRows.append(i)
-    blankRows = sorted(blankRows, reverse=True)
-    print "blonk rows:", blankRows
     if symmetric:
-        for i in blankRows:
-            matrixWithRowAndColumnsRemoved = np.delete(matrixWithRowAndColumnsRemoved, i, 0)
-            matrixWithRowAndColumnsRemoved = np.delete(matrixWithRowAndColumnsRemoved, i, 1)
-    else:
-        for i in range(0, m):
-            if np.sum(mat[:, i] > 0) <= thresh:
-                blankCols.append(i)
-        blankCols = sorted(blankCols, reverse=True)
-        print "blonk cols:", blankCols
-        for i in blankRows:
-            matrixWithRowAndColumnsRemoved = np.delete(matrixWithRowAndColumnsRemoved, i, 0)
-        for i in blankCols:
-            matrixWithRowAndColumnsRemoved = np.delete(matrixWithRowAndColumnsRemoved, i, 1)
+        blankRows.update(blankCols)
+        blankCols = blankRows
+    matrixWithRowAndColumnsRemoved = removeRowsAndColumns(mat, blankRows, blankCols)
     print "size of new matrix:", matrixWithRowAndColumnsRemoved.shape
-    return matrixWithRowAndColumnsRemoved, blankRows, blankCols
+    return matrixWithRowAndColumnsRemoved, Set(blankRows), Set(blankCols)
 
-def pearson(counter, iterations=1):
+def pearson_nonsym(a, b):
+    na, ma = a.shape
+    nb, mb  = b.shape
+    if (ma != mb):
+        print("""Number of columns (%d and %d) not the same.
+            picking the minimum value..."""%(ma, mb))
+        m = np.min([ma, mb])
+        a = a[:,:m]
+        b = b[:,:m]
+    out = np.zeros((na, nb))
+    for i in range(0, na):
+        for j in range(0, nb):
+            out[i, j]  = pearsonr(a[i, :], b[j, :])[0]
+    return out
+
+def pearson_sym(counter):
     n = counter.shape[0]
     counter2 = np.zeros((n, n))
     for i in range(0, n):
@@ -157,6 +180,12 @@ def pearson(counter, iterations=1):
             counter2[i, j] = counter2[j, i] = pearsonr(counter[i, :], counter[:, j])[0]
     counter = counter2
     return counter
+
+def pearson(a, b=None):
+    if isinstance(b, np.ndarray):
+        return pearson_nonsym(a, b)
+    else:
+        return pearson_sym(a)
 
 def setDiagonals(mat, depth, value):
     n, m  = mat.shape
@@ -202,21 +231,24 @@ def scn(a, minDiff=1e-3, numIterations=1000):
 def gaussian_normalize(heatmap):
     return (heatmap - np.mean(heatmap) ) / np.std(heatmap)
 
-def showImages(imageList, rows, color_bar=False):
+def showImages(imageList, rows, color_bar=False, titles=None):
     cols = (len(imageList) + rows - 1) / rows
     print "Number of columnts:", cols
-    plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=0.2, hspace=None)
     fig, axes = plt.subplots(nrows=rows, ncols=cols)
+    plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=0.01, hspace=.3)
     count = 0
     for image in imageList:
         if rows * cols == 1:
-            m = axes.imshow(image, cmap="RdBu_r", norm=colors.SymLogNorm(1))
+            ax = axes
         elif rows == 1 or cols == 1:
-            m = axes[count].imshow(image, cmap="RdBu_r", norm=colors.SymLogNorm(1))
+            ax = axes[count]
         else:
-            m = axes[count // cols, count % cols].imshow(image, cmap="RdBu_r", norm=colors.SymLogNorm(1))
+            ax = axes[count // cols, count % cols]
+        m = ax.imshow(image, cmap="RdBu_r", norm=colors.SymLogNorm(1))
         if color_bar:
             cb = fig.colorbar(m)
+        if titles != None:
+            ax.title.set_text(titles[count])
         count += 1
     plt.show()
 def cvShowImages(imageList):
@@ -540,3 +572,17 @@ def svd_reconstruct(mat, k, u='empty', sig='empty', v='empty'):
     for i in iterable:
         b += sig[i] * np.outer(u[:, i], v[i, :])
     return b, u, sig, v
+
+def local_threshold(mat, k=1, method='max', t=1):
+    mat2 = np.zeros_like(mat)
+    n, m = mat.shape
+    for i in range(k, n-k):
+        for j in range(k, m-k):
+            if method == 'max':
+                condition = mat[i, j] == np.max(mat[i-k:i+k, j-k:j+k])
+            elif method=='normal':
+                temp = mat[i-k:i+k, j-k:j+k]
+                condition = mat[i, j] >= np.mean(temp) + t * np.std(temp)
+            if condition:
+                mat2[i, j] = 1
+    return mat2
