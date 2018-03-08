@@ -1,0 +1,235 @@
+\begin{thebibliography}{}
+
+\bibitem [\protect \citeauthoryear {%
+Feizi%
+, Marbach%
+, M{\'e}dard%
+\BCBL {}\ \BBA {} Kellis%
+}{%
+Feizi%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2013}}%
+}]{%
+feizi2013network}
+\APACinsertmetastar {%
+feizi2013network}%
+\begin{APACrefauthors}%
+Feizi, S.%
+, Marbach, D.%
+, M{\'e}dard, M.%
+\BCBL {}\ \BBA {} Kellis, M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2013}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Network deconvolution as a general method to distinguish
+  direct dependencies in networks} {Network deconvolution as a general method
+  to distinguish direct dependencies in networks}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Nature biotechnology}{31}{8}{726--733}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Ginestet%
+\ \BBA {} Simmons%
+}{%
+Ginestet%
+\ \BBA {} Simmons%
+}{%
+{\protect \APACyear {2011}}%
+}]{%
+ginestet2011statistical}
+\APACinsertmetastar {%
+ginestet2011statistical}%
+\begin{APACrefauthors}%
+Ginestet, C\BPBI E.%
+\BCBT {}\ \BBA {} Simmons, A.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2011}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Statistical parametric network analysis of functional
+  connectivity dynamics during a working memory task} {Statistical parametric
+  network analysis of functional connectivity dynamics during a working memory
+  task}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Neuroimage}{55}{2}{688--704}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Lieberman-Aiden%
+\ \protect \BOthers {.}}{%
+Lieberman-Aiden%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2009}}%
+}]{%
+lieberman2009comprehensive}
+\APACinsertmetastar {%
+lieberman2009comprehensive}%
+\begin{APACrefauthors}%
+Lieberman-Aiden, E.%
+, Van~Berkum, N\BPBI L.%
+, Williams, L.%
+, Imakaev, M.%
+, Ragoczy, T.%
+, Telling, A.%
+\BDBL {}others%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2009}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Comprehensive mapping of long-range interactions reveals
+  folding principles of the human genome} {Comprehensive mapping of long-range
+  interactions reveals folding principles of the human genome}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{science}{326}{5950}{289--293}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Milenkovi{\ae}%
+\ \BBA {} Pr{\v{z}}ulj%
+}{%
+Milenkovi{\ae}%
+\ \BBA {} Pr{\v{z}}ulj%
+}{%
+{\protect \APACyear {2008}}%
+}]{%
+milenkoviae2008uncovering}
+\APACinsertmetastar {%
+milenkoviae2008uncovering}%
+\begin{APACrefauthors}%
+Milenkovi{\ae}, T.%
+\BCBT {}\ \BBA {} Pr{\v{z}}ulj, N.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2008}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Uncovering biological network function via graphlet
+  degree signatures} {Uncovering biological network function via graphlet
+  degree signatures}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Cancer informatics}{6}{}{257}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Milenkovi{\'c}%
+, Memi{\v{s}}evi{\'c}%
+, Ganesan%
+\BCBL {}\ \BBA {} Pr{\v{z}}ulj%
+}{%
+Milenkovi{\'c}%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2010}}%
+}]{%
+milenkovic2010cancer}
+\APACinsertmetastar {%
+milenkovic2010cancer}%
+\begin{APACrefauthors}%
+Milenkovi{\'c}, T.%
+, Memi{\v{s}}evi{\'c}, V.%
+, Ganesan, A\BPBI K.%
+\BCBL {}\ \BBA {} Pr{\v{z}}ulj, N.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2010}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Systems-level cancer gene identification from protein
+  interaction network topology applied to melanogenesis-related functional
+  genomics data} {Systems-level cancer gene identification from protein
+  interaction network topology applied to melanogenesis-related functional
+  genomics data}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Journal of the Royal Society
+  Interface}{7}{44}{423--437}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Pr{\v{z}}ulj%
+}{%
+Pr{\v{z}}ulj%
+}{%
+{\protect \APACyear {2007}}%
+}]{%
+prvzulj2007biological}
+\APACinsertmetastar {%
+prvzulj2007biological}%
+\begin{APACrefauthors}%
+Pr{\v{z}}ulj, N.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2007}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Biological network comparison using graphlet degree
+  distribution} {Biological network comparison using graphlet degree
+  distribution}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Bioinformatics}{23}{2}{e177--e183}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Rao%
+\ \protect \BOthers {.}}{%
+Rao%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2014}}%
+}]{%
+rao20143d}
+\APACinsertmetastar {%
+rao20143d}%
+\begin{APACrefauthors}%
+Rao, S\BPBI S.%
+, Huntley, M\BPBI H.%
+, Durand, N\BPBI C.%
+, Stamenova, E\BPBI K.%
+, Bochkov, I\BPBI D.%
+, Robinson, J\BPBI T.%
+\BDBL {}others%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2014}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {A 3D map of the human genome at kilobase resolution
+  reveals principles of chromatin looping} {A 3d map of the human genome at
+  kilobase resolution reveals principles of chromatin looping}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Cell}{159}{7}{1665--1680}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Wang%
+\ \protect \BOthers {.}}{%
+Wang%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2013}}%
+}]{%
+wang2013properties}
+\APACinsertmetastar {%
+wang2013properties}%
+\begin{APACrefauthors}%
+Wang, Z.%
+, Cao, R.%
+, Taylor, K.%
+, Briley, A.%
+, Caldwell, C.%
+\BCBL {}\ \BBA {} Cheng, J.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2013}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {The properties of genome conformation and spatial gene
+  interaction and regulation networks of normal and malignant human cell types}
+  {The properties of genome conformation and spatial gene interaction and
+  regulation networks of normal and malignant human cell types}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{PloS one}{8}{3}{e58793}.
+\PrintBackRefs{\CurrentBib}
+
+\end{thebibliography}

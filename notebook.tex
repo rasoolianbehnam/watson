@@ -141,7 +141,7 @@
     \def\gt{>}
     \def\lt{<}
     % Document parameters
-    \title{Thresholding\_local}
+    \title{02\_graphlet\_correlation\_Analysis}
     
     
     
@@ -280,46 +280,43 @@
     
 
     
-    \section{Local Thresholding}\label{local-thresholding}
+    \section{Graphlet Correlation
+Analysis}\label{graphlet-correlation-analysis}
 
-In this notebook, I extract orbits for a signle chromosome in all 4 cell
-lines, using a different method of thresholding. In order to do this, I
-slide a kernel of size k through each pixel and check if it has a
-particular property. If the property is satisified, then the pixel is
-set to 1, otherwise it is set to 0. The two properties that I experiment
-with are \emph{maximum thresholding} and \emph{normal thresholding}. 1.
-\textbf{Maximum Thresholding}: in max thresholding, if the pixel is the
-maximum of its neighbors with respect to the kernel, then it is set. 2.
-\textbf{Normal Thresholding}: in normal thresholding, if the pixel is
-larger that the average of the neighbors then it is set.
+Remember, in notebook \emph{Thresholding}, I thresholded contact maps
+and saved so that orca can read them.
 
-first I perform the most lates normalization method that I have found to
-be most useful: a combination of gaussian normalization, SCN and pearson
-correlation, in the same order mentioned. The normalized results are of
-type \texttt{pearson(scn(gaussian(graph)))}.
+In this notebook, I perform two actions: 1. I apply \texttt{count5}
+procedure in orca to extract 73 orbits for each loci in each chromosome.
+After this stage, graphlets will be save with \texttt{.graphlets}
+extension in the \texttt{./data} folder.
 
-Then I threshold the results by setting pearson values larger than 0 to
-1 and the rest to 0. In order to extract graphlets, I used the
-\emph{orca} package in R. the script \texttt{./rscript.r} read a binary
-thresholded matrix representing an unweighted graph and outputs orbtis 0
-through 72 for each node in the network. After thredholding the
-matrices, I save them so that orca in R can read it and extract orbits.
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  I then read the graphlets and find both loci-wise distance and
+  graphlet-wise correlations between the four cell lines.
+\end{enumerate}
 
-By repeating the procedure explained above for all 23 chromosomes, we
-will have graphlets for all contact maps.
+By repeating steps 1 and 2 for all 23 chromosomes, I will have pairwise
+MIC values for all orbits of all cell lines. I would eventually be able
+to have a data array of shape \texttt{A(23\ *\ 73)}, for each pair of
+cell lines where \texttt{A{[}i,\ j{]}} denotes the correlation between
+the jth orbit in the ith chromosome.
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}5}]:} \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k+kn}{as} \PY{n+nn}{np}
-        \PY{k+kn}{import} \PY{n+nn}{cv2}
-        \PY{k+kn}{from} \PY{n+nn}{utility} \PY{k+kn}{import} \PY{o}{*}
-        \PY{k+kn}{import} \PY{n+nn}{matplotlib.pyplot} \PY{k+kn}{as} \PY{n+nn}{plt}
-        \PY{k+kn}{from} \PY{n+nn}{iced} \PY{k+kn}{import} \PY{n}{normalization}
-        \PY{k+kn}{from} \PY{n+nn}{iced} \PY{k+kn}{import} \PY{n+nb}{filter}
-        \PY{k+kn}{import} \PY{n+nn}{os}
-        \PY{o}{\PYZpc{}}\PY{k}{load\PYZus{}ext} autoreload
-        \PY{o}{\PYZpc{}}\PY{k}{autoreload} 2
-        \PY{o}{\PYZpc{}}\PY{k}{pylab} inline
-        \PY{n}{pylab}\PY{o}{.}\PY{n}{rcParams}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{figure.figsize}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}102}]:} \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k+kn}{as} \PY{n+nn}{np}
+          \PY{k+kn}{import} \PY{n+nn}{cv2}
+          \PY{k+kn}{from} \PY{n+nn}{utility} \PY{k+kn}{import} \PY{o}{*}
+          \PY{k+kn}{import} \PY{n+nn}{matplotlib.pyplot} \PY{k+kn}{as} \PY{n+nn}{plt}
+          \PY{k+kn}{from} \PY{n+nn}{iced} \PY{k+kn}{import} \PY{n}{normalization}
+          \PY{k+kn}{from} \PY{n+nn}{iced} \PY{k+kn}{import} \PY{n+nb}{filter}
+          \PY{k+kn}{import} \PY{n+nn}{os}
+          \PY{o}{\PYZpc{}}\PY{k}{load\PYZus{}ext} autoreload
+          \PY{o}{\PYZpc{}}\PY{k}{autoreload} 2
+          \PY{o}{\PYZpc{}}\PY{k}{pylab} inline
 \end{Verbatim}
 
 
@@ -330,113 +327,84 @@ Populating the interactive namespace from numpy and matplotlib
 
     \end{Verbatim}
 
-    \begin{Verbatim}[commandchars=\\\{\}]
-/home/bzr0014/watson/scripts/virt/local/lib/python2.7/site-packages/IPython/core/magics/pylab.py:161: UserWarning: pylab import has clobbered these variables: ['all', 'colors', 'log']
-`\%matplotlib` prevents importing * from pylab and numpy
-  "\textbackslash{}n`\%matplotlib` prevents importing * from pylab and numpy"
+    \section{1. Orbit Extraction:}\label{orbit-extraction}
 
-    \end{Verbatim}
-
-    \subsection{Initiating matrices}\label{initiating-matrices}
+The following R-script reads edge files (\texttt{.edges}) corresponding
+to a chromosome under \texttt{data/} directory. It then writes the
+resulting orbits into \texttt{data/*.graphlets}.
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}18}]:} \PY{n}{chr1} \PY{o}{=} \PY{l+m+mi}{2}
-         \PY{n}{chr2} \PY{o}{=} \PY{n}{chr1}
-         \PY{k}{print} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{chromosome 1: }\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s2}{, chromosome 2: }\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s2}{\PYZdq{}}\PY{o}{\PYZpc{}}\PY{p}{(}\PY{n}{chr1}\PY{p}{,} \PY{n}{chr2}\PY{p}{)}
-         \PY{c+c1}{\PYZsh{}print observed\PYZus{}mit\PYZus{}original.shape}
-         
-         \PY{n}{mit} \PY{o}{=} \PY{n}{readMat}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{../data/extracted\PYZus{}all\PYZus{}contact\PYZus{}MIT/chr\PYZus{}}\PY{l+s+si}{\PYZpc{}02d}\PY{l+s+s2}{\PYZus{}}\PY{l+s+si}{\PYZpc{}02d}\PY{l+s+s2}{\PYZus{}500kb.mat}\PY{l+s+s2}{\PYZdq{}}\PY{o}{\PYZpc{}}\PYZbs{}
-                       \PY{p}{(}\PY{n}{chr1}\PY{p}{,} \PY{n}{chr2}\PY{p}{)}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-         \PY{n}{call4} \PY{o}{=} \PY{n}{readMat}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{../data/extracted\PYZus{}all\PYZus{}contact\PYZus{}call4/chr\PYZus{}}\PY{l+s+si}{\PYZpc{}02d}\PY{l+s+s2}{\PYZus{}}\PY{l+s+si}{\PYZpc{}02d}\PY{l+s+s2}{\PYZus{}500kb.mat}\PY{l+s+s2}{\PYZdq{}}\PY{o}{\PYZpc{}}\PYZbs{}
-                         \PY{p}{(}\PY{n}{chr1}\PY{p}{,} \PY{n}{chr2}\PY{p}{)}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-         \PY{n}{rl} \PY{o}{=} \PY{n}{readMat}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{../data/extracted\PYZus{}all\PYZus{}contact\PYZus{}RL/chr\PYZus{}}\PY{l+s+si}{\PYZpc{}02d}\PY{l+s+s2}{\PYZus{}}\PY{l+s+si}{\PYZpc{}02d}\PY{l+s+s2}{\PYZus{}500kb.mat}\PY{l+s+s2}{\PYZdq{}}\PY{o}{\PYZpc{}}\PY{p}{(}\PY{n}{chr1}\PY{p}{,} \PY{n}{chr2}\PY{p}{)}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-         
-         \PY{n+nb}{all} \PY{o}{=} \PY{n}{readMat}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{../data/extracted\PYZus{}all\PYZus{}contact\PYZus{}ALL/chr\PYZus{}}\PY{l+s+si}{\PYZpc{}02d}\PY{l+s+s2}{\PYZus{}}\PY{l+s+si}{\PYZpc{}02d}\PY{l+s+s2}{\PYZus{}500kb.mat}\PY{l+s+s2}{\PYZdq{}}\PY{o}{\PYZpc{}}\PY{p}{(}\PY{n}{chr1}\PY{p}{,} \PY{n}{chr2}\PY{p}{)}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-         
-         \PY{c+c1}{\PYZsh{}There are some blank rows and columns in the matrix. let\PYZsq{}s remove them.}
-         \PY{n}{blankRows0}\PY{p}{,} \PY{n}{blankCols0} \PY{o}{=} \PY{n}{getBlankRowsAndColumns}\PY{p}{(}\PY{n}{mit}\PY{p}{)}
-         \PY{n}{blankRows1}\PY{p}{,} \PY{n}{blankCols1} \PY{o}{=} \PY{n}{getBlankRowsAndColumns}\PY{p}{(}\PY{n+nb}{all}\PY{p}{)}
-         \PY{n}{blankRows2}\PY{p}{,} \PY{n}{blankCols2} \PY{o}{=} \PY{n}{getBlankRowsAndColumns}\PY{p}{(}\PY{n}{rl}\PY{p}{)}
-         \PY{n}{blankRows3}\PY{p}{,} \PY{n}{blankCols3} \PY{o}{=} \PY{n}{getBlankRowsAndColumns}\PY{p}{(}\PY{n}{call4}\PY{p}{)}
-         \PY{n}{blankRows} \PY{o}{=} \PY{n}{Set}\PY{p}{(}\PY{p}{[}\PY{p}{]}\PY{p}{)}
-         \PY{n}{blankCols} \PY{o}{=} \PY{n}{Set}\PY{p}{(}\PY{p}{[}\PY{p}{]}\PY{p}{)}
-         \PY{n}{blankRows}\PY{o}{.}\PY{n}{update}\PY{p}{(}\PY{n}{blankRows0}\PY{p}{)}
-         \PY{n}{blankRows}\PY{o}{.}\PY{n}{update}\PY{p}{(}\PY{n}{blankRows1}\PY{p}{)}
-         \PY{n}{blankRows}\PY{o}{.}\PY{n}{update}\PY{p}{(}\PY{n}{blankRows2}\PY{p}{)}
-         \PY{n}{blankRows}\PY{o}{.}\PY{n}{update}\PY{p}{(}\PY{n}{blankRows3}\PY{p}{)}
-         \PY{n}{blankCols}\PY{o}{.}\PY{n}{update}\PY{p}{(}\PY{n}{blankCols0}\PY{p}{)}
-         \PY{n}{blankCols}\PY{o}{.}\PY{n}{update}\PY{p}{(}\PY{n}{blankCols1}\PY{p}{)}
-         \PY{n}{blankCols}\PY{o}{.}\PY{n}{update}\PY{p}{(}\PY{n}{blankCols2}\PY{p}{)}
-         \PY{n}{blankCols}\PY{o}{.}\PY{n}{update}\PY{p}{(}\PY{n}{blankCols3}\PY{p}{)}
-         \PY{n}{mit} \PY{o}{=} \PY{n}{removeRowsAndColumns}\PY{p}{(}\PY{n}{mit}\PY{p}{,} \PY{n}{blankRows}\PY{p}{,} \PY{n}{blankCols}\PY{p}{)}
-         \PY{n+nb}{all} \PY{o}{=} \PY{n}{removeRowsAndColumns}\PY{p}{(}\PY{n+nb}{all}\PY{p}{,} \PY{n}{blankRows}\PY{p}{,} \PY{n}{blankCols}\PY{p}{)}
-         \PY{n}{rl} \PY{o}{=} \PY{n}{removeRowsAndColumns}\PY{p}{(}\PY{n}{rl}\PY{p}{,} \PY{n}{blankRows}\PY{p}{,} \PY{n}{blankCols}\PY{p}{)}
-         \PY{n}{call4} \PY{o}{=} \PY{n}{removeRowsAndColumns}\PY{p}{(}\PY{n}{call4}\PY{p}{,} \PY{n}{blankRows}\PY{p}{,} \PY{n}{blankCols}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}2}]:} \PY{c+c1}{\PYZsh{}for chr1 in range(1, 24):}
+        \PY{c+c1}{\PYZsh{}    os.system(\PYZsq{}Rscript rscript.r \PYZpc{}s\PYZsq{}\PYZpc{}chr1)}
+\end{Verbatim}
+
+
+    \section{2. Loci-wise Distance:}\label{loci-wise-distance}
+
+I can now read the orbitfiles and put them into a \(N \times O\) matrix
+where \(N\) denotes number of loci in the chromosome and \(O\) denotes
+the number or obitals extracted, which can be either 14 or 73 (depending
+on whether \texttt{count4()} or \texttt{count5()} are called in the
+R-script above.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}152}]:} \PY{n}{chr1} \PY{o}{=} \PY{l+m+mi}{2}
+          \PY{n}{graphlets\PYZus{}mit} \PY{o}{=} \PY{n}{readMat}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{data/chr}\PY{l+s+si}{\PYZpc{}02d}\PY{l+s+s2}{\PYZus{}chr}\PY{l+s+si}{\PYZpc{}02d}\PY{l+s+s2}{\PYZus{}mit.graphlets}\PY{l+s+s2}{\PYZdq{}}\PY{o}{\PYZpc{}}\PY{p}{(}\PY{n}{chr1}\PY{p}{,} \PY{n}{chr1}\PY{p}{)}\PY{p}{,} \PY{n}{delimiter}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ }\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{uint32}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{graphlets\PYZus{}all} \PY{o}{=} \PY{n}{readMat}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{data/chr}\PY{l+s+si}{\PYZpc{}02d}\PY{l+s+s2}{\PYZus{}chr}\PY{l+s+si}{\PYZpc{}02d}\PY{l+s+s2}{\PYZus{}all.graphlets}\PY{l+s+s2}{\PYZdq{}}\PY{o}{\PYZpc{}}\PY{p}{(}\PY{n}{chr1}\PY{p}{,} \PY{n}{chr1}\PY{p}{)}\PY{p}{,} \PY{n}{delimiter}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ }\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{uint32}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{graphlets\PYZus{}rl} \PY{o}{=} \PY{n}{readMat}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{data/chr}\PY{l+s+si}{\PYZpc{}02d}\PY{l+s+s2}{\PYZus{}chr}\PY{l+s+si}{\PYZpc{}02d}\PY{l+s+s2}{\PYZus{}rl.graphlets}\PY{l+s+s2}{\PYZdq{}}\PY{o}{\PYZpc{}}\PY{p}{(}\PY{n}{chr1}\PY{p}{,} \PY{n}{chr1}\PY{p}{)}\PY{p}{,} \PY{n}{delimiter}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ }\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{uint32}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{graphlets\PYZus{}call4} \PY{o}{=} \PY{n}{readMat}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{data/chr}\PY{l+s+si}{\PYZpc{}02d}\PY{l+s+s2}{\PYZus{}chr}\PY{l+s+si}{\PYZpc{}02d}\PY{l+s+s2}{\PYZus{}call4.graphlets}\PY{l+s+s2}{\PYZdq{}}\PY{o}{\PYZpc{}}\PY{p}{(}\PY{n}{chr1}\PY{p}{,} \PY{n}{chr1}\PY{p}{)}\PY{p}{,} \PY{n}{delimiter}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ }\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{uint32}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{k}{print}\PY{p}{(}\PY{n}{graphlets\PYZus{}mit}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+          \PY{k}{print}\PY{p}{(}\PY{n}{graphlets\PYZus{}all}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+          \PY{k}{print}\PY{p}{(}\PY{n}{graphlets\PYZus{}rl}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+          \PY{k}{print}\PY{p}{(}\PY{n}{graphlets\PYZus{}call4}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
 \end{Verbatim}
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-chromosome 1: 2, chromosome 2: 2
-file directory: ../data/extracted\_all\_contact\_MIT/chr\_02\_02\_500kb.mat
-file directory: ../data/extracted\_all\_contact\_call4/chr\_02\_02\_500kb.mat
-file directory: ../data/extracted\_all\_contact\_RL/chr\_02\_02\_500kb.mat
-file directory: ../data/extracted\_all\_contact\_ALL/chr\_02\_02\_500kb.mat
-size of old matrix: (486, 486)
-size of new matrix: (480, 480)
-size of old matrix: (486, 486)
-size of new matrix: (480, 480)
-size of old matrix: (486, 486)
-size of new matrix: (480, 480)
-size of old matrix: (486, 486)
-size of new matrix: (480, 480)
+file directory: data/chr02\_chr02\_mit.graphlets
+file directory: data/chr02\_chr02\_all.graphlets
+file directory: data/chr02\_chr02\_rl.graphlets
+file directory: data/chr02\_chr02\_call4.graphlets
+(478, 73)
+(478, 73)
+(478, 73)
+(478, 73)
 
     \end{Verbatim}
 
+    Calculating Loci-wise correlations:
+
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}19}]:} \PY{n}{n0}\PY{p}{,} \PY{n}{m0} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{shape}\PY{p}{(}\PY{n}{mit}\PY{p}{)}
-         \PY{n}{n1}\PY{p}{,} \PY{n}{m1} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{shape}\PY{p}{(}\PY{n}{call4}\PY{p}{)}
-         \PY{n}{n2}\PY{p}{,} \PY{n}{m2} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{shape}\PY{p}{(}\PY{n}{rl}\PY{p}{)}
-         \PY{n}{n3}\PY{p}{,} \PY{n}{m3} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{shape}\PY{p}{(}\PY{n+nb}{all}\PY{p}{)}
-         
-         \PY{n}{n} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{min}\PY{p}{(}\PY{p}{[}\PY{n}{n0}\PY{p}{,} \PY{n}{m0}\PY{p}{,} \PY{n}{n1}\PY{p}{,} \PY{n}{m1}\PY{p}{,} \PY{n}{n2}\PY{p}{,} \PY{n}{m2}\PY{p}{,} \PY{n}{n3}\PY{p}{,} \PY{n}{m3}\PY{p}{]}\PY{p}{)}
-         
-         \PY{n}{images} \PY{o}{=} \PY{p}{[}\PY{n}{mit}\PY{p}{,} \PY{n+nb}{all}\PY{p}{,} \PY{n}{rl}\PY{p}{,} \PY{n}{call4}\PY{p}{]}
-         \PY{n}{showImages}\PY{p}{(}\PY{n}{images}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}153}]:} \PY{n}{mit\PYZus{}all\PYZus{}corr} \PY{o}{=} \PYZbs{}
+              \PY{n}{graphlet\PYZus{}correlational\PYZus{}distance}\PY{p}{(}\PY{n}{graphlets\PYZus{}mit}\PY{p}{,} \PY{n}{graphlets\PYZus{}all}\PY{p}{)}
 \end{Verbatim}
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-Number of columnts: 2
-
-    \end{Verbatim}
-
-    
-    \begin{verbatim}
-<matplotlib.figure.Figure at 0x7f65c3721610>
-    \end{verbatim}
-
-    
-    \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_4_2.png}
-    \end{center}
-    { \hspace*{\fill} \\}
-    
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}20}]:} \PY{n}{mit} \PY{o}{=} \PY{n}{local\PYZus{}threshold}\PY{p}{(}\PY{n}{scn}\PY{p}{(}\PY{n}{mit}\PY{p}{)}\PY{p}{,} \PY{n}{k} \PY{o}{=} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{method}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{normal}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{t} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)} 
-         \PY{n+nb}{all} \PY{o}{=} \PY{n}{local\PYZus{}threshold}\PY{p}{(}\PY{n}{scn}\PY{p}{(}\PY{n+nb}{all}\PY{p}{)}\PY{p}{,} \PY{n}{k} \PY{o}{=} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{method}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{normal}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{t} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}
-         \PY{n}{rl} \PY{o}{=} \PY{n}{local\PYZus{}threshold}\PY{p}{(}\PY{n}{scn}\PY{p}{(}\PY{n}{rl}\PY{p}{)}\PY{p}{,} \PY{n}{k} \PY{o}{=} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{method}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{normal}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{t} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)} 
-         \PY{n}{call4} \PY{o}{=} \PY{n}{local\PYZus{}threshold}\PY{p}{(}\PY{n}{scn}\PY{p}{(}\PY{n}{call4}\PY{p}{)}\PY{p}{,} \PY{n}{k} \PY{o}{=} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{method}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{normal}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{t} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)} 
+{\color{incolor}In [{\color{incolor}154}]:} \PY{n}{mit\PYZus{}mit\PYZus{}corr} \PY{o}{=} \PYZbs{}
+              \PY{n}{graphlet\PYZus{}correlational\PYZus{}distance}\PY{p}{(}\PY{n}{graphlets\PYZus{}mit}\PY{p}{,} \PY{n}{graphlets\PYZus{}mit}\PY{p}{)}
 \end{Verbatim}
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}21}]:} \PY{n}{images} \PY{o}{=} \PY{p}{[} 
-                 \PY{n}{mit}\PY{p}{,} \PY{n+nb}{all}\PY{p}{,} \PY{n}{rl}\PY{p}{,} \PY{n}{call4}
-                 \PY{p}{,} \PY{p}{(}\PY{n}{mit} \PY{o}{==} \PY{n+nb}{all}\PY{p}{)} \PY{o}{*} \PY{p}{(}\PY{n}{mit} \PY{o}{!=} \PY{l+m+mi}{0}\PY{p}{)} \PY{o}{*} \PY{p}{(}\PY{n+nb}{all} \PY{o}{!=} \PY{l+m+mi}{0}\PY{p}{)} \PY{p}{,} \PY{n+nb}{all} \PY{o}{!=} \PY{n}{mit}
-                 \PY{p}{,} \PY{p}{(}\PY{n}{mit} \PY{o}{==} \PY{n}{rl}\PY{p}{)} \PY{o}{*} \PY{p}{(}\PY{n}{mit} \PY{o}{!=} \PY{l+m+mi}{0}\PY{p}{)} \PY{o}{*} \PY{p}{(}\PY{n}{rl} \PY{o}{!=} \PY{l+m+mi}{0}\PY{p}{)} \PY{p}{,} \PY{n}{rl} \PY{o}{!=} \PY{n}{mit}
-                 \PY{p}{,} \PY{p}{(}\PY{n}{mit} \PY{o}{==} \PY{n}{call4}\PY{p}{)} \PY{o}{*} \PY{p}{(}\PY{n}{mit} \PY{o}{!=} \PY{l+m+mi}{0}\PY{p}{)} \PY{o}{*} \PY{p}{(}\PY{n}{call4} \PY{o}{!=} \PY{l+m+mi}{0}\PY{p}{)} \PY{p}{,} \PY{n}{call4} \PY{o}{!=} \PY{n}{mit}
-                  \PY{p}{]} 
-         \PY{n}{showImages}\PY{p}{(}\PY{n}{images}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}155}]:} \PY{n}{mit\PYZus{}call4\PYZus{}corr} \PY{o}{=} \PYZbs{}
+              \PY{n}{graphlet\PYZus{}correlational\PYZus{}distance}\PY{p}{(}\PY{n}{graphlets\PYZus{}mit}\PY{p}{,} \PY{n}{graphlets\PYZus{}call4}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}156}]:} \PY{n}{mit\PYZus{}rl\PYZus{}corr} \PY{o}{=} \PYZbs{}
+              \PY{n}{graphlet\PYZus{}correlational\PYZus{}distance}\PY{p}{(}\PY{n}{graphlets\PYZus{}mit}\PY{p}{,} \PY{n}{graphlets\PYZus{}rl}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}157}]:} \PY{n}{pylab}\PY{o}{.}\PY{n}{rcParams}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{figure.figsize}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{)}
+          \PY{n}{images} \PY{o}{=} \PY{p}{[} \PY{n}{mit\PYZus{}mit\PYZus{}corr}
+                    \PY{p}{,} \PY{n}{mit\PYZus{}all\PYZus{}corr}
+                   \PY{p}{,} \PY{n}{mit\PYZus{}rl\PYZus{}corr}
+                   \PY{p}{,} \PY{n}{mit\PYZus{}call4\PYZus{}corr}\PY{p}{]}
+          \PY{n}{showImages}\PY{p}{(}\PY{n}{images}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}
 \end{Verbatim}
 
 
@@ -445,105 +413,1240 @@ Number of columnts: 2
 
     \end{Verbatim}
 
-    
-    \begin{verbatim}
-<matplotlib.figure.Figure at 0x7f65c3718390>
-    \end{verbatim}
-
-    
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_6_2.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_11_1.png}
     \end{center}
     { \hspace*{\fill} \\}
     
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}22}]:} \PY{n+nb}{min}\PY{p}{,} \PY{n+nb}{max}\PY{p}{,} \PY{n}{mean\PYZus{}mit}\PY{p}{,} \PY{n}{std\PYZus{}mit} \PY{o}{=} \PY{n}{print\PYZus{}statistics}\PY{p}{(}\PY{n}{mit}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{mit}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-         \PY{n+nb}{min}\PY{p}{,} \PY{n+nb}{max}\PY{p}{,} \PY{n}{mean\PYZus{}rl}\PY{p}{,} \PY{n}{std\PYZus{}rl} \PY{o}{=} \PY{n}{print\PYZus{}statistics}\PY{p}{(}\PY{n}{rl}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{rl}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-         \PY{n+nb}{min}\PY{p}{,} \PY{n+nb}{max}\PY{p}{,} \PY{n}{mean\PYZus{}call4}\PY{p}{,} \PY{n}{std\PYZus{}call4} \PY{o}{=} \PY{n}{print\PYZus{}statistics}\PY{p}{(}\PY{n}{call4}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{call4}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-         \PY{n+nb}{min}\PY{p}{,} \PY{n+nb}{max}\PY{p}{,} \PY{n}{mean\PYZus{}all}\PY{p}{,} \PY{n}{std\PYZus{}all} \PY{o}{=} \PY{n}{print\PYZus{}statistics}\PY{p}{(}\PY{n+nb}{all}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{all}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}161}]:} \PY{k}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Total correlation statistics}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{print\PYZus{}statistics}\PY{p}{(}\PY{n}{mit\PYZus{}mit\PYZus{}corr}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{mit vs mit}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{print\PYZus{}statistics}\PY{p}{(}\PY{n}{mit\PYZus{}all\PYZus{}corr}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{mit vs all}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{print\PYZus{}statistics}\PY{p}{(}\PY{n}{mit\PYZus{}rl\PYZus{}corr}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{mit vs rl}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{print\PYZus{}statistics}\PY{p}{(}\PY{n}{mit\PYZus{}call4\PYZus{}corr}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{mit vs call4}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          
+          \PY{k}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{Total correlation statistics}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{print\PYZus{}statistics}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{diagonal}\PY{p}{(}\PY{n}{mit\PYZus{}mit\PYZus{}corr}\PY{p}{)}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{mit vs mit}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{print\PYZus{}statistics}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{diagonal}\PY{p}{(}\PY{n}{mit\PYZus{}all\PYZus{}corr}\PY{p}{)}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{mit vs all}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{print\PYZus{}statistics}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{diagonal}\PY{p}{(}\PY{n}{mit\PYZus{}rl\PYZus{}corr}\PY{p}{)}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{mit vs rl}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{print\PYZus{}statistics}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{diagonal}\PY{p}{(}\PY{n}{mit\PYZus{}call4\PYZus{}corr}\PY{p}{)}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{mit vs call4}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
 \end{Verbatim}
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
+Total correlation statistics
 \#-----------------------------------------------------------------------\#
-Stats for mit: 
-max: 1.000000 | min: 0.000000 | median: 0.000000 | mean: 0.188247 | std: 0.390909
-\#-----------------------------------------------------------------------\#
-\#-----------------------------------------------------------------------\#
-Stats for rl: 
-max: 1.000000 | min: 0.000000 | median: 0.000000 | mean: 0.153229 | std: 0.360208
+Stats for mit vs mit: 
+max: 4.469689 | min: 0.000000 | median: 0.118804 | mean: 0.177694 | std: 0.406987
 \#-----------------------------------------------------------------------\#
 \#-----------------------------------------------------------------------\#
-Stats for call4: 
-max: 1.000000 | min: 0.000000 | median: 0.000000 | mean: 0.158854 | std: 0.365540
+Stats for mit vs all: 
+max: 4.469821 | min: 0.000000 | median: 0.254837 | mean: 0.331607 | std: 0.424543
 \#-----------------------------------------------------------------------\#
 \#-----------------------------------------------------------------------\#
-Stats for all: 
-max: 1.000000 | min: 0.000000 | median: 0.000000 | mean: 0.159688 | std: 0.366316
+Stats for mit vs rl: 
+max: 4.469689 | min: 0.000000 | median: 0.368116 | mean: 0.429916 | std: 0.418677
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs call4: 
+max: 4.469790 | min: 0.000000 | median: 0.296439 | mean: 0.359209 | std: 0.420711
+\#-----------------------------------------------------------------------\#
+
+
+Total correlation statistics
+\#-----------------------------------------------------------------------\#
+Stats for mit vs mit: 
+max: 0.000000 | min: 0.000000 | median: 0.000000 | mean: 0.000000 | std: 0.000000
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs all: 
+max: 1.805932 | min: 0.000000 | median: 0.243699 | mean: 0.287908 | std: 0.178464
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs rl: 
+max: 1.235199 | min: 0.000000 | median: 0.368138 | mean: 0.391644 | std: 0.196214
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs call4: 
+max: 1.392509 | min: 0.000000 | median: 0.298928 | mean: 0.317962 | std: 0.175240
 \#-----------------------------------------------------------------------\#
 
     \end{Verbatim}
 
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}161}]:} (1.3925089365419872, 0.0, 0.3179615758460628, 0.17523973020518074)
+\end{Verbatim}
+            
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}23}]:} \PY{n}{pylab}\PY{o}{.}\PY{n}{rcParams}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{figure.figsize}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{)}
-         \PY{n}{images} \PY{o}{=} \PY{p}{[}
-                 \PY{p}{(}\PY{n}{mit}\PY{p}{)} \PY{o}{\PYZgt{}} \PY{l+m+mf}{1e\PYZhy{}2}
-                 \PY{p}{,} \PY{p}{(}\PY{n+nb}{all}\PY{p}{)} \PY{o}{\PYZgt{}} \PY{l+m+mf}{1e\PYZhy{}2}
-                 \PY{p}{,} \PY{p}{(}\PY{n}{rl}\PY{p}{)} \PY{o}{\PYZgt{}} \PY{l+m+mf}{1e\PYZhy{}2}
-                 \PY{p}{,} \PY{p}{(}\PY{n}{call4}\PY{p}{)} \PY{o}{\PYZgt{}} \PY{l+m+mf}{1e\PYZhy{}2}
-                 \PY{p}{]}
-         \PY{n}{showImages}\PY{p}{(}\PY{n}{images}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}182}]:} \PY{n}{n} \PY{o}{=} \PY{n}{mit\PYZus{}mit\PYZus{}corr}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+          \PY{c+c1}{\PYZsh{}t1 = (t\PYZus{}test(np.diagonal(mit\PYZus{}mit\PYZus{}corr)))}
+          \PY{n}{t2} \PY{o}{=} \PY{p}{(}\PY{n}{t\PYZus{}test}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{diagonal}\PY{p}{(}\PY{n}{mit\PYZus{}all\PYZus{}corr}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+          \PY{n}{t3} \PY{o}{=} \PY{p}{(}\PY{n}{t\PYZus{}test}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{diagonal}\PY{p}{(}\PY{n}{mit\PYZus{}rl\PYZus{}corr}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+          \PY{n}{t4} \PY{o}{=} \PY{p}{(}\PY{n}{t\PYZus{}test}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{diagonal}\PY{p}{(}\PY{n}{mit\PYZus{}call4\PYZus{}corr}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+          \PY{k}{print}\PY{p}{(}\PY{n}{n}\PY{p}{)}
+          \PY{c+c1}{\PYZsh{}print(t1)}
+          \PY{k}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{t statistic for mit vs all: }\PY{l+s+si}{\PYZpc{}d}\PY{l+s+s2}{\PYZdq{}}\PY{o}{\PYZpc{}} \PY{n}{t2}\PY{p}{)}
+          \PY{k}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{t statistic for mit vs rl: }\PY{l+s+si}{\PYZpc{}d}\PY{l+s+s2}{\PYZdq{}}\PY{o}{\PYZpc{}} \PY{n}{t3}\PY{p}{)}
+          \PY{k}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{t statistic for mit vs call4: }\PY{l+s+si}{\PYZpc{}d}\PY{l+s+s2}{\PYZdq{}}\PY{o}{\PYZpc{}} \PY{n}{t4}\PY{p}{)}
+          \PY{k+kn}{from} \PY{n+nn}{scipy.stats} \PY{k+kn}{import} \PY{n}{t}
+          \PY{k}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{p\PYZhy{}value for mit\PYZhy{}all: }\PY{l+s+si}{\PYZpc{}10.3e}\PY{l+s+s2}{\PYZdq{}}\PY{o}{\PYZpc{}}\PY{p}{(}\PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n}{t}\PY{o}{.}\PY{n}{cdf}\PY{p}{(}\PY{n}{t2}\PY{p}{,} \PY{n}{n}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+          \PY{k}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{p\PYZhy{}value for mit\PYZhy{}rl: }\PY{l+s+si}{\PYZpc{}10.3e}\PY{l+s+s2}{\PYZdq{}}\PY{o}{\PYZpc{}}\PY{p}{(}\PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n}{t}\PY{o}{.}\PY{n}{cdf}\PY{p}{(}\PY{n}{t3}\PY{p}{,} \PY{n}{n}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+          \PY{k}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{p\PYZhy{}value for mit\PYZhy{}call4: }\PY{l+s+si}{\PYZpc{}10.3e}\PY{l+s+s2}{\PYZdq{}}\PY{o}{\PYZpc{}}\PY{p}{(}\PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n}{t}\PY{o}{.}\PY{n}{cdf}\PY{p}{(}\PY{n}{t4}\PY{p}{,} \PY{n}{n}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
+478
+t statistic for mit vs all: 18
+t statistic for mit vs rl: 19
+t statistic for mit vs call4: 19
+p-value for mit-all:  0.000e+00
+p-value for mit-rl:  0.000e+00
+p-value for mit-call4:  0.000e+00
+
+    \end{Verbatim}
+
+    \section{3. Orbit-wise Correlation}\label{orbit-wise-correlation}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}192}]:} \PY{n}{pylab}\PY{o}{.}\PY{n}{rcParams}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{figure.figsize}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{)}
+          \PY{k}{for} \PY{n}{chr1} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{24}\PY{p}{)}\PY{p}{:}
+              \PY{n}{graphlets\PYZus{}mit} \PY{o}{=} \PY{n}{readMat}\PYZbs{}
+              \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{data/chr}\PY{l+s+si}{\PYZpc{}02d}\PY{l+s+s2}{\PYZus{}chr}\PY{l+s+si}{\PYZpc{}02d}\PY{l+s+s2}{\PYZus{}mit.graphlets}\PY{l+s+s2}{\PYZdq{}}\PY{o}{\PYZpc{}}\PY{p}{(}\PY{n}{chr1}\PY{p}{,} \PY{n}{chr1}\PY{p}{)}\PY{p}{,} \PY{n}{delimiter}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ }\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{uint32}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+              \PY{n}{graphlets\PYZus{}all} \PY{o}{=} \PY{n}{readMat}\PYZbs{}
+              \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{data/chr}\PY{l+s+si}{\PYZpc{}02d}\PY{l+s+s2}{\PYZus{}chr}\PY{l+s+si}{\PYZpc{}02d}\PY{l+s+s2}{\PYZus{}all.graphlets}\PY{l+s+s2}{\PYZdq{}}\PY{o}{\PYZpc{}}\PY{p}{(}\PY{n}{chr1}\PY{p}{,} \PY{n}{chr1}\PY{p}{)}\PY{p}{,} \PY{n}{delimiter}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ }\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{uint32}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+              \PY{n}{graphlets\PYZus{}rl} \PY{o}{=} \PY{n}{readMat}\PYZbs{}
+              \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{data/chr}\PY{l+s+si}{\PYZpc{}02d}\PY{l+s+s2}{\PYZus{}chr}\PY{l+s+si}{\PYZpc{}02d}\PY{l+s+s2}{\PYZus{}rl.graphlets}\PY{l+s+s2}{\PYZdq{}}\PY{o}{\PYZpc{}}\PY{p}{(}\PY{n}{chr1}\PY{p}{,} \PY{n}{chr1}\PY{p}{)}\PY{p}{,} \PY{n}{delimiter}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ }\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{uint32}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+              \PY{n}{graphlets\PYZus{}call4} \PY{o}{=} \PY{n}{readMat}\PYZbs{}
+              \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{data/chr}\PY{l+s+si}{\PYZpc{}02d}\PY{l+s+s2}{\PYZus{}chr}\PY{l+s+si}{\PYZpc{}02d}\PY{l+s+s2}{\PYZus{}call4.graphlets}\PY{l+s+s2}{\PYZdq{}}\PY{o}{\PYZpc{}}\PY{p}{(}\PY{n}{chr1}\PY{p}{,} \PY{n}{chr1}\PY{p}{)}\PY{p}{,} \PY{n}{delimiter}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ }\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{uint32}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+              \PY{n}{mit\PYZus{}all\PYZus{}corr\PYZus{}orbit\PYZus{}wise} \PY{o}{=} \PYZbs{}
+                  \PY{n}{pearson}\PY{p}{(}\PY{n}{graphlets\PYZus{}mit}\PY{o}{.}\PY{n}{T}\PY{p}{,} \PY{n}{graphlets\PYZus{}all}\PY{o}{.}\PY{n}{T}\PY{p}{)}
+              \PY{n}{mit\PYZus{}mit\PYZus{}corr\PYZus{}orbit\PYZus{}wise}\PY{o}{=} \PYZbs{}
+                  \PY{n}{pearson}\PY{p}{(}\PY{n}{graphlets\PYZus{}mit}\PY{o}{.}\PY{n}{T}\PY{p}{,} \PY{n}{graphlets\PYZus{}mit}\PY{o}{.}\PY{n}{T}\PY{p}{)}
+              \PY{n}{mit\PYZus{}call4\PYZus{}corr\PYZus{}orbit\PYZus{}wise}\PY{o}{=} \PYZbs{}
+                  \PY{n}{pearson}\PY{p}{(}\PY{n}{graphlets\PYZus{}mit}\PY{o}{.}\PY{n}{T}\PY{p}{,} \PY{n}{graphlets\PYZus{}call4}\PY{o}{.}\PY{n}{T}\PY{p}{)}
+              \PY{n}{mit\PYZus{}rl\PYZus{}corr\PYZus{}orbit\PYZus{}wise}\PY{o}{=} \PYZbs{}
+                  \PY{n}{pearson}\PY{p}{(}\PY{n}{graphlets\PYZus{}mit}\PY{o}{.}\PY{n}{T}\PY{p}{,} \PY{n}{graphlets\PYZus{}rl}\PY{o}{.}\PY{n}{T}\PY{p}{)}
+              \PY{n}{images} \PY{o}{=} \PY{p}{[} \PY{n}{mit\PYZus{}mit\PYZus{}corr\PYZus{}orbit\PYZus{}wise}
+                    \PY{p}{,} \PY{n}{mit\PYZus{}all\PYZus{}corr\PYZus{}orbit\PYZus{}wise}
+                   \PY{p}{,} \PY{n}{mit\PYZus{}rl\PYZus{}corr\PYZus{}orbit\PYZus{}wise}
+                   \PY{p}{,} \PY{n}{mit\PYZus{}call4\PYZus{}corr\PYZus{}orbit\PYZus{}wise}
+                   \PY{p}{]}
+              \PY{n}{showImages}\PY{p}{(}\PY{n}{images}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+file directory: data/chr01\_chr01\_mit.graphlets
+file directory: data/chr01\_chr01\_all.graphlets
+file directory: data/chr01\_chr01\_rl.graphlets
+file directory: data/chr01\_chr01\_call4.graphlets
 Number of columnts: 4
 
     \end{Verbatim}
 
-    
-    \begin{verbatim}
-<matplotlib.figure.Figure at 0x7f65c3752790>
-    \end{verbatim}
-
-    
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_8_2.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_15_1.png}
     \end{center}
     { \hspace*{\fill} \\}
     
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}24}]:} \PY{n}{images} \PY{o}{=} \PY{p}{[}
-                 \PY{n}{log}\PY{p}{(}\PY{n}{call4}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}
-                 \PY{p}{,} \PY{n}{log}\PY{p}{(}\PY{n}{mit}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}
-                 \PY{p}{,} \PY{n}{log}\PY{p}{(}\PY{n}{rl}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}
-                 \PY{p}{,} \PY{n}{log}\PY{p}{(}\PY{n+nb}{all}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}
-                 \PY{p}{]}
-         \PY{n}{showImages}\PY{p}{(}\PY{n}{images}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
-\end{Verbatim}
-
-
-    \begin{Verbatim}[commandchars=\\\{\}]
+file directory: data/chr02\_chr02\_mit.graphlets
+file directory: data/chr02\_chr02\_all.graphlets
+file directory: data/chr02\_chr02\_rl.graphlets
+file directory: data/chr02\_chr02\_call4.graphlets
 Number of columnts: 4
 
     \end{Verbatim}
 
-    
-    \begin{verbatim}
-<matplotlib.figure.Figure at 0x7f65c37400d0>
-    \end{verbatim}
-
-    
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_9_2.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_15_3.png}
     \end{center}
     { \hspace*{\fill} \\}
     
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}10}]:} \PY{n}{convertBinaryMatToOrcaReadable}\PY{p}{(}\PY{n}{call4} \PY{o}{\PYZgt{}} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{data/chr}\PY{l+s+si}{\PYZpc{}02d}\PY{l+s+s2}{\PYZus{}chr}\PY{l+s+si}{\PYZpc{}02d}\PY{l+s+s2}{\PYZus{}call4.edges}\PY{l+s+s2}{\PYZdq{}}\PY{o}{\PYZpc{}}\PY{p}{(}\PY{n}{chr1}\PY{p}{,} \PY{n}{chr1}\PY{p}{)}\PY{p}{)}
-         \PY{n}{convertBinaryMatToOrcaReadable}\PY{p}{(}\PY{n}{mit} \PY{o}{\PYZgt{}} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{data/chr}\PY{l+s+si}{\PYZpc{}02d}\PY{l+s+s2}{\PYZus{}chr}\PY{l+s+si}{\PYZpc{}02d}\PY{l+s+s2}{\PYZus{}mit.edges}\PY{l+s+s2}{\PYZdq{}}\PY{o}{\PYZpc{}}\PY{p}{(}\PY{n}{chr1}\PY{p}{,} \PY{n}{chr1}\PY{p}{)}\PY{p}{)}
-         \PY{n}{convertBinaryMatToOrcaReadable}\PY{p}{(}\PY{n}{rl} \PY{o}{\PYZgt{}} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{data/chr}\PY{l+s+si}{\PYZpc{}02d}\PY{l+s+s2}{\PYZus{}chr}\PY{l+s+si}{\PYZpc{}02d}\PY{l+s+s2}{\PYZus{}rl.edges}\PY{l+s+s2}{\PYZdq{}}\PY{o}{\PYZpc{}}\PY{p}{(}\PY{n}{chr1}\PY{p}{,} \PY{n}{chr1}\PY{p}{)}\PY{p}{)}
-         \PY{n}{convertBinaryMatToOrcaReadable}\PY{p}{(}\PY{n+nb}{all} \PY{o}{\PYZgt{}} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{data/chr}\PY{l+s+si}{\PYZpc{}02d}\PY{l+s+s2}{\PYZus{}chr}\PY{l+s+si}{\PYZpc{}02d}\PY{l+s+s2}{\PYZus{}all.edges}\PY{l+s+s2}{\PYZdq{}}\PY{o}{\PYZpc{}}\PY{p}{(}\PY{n}{chr1}\PY{p}{,} \PY{n}{chr1}\PY{p}{)}\PY{p}{)}
+file directory: data/chr03\_chr03\_mit.graphlets
+file directory: data/chr03\_chr03\_all.graphlets
+file directory: data/chr03\_chr03\_rl.graphlets
+file directory: data/chr03\_chr03\_call4.graphlets
+Number of columnts: 4
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_15_5.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+file directory: data/chr04\_chr04\_mit.graphlets
+file directory: data/chr04\_chr04\_all.graphlets
+file directory: data/chr04\_chr04\_rl.graphlets
+file directory: data/chr04\_chr04\_call4.graphlets
+Number of columnts: 4
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_15_7.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+file directory: data/chr05\_chr05\_mit.graphlets
+file directory: data/chr05\_chr05\_all.graphlets
+file directory: data/chr05\_chr05\_rl.graphlets
+file directory: data/chr05\_chr05\_call4.graphlets
+Number of columnts: 4
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_15_9.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+file directory: data/chr06\_chr06\_mit.graphlets
+file directory: data/chr06\_chr06\_all.graphlets
+file directory: data/chr06\_chr06\_rl.graphlets
+file directory: data/chr06\_chr06\_call4.graphlets
+Number of columnts: 4
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_15_11.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+file directory: data/chr07\_chr07\_mit.graphlets
+file directory: data/chr07\_chr07\_all.graphlets
+file directory: data/chr07\_chr07\_rl.graphlets
+file directory: data/chr07\_chr07\_call4.graphlets
+Number of columnts: 4
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_15_13.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+file directory: data/chr08\_chr08\_mit.graphlets
+file directory: data/chr08\_chr08\_all.graphlets
+file directory: data/chr08\_chr08\_rl.graphlets
+file directory: data/chr08\_chr08\_call4.graphlets
+Number of columnts: 4
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_15_15.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+file directory: data/chr09\_chr09\_mit.graphlets
+file directory: data/chr09\_chr09\_all.graphlets
+file directory: data/chr09\_chr09\_rl.graphlets
+file directory: data/chr09\_chr09\_call4.graphlets
+Number of columnts: 4
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_15_17.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+file directory: data/chr10\_chr10\_mit.graphlets
+file directory: data/chr10\_chr10\_all.graphlets
+file directory: data/chr10\_chr10\_rl.graphlets
+file directory: data/chr10\_chr10\_call4.graphlets
+Number of columnts: 4
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_15_19.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+file directory: data/chr11\_chr11\_mit.graphlets
+file directory: data/chr11\_chr11\_all.graphlets
+file directory: data/chr11\_chr11\_rl.graphlets
+file directory: data/chr11\_chr11\_call4.graphlets
+Number of columnts: 4
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_15_21.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+file directory: data/chr12\_chr12\_mit.graphlets
+file directory: data/chr12\_chr12\_all.graphlets
+file directory: data/chr12\_chr12\_rl.graphlets
+file directory: data/chr12\_chr12\_call4.graphlets
+Number of columnts: 4
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_15_23.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+file directory: data/chr13\_chr13\_mit.graphlets
+file directory: data/chr13\_chr13\_all.graphlets
+file directory: data/chr13\_chr13\_rl.graphlets
+file directory: data/chr13\_chr13\_call4.graphlets
+Number of columnts: 4
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_15_25.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+file directory: data/chr14\_chr14\_mit.graphlets
+file directory: data/chr14\_chr14\_all.graphlets
+file directory: data/chr14\_chr14\_rl.graphlets
+file directory: data/chr14\_chr14\_call4.graphlets
+Number of columnts: 4
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_15_27.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+file directory: data/chr15\_chr15\_mit.graphlets
+file directory: data/chr15\_chr15\_all.graphlets
+file directory: data/chr15\_chr15\_rl.graphlets
+file directory: data/chr15\_chr15\_call4.graphlets
+Number of columnts: 4
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_15_29.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+file directory: data/chr16\_chr16\_mit.graphlets
+file directory: data/chr16\_chr16\_all.graphlets
+file directory: data/chr16\_chr16\_rl.graphlets
+file directory: data/chr16\_chr16\_call4.graphlets
+Number of columnts: 4
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_15_31.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+file directory: data/chr17\_chr17\_mit.graphlets
+file directory: data/chr17\_chr17\_all.graphlets
+file directory: data/chr17\_chr17\_rl.graphlets
+file directory: data/chr17\_chr17\_call4.graphlets
+Number of columnts: 4
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_15_33.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+file directory: data/chr18\_chr18\_mit.graphlets
+file directory: data/chr18\_chr18\_all.graphlets
+file directory: data/chr18\_chr18\_rl.graphlets
+file directory: data/chr18\_chr18\_call4.graphlets
+Number of columnts: 4
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_15_35.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+file directory: data/chr19\_chr19\_mit.graphlets
+file directory: data/chr19\_chr19\_all.graphlets
+file directory: data/chr19\_chr19\_rl.graphlets
+file directory: data/chr19\_chr19\_call4.graphlets
+Number of columnts: 4
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_15_37.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+file directory: data/chr20\_chr20\_mit.graphlets
+file directory: data/chr20\_chr20\_all.graphlets
+file directory: data/chr20\_chr20\_rl.graphlets
+file directory: data/chr20\_chr20\_call4.graphlets
+Number of columnts: 4
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_15_39.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+file directory: data/chr21\_chr21\_mit.graphlets
+file directory: data/chr21\_chr21\_all.graphlets
+file directory: data/chr21\_chr21\_rl.graphlets
+file directory: data/chr21\_chr21\_call4.graphlets
+Number of columnts: 4
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_15_41.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+file directory: data/chr22\_chr22\_mit.graphlets
+file directory: data/chr22\_chr22\_all.graphlets
+file directory: data/chr22\_chr22\_rl.graphlets
+file directory: data/chr22\_chr22\_call4.graphlets
+Number of columns (68 and 67) not the same.
+            picking the minimum value{\ldots}
+Number of columnts: 4
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_15_43.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+file directory: data/chr23\_chr23\_mit.graphlets
+file directory: data/chr23\_chr23\_all.graphlets
+file directory: data/chr23\_chr23\_rl.graphlets
+file directory: data/chr23\_chr23\_call4.graphlets
+Number of columnts: 4
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_15_45.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}198}]:} \PY{k}{for} \PY{n}{chr1} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{24}\PY{p}{)}\PY{p}{:}
+              \PY{k}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Chromosome }\PY{l+s+si}{\PYZpc{}d}\PY{l+s+s2}{\PYZdq{}}\PY{o}{\PYZpc{}}\PY{p}{(}\PY{n}{chr1}\PY{p}{)}\PY{p}{)}
+              \PY{n}{graphlets\PYZus{}mit} \PY{o}{=} \PY{n}{readMat}\PYZbs{}
+              \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{data/chr}\PY{l+s+si}{\PYZpc{}02d}\PY{l+s+s2}{\PYZus{}chr}\PY{l+s+si}{\PYZpc{}02d}\PY{l+s+s2}{\PYZus{}mit.graphlets}\PY{l+s+s2}{\PYZdq{}}\PY{o}{\PYZpc{}}\PY{p}{(}\PY{n}{chr1}\PY{p}{,} \PY{n}{chr1}\PY{p}{)}\PY{p}{,} \PY{n}{delimiter}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ }\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{uint32}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+              \PY{n}{graphlets\PYZus{}all} \PY{o}{=} \PY{n}{readMat}\PYZbs{}
+              \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{data/chr}\PY{l+s+si}{\PYZpc{}02d}\PY{l+s+s2}{\PYZus{}chr}\PY{l+s+si}{\PYZpc{}02d}\PY{l+s+s2}{\PYZus{}all.graphlets}\PY{l+s+s2}{\PYZdq{}}\PY{o}{\PYZpc{}}\PY{p}{(}\PY{n}{chr1}\PY{p}{,} \PY{n}{chr1}\PY{p}{)}\PY{p}{,} \PY{n}{delimiter}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ }\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{uint32}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+              \PY{n}{graphlets\PYZus{}rl} \PY{o}{=} \PY{n}{readMat}\PYZbs{}
+              \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{data/chr}\PY{l+s+si}{\PYZpc{}02d}\PY{l+s+s2}{\PYZus{}chr}\PY{l+s+si}{\PYZpc{}02d}\PY{l+s+s2}{\PYZus{}rl.graphlets}\PY{l+s+s2}{\PYZdq{}}\PY{o}{\PYZpc{}}\PY{p}{(}\PY{n}{chr1}\PY{p}{,} \PY{n}{chr1}\PY{p}{)}\PY{p}{,} \PY{n}{delimiter}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ }\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{uint32}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+              \PY{n}{graphlets\PYZus{}call4} \PY{o}{=} \PY{n}{readMat}\PYZbs{}
+              \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{data/chr}\PY{l+s+si}{\PYZpc{}02d}\PY{l+s+s2}{\PYZus{}chr}\PY{l+s+si}{\PYZpc{}02d}\PY{l+s+s2}{\PYZus{}call4.graphlets}\PY{l+s+s2}{\PYZdq{}}\PY{o}{\PYZpc{}}\PY{p}{(}\PY{n}{chr1}\PY{p}{,} \PY{n}{chr1}\PY{p}{)}\PY{p}{,} \PY{n}{delimiter}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ }\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{uint32}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+              \PY{n}{mit\PYZus{}all\PYZus{}corr\PYZus{}orbit\PYZus{}wise} \PY{o}{=} \PYZbs{}
+                  \PY{n}{pearson}\PY{p}{(}\PY{n}{graphlets\PYZus{}mit}\PY{o}{.}\PY{n}{T}\PY{p}{,} \PY{n}{graphlets\PYZus{}all}\PY{o}{.}\PY{n}{T}\PY{p}{)}
+              \PY{n}{mit\PYZus{}mit\PYZus{}corr\PYZus{}orbit\PYZus{}wise}\PY{o}{=} \PYZbs{}
+                  \PY{n}{pearson}\PY{p}{(}\PY{n}{graphlets\PYZus{}mit}\PY{o}{.}\PY{n}{T}\PY{p}{,} \PY{n}{graphlets\PYZus{}mit}\PY{o}{.}\PY{n}{T}\PY{p}{)}
+              \PY{n}{mit\PYZus{}call4\PYZus{}corr\PYZus{}orbit\PYZus{}wise}\PY{o}{=} \PYZbs{}
+                  \PY{n}{pearson}\PY{p}{(}\PY{n}{graphlets\PYZus{}mit}\PY{o}{.}\PY{n}{T}\PY{p}{,} \PY{n}{graphlets\PYZus{}call4}\PY{o}{.}\PY{n}{T}\PY{p}{)}
+              \PY{n}{mit\PYZus{}rl\PYZus{}corr\PYZus{}orbit\PYZus{}wise}\PY{o}{=} \PYZbs{}
+                  \PY{n}{pearson}\PY{p}{(}\PY{n}{graphlets\PYZus{}mit}\PY{o}{.}\PY{n}{T}\PY{p}{,} \PY{n}{graphlets\PYZus{}rl}\PY{o}{.}\PY{n}{T}\PY{p}{)} 
+              \PY{n}{print\PYZus{}statistics}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{diagonal}\PY{p}{(}\PY{n}{mit\PYZus{}mit\PYZus{}corr\PYZus{}orbit\PYZus{}wise}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mit vs mit}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+              \PY{n}{print\PYZus{}statistics}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{diagonal}\PY{p}{(}\PY{n}{mit\PYZus{}all\PYZus{}corr\PYZus{}orbit\PYZus{}wise}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mit vs all}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+              \PY{n}{print\PYZus{}statistics}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{diagonal}\PY{p}{(}\PY{n}{mit\PYZus{}rl\PYZus{}corr\PYZus{}orbit\PYZus{}wise}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mit vs rl}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+              \PY{n}{print\PYZus{}statistics}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{diagonal}\PY{p}{(}\PY{n}{mit\PYZus{}call4\PYZus{}corr\PYZus{}orbit\PYZus{}wise}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mit vs call4}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Chromosome 1
+file directory: data/chr01\_chr01\_mit.graphlets
+file directory: data/chr01\_chr01\_all.graphlets
+file directory: data/chr01\_chr01\_rl.graphlets
+file directory: data/chr01\_chr01\_call4.graphlets
+\#-----------------------------------------------------------------------\#
+Stats for mit vs mit: 
+max: 1.000000 | min: 1.000000 | median: 1.000000 | mean: 1.000000 | std: 0.000000
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs all: 
+max: 0.691546 | min: 0.264693 | median: 0.447225 | mean: 0.458319 | std: 0.107821
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs rl: 
+max: 0.488262 | min: 0.005228 | median: 0.064152 | mean: 0.115254 | std: 0.145756
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs call4: 
+max: 0.735380 | min: 0.067395 | median: 0.209633 | mean: 0.266105 | std: 0.183532
+\#-----------------------------------------------------------------------\#
+Chromosome 2
+file directory: data/chr02\_chr02\_mit.graphlets
+file directory: data/chr02\_chr02\_all.graphlets
+file directory: data/chr02\_chr02\_rl.graphlets
+file directory: data/chr02\_chr02\_call4.graphlets
+\#-----------------------------------------------------------------------\#
+Stats for mit vs mit: 
+max: 1.000000 | min: 1.000000 | median: 1.000000 | mean: 1.000000 | std: 0.000000
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs all: 
+max: 0.612056 | min: 0.154044 | median: 0.397228 | mean: 0.394162 | std: 0.112857
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs rl: 
+max: 0.544215 | min: 0.111064 | median: 0.186193 | mean: 0.239152 | std: 0.127777
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs call4: 
+max: 0.654175 | min: 0.179010 | median: 0.387024 | mean: 0.398918 | std: 0.120441
+\#-----------------------------------------------------------------------\#
+Chromosome 3
+file directory: data/chr03\_chr03\_mit.graphlets
+file directory: data/chr03\_chr03\_all.graphlets
+file directory: data/chr03\_chr03\_rl.graphlets
+file directory: data/chr03\_chr03\_call4.graphlets
+\#-----------------------------------------------------------------------\#
+Stats for mit vs mit: 
+max: 1.000000 | min: 1.000000 | median: 1.000000 | mean: 1.000000 | std: 0.000000
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs all: 
+max: 0.662087 | min: 0.104050 | median: 0.202309 | mean: 0.256182 | std: 0.150717
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs rl: 
+max: 0.547617 | min: -0.099389 | median: -0.048790 | mean: 0.040852 | std: 0.186404
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs call4: 
+max: 0.612281 | min: 0.211936 | median: 0.284129 | mean: 0.317399 | std: 0.101562
+\#-----------------------------------------------------------------------\#
+Chromosome 4
+file directory: data/chr04\_chr04\_mit.graphlets
+file directory: data/chr04\_chr04\_all.graphlets
+file directory: data/chr04\_chr04\_rl.graphlets
+file directory: data/chr04\_chr04\_call4.graphlets
+\#-----------------------------------------------------------------------\#
+Stats for mit vs mit: 
+max: 1.000000 | min: 1.000000 | median: 1.000000 | mean: 1.000000 | std: 0.000000
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs all: 
+max: 0.671499 | min: 0.122204 | median: 0.288221 | mean: 0.322727 | std: 0.126746
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs rl: 
+max: 0.594044 | min: 0.010192 | median: 0.105796 | mean: 0.158603 | std: 0.167435
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs call4: 
+max: 0.619095 | min: 0.180210 | median: 0.219814 | mean: 0.274621 | std: 0.124545
+\#-----------------------------------------------------------------------\#
+Chromosome 5
+file directory: data/chr05\_chr05\_mit.graphlets
+file directory: data/chr05\_chr05\_all.graphlets
+file directory: data/chr05\_chr05\_rl.graphlets
+file directory: data/chr05\_chr05\_call4.graphlets
+\#-----------------------------------------------------------------------\#
+Stats for mit vs mit: 
+max: 1.000000 | min: 1.000000 | median: 1.000000 | mean: 1.000000 | std: 0.000000
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs all: 
+max: 0.690312 | min: 0.150168 | median: 0.270318 | mean: 0.325072 | std: 0.139688
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs rl: 
+max: 0.656837 | min: 0.092786 | median: 0.184570 | mean: 0.243654 | std: 0.165851
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs call4: 
+max: 0.695475 | min: 0.050792 | median: 0.212408 | mean: 0.271915 | std: 0.163642
+\#-----------------------------------------------------------------------\#
+Chromosome 6
+file directory: data/chr06\_chr06\_mit.graphlets
+file directory: data/chr06\_chr06\_all.graphlets
+file directory: data/chr06\_chr06\_rl.graphlets
+file directory: data/chr06\_chr06\_call4.graphlets
+\#-----------------------------------------------------------------------\#
+Stats for mit vs mit: 
+max: 1.000000 | min: 1.000000 | median: 1.000000 | mean: 1.000000 | std: 0.000000
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs all: 
+max: 0.632833 | min: 0.057611 | median: 0.200461 | mean: 0.261235 | std: 0.151247
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs rl: 
+max: 0.603632 | min: 0.085527 | median: 0.163064 | mean: 0.221928 | std: 0.146656
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs call4: 
+max: 0.641864 | min: 0.146304 | median: 0.345319 | mean: 0.373079 | std: 0.107218
+\#-----------------------------------------------------------------------\#
+Chromosome 7
+file directory: data/chr07\_chr07\_mit.graphlets
+file directory: data/chr07\_chr07\_all.graphlets
+file directory: data/chr07\_chr07\_rl.graphlets
+file directory: data/chr07\_chr07\_call4.graphlets
+\#-----------------------------------------------------------------------\#
+Stats for mit vs mit: 
+max: 1.000000 | min: 1.000000 | median: 1.000000 | mean: 1.000000 | std: 0.000000
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs all: 
+max: 0.610315 | min: 0.112599 | median: 0.257948 | mean: 0.299058 | std: 0.110721
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs rl: 
+max: 0.557602 | min: 0.093335 | median: 0.173999 | mean: 0.218020 | std: 0.131495
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs call4: 
+max: 0.624037 | min: 0.194459 | median: 0.260055 | mean: 0.310916 | std: 0.116809
+\#-----------------------------------------------------------------------\#
+Chromosome 8
+file directory: data/chr08\_chr08\_mit.graphlets
+file directory: data/chr08\_chr08\_all.graphlets
+file directory: data/chr08\_chr08\_rl.graphlets
+file directory: data/chr08\_chr08\_call4.graphlets
+\#-----------------------------------------------------------------------\#
+Stats for mit vs mit: 
+max: 1.000000 | min: 1.000000 | median: 1.000000 | mean: 1.000000 | std: 0.000000
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs all: 
+max: 0.622792 | min: 0.064770 | median: 0.218786 | mean: 0.241913 | std: 0.149463
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs rl: 
+max: 0.548060 | min: -0.072579 | median: 0.022616 | mean: 0.081929 | std: 0.183618
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs call4: 
+max: 0.565263 | min: 0.029225 | median: 0.136874 | mean: 0.176655 | std: 0.141294
+\#-----------------------------------------------------------------------\#
+Chromosome 9
+file directory: data/chr09\_chr09\_mit.graphlets
+file directory: data/chr09\_chr09\_all.graphlets
+file directory: data/chr09\_chr09\_rl.graphlets
+file directory: data/chr09\_chr09\_call4.graphlets
+\#-----------------------------------------------------------------------\#
+Stats for mit vs mit: 
+max: 1.000000 | min: 1.000000 | median: 1.000000 | mean: 1.000000 | std: 0.000000
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs all: 
+max: 0.673587 | min: 0.215801 | median: 0.486040 | mean: 0.475922 | std: 0.089530
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs rl: 
+max: 0.584072 | min: 0.085406 | median: 0.163250 | mean: 0.193730 | std: 0.114805
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs call4: 
+max: 0.564110 | min: 0.239796 | median: 0.353665 | mean: 0.358896 | std: 0.070965
+\#-----------------------------------------------------------------------\#
+Chromosome 10
+file directory: data/chr10\_chr10\_mit.graphlets
+file directory: data/chr10\_chr10\_all.graphlets
+file directory: data/chr10\_chr10\_rl.graphlets
+file directory: data/chr10\_chr10\_call4.graphlets
+\#-----------------------------------------------------------------------\#
+Stats for mit vs mit: 
+max: 1.000000 | min: 1.000000 | median: 1.000000 | mean: 1.000000 | std: 0.000000
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs all: 
+max: 0.580837 | min: 0.039492 | median: 0.149594 | mean: 0.209214 | std: 0.152388
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs rl: 
+max: 0.610226 | min: 0.028290 | median: 0.136378 | mean: 0.188366 | std: 0.170261
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs call4: 
+max: 0.557048 | min: 0.128177 | median: 0.192862 | mean: 0.248928 | std: 0.121032
+\#-----------------------------------------------------------------------\#
+Chromosome 11
+file directory: data/chr11\_chr11\_mit.graphlets
+file directory: data/chr11\_chr11\_all.graphlets
+file directory: data/chr11\_chr11\_rl.graphlets
+file directory: data/chr11\_chr11\_call4.graphlets
+\#-----------------------------------------------------------------------\#
+Stats for mit vs mit: 
+max: 1.000000 | min: 1.000000 | median: 1.000000 | mean: 1.000000 | std: 0.000000
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs all: 
+max: 0.653530 | min: 0.071174 | median: 0.234628 | mean: 0.264804 | std: 0.146381
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs rl: 
+max: 0.617074 | min: 0.053525 | median: 0.245710 | mean: 0.267019 | std: 0.119514
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs call4: 
+max: 0.655354 | min: 0.185627 | median: 0.264436 | mean: 0.307051 | std: 0.116659
+\#-----------------------------------------------------------------------\#
+Chromosome 12
+file directory: data/chr12\_chr12\_mit.graphlets
+file directory: data/chr12\_chr12\_all.graphlets
+file directory: data/chr12\_chr12\_rl.graphlets
+file directory: data/chr12\_chr12\_call4.graphlets
+\#-----------------------------------------------------------------------\#
+Stats for mit vs mit: 
+max: 1.000000 | min: 1.000000 | median: 1.000000 | mean: 1.000000 | std: 0.000000
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs all: 
+max: 0.614255 | min: 0.095773 | median: 0.199803 | mean: 0.247623 | std: 0.146455
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs rl: 
+max: 0.582140 | min: 0.086246 | median: 0.208719 | mean: 0.257760 | std: 0.132487
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs call4: 
+max: 0.697678 | min: 0.002999 | median: 0.176178 | mean: 0.236578 | std: 0.164529
+\#-----------------------------------------------------------------------\#
+Chromosome 13
+file directory: data/chr13\_chr13\_mit.graphlets
+file directory: data/chr13\_chr13\_all.graphlets
+file directory: data/chr13\_chr13\_rl.graphlets
+file directory: data/chr13\_chr13\_call4.graphlets
+\#-----------------------------------------------------------------------\#
+Stats for mit vs mit: 
+max: 1.000000 | min: 1.000000 | median: 1.000000 | mean: 1.000000 | std: 0.000000
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs all: 
+max: 0.656408 | min: -0.096631 | median: 0.156068 | mean: 0.209380 | std: 0.172578
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs rl: 
+max: 0.595335 | min: -0.013590 | median: 0.111875 | mean: 0.164435 | std: 0.150826
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs call4: 
+max: 0.619183 | min: -0.053744 | median: 0.118303 | mean: 0.185206 | std: 0.183478
+\#-----------------------------------------------------------------------\#
+Chromosome 14
+file directory: data/chr14\_chr14\_mit.graphlets
+file directory: data/chr14\_chr14\_all.graphlets
+file directory: data/chr14\_chr14\_rl.graphlets
+file directory: data/chr14\_chr14\_call4.graphlets
+\#-----------------------------------------------------------------------\#
+Stats for mit vs mit: 
+max: 1.000000 | min: 1.000000 | median: 1.000000 | mean: 1.000000 | std: 0.000000
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs all: 
+max: 0.543247 | min: -0.018916 | median: 0.161567 | mean: 0.193250 | std: 0.150059
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs rl: 
+max: 0.632834 | min: 0.044777 | median: 0.318658 | mean: 0.345974 | std: 0.107771
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs call4: 
+max: 0.589953 | min: -0.015215 | median: 0.146438 | mean: 0.199090 | std: 0.139573
+\#-----------------------------------------------------------------------\#
+Chromosome 15
+file directory: data/chr15\_chr15\_mit.graphlets
+file directory: data/chr15\_chr15\_all.graphlets
+file directory: data/chr15\_chr15\_rl.graphlets
+file directory: data/chr15\_chr15\_call4.graphlets
+\#-----------------------------------------------------------------------\#
+Stats for mit vs mit: 
+max: 1.000000 | min: 1.000000 | median: 1.000000 | mean: 1.000000 | std: 0.000000
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs all: 
+max: 0.627744 | min: -0.082786 | median: 0.270007 | mean: 0.295242 | std: 0.137112
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs rl: 
+max: 0.563995 | min: -0.032939 | median: 0.066092 | mean: 0.130166 | std: 0.169149
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs call4: 
+max: 0.555546 | min: -0.105676 | median: 0.049453 | mean: 0.122544 | std: 0.172953
+\#-----------------------------------------------------------------------\#
+Chromosome 16
+file directory: data/chr16\_chr16\_mit.graphlets
+file directory: data/chr16\_chr16\_all.graphlets
+file directory: data/chr16\_chr16\_rl.graphlets
+file directory: data/chr16\_chr16\_call4.graphlets
+\#-----------------------------------------------------------------------\#
+Stats for mit vs mit: 
+max: 1.000000 | min: 1.000000 | median: 1.000000 | mean: 1.000000 | std: 0.000000
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs all: 
+max: 0.663765 | min: 0.069383 | median: 0.262083 | mean: 0.282577 | std: 0.131222
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs rl: 
+max: 0.571480 | min: 0.110550 | median: 0.250025 | mean: 0.273534 | std: 0.103604
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs call4: 
+max: 0.512031 | min: -0.025588 | median: 0.119995 | mean: 0.155271 | std: 0.129841
+\#-----------------------------------------------------------------------\#
+Chromosome 17
+file directory: data/chr17\_chr17\_mit.graphlets
+file directory: data/chr17\_chr17\_all.graphlets
+file directory: data/chr17\_chr17\_rl.graphlets
+file directory: data/chr17\_chr17\_call4.graphlets
+\#-----------------------------------------------------------------------\#
+Stats for mit vs mit: 
+max: 1.000000 | min: 1.000000 | median: 1.000000 | mean: 1.000000 | std: 0.000000
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs all: 
+max: 0.630219 | min: 0.002755 | median: 0.203456 | mean: 0.247660 | std: 0.158113
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs rl: 
+max: 0.594223 | min: -0.041055 | median: 0.090041 | mean: 0.145245 | std: 0.165721
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs call4: 
+max: 0.613410 | min: 0.025560 | median: 0.129442 | mean: 0.185947 | std: 0.150671
+\#-----------------------------------------------------------------------\#
+Chromosome 18
+file directory: data/chr18\_chr18\_mit.graphlets
+file directory: data/chr18\_chr18\_all.graphlets
+file directory: data/chr18\_chr18\_rl.graphlets
+file directory: data/chr18\_chr18\_call4.graphlets
+\#-----------------------------------------------------------------------\#
+Stats for mit vs mit: 
+max: 1.000000 | min: 1.000000 | median: 1.000000 | mean: 1.000000 | std: 0.000000
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs all: 
+max: 0.523809 | min: -0.090717 | median: 0.084290 | mean: 0.116331 | std: 0.151788
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs rl: 
+max: 0.610116 | min: -0.160623 | median: 0.020117 | mean: 0.101178 | std: 0.192265
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs call4: 
+max: 0.474894 | min: -0.019191 | median: 0.119772 | mean: 0.158747 | std: 0.116521
+\#-----------------------------------------------------------------------\#
+Chromosome 19
+file directory: data/chr19\_chr19\_mit.graphlets
+file directory: data/chr19\_chr19\_all.graphlets
+file directory: data/chr19\_chr19\_rl.graphlets
+file directory: data/chr19\_chr19\_call4.graphlets
+\#-----------------------------------------------------------------------\#
+Stats for mit vs mit: 
+max: 1.000000 | min: 1.000000 | median: 1.000000 | mean: 1.000000 | std: 0.000000
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs all: 
+max: 0.635402 | min: 0.028820 | median: 0.258356 | mean: 0.271281 | std: 0.128827
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs rl: 
+max: 0.529379 | min: -0.104304 | median: 0.157916 | mean: 0.191153 | std: 0.144419
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs call4: 
+max: nan | min: nan | median: nan | mean: nan | std: nan
+\#-----------------------------------------------------------------------\#
+Chromosome 20
+file directory: data/chr20\_chr20\_mit.graphlets
+file directory: data/chr20\_chr20\_all.graphlets
+file directory: data/chr20\_chr20\_rl.graphlets
+file directory: data/chr20\_chr20\_call4.graphlets
+\#-----------------------------------------------------------------------\#
+Stats for mit vs mit: 
+max: 1.000000 | min: 1.000000 | median: 1.000000 | mean: 1.000000 | std: 0.000000
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs all: 
+max: 0.575553 | min: -0.031425 | median: 0.167951 | mean: 0.175358 | std: 0.143634
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs rl: 
+max: 0.570305 | min: -0.011435 | median: 0.236590 | mean: 0.256076 | std: 0.105848
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs call4: 
+max: 0.553739 | min: 0.094144 | median: 0.240062 | mean: 0.262793 | std: 0.089579
+\#-----------------------------------------------------------------------\#
+Chromosome 21
+file directory: data/chr21\_chr21\_mit.graphlets
+file directory: data/chr21\_chr21\_all.graphlets
+file directory: data/chr21\_chr21\_rl.graphlets
+file directory: data/chr21\_chr21\_call4.graphlets
+\#-----------------------------------------------------------------------\#
+Stats for mit vs mit: 
+max: nan | min: nan | median: nan | mean: nan | std: nan
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs all: 
+max: nan | min: nan | median: nan | mean: nan | std: nan
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs rl: 
+max: nan | min: nan | median: nan | mean: nan | std: nan
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs call4: 
+max: nan | min: nan | median: nan | mean: nan | std: nan
+\#-----------------------------------------------------------------------\#
+Chromosome 22
+file directory: data/chr22\_chr22\_mit.graphlets
+file directory: data/chr22\_chr22\_all.graphlets
+file directory: data/chr22\_chr22\_rl.graphlets
+file directory: data/chr22\_chr22\_call4.graphlets
+Number of columns (68 and 67) not the same.
+            picking the minimum value{\ldots}
+\#-----------------------------------------------------------------------\#
+Stats for mit vs mit: 
+max: nan | min: nan | median: nan | mean: nan | std: nan
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs all: 
+max: nan | min: nan | median: nan | mean: nan | std: nan
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs rl: 
+max: nan | min: nan | median: nan | mean: nan | std: nan
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs call4: 
+max: nan | min: nan | median: nan | mean: nan | std: nan
+\#-----------------------------------------------------------------------\#
+Chromosome 23
+file directory: data/chr23\_chr23\_mit.graphlets
+file directory: data/chr23\_chr23\_all.graphlets
+file directory: data/chr23\_chr23\_rl.graphlets
+file directory: data/chr23\_chr23\_call4.graphlets
+\#-----------------------------------------------------------------------\#
+Stats for mit vs mit: 
+max: 1.000000 | min: 1.000000 | median: 1.000000 | mean: 1.000000 | std: 0.000000
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs all: 
+max: 0.661035 | min: 0.007166 | median: 0.193827 | mean: 0.258310 | std: 0.167515
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs rl: 
+max: 0.520688 | min: 0.009042 | median: 0.106761 | mean: 0.168885 | std: 0.144671
+\#-----------------------------------------------------------------------\#
+\#-----------------------------------------------------------------------\#
+Stats for mit vs call4: 
+max: 0.594355 | min: 0.094710 | median: 0.184106 | mean: 0.239780 | std: 0.128988
+\#-----------------------------------------------------------------------\#
+
+    \end{Verbatim}
+
+    Now Let's repeat the above procedure for all 23 chromosomes and store
+them in a dictionary:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}115}]:} \PY{n}{cells} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mit}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{all}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{rl}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{call4}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+          \PY{n}{graphlets} \PY{o}{=} \PY{p}{[} \PY{n+nb+bp}{None} \PY{p}{]} \PY{o}{*} \PY{l+m+mi}{24}
+          \PY{k}{for} \PY{n}{chr1} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{24}\PY{p}{)}\PY{p}{:}
+              \PY{n}{graphlets}\PY{p}{[}\PY{n}{chr1}\PY{p}{]} \PY{o}{=} \PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
+              \PY{k}{for} \PY{n}{cell} \PY{o+ow}{in} \PY{n}{cells}\PY{p}{:}
+                 \PY{n}{graphlets}\PY{p}{[}\PY{n}{chr1}\PY{p}{]}\PY{p}{[}\PY{n}{cell}\PY{p}{]} \PY{o}{=} \PY{n}{readMat}\PYZbs{}
+              \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{data/chr}\PY{l+s+si}{\PYZpc{}02d}\PY{l+s+s2}{\PYZus{}chr}\PY{l+s+si}{\PYZpc{}02d}\PY{l+s+s2}{\PYZus{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s2}{.graphlets}\PY{l+s+s2}{\PYZdq{}}\PY{o}{\PYZpc{}}\PY{p}{(}\PY{n}{chr1}\PY{p}{,} \PY{n}{chr1}\PY{p}{,} \PY{n}{cell}\PY{p}{)}\PY{p}{,} \PY{n}{delimiter}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ }\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{uint32}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} 
+              
+          \PY{n}{correlations} \PY{o}{=} \PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
+          \PY{k}{for} \PY{n}{cell1} \PY{o+ow}{in} \PY{n}{cells}\PY{p}{:}
+              \PY{n}{correlations}\PY{p}{[}\PY{n}{cell1}\PY{p}{]} \PY{o}{=} \PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
+              \PY{k}{for} \PY{n}{cell2} \PY{o+ow}{in} \PY{n}{cells}\PY{p}{:}
+                  \PY{k}{if} \PY{n}{cell1} \PY{o}{==} \PY{n}{cell2}\PY{p}{:}
+                      \PY{k}{continue}
+                  \PY{n}{correlations}\PY{p}{[}\PY{n}{cell1}\PY{p}{]}\PY{p}{[}\PY{n}{cell2}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{24}\PY{p}{,} \PY{l+m+mi}{73}\PY{p}{)}\PY{p}{)}
+                  \PY{c+c1}{\PYZsh{}cell (i, j) will store correlation between orbital j in }
+                  \PY{c+c1}{\PYZsh{}ith chromosome}
+                  
+          \PY{k}{for} \PY{n}{chr1} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{24}\PY{p}{)}\PY{p}{:}
+              \PY{k}{for} \PY{n}{cell1} \PY{o+ow}{in} \PY{n}{correlations}\PY{p}{:}
+                  \PY{k}{for} \PY{n}{cell2} \PY{o+ow}{in} \PY{n}{correlations}\PY{p}{[}\PY{n}{cell1}\PY{p}{]}\PY{p}{:}
+                      \PY{n}{correlations}\PY{p}{[}\PY{n}{cell1}\PY{p}{]}\PY{p}{[}\PY{n}{cell2}\PY{p}{]}\PY{p}{[}\PY{n}{chr1}\PY{p}{,} \PY{p}{:}\PY{p}{]} \PY{o}{=} \PYZbs{}
+                          \PY{n}{np}\PY{o}{.}\PY{n}{diagonal}\PY{p}{(}\PY{n}{pearson}\PY{p}{(}\PY{n}{graphlets}\PY{p}{[}\PY{n}{chr1}\PY{p}{]}\PY{p}{[}\PY{n}{cell1}\PY{p}{]}\PY{o}{.}\PY{n}{T}\PY{p}{,} \PY{n}{graphlets}\PY{p}{[}\PY{n}{chr1}\PY{p}{]}\PY{p}{[}\PY{n}{cell2}\PY{p}{]}\PY{o}{.}\PY{n}{T}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+file directory: data/chr01\_chr01\_mit.graphlets
+file directory: data/chr01\_chr01\_all.graphlets
+file directory: data/chr01\_chr01\_rl.graphlets
+file directory: data/chr01\_chr01\_call4.graphlets
+file directory: data/chr02\_chr02\_mit.graphlets
+file directory: data/chr02\_chr02\_all.graphlets
+file directory: data/chr02\_chr02\_rl.graphlets
+file directory: data/chr02\_chr02\_call4.graphlets
+file directory: data/chr03\_chr03\_mit.graphlets
+file directory: data/chr03\_chr03\_all.graphlets
+file directory: data/chr03\_chr03\_rl.graphlets
+file directory: data/chr03\_chr03\_call4.graphlets
+file directory: data/chr04\_chr04\_mit.graphlets
+file directory: data/chr04\_chr04\_all.graphlets
+file directory: data/chr04\_chr04\_rl.graphlets
+file directory: data/chr04\_chr04\_call4.graphlets
+file directory: data/chr05\_chr05\_mit.graphlets
+file directory: data/chr05\_chr05\_all.graphlets
+file directory: data/chr05\_chr05\_rl.graphlets
+file directory: data/chr05\_chr05\_call4.graphlets
+file directory: data/chr06\_chr06\_mit.graphlets
+file directory: data/chr06\_chr06\_all.graphlets
+file directory: data/chr06\_chr06\_rl.graphlets
+file directory: data/chr06\_chr06\_call4.graphlets
+file directory: data/chr07\_chr07\_mit.graphlets
+file directory: data/chr07\_chr07\_all.graphlets
+file directory: data/chr07\_chr07\_rl.graphlets
+file directory: data/chr07\_chr07\_call4.graphlets
+file directory: data/chr08\_chr08\_mit.graphlets
+file directory: data/chr08\_chr08\_all.graphlets
+file directory: data/chr08\_chr08\_rl.graphlets
+file directory: data/chr08\_chr08\_call4.graphlets
+file directory: data/chr09\_chr09\_mit.graphlets
+file directory: data/chr09\_chr09\_all.graphlets
+file directory: data/chr09\_chr09\_rl.graphlets
+file directory: data/chr09\_chr09\_call4.graphlets
+file directory: data/chr10\_chr10\_mit.graphlets
+file directory: data/chr10\_chr10\_all.graphlets
+file directory: data/chr10\_chr10\_rl.graphlets
+file directory: data/chr10\_chr10\_call4.graphlets
+file directory: data/chr11\_chr11\_mit.graphlets
+file directory: data/chr11\_chr11\_all.graphlets
+file directory: data/chr11\_chr11\_rl.graphlets
+file directory: data/chr11\_chr11\_call4.graphlets
+file directory: data/chr12\_chr12\_mit.graphlets
+file directory: data/chr12\_chr12\_all.graphlets
+file directory: data/chr12\_chr12\_rl.graphlets
+file directory: data/chr12\_chr12\_call4.graphlets
+file directory: data/chr13\_chr13\_mit.graphlets
+file directory: data/chr13\_chr13\_all.graphlets
+file directory: data/chr13\_chr13\_rl.graphlets
+file directory: data/chr13\_chr13\_call4.graphlets
+file directory: data/chr14\_chr14\_mit.graphlets
+file directory: data/chr14\_chr14\_all.graphlets
+file directory: data/chr14\_chr14\_rl.graphlets
+file directory: data/chr14\_chr14\_call4.graphlets
+file directory: data/chr15\_chr15\_mit.graphlets
+file directory: data/chr15\_chr15\_all.graphlets
+file directory: data/chr15\_chr15\_rl.graphlets
+file directory: data/chr15\_chr15\_call4.graphlets
+file directory: data/chr16\_chr16\_mit.graphlets
+file directory: data/chr16\_chr16\_all.graphlets
+file directory: data/chr16\_chr16\_rl.graphlets
+file directory: data/chr16\_chr16\_call4.graphlets
+file directory: data/chr17\_chr17\_mit.graphlets
+file directory: data/chr17\_chr17\_all.graphlets
+file directory: data/chr17\_chr17\_rl.graphlets
+file directory: data/chr17\_chr17\_call4.graphlets
+file directory: data/chr18\_chr18\_mit.graphlets
+file directory: data/chr18\_chr18\_all.graphlets
+file directory: data/chr18\_chr18\_rl.graphlets
+file directory: data/chr18\_chr18\_call4.graphlets
+file directory: data/chr19\_chr19\_mit.graphlets
+file directory: data/chr19\_chr19\_all.graphlets
+file directory: data/chr19\_chr19\_rl.graphlets
+file directory: data/chr19\_chr19\_call4.graphlets
+file directory: data/chr20\_chr20\_mit.graphlets
+file directory: data/chr20\_chr20\_all.graphlets
+file directory: data/chr20\_chr20\_rl.graphlets
+file directory: data/chr20\_chr20\_call4.graphlets
+file directory: data/chr21\_chr21\_mit.graphlets
+file directory: data/chr21\_chr21\_all.graphlets
+file directory: data/chr21\_chr21\_rl.graphlets
+file directory: data/chr21\_chr21\_call4.graphlets
+file directory: data/chr22\_chr22\_mit.graphlets
+file directory: data/chr22\_chr22\_all.graphlets
+file directory: data/chr22\_chr22\_rl.graphlets
+file directory: data/chr22\_chr22\_call4.graphlets
+file directory: data/chr23\_chr23\_mit.graphlets
+file directory: data/chr23\_chr23\_all.graphlets
+file directory: data/chr23\_chr23\_rl.graphlets
+file directory: data/chr23\_chr23\_call4.graphlets
+Number of columns not the same.                picking the minimum value{\ldots}
+Number of columns not the same.                picking the minimum value{\ldots}
+Number of columns not the same.                picking the minimum value{\ldots}
+Number of columns not the same.                picking the minimum value{\ldots}
+Number of columns not the same.                picking the minimum value{\ldots}
+Number of columns not the same.                picking the minimum value{\ldots}
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}199}]:} \PY{n}{pylab}\PY{o}{.}\PY{n}{rcParams}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{figure.figsize}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{)}
+          \PY{n}{x} \PY{o}{=} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{24}\PY{p}{)}
+          \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
+          \PY{k}{for} \PY{n}{cell} \PY{o+ow}{in} \PY{n}{correlations}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mit}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{:}
+              \PY{n}{y} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{correlations}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mit}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{n}{cell}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+              \PY{n}{ax}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{marker}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{o}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{mit vs }\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s2}{\PYZdq{}}\PY{o}{\PYZpc{}}\PY{k}{cell})
+          \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_19_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}146}]:} \PY{n}{pylab}\PY{o}{.}\PY{n}{rcParams}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{figure.figsize}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{)}
+          \PY{n}{x} \PY{o}{=} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{24}\PY{p}{)}
+          \PY{n}{count} \PY{o}{=} \PY{l+m+mi}{1}
+          \PY{k}{for} \PY{n}{cell} \PY{o+ow}{in} \PY{n}{correlations}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mit}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{:}
+              \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{count}\PY{p}{)}
+              \PY{n}{count} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+              \PY{n}{y} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{correlations}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mit}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{n}{cell}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+              \PY{n}{y\PYZus{}error} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{n}{correlations}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mit}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{n}{cell}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+              \PY{n}{ax}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{marker}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{o}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{mit vs }\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s2}{\PYZdq{}}\PY{o}{\PYZpc{}}\PY{k}{cell})
+              \PY{n}{ax}\PY{o}{.}\PY{n}{errorbar}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{yerr}\PY{o}{=}\PY{n}{y\PYZus{}error}\PY{p}{,} \PY{n}{linestyle}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{dashed}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{marker}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{None}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{green}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+              \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{mit vs }\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s2}{\PYZdq{}}\PY{o}{\PYZpc{}}\PY{k}{cell})
+          \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_20_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}137}]:} \PY{n}{pylab}\PY{o}{.}\PY{n}{rcParams}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{figure.figsize}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{)}
+          \PY{n}{x} \PY{o}{=} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{73}\PY{p}{)}
+          \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
+          \PY{k}{for} \PY{n}{cell} \PY{o+ow}{in} \PY{n}{correlations}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mit}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{:}
+              \PY{n}{y} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{correlations}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mit}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{n}{cell}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+              \PY{n}{ax}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{marker}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{o}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{mit vs }\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s2}{\PYZdq{}}\PY{o}{\PYZpc{}}\PY{k}{cell})
+          \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_21_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}147}]:} \PY{n}{pylab}\PY{o}{.}\PY{n}{rcParams}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{figure.figsize}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{)}
+          \PY{n}{x} \PY{o}{=} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{73}\PY{p}{)}
+          \PY{n}{count} \PY{o}{=} \PY{l+m+mi}{1}
+          \PY{k}{for} \PY{n}{cell} \PY{o+ow}{in} \PY{n}{correlations}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mit}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{:}
+              \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{count}\PY{p}{)}
+              \PY{n}{count} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+              \PY{n}{y} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{correlations}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mit}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{n}{cell}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+              \PY{n}{y\PYZus{}error} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{n}{correlations}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mit}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{n}{cell}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+              \PY{n}{ax}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{marker}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{o}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{mit vs }\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s2}{\PYZdq{}}\PY{o}{\PYZpc{}}\PY{k}{cell})
+              \PY{n}{ax}\PY{o}{.}\PY{n}{errorbar}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{yerr}\PY{o}{=}\PY{n}{y\PYZus{}error}\PY{p}{,} \PY{n}{linestyle}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{dashed}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{marker}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{None}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{green}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+              \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{mit vs }\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s2}{\PYZdq{}}\PY{o}{\PYZpc{}}\PY{k}{cell})
+          \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_22_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Compare The cancer cells only:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}151}]:} \PY{n}{pylab}\PY{o}{.}\PY{n}{rcParams}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{figure.figsize}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{)}
+          \PY{n}{x} \PY{o}{=} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{24}\PY{p}{)}
+          \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
+          \PY{k}{for} \PY{n}{cell1} \PY{o+ow}{in} \PY{n}{correlations}\PY{p}{:}
+              \PY{k}{if} \PY{n}{cell1} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mit}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+                  \PY{k}{continue}
+              \PY{k}{for} \PY{n}{cell2} \PY{o+ow}{in} \PY{n}{correlations}\PY{p}{[}\PY{n}{cell1}\PY{p}{]}\PY{p}{:}
+                  \PY{k}{if} \PY{n}{cell2} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mit}\PY{l+s+s1}{\PYZsq{}} \PY{o+ow}{or} \PY{n}{cell1} \PY{o}{\PYZgt{}} \PY{n}{cell2}\PY{p}{:}
+                      \PY{k}{continue}
+                  \PY{n}{y} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{correlations}\PY{p}{[}\PY{n}{cell1}\PY{p}{]}\PY{p}{[}\PY{n}{cell2}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+                  \PY{n}{ax}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{marker}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{o}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s2}{ vs }\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s2}{\PYZdq{}}\PY{o}{\PYZpc{}}\PY{p}{(}\PY{n}{cell1}\PY{p}{,} \PY{n}{cell2}\PY{p}{)}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_24_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}206}]:} \PY{n}{pylab}\PY{o}{.}\PY{n}{rcParams}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{figure.figsize}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{)}
+          \PY{n}{x} \PY{o}{=} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{24}\PY{p}{)}
+          \PY{n}{count} \PY{o}{=} \PY{l+m+mi}{1}
+          \PY{k}{for} \PY{n}{cell1} \PY{o+ow}{in} \PY{n}{correlations}\PY{p}{:}
+              \PY{k}{if} \PY{n}{cell1} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mit}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+                  \PY{k}{continue}
+              \PY{k}{for} \PY{n}{cell2} \PY{o+ow}{in} \PY{n}{correlations}\PY{p}{[}\PY{n}{cell1}\PY{p}{]}\PY{p}{:}
+                  \PY{k}{if} \PY{n}{cell2} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mit}\PY{l+s+s1}{\PYZsq{}} \PY{o+ow}{or} \PY{n}{cell1} \PY{o}{\PYZgt{}} \PY{n}{cell2}\PY{p}{:}
+                      \PY{k}{continue}
+                  \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{count}\PY{p}{)}
+                  \PY{n}{count} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+                  \PY{n}{y} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{correlations}\PY{p}{[}\PY{n}{cell1}\PY{p}{]}\PY{p}{[}\PY{n}{cell2}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+                  \PY{n}{y\PYZus{}error} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{n}{correlations}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mit}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{n}{cell}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+                  \PY{n}{ax}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{marker}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{o}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s2}{ vs }\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s2}{\PYZdq{}}\PY{o}{\PYZpc{}}\PY{p}{(}\PY{n}{cell1}\PY{p}{,} \PY{n}{cell2}\PY{p}{)}\PY{p}{)}
+                  \PY{n}{ax}\PY{o}{.}\PY{n}{errorbar}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{yerr}\PY{o}{=}\PY{n}{y\PYZus{}error}\PY{p}{,} \PY{n}{linestyle}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{dashed}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{marker}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{None}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{green}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+                  \PY{n}{ax}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_25_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{pylab}\PY{o}{.}\PY{n}{rcParams}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{figure.figsize}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{)}
+        \PY{n}{x} \PY{o}{=} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{24}\PY{p}{)}
+        \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
+        \PY{k}{for} \PY{n}{cell1} \PY{o+ow}{in} \PY{n}{correlations}\PY{p}{:}
+            \PY{k}{if} \PY{n}{cell1} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mit}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+                \PY{k}{continue}
+            \PY{k}{for} \PY{n}{cell2} \PY{o+ow}{in} \PY{n}{correlations}\PY{p}{[}\PY{n}{cell1}\PY{p}{]}\PY{p}{:}
+                \PY{k}{if} \PY{n}{cell2} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mit}\PY{l+s+s1}{\PYZsq{}} \PY{o+ow}{or} \PY{n}{cell1} \PY{o}{\PYZgt{}} \PY{n}{cell2}\PY{p}{:}
+                    \PY{k}{continue}
+                \PY{n}{y} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{correlations}\PY{p}{[}\PY{n}{cell1}\PY{p}{]}\PY{p}{[}\PY{n}{cell2}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+                \PY{n}{ax}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{marker}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{o}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s2}{ vs }\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s2}{\PYZdq{}}\PY{o}{\PYZpc{}}\PY{p}{(}\PY{n}{cell1}\PY{p}{,} \PY{n}{cell2}\PY{p}{)}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 
 

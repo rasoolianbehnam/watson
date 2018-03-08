@@ -235,7 +235,7 @@ def showImages(imageList, rows, color_bar=False, titles=None):
     cols = (len(imageList) + rows - 1) / rows
     print "Number of columnts:", cols
     fig, axes = plt.subplots(nrows=rows, ncols=cols)
-    plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=0.01, hspace=.3)
+    plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=0.03, hspace=.3)
     count = 0
     for image in imageList:
         if rows * cols == 1:
@@ -251,6 +251,7 @@ def showImages(imageList, rows, color_bar=False, titles=None):
             ax.title.set_text(titles[count])
         count += 1
     plt.show()
+
 def cvShowImages(imageList):
     count = 1
     for image in imageList:

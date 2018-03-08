@@ -1,0 +1,5 @@
+\beamer@endinputifotherversion {3.36pt}
+\beamer@sectionintoc {1}{Biological Background}{2}{0}{1}
+\beamer@sectionintoc {2}{Strategies}{10}{0}{2}
+\beamer@sectionintoc {3}{Results Thus Far}{20}{0}{3}
+\contentsline {section}{References}
