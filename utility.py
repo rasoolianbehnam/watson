@@ -243,7 +243,7 @@ def scn(a, minDiff=1e-3, numIterations=1000):
 def gaussian_normalize(heatmap):
     return (heatmap - np.mean(heatmap) ) / np.std(heatmap)
 
-def showImages(imageList, rows, color_bar=False, titles=None):
+def showImages(imageList, rows, color_bar=False, titles=None, ax_labels=None):
     cols = (len(imageList) + rows - 1) / rows
     print "Number of columnts:", cols
     fig, axes = plt.subplots(nrows=rows, ncols=cols)
@@ -257,11 +257,16 @@ def showImages(imageList, rows, color_bar=False, titles=None):
         else:
             ax = axes[count // cols, count % cols]
         m = ax.imshow(image, cmap="RdBu_r", norm=colors.SymLogNorm(1))
-        if color_bar:
-            cb = fig.colorbar(m)
         if titles != None:
             ax.title.set_text(titles[count])
+        if ax_labels != None:
+            ax.set(xlabel=ax_labels[1][count], ylabel=ax_labels[0][count])
         count += 1
+    if color_bar:
+        from mpl_toolkits.axes_grid1 import make_axes_locatable
+        divider = make_axes_locatable(ax)
+        cax = divider.append_axes("right", size="2%", pad=0.05)
+        cb = fig.colorbar(m, cax=cax)
     plt.show()
 
 def cvShowImages(imageList):
@@ -609,7 +614,7 @@ def svd_reconstruct(mat, k, u='empty', sig='empty', v='empty'):
         b += sig[i] * np.outer(u[:, i], v[i, :])
     return b, u, sig, v
 
-def local_threshold(mat, k=1, method='max', t=1, params=None):
+def local_threshold(mat, k=1, method='max', t=1, params=None, ignore_zeros=True, symmetric=False):
     mat2 = np.zeros_like(mat)
     n, m = mat.shape
     if isinstance(k, tuple):
@@ -624,17 +629,24 @@ def local_threshold(mat, k=1, method='max', t=1, params=None):
     for i in range(0, n):
         i_low = np.max([i - k11, 0])
         i_high = np.min([i + k12+1, n])
-        for j in range(0, m):
-            j_low = np.max([j - k21, 0])
+        j_beg = 0
+        if symmetric:
+            j_beg = i
+        for j in range(j_beg, m-1):
+            j_low = np.max([j - k21, j_beg])
             j_high = np.min([j + k22+1, m])
             temp = mat[i_low:i_high, j_low:j_high]
-            temp = temp[np.where(temp > 0)]
+            #print(temp)
+            if ignore_zeros:
+                temp = temp[np.where(temp > 0)]
             if method == 'max':
                 condition = mat[i, j] == np.max(temp)
             elif method=='normal':
                 condition = mat[i, j] >= np.mean(temp) + t * np.std(temp)
             if condition:
-                mat2[i, j] = 1
+                mat2[i, j] = condition
+                if symmetric:
+                    mat2[j, i] = condition
     if isinstance(params, tuple):
         mat3 = mat2 * 1.
         k = params[0]

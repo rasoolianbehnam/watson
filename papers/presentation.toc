@@ -1,4 +1,9 @@
 \beamer@endinputifotherversion {3.36pt}
 \beamer@sectionintoc {1}{Biological Background}{2}{0}{1}
 \beamer@sectionintoc {2}{Strategies}{12}{0}{2}
+\beamer@sectionintoc {3}{Loci Signature Comparison Among Cells}{23}{0}{3}
+\beamer@sectionintoc {4}{Orbit Distribution correlation Comparison Among Cells}{28}{0}{4}
+\beamer@sectionintoc {5}{Orbit Distribution MIC Comparison Among Cells}{36}{0}{5}
+\beamer@sectionintoc {6}{Correlation and MIC comparison}{42}{0}{6}
+\beamer@sectionintoc {7}{Cancer Cell Comparison}{45}{0}{7}
 \contentsline {section}{References}

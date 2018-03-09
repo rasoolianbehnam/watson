@@ -296,6 +296,15 @@
 }
 
 \frame {
+    \frametitle{Thresholding example}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[height=.8\textheight]{figures/thresholding_example.png}
+        \caption*{}
+    \end{figure}
+}
+
+\frame {
     \frametitle { Extracting graphlets }
     \begin{enumerate}
         \item I used the \texttt{orca} library in \texttt{R} programming 
@@ -307,6 +316,14 @@
     \end{enumerate}
 }
 
+\frame {
+    \frametitle { Extracting graphlets }
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=.9\textwidth]{figures/graphlet_extraction.png}
+        \caption*{}
+    \end{figure}
+}
 \frame {
     \frametitle { Finding distance between loci }
     In order to see how different two loci are in 
@@ -323,10 +340,20 @@
     \end{equation}
 }
 
+\section{Loci Signature Comparison Among Cells}
+
 \frame {
-    \frametitle{loci-loci distances between cell lines}
+    \frametitle{Loci-loci distances between cell lines}
     I calculated loci-loci distance between cell lines using the formula
     above:
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=.85\textwidth]{figures/graphlet_distance_extraction.png}
+        \caption*{}
+    \end{figure}
+}
+\frame{
+    \frametitle{Loci-loci distance between cell lines}
     \begin{figure}[H]
         \centering
         \includegraphics[width=.6\textwidth]{figures/loci_wise_distance.png}
@@ -334,7 +361,6 @@
         $i$ in row cell line and loci $j$ in the column cell line.} }
     \end{figure}
 }
-
 \frame {
     \frametitle{Loci-loci distances}
     \begin{figure}[H]
@@ -353,13 +379,167 @@
     \end{figure}
 }
 
+\section{Orbit Distribution correlation Comparison Among Cells}
+
 \frame {
     \frametitle{Orbit correlations}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{figures/orbit_distribution_comparison.png}
+        \caption*{}
+    \end{figure}
+}
+
+\begin{frame}
+    \frametitle{Orbit distribution comparison among cells}
     \begin{figure}[H]
         \centering
         \includegraphics[width=\textwidth]{figures/orbit_wise_correlation_chr1.png}
         \caption*{\small {$A_{ij}$ in matrices above denotes correlation between 
         orbit $i$ in row cell line and orbit $j$ in the column cell line.} }
+    \end{figure}
+\end{frame}
+
+\frame {
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{figures/graphlet_correlation_aggregation.png}
+        \caption*{}
+    \end{figure}
+}
+\frame {
+    \frametitle{Comparison of mean correlation among all orbits across the 23 chromosomes.}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{figures/graphlet_correlation_comparison_chromosomes.png}
+    \end{figure}
+}
+
+\frame {
+    \frametitle{Comparison of mean correlation among all orbits across the 23 chromosomes.}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{figures/graphlet_correlation_comparison_chromosomes_separated.png}
+    \end{figure}
+}
+
+\frame {
+    \frametitle{Comparison of mean correlation among all chromosomes across the 73 orbits.}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{figures/graphlet_correlation_comparison_orbits.png}
+    \end{figure}
+}
+
+\frame {
+    \frametitle{Comparison of mean correlation among all chromosomes across the 73 orbits.}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{figures/graphlet_correlation_comparison_orbits_separate.png}
+    \end{figure}
+}
+
+\section{Orbit Distribution MIC Comparison Among Cells}
+\frame {
+    \frametitle{About MIC}
+    A powerfull method that captures both functional and 
+    non-functional relationships.
+
+    \begin{equation}
+        MIC(X, Y) = \mathbb{KL}(p(X, Y), p(X)p(Y)
+    \end{equation}
+}
+\frame {
+    \frametitle{Comparison of mean MIC among all chromosomes across the 23 chromosomes.}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{figures/graphlet_mic_comparison_chromosomes.png}
+    \end{figure}
+}
+
+\frame {
+    \frametitle{Comparison of mean MIC among all chromosomes across the 23 chromosomes.}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{figures/graphlet_mic_comparison_chromosomes_separate.png}
+    \end{figure}
+}
+
+\frame {
+    \frametitle{Comparison of mean MIC among all chromosomes across the 73 orbits.}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{figures/graphlet_mic_comparison_orbits.png}
+    \end{figure}
+}
+
+\frame {
+    \frametitle{Comparison of mean MIC among all chromosomes across the 73 orbits.}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{figures/graphlet_mic_comparison_orbits_separate.png}
+    \end{figure}
+}
+
+
+
+\section{Correlation and MIC comparison}
+
+\frame {
+    \frametitle{Comparison of mean MIC among all chromosomes across the 73 orbits.}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{figures/graphlet_correlation_mic_comparison_chromosomes.png}
+    \end{figure}
+}
+
+
+\frame {
+    \frametitle{Comparison of mean MIC among all chromosomes across the 73 orbits.}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{figures/graphlet_correlation_mic_comparison_orbits.png}
+    \end{figure}
+}
+\section{Cancer Cell Comparison}
+\frame {
+    \frametitle{Cancer cell MIC comparison}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{figures/graphlet_mic_comparison_orbits_cancer.png}
+        \caption*{}
+    \end{figure}
+}
+
+\frame {
+    \frametitle{Cancer cell correlation comparison}
+    \begin{figure}[H]
+        \centering
+        \begin{subfigure}[b]{\textwidth}
+            \centering
+            \includegraphics[width=.8\textwidth, height=.35\paperheight]{figures/graphlet_mic_comparison_orbits_cancer.png}
+        \end{subfigure}
+        \begin{subfigure}[b]{\textwidth}
+            \centering
+            \includegraphics[width=.8\textwidth, height=.35\paperheight]{figures/graphlet_correlation_comparison_orbits_cancer.png}
+        \end{subfigure}
+        \caption*{}
+    \end{figure}
+}
+
+\frame {
+    \frametitle{Cancer cell correlation comparison}
+    \begin{figure}[H]
+        \centering
+        \begin{subfigure}[b]{\textwidth}
+            \centering
+            \includegraphics[width=.8\textwidth, height=.35\paperheight]{figures/graphlet_mic_comparison_chromosomes_cancer.png}
+        \end{subfigure}
+        \begin{subfigure}[b]{\textwidth}
+            \centering
+            \includegraphics[width=.8\textwidth, height=.35\paperheight]{figures/graphlet_correlation_comparison_chromosomes_cancer.png}
+        \end{subfigure}
+        \caption*{}
     \end{figure}
 }
 

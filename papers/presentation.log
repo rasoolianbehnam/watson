@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.16)  8 MAR 2018 18:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.16)  9 MAR 2018 12:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1024,18 +1024,31 @@ Package caption Info: float package is loaded.
 Package caption Info: End \AtBeginDocument code.
 
 (./presentation.nav)
+Overfull \hbox (335.75064pt too wide) detected at line 30
+  [] [] [] [] [] [] [] [] []  
+ []
+
 
 LaTeX Font Warning: Font shape `OT1/cmss/m/n' in size <4> not available
 (Font)              size <5> substituted on input line 31.
 
+
+Overfull \hbox (335.75064pt too wide) has occurred while \output is active
+  [] [] [] [] [] [] [] [] []  
+ []
+
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
-] [2
+]
+Overfull \hbox (335.75064pt too wide) has occurred while \output is active
+  [] [] [] [] [] [] [] [] []  
+ []
+
+[2
 
 ]
 LaTeX Font Info:    Try loading font information for U+msa on input line 56.
-
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+ (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Try loading font information for U+msb on input line 56.
@@ -1050,40 +1063,63 @@ line 56.
 File: ot1mathkerncmss.fd 2013/03/27 Fontinst v1.933 font definitions for OT1/ma
 thkerncmss.
 )
-<figures/chromosome_3d_structure.png, id=104, 397.485pt x 478.78876pt>
+<figures/chromosome_3d_structure.png, id=144, 397.485pt x 478.78876pt>
 File: figures/chromosome_3d_structure.png Graphic file (type png)
 
 <use figures/chromosome_3d_structure.png>
 Package pdftex.def Info: figures/chromosome_3d_structure.png used on input line
  56.
 (pdftex.def)             Requested size: 92.18788pt x 111.03961pt.
- [3
 
- <./figures/chromosome_3d_structure.png>] <figures/original_contact_map_chr14.p
-ng, id=137, 216.81pt x 216.81pt>
+Overfull \hbox (335.75064pt too wide) has occurred while \output is active
+  [] [] [] [] [] [] [] [] []  
+ []
+
+[3
+
+ <./figures/chromosome_3d_structure.png>]
+<figures/original_contact_map_chr14.png, id=183, 216.81pt x 216.81pt>
 File: figures/original_contact_map_chr14.png Graphic file (type png)
 
 <use figures/original_contact_map_chr14.png>
 Package pdftex.def Info: figures/original_contact_map_chr14.png used on input l
 ine 82.
 (pdftex.def)             Requested size: 122.91406pt x 122.9147pt.
- [4
 
- <./figures/original_contact_map_chr14.png>] <figures/loops.png, id=171, 1242.6
-425pt x 710.655pt>
+Overfull \hbox (335.75064pt too wide) has occurred while \output is active
+  [] [] [] [] [] [] [] [] []  
+ []
+
+[4
+
+ <./figures/original_contact_map_chr14.png>]
+<figures/loops.png, id=221, 1242.6425pt x 710.655pt>
 File: figures/loops.png Graphic file (type png)
-
-<use figures/loops.png>
+ <use figures/loops.png>
 Package pdftex.def Info: figures/loops.png used on input line 93.
 (pdftex.def)             Requested size: 215.10196pt x 123.01102pt.
- [5
 
- <./figures/loops.png>] [6
+Overfull \hbox (335.75064pt too wide) has occurred while \output is active
+  [] [] [] [] [] [] [] [] []  
+ []
 
-] [7
+[5
+
+ <./figures/loops.png>]
+Overfull \hbox (335.75064pt too wide) has occurred while \output is active
+  [] [] [] [] [] [] [] [] []  
+ []
+
+[6
 
 ]
-<figures/hic_process.png, id=258, 1187.43625pt x 462.72874pt>
+Overfull \hbox (335.75064pt too wide) has occurred while \output is active
+  [] [] [] [] [] [] [] [] []  
+ []
+
+[7
+
+] <figures/hic_process.png, id=323, 1187.43625pt x 462.72874pt>
 File: figures/hic_process.png Graphic file (type png)
 
 <use figures/hic_process.png>
@@ -1094,21 +1130,32 @@ Overfull \hbox (30.73085pt too wide) in paragraph at lines 153--153
  [] 
  []
 
+
+Overfull \hbox (335.75064pt too wide) has occurred while \output is active
+  [] [] [] [] [] [] [] [] []  
+ []
+
 [8
 
  <./figures/hic_process.png>]
-<figures/grand_scheme_of_things.png, id=288, 812.03375pt x 689.57625pt>
+<figures/grand_scheme_of_things.png, id=358, 812.03375pt x 689.57625pt>
 File: figures/grand_scheme_of_things.png Graphic file (type png)
 
 <use figures/grand_scheme_of_things.png>
 Package pdftex.def Info: figures/grand_scheme_of_things.png used on input line 
 176.
 (pdftex.def)             Requested size: 153.64493pt x 130.4737pt.
- [9
+
+Overfull \hbox (335.75064pt too wide) has occurred while \output is active
+  [] [] [] [] [] [] [] [] []  
+ []
+
+[9
 
  <./figures/grand_scheme_of_things.png>]
 File: figures/grand_scheme_of_things.png Graphic file (type png)
- <use figures/grand_scheme_of_things.png>
+
+<use figures/grand_scheme_of_things.png>
 Package pdftex.def Info: figures/grand_scheme_of_things.png used on input line 
 186.
 (pdftex.def)             Requested size: 245.83282pt x 208.75792pt.
@@ -1116,32 +1163,56 @@ Package pdftex.def Info: figures/grand_scheme_of_things.png used on input line
 Overfull \vbox (29.34866pt too high) detected at line 186
  []
 
+
+Overfull \hbox (335.75064pt too wide) has occurred while \output is active
+  [] [] [] [] [] [] [] [] []  
+ []
+
 [10
 
 ]
-<figures/normal-b-cell-all-heatmaps.jpeg, id=345, 572.89032pt x 690.32906pt>
+<figures/normal-b-cell-all-heatmaps.jpeg, id=426, 572.89032pt x 690.32906pt>
 File: figures/normal-b-cell-all-heatmaps.jpeg Graphic file (type jpg)
 
 <use figures/normal-b-cell-all-heatmaps.jpeg>
 Package pdftex.def Info: figures/normal-b-cell-all-heatmaps.jpeg used on input 
 line 195.
 (pdftex.def)             Requested size: 245.83102pt x 200.4747pt.
- [11
 
- <./figures/normal-b-cell-all-heatmaps.jpeg>] [12
+Overfull \hbox (335.75064pt too wide) has occurred while \output is active
+  [] [] [] [] [] [] [] [] []  
+ []
 
-] [13
+[11
 
-] <graphlets.png, id=435, 754.82pt x 422.57875pt>
+ <./figures/normal-b-cell-all-heatmaps.jpeg>]
+Overfull \hbox (335.75064pt too wide) has occurred while \output is active
+  [] [] [] [] [] [] [] [] []  
+ []
+
+[12
+
+]
+Overfull \hbox (335.75064pt too wide) has occurred while \output is active
+  [] [] [] [] [] [] [] [] []  
+ []
+
+[13
+
+] <graphlets.png, id=532, 754.82pt x 422.57875pt>
 File: graphlets.png Graphic file (type png)
-
-<use graphlets.png>
+ <use graphlets.png>
 Package pdftex.def Info: graphlets.png used on input line 227.
 (pdftex.def)             Requested size: 301.92265pt x 169.0285pt.
- [14
+
+Overfull \hbox (335.75064pt too wide) has occurred while \output is active
+  [] [] [] [] [] [] [] [] []  
+ []
+
+[14
 
  <./graphlets.png>]
-<figures/signature-comparison.png, id=465, 1543.7675pt x 499.8675pt>
+<figures/signature-comparison.png, id=567, 1543.7675pt x 499.8675pt>
 File: figures/signature-comparison.png Graphic file (type png)
 
 <use figures/signature-comparison.png>
@@ -1152,82 +1223,523 @@ Package pdftex.def Info: figures/signature-comparison.png used on input line 24
 Overfull \vbox (7.98962pt too high) detected at line 245
  []
 
+
+Overfull \hbox (335.75064pt too wide) has occurred while \output is active
+  [] [] [] [] [] [] [] [] []  
+ []
+
 [15
 
- <./figures/signature-comparison.png>] [16
+ <./figures/signature-comparison.png>]
+Overfull \hbox (335.75064pt too wide) has occurred while \output is active
+  [] [] [] [] [] [] [] [] []  
+ []
 
-] [17
+[16
 
 ]
-<figures/kernels.png, id=556, 274.02374pt x 164.86594pt>
+Overfull \hbox (335.75064pt too wide) has occurred while \output is active
+  [] [] [] [] [] [] [] [] []  
+ []
+
+[17
+
+] <figures/kernels.png, id=673, 274.02374pt x 164.86594pt>
 File: figures/kernels.png Graphic file (type png)
 
 <use figures/kernels.png>
 Package pdftex.def Info: figures/kernels.png used on input line 296.
 (pdftex.def)             Requested size: 276.559pt x 166.40508pt.
- [18
 
- <./figures/kernels.png>] [19
+Overfull \hbox (335.75064pt too wide) has occurred while \output is active
+  [] [] [] [] [] [] [] [] []  
+ []
 
-] [20
+[18
 
-]
-<figures/loci_wise_distance.png, id=646, 683.55376pt x 538.01pt>
-File: figures/loci_wise_distance.png Graphic file (type png)
+ <./figures/kernels.png>]
+<figures/thresholding_example.png, id=709, 883.3pt x 661.47125pt>
+File: figures/thresholding_example.png Graphic file (type png)
 
-<use figures/loci_wise_distance.png>
-Package pdftex.def Info: figures/loci_wise_distance.png used on input line 336.
+<use figures/thresholding_example.png>
+Package pdftex.def Info: figures/thresholding_example.png used on input line 30
+5.
+(pdftex.def)             Requested size: 261.16428pt x 195.5848pt.
 
-(pdftex.def)             Requested size: 184.3758pt x 145.11687pt.
+Overfull \vbox (16.17554pt too high) detected at line 305
+ []
 
-Overfull \vbox (4.90762pt too high) detected at line 336
+
+Overfull \hbox (335.75064pt too wide) has occurred while \output is active
+  [] [] [] [] [] [] [] [] []  
+ []
+
+[19
+
+ <./figures/thresholding_example.png>]
+Overfull \hbox (335.75064pt too wide) has occurred while \output is active
+  [] [] [] [] [] [] [] [] []  
+ []
+
+[20
+
+] <figures/graphlet_extraction.png, id=779, 794.97pt x 614.295pt>
+File: figures/graphlet_extraction.png Graphic file (type png)
+
+<use figures/graphlet_extraction.png>
+Package pdftex.def Info: figures/graphlet_extraction.png used on input line 326
+.
+(pdftex.def)             Requested size: 276.559pt x 213.70357pt.
+
+Overfull \vbox (34.29431pt too high) detected at line 326
+ []
+
+
+Overfull \hbox (335.75064pt too wide) has occurred while \output is active
+  [] [] [] [] [] [] [] [] []  
  []
 
 [21
 
- <./figures/loci_wise_distance.png>]
-<figures/cross_chromosomal_signature_distance.png, id=676, 887.315pt x 552.0625
-pt>
-File: figures/cross_chromosomal_signature_distance.png Graphic file (type png)
- <use figures/cross_chromosomal_signature_distance.png>
-Package pdftex.def Info: figures/cross_chromosomal_signature_distance.png used 
-on input line 345.
-(pdftex.def)             Requested size: 307.28987pt x 191.1862pt.
-
-Overfull \vbox (11.77695pt too high) detected at line 345
+ <./figures/graphlet_extraction.png>]
+Overfull \hbox (335.75064pt too wide) has occurred while \output is active
+  [] [] [] [] [] [] [] [] []  
  []
 
 [22
 
+]
+Overfull \hbox (335.75064pt too wide) has occurred while \output is active
+  [] [] [] [] [] [] [] [] []  
+ []
+
+[23
+
+] <figures/graphlet_distance_extraction.png, id=882, 794.97pt x 614.295pt>
+File: figures/graphlet_distance_extraction.png Graphic file (type png)
+
+<use figures/graphlet_distance_extraction.png>
+Package pdftex.def Info: figures/graphlet_distance_extraction.png used on input
+ line 354.
+(pdftex.def)             Requested size: 261.19826pt x 201.83687pt.
+
+Overfull \vbox (49.62762pt too high) detected at line 354
+ []
+
+
+Overfull \hbox (335.75064pt too wide) has occurred while \output is active
+  [] [] [] [] [] [] [] [] []  
+ []
+
+[24
+
+ <./figures/graphlet_distance_extraction.png>]
+<figures/loci_wise_distance.png, id=917, 697.60625pt x 552.0625pt>
+File: figures/loci_wise_distance.png Graphic file (type png)
+
+<use figures/loci_wise_distance.png>
+Package pdftex.def Info: figures/loci_wise_distance.png used on input line 363.
+
+(pdftex.def)             Requested size: 184.3758pt x 145.90837pt.
+
+Overfull \hbox (335.75064pt too wide) has occurred while \output is active
+  [] [] [] [] [] [] [] [] []  
+ []
+
+[25
+
+ <./figures/loci_wise_distance.png>]
+<figures/cross_chromosomal_signature_distance.png, id=954, 887.315pt x 552.0625
+pt>
+File: figures/cross_chromosomal_signature_distance.png Graphic file (type png)
+ <use figures/cross_chromosomal_signature_distance.png>
+Package pdftex.def Info: figures/cross_chromosomal_signature_distance.png used 
+on input line 371.
+(pdftex.def)             Requested size: 307.28987pt x 191.1862pt.
+
+Overfull \vbox (11.77695pt too high) detected at line 371
+ []
+
+
+Overfull \hbox (335.75064pt too wide) has occurred while \output is active
+  [] [] [] [] [] [] [] [] []  
+ []
+
+[26
+
  <./figures/cross_chromosomal_signature_distance.png>]
-<figures/cross_chromosomal_signature_distance_separated.png, id=707, 880.28876p
+<figures/cross_chromosomal_signature_distance_separated.png, id=988, 880.28876p
 t x 540.0175pt>
 File: figures/cross_chromosomal_signature_distance_separated.png Graphic file (
 type png)
 
 <use figures/cross_chromosomal_signature_distance_separated.png>
 Package pdftex.def Info: figures/cross_chromosomal_signature_distance_separated
-.png used on input line 354.
+.png used on input line 380.
 (pdftex.def)             Requested size: 307.28987pt x 188.50632pt.
 
-Overfull \vbox (9.09706pt too high) detected at line 354
+Overfull \vbox (9.09706pt too high) detected at line 380
  []
 
-[23
+
+Overfull \hbox (335.75064pt too wide) has occurred while \output is active
+  [] [] [] [] [] [] [] [] []  
+ []
+
+[27
 
  <./figures/cross_chromosomal_signature_distance_separated.png>]
-<figures/orbit_wise_correlation_chr1.png, id=737, 877.2775pt x 260.975pt>
+Overfull \hbox (335.75064pt too wide) has occurred while \output is active
+  [] [] [] [] [] [] [] [] []  
+ []
+
+[28
+
+]
+<figures/orbit_distribution_comparison.png, id=1059, 794.97pt x 614.295pt>
+File: figures/orbit_distribution_comparison.png Graphic file (type png)
+
+<use figures/orbit_distribution_comparison.png>
+Package pdftex.def Info: figures/orbit_distribution_comparison.png used on inpu
+t line 391.
+(pdftex.def)             Requested size: 307.28987pt x 237.45569pt.
+
+Overfull \vbox (58.04643pt too high) detected at line 391
+ []
+
+
+Overfull \hbox (335.75064pt too wide) has occurred while \output is active
+  [] [] [] [] [] [] [] [] []  
+ []
+
+[29
+
+ <./figures/orbit_distribution_comparison.png>]
+<figures/orbit_wise_correlation_chr1.png, id=1094, 902.37125pt x 266.9975pt>
 File: figures/orbit_wise_correlation_chr1.png Graphic file (type png)
 
 <use figures/orbit_wise_correlation_chr1.png>
 Package pdftex.def Info: figures/orbit_wise_correlation_chr1.png used on input 
-line 364.
-(pdftex.def)             Requested size: 307.28987pt x 91.41429pt.
- [24
+line 401.
+(pdftex.def)             Requested size: 307.28987pt x 90.9246pt.
 
- <./figures/orbit_wise_correlation_chr1.png>] (./presentation.bbl) [25
+Overfull \hbox (335.75064pt too wide) has occurred while \output is active
+  [] [] [] [] [] [] [] [] []  
+ []
 
-] [26
+[30
+
+ <./figures/orbit_wise_correlation_chr1.png>]
+<figures/graphlet_correlation_aggregation.png, id=1129, 794.97pt x 614.295pt>
+File: figures/graphlet_correlation_aggregation.png Graphic file (type png)
+
+<use figures/graphlet_correlation_aggregation.png>
+Package pdftex.def Info: figures/graphlet_correlation_aggregation.png used on i
+nput line 409.
+(pdftex.def)             Requested size: 307.28987pt x 237.45569pt.
+
+Overfull \vbox (31.97562pt too high) detected at line 409
+ []
+
+
+Overfull \hbox (335.75064pt too wide) has occurred while \output is active
+  [] [] [] [] [] [] [] [] []  
+ []
+
+[31
+
+ <./figures/graphlet_correlation_aggregation.png>]
+<figures/graphlet_correlation_comparison_chromosomes.png, id=1166, 880.28876pt 
+x 540.0175pt>
+File: figures/graphlet_correlation_comparison_chromosomes.png Graphic file (typ
+e png)
+ <use figures/graphlet_correlation_comparison_chromosomes.png>
+Package pdftex.def Info: figures/graphlet_correlation_comparison_chromosomes.pn
+g used on input line 416.
+(pdftex.def)             Requested size: 307.28987pt x 188.50632pt.
+
+Overfull \hbox (335.75064pt too wide) has occurred while \output is active
+  [] [] [] [] [] [] [] [] []  
+ []
+
+[32
+
+ <./figures/graphlet_correlation_comparison_chromosomes.png>]
+<figures/graphlet_correlation_comparison_chromosomes_separated.png, id=1201, 88
+0.28876pt x 552.0625pt>
+File: figures/graphlet_correlation_comparison_chromosomes_separated.png Graphic
+ file (type png)
+
+<use figures/graphlet_correlation_comparison_chromosomes_separated.png>
+Package pdftex.def Info: figures/graphlet_correlation_comparison_chromosomes_se
+parated.png used on input line 424.
+(pdftex.def)             Requested size: 307.28987pt x 192.7109pt.
+
+Overfull \vbox (2.70169pt too high) detected at line 424
+ []
+
+
+Overfull \hbox (335.75064pt too wide) has occurred while \output is active
+  [] [] [] [] [] [] [] [] []  
+ []
+
+[33
+
+ <./figures/graphlet_correlation_comparison_chromosomes_separated.png>]
+<figures/graphlet_correlation_comparison_orbits.png, id=1236, 880.28876pt x 525
+.965pt>
+File: figures/graphlet_correlation_comparison_orbits.png Graphic file (type png
+)
+ <use figures/graphlet_correlation_comparison_orbits.png>
+Package pdftex.def Info: figures/graphlet_correlation_comparison_orbits.png use
+d on input line 432.
+(pdftex.def)             Requested size: 307.28987pt x 183.60094pt.
+
+Overfull \hbox (335.75064pt too wide) has occurred while \output is active
+  [] [] [] [] [] [] [] [] []  
+ []
+
+[34
+
+ <./figures/graphlet_correlation_comparison_orbits.png>]
+<figures/graphlet_correlation_comparison_orbits_separate.png, id=1271, 880.2887
+6pt x 538.01pt>
+File: figures/graphlet_correlation_comparison_orbits_separate.png Graphic file 
+(type png)
+
+<use figures/graphlet_correlation_comparison_orbits_separate.png>
+Package pdftex.def Info: figures/graphlet_correlation_comparison_orbits_separat
+e.png used on input line 440.
+(pdftex.def)             Requested size: 307.28987pt x 187.80554pt.
+
+Overfull \hbox (335.75064pt too wide) has occurred while \output is active
+  [] [] [] [] [] [] [] [] []  
+ []
+
+[35
+
+ <./figures/graphlet_correlation_comparison_orbits_separate.png>]
+Overfull \hbox (335.75064pt too wide) has occurred while \output is active
+  [] [] [] [] [] [] [] [] []  
+ []
+
+[36
+
+]
+Overfull \hbox (335.75064pt too wide) has occurred while \output is active
+  [] [] [] [] [] [] [] [] []  
+ []
+
+[37
+
+]
+<figures/graphlet_mic_comparison_chromosomes.png, id=1376, 880.28876pt x 540.01
+75pt>
+File: figures/graphlet_mic_comparison_chromosomes.png Graphic file (type png)
+ <use figures/graphlet_mic_comparison_chromosomes.png>
+Package pdftex.def Info: figures/graphlet_mic_comparison_chromosomes.png used o
+n input line 458.
+(pdftex.def)             Requested size: 307.28987pt x 188.50632pt.
+
+Overfull \hbox (335.75064pt too wide) has occurred while \output is active
+  [] [] [] [] [] [] [] [] []  
+ []
+
+[38
+
+ <./figures/graphlet_mic_comparison_chromosomes.png>]
+<figures/graphlet_mic_comparison_chromosomes_separate.png, id=1411, 887.315pt x
+ 552.0625pt>
+File: figures/graphlet_mic_comparison_chromosomes_separate.png Graphic file (ty
+pe png)
+ <use figures/graphlet_mic_comparison_chromosomes_separate.png>
+Package pdftex.def Info: figures/graphlet_mic_comparison_chromosomes_separate.p
+ng used on input line 466.
+(pdftex.def)             Requested size: 307.28987pt x 191.1862pt.
+
+Overfull \vbox (1.17699pt too high) detected at line 466
+ []
+
+
+Overfull \hbox (335.75064pt too wide) has occurred while \output is active
+  [] [] [] [] [] [] [] [] []  
+ []
+
+[39
+
+ <./figures/graphlet_mic_comparison_chromosomes_separate.png>]
+<figures/graphlet_mic_comparison_orbits.png, id=1446, 880.28876pt x 540.0175pt>
+File: figures/graphlet_mic_comparison_orbits.png Graphic file (type png)
+<use figures/graphlet_mic_comparison_orbits.png>
+Package pdftex.def Info: figures/graphlet_mic_comparison_orbits.png used on inp
+ut line 474.
+(pdftex.def)             Requested size: 307.28987pt x 188.50632pt.
+
+Overfull \hbox (335.75064pt too wide) has occurred while \output is active
+  [] [] [] [] [] [] [] [] []  
+ []
+
+[40
+
+ <./figures/graphlet_mic_comparison_orbits.png>]
+<figures/graphlet_mic_comparison_orbits_separate.png, id=1481, 880.28876pt x 55
+2.0625pt>
+File: figures/graphlet_mic_comparison_orbits_separate.png Graphic file (type pn
+g)
+ <use figures/graphlet_mic_comparison_orbits_separate.png>
+Package pdftex.def Info: figures/graphlet_mic_comparison_orbits_separate.png us
+ed on input line 482.
+(pdftex.def)             Requested size: 307.28987pt x 192.7109pt.
+
+Overfull \vbox (2.70169pt too high) detected at line 482
+ []
+
+
+Overfull \hbox (335.75064pt too wide) has occurred while \output is active
+  [] [] [] [] [] [] [] [] []  
+ []
+
+[41
+
+ <./figures/graphlet_mic_comparison_orbits_separate.png>]
+Overfull \hbox (335.75064pt too wide) has occurred while \output is active
+  [] [] [] [] [] [] [] [] []  
+ []
+
+[42
+
+]
+<figures/graphlet_correlation_mic_comparison_chromosomes.png, id=1550, 880.2887
+6pt x 540.0175pt>
+File: figures/graphlet_correlation_mic_comparison_chromosomes.png Graphic file 
+(type png)
+
+<use figures/graphlet_correlation_mic_comparison_chromosomes.png>
+Package pdftex.def Info: figures/graphlet_correlation_mic_comparison_chromosome
+s.png used on input line 494.
+(pdftex.def)             Requested size: 307.28987pt x 188.50632pt.
+
+Overfull \hbox (335.75064pt too wide) has occurred while \output is active
+  [] [] [] [] [] [] [] [] []  
+ []
+
+[43
+
+ <./figures/graphlet_correlation_mic_comparison_chromosomes.png>]
+<figures/graphlet_correlation_mic_comparison_orbits.png, id=1586, 880.28876pt x
+ 540.0175pt>
+File: figures/graphlet_correlation_mic_comparison_orbits.png Graphic file (type
+ png)
+ <use figures/graphlet_correlation_mic_comparison_orbits.png>
+Package pdftex.def Info: figures/graphlet_correlation_mic_comparison_orbits.png
+ used on input line 503.
+(pdftex.def)             Requested size: 307.28987pt x 188.50632pt.
+
+Overfull \hbox (335.75064pt too wide) has occurred while \output is active
+  [] [] [] [] [] [] [] [] []  
+ []
+
+[44
+
+ <./figures/graphlet_correlation_mic_comparison_orbits.png>]
+Overfull \hbox (335.75064pt too wide) has occurred while \output is active
+  [] [] [] [] [] [] [] [] []  
+ []
+
+[45
+
+]
+<figures/graphlet_mic_comparison_orbits_cancer.png, id=1654, 880.28876pt x 540.
+0175pt>
+File: figures/graphlet_mic_comparison_orbits_cancer.png Graphic file (type png)
+
+ <use figures/graphlet_mic_comparison_orbits_cancer.png>
+Package pdftex.def Info: figures/graphlet_mic_comparison_orbits_cancer.png used
+ on input line 512.
+(pdftex.def)             Requested size: 307.28987pt x 188.50632pt.
+
+Overfull \vbox (9.09706pt too high) detected at line 512
+ []
+
+
+Overfull \hbox (335.75064pt too wide) has occurred while \output is active
+  [] [] [] [] [] [] [] [] []  
+ []
+
+[46
+
+ <./figures/graphlet_mic_comparison_orbits_cancer.png>]
+File: figures/graphlet_mic_comparison_orbits_cancer.png Graphic file (type png)
+
+
+<use figures/graphlet_mic_comparison_orbits_cancer.png>
+Package pdftex.def Info: figures/graphlet_mic_comparison_orbits_cancer.png used
+ on input line 528.
+(pdftex.def)             Requested size: 245.821pt x 95.60039pt.
+
+<figures/graphlet_correlation_comparison_orbits_cancer.png, id=1690, 880.28876p
+t x 525.965pt>
+File: figures/graphlet_correlation_comparison_orbits_cancer.png Graphic file (t
+ype png)
+ <use figures/graphlet_correlation_comparison_orbits_cancer.png>
+Package pdftex.def Info: figures/graphlet_correlation_comparison_orbits_cancer.
+png used on input line 528.
+(pdftex.def)             Requested size: 245.821pt x 95.60057pt.
+
+Overfull \vbox (12.7917pt too high) detected at line 528
+ []
+
+
+Overfull \hbox (335.75064pt too wide) has occurred while \output is active
+  [] [] [] [] [] [] [] [] []  
+ []
+
+[47
+
+ <./figures/graphlet_correlation_comparison_orbits_cancer.png>]
+<figures/graphlet_mic_comparison_chromosomes_cancer.png, id=1725, 880.28876pt x
+ 540.0175pt>
+File: figures/graphlet_mic_comparison_chromosomes_cancer.png Graphic file (type
+ png)
+ <use figures/graphlet_mic_comparison_chromosomes_cancer.png>
+Package pdftex.def Info: figures/graphlet_mic_comparison_chromosomes_cancer.png
+ used on input line 544.
+(pdftex.def)             Requested size: 245.821pt x 95.60039pt.
+
+<figures/graphlet_correlation_comparison_chromosomes_cancer.png, id=1726, 880.2
+8876pt x 525.965pt>
+File: figures/graphlet_correlation_comparison_chromosomes_cancer.png Graphic fi
+le (type png)
+
+<use figures/graphlet_correlation_comparison_chromosomes_cancer.png>
+Package pdftex.def Info: figures/graphlet_correlation_comparison_chromosomes_ca
+ncer.png used on input line 544.
+(pdftex.def)             Requested size: 245.821pt x 95.60057pt.
+
+Overfull \vbox (12.7917pt too high) detected at line 544
+ []
+
+
+Overfull \hbox (335.75064pt too wide) has occurred while \output is active
+  [] [] [] [] [] [] [] [] []  
+ []
+
+[48
+
+ <./figures/graphlet_mic_comparison_chromosomes_cancer.png> <./figures/graphlet
+_correlation_comparison_chromosomes_cancer.png>] (./presentation.bbl)
+Overfull \hbox (335.75064pt too wide) has occurred while \output is active
+  [] [] [] [] [] [] [] [] []  
+ []
+
+[49
+
+]
+Overfull \hbox (335.75064pt too wide) has occurred while \output is active
+  [] [] [] [] [] [] [] [] []  
+ []
+
+[50
 
 
 ]
@@ -1240,25 +1752,25 @@ line 364.
 \tf@snm=\write8
 \openout8 = `presentation.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 371.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 371.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 552.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 552.
  (./presentation.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 371.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 371.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 552.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 552.
 Package rerunfilecheck Info: File `presentation.out' has not changed.
-(rerunfilecheck)             Checksum: 3E888E3DF51BE0F5C69AC33DFE6B8594;101.
+(rerunfilecheck)             Checksum: 43E38F664BA9D70F1F9AFA8AD6070D4A;463.
 
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 1.0pt have occurred.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 371.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 552.
  ) 
 Here is how much of TeX's memory you used:
- 19748 strings out of 493029
- 374203 string characters out of 6136233
- 469814 words of memory out of 5000000
- 22758 multiletter control sequences out of 15000+600000
+ 19969 strings out of 493029
+ 380359 string characters out of 6136233
+ 470814 words of memory out of 5000000
+ 22907 multiletter control sequences out of 15000+600000
  16834 words of font info for 61 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  56i,16n,57p,938b,816s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1274,11 +1786,12 @@ ic/amsfonts/cm/cmssi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
 sfonts/cm/cmssi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
 /cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
 sy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb
-></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on presentation.pdf (26 pages, 2487336 bytes).
+></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr
+/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on presentation.pdf (50 pages, 3724276 bytes).
 PDF statistics:
- 884 PDF objects out of 1000 (max. 8388607)
- 793 compressed objects within 8 object streams
- 56 named destinations out of 1000 (max. 500000)
- 172 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1906 PDF objects out of 2073 (max. 8388607)
+ 1737 compressed objects within 18 object streams
+ 109 named destinations out of 1000 (max. 500000)
+ 307 words of extra memory for PDF output out of 10000 (max. 10000000)
 
