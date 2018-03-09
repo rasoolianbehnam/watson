@@ -1,64 +1,6 @@
 \begin{thebibliography}{}
 
 \bibitem [\protect \citeauthoryear {%
-Feizi%
-, Marbach%
-, M{\'e}dard%
-\BCBL {}\ \BBA {} Kellis%
-}{%
-Feizi%
-\ \protect \BOthers {.}}{%
-{\protect \APACyear {2013}}%
-}]{%
-feizi2013network}
-\APACinsertmetastar {%
-feizi2013network}%
-\begin{APACrefauthors}%
-Feizi, S.%
-, Marbach, D.%
-, M{\'e}dard, M.%
-\BCBL {}\ \BBA {} Kellis, M.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2013}{}{}.
-\newblock
-{\BBOQ}\APACrefatitle {Network deconvolution as a general method to distinguish
-  direct dependencies in networks} {Network deconvolution as a general method
-  to distinguish direct dependencies in networks}.{\BBCQ}
-\newblock
-\APACjournalVolNumPages{Nature biotechnology}{31}{8}{726--733}.
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
-Ginestet%
-\ \BBA {} Simmons%
-}{%
-Ginestet%
-\ \BBA {} Simmons%
-}{%
-{\protect \APACyear {2011}}%
-}]{%
-ginestet2011statistical}
-\APACinsertmetastar {%
-ginestet2011statistical}%
-\begin{APACrefauthors}%
-Ginestet, C\BPBI E.%
-\BCBT {}\ \BBA {} Simmons, A.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2011}{}{}.
-\newblock
-{\BBOQ}\APACrefatitle {Statistical parametric network analysis of functional
-  connectivity dynamics during a working memory task} {Statistical parametric
-  network analysis of functional connectivity dynamics during a working memory
-  task}.{\BBCQ}
-\newblock
-\APACjournalVolNumPages{Neuroimage}{55}{2}{688--704}.
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
 Lieberman-Aiden%
 \ \protect \BOthers {.}}{%
 Lieberman-Aiden%

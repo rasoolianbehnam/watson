@@ -166,14 +166,34 @@
             \end{itemize}
         \end{column}
         \begin{column}{.5\textwidth}
-            \begin{figure}
+             \begin{figure}[H]
                 \centering
-                \includegraphics[width=.9\textwidth]{figures/normal-b-cell-all-heatmaps.jpeg}
-                \caption*{\cite{wang2013properties}}
+                \includegraphics[width=\textwidth]{figures/grand_scheme_of_things.png}
+                \caption*{}
             \end{figure}
         \end{column}
     \end{columns}
 \end{frame}
+
+\frame{
+    \frametitle{HiC Data: An Overal Picture}
+     \begin{figure}[H]
+        \centering
+        \includegraphics[width=.8\textwidth]{figures/grand_scheme_of_things.png}
+        \caption*{}
+    \end{figure}
+
+}
+
+\frame {
+    \begin{figure}
+        \centering
+        \includegraphics[width=.8\textwidth, height=.82\textheight]{figures/normal-b-cell-all-heatmaps.jpeg}
+        \caption*{\cite{wang2013properties}}
+    \end{figure}
+
+}
+
 \section{Strategies}
 \begin{frame}
     \frametitle{Graphlets}
@@ -223,6 +243,7 @@
         \caption*{\cite{milenkoviae2008uncovering}}
     \end{figure}
 \end{frame}
+
 \begin{frame}
     \frametitle{Introduction}
     \textbf{\citeA{milenkovic2010cancer}}: 
@@ -241,150 +262,107 @@
             \end{itemize}
     \end{enumerate}
 \end{frame}
-\begin{frame}
-    \frametitle{Graphlets}
-    \framesubtitle{Challenges}
-    \begin{enumerate}
-        \item HiC contact maps are noisy. How do we de-noise them?
-        \item Current applications of graphlets were on unweighted
-            graphs, while HiC contact maps are weighted.
-    \end{enumerate}
-\end{frame}
 
-\begin{frame}
-    \frametitle{Balanced Network Deconvolution}
-    \framesubtitle{Introduction}
-    Proposed by \citeA{feizi2013network}, Balanced Network Deconvolution, is 
-    a method that can be used to remove \textit{indirect effects} from a graph.
-    \begin{figure}
-        \centering
-        \includegraphics[width=\textwidth]{figures/nd.png}
-        \caption*{ \cite{feizi2013network}}
-    \end{figure}
-\end{frame}
-\begin{frame}
-    \frametitle{Balanced Network Deconvolution}
-    \framesubtitle{Details}
-    They assume that:
-    \begin{equation}
-        \label{indirect_effects}
-        G_{obs} = G_{dir} + G_{dir}^2 + G_{dir} + ...
-    \end{equation}
-    They assume also that both $G_{obs}$ and $G_{dir}$ can be 
-    eigen-decomposed and they have the same eigen-vectors:
-    \begin{equation}
-        G_{dir} = X \Sigma_{dir} X^T
-    \end{equation}
-    \begin{equation}
-        G_{obs} = X \Sigma_{obs} X^T
-    \end{equation}
-    \begin{equation}
-        G_{obs} = X \Sigma_{obs} X^T = X ( \Sigma_{dir} + \Sigma_{dir}^2 + ...) X^T
-    \end{equation}
-\end{frame}
-\begin{frame}
-    \frametitle{Balanced Network Deconvolution}
-    \framesubtitle{Details}
-    They also assume that eigen-values of the direct network are all
-    between -1 and 1, i.e. 
-    \begin{equation}
-        -1 < \lambda^{dir}_i < 1 \quad \forall 1 \le i \le n
-    \end{equation}
-    \begin{equation}
-        \Sigma_{obs} = \Sigma_{dir} + \Sigma_{dir}^2 + ...
-    \end{equation}
-    \begin{equation}
-        \lambda_i^{obs} = \sum_{j=1}^{\infty} \lambda^{dir}_{ij} \quad\quad \forall i = 1 ... n
-    \end{equation}
-    \begin{equation}
-        \lambda_i^{obs} = \frac{\lambda_i^{dir}}{1 - \lambda_i^{dir}}
-    \end{equation}
-    \begin{equation}
-       \lambda_i^{dir} = \frac{\lambda_i^{obs}}{1 + \lambda_i^{obs}} 
-    \end{equation}
-\end{frame}
-\begin{frame}
-    \frametitle{Statistical Parametric Network (SPN)}
-    Developed by \citeA{ginestet2011statistical}.
-    \begin{figure}
-        \centering
-        \includegraphics[width=.5\textwidth]{figures/thresholded_adjacency.png}
-        \caption*{An study of neuron connectivity
-            networks among 43 subjects for 4 different memory tasks 
-            (0-back, 1-back, 2-back and 3-back), and the
-            resulting thresholded networks \cite{ginestet2011statistical}}
-        \label{fig:thresholded_adjacency}
-    \end{figure}
-\end{frame}
-\section{Results Thus Far}
-\begin{frame}
-    \frametitle{Histogram of frequencies in HiC}
+\frame {
+    \frametitle{Stage I: Thresholding}
+    For thresholding, I use \textit{local thresholding} methods.
+    \begin{enumerate}
+        \item Create a zero matrix with the same size as the contact 
+            map (M)
+        \item Slide a kernel through each pixel
+        \item If the pixel $(i, j)$  satisfies a particular condition
+            the set $A[i, j]$.
+    \end{enumerate}
+    \bigskip
+    Conditions that I considered:
+    \begin{enumerate}
+        \item If the pixel is local maximum with respect to the pixels
+            that fall in the kernel \\
+            $A_{ij} > A_{i',j'} 
+            \hspace{2cm}  (i', j') \in \{i-k, i+k\}\times \{j-k, j+k\}$
+        \item If the pixel value is larger that some standard deviation
+            from the mean of the values that fall inside the kernel.
+            $A_{ij} > mean(A_{i',j'}) + std(A_{i',j'})$ \\
+    \end{enumerate}
+}
+
+\frame {
+    \frametitle{Kernels}
     \begin{figure}[H]
         \centering
-        \begin{subfigure}[b]{.45\textwidth} 
-            \includegraphics[width=\textwidth]{figures/hist01.png}
-            \caption{Interval $[0, 0.1]$}
-            \label{fig:hist01}
-        \end{subfigure}
-        \begin{subfigure}[b]{.45\textwidth}
-            \includegraphics[width=\textwidth]{figures/hist02.png}
-            \caption{Interval $[0.1, 1]$}
-            \label{fig:hist02}
-        \end{subfigure}
-        \caption{\ref{fig:hist01} is a histogram of intensities from
-        chromosome 1 
-        As can be seen, the two histograms are orders of magnitude
-        different in terms of frequency.}
-        \label{fig:hists}
-    \end{figure}
-\end{frame}
-\begin{frame}
-    \frametitle{Histogram of logarithm}
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=1.05\textwidth]{figures/pyr_hist_1mb.png}
+        \includegraphics[width=.9\textwidth]{figures/kernels.png}
         \caption*{}
-        \label{fig:pyr_hist_1mb}
     \end{figure}
-\end{frame}
-\begin{frame}
-    \frametitle{Different Normalization methods}
+}
+
+\frame {
+    \frametitle { Extracting graphlets }
+    \begin{enumerate}
+        \item I used the \texttt{orca} library in \texttt{R} programming 
+        language.
+        \item For each loci, a \textit{signature vector} of length 73 is 
+        created.
+        \item For each chromosome, an $N_c \times 73$, matrix is returned.
+        where $N_c$ is the number of loci in chromosome $c$.
+    \end{enumerate}
+}
+
+\frame {
+    \frametitle { Finding distance between loci }
+    In order to see how different two loci are in 
+    terms of local neighborhood, we need to compare
+    their corresponding \textit{signature values}.
+    The distance measure proposed by \citeA{prvzulj2007biological}:
+
+    \begin{equation}
+        d_i = w_i \times \frac{log(S_i+1) - log(S'_i+1)}{log(max(S_i, S'_i) + 2)}
+    \end{equation}
+    The distance between $S$ and $S'$ can be calculated as follows:
+    \begin{equation}
+        D = \sum_{0}^{72}{d_i^2}
+    \end{equation}
+}
+
+\frame {
+    \frametitle{loci-loci distances between cell lines}
+    I calculated loci-loci distance between cell lines using the formula
+    above:
     \begin{figure}[H]
         \centering
-        \begin{subfigure}[b]{.25\textwidth}
-            \includegraphics[width=\textwidth]{figures/original_cleaned.png}
-            \caption{}
-            \label{fig:original_cleaned}
-        \end{subfigure}
-        \begin{subfigure}[b]{.25\textwidth}
-            \includegraphics[width=\textwidth]{figures/pearson.png}
-            \caption{}
-            \label{fig:pearson}
-        \end{subfigure}
-        \begin{subfigure}[b]{.25\textwidth}
-            \includegraphics[width=\textwidth]{figures/scn.png}
-            \caption{}
-            \label{fig:scn}
-        \end{subfigure}
-        \begin{subfigure}[b]{.25\textwidth}
-            \includegraphics[width=\textwidth]{figures/scn+pearson.png}
-            \caption{}
-            \label{fig:scn+pearson}
-        \end{subfigure}
-        \begin{subfigure}[b]{.25\textwidth}
-            \includegraphics[width=\textwidth]{figures/pearson+scn.png}
-            \caption{}
-            \label{fig:pearson+scn}
-        \end{subfigure}
-        \begin{subfigure}[b]{.25\textwidth}
-            \includegraphics[width=\textwidth]{figures/pyr.png}
-            \caption{}
-            \label{fig:pyr}
-        \end{subfigure}
-        \caption*{}
-        \label{fig:normalizations}
+        \includegraphics[width=.6\textwidth]{figures/loci_wise_distance.png}
+        \caption*{\small {$A_{ij}$ in matrices above denotes distance between loci
+        $i$ in row cell line and loci $j$ in the column cell line.} }
     \end{figure}
-\end{frame}
+}
+
+\frame {
+    \frametitle{Loci-loci distances}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{figures/cross_chromosomal_signature_distance.png}
+        \caption*{}
+    \end{figure}
+}
+
+\frame {
+    \frametitle{Loci-loci distances}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{figures/cross_chromosomal_signature_distance_separated.png}
+        \caption*{cross-chromosomal signature distance with 1 standard deviation error bars}
+    \end{figure}
+}
+
+\frame {
+    \frametitle{Orbit correlations}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{figures/orbit_wise_correlation_chr1.png}
+        \caption*{\small {$A_{ij}$ in matrices above denotes correlation between 
+        orbit $i$ in row cell line and orbit $j$ in the column cell line.} }
+    \end{figure}
+}
+
 \begin{frame}[allowframebreaks]
     \frametitle{References}
     \bibliographystyle{apacite}

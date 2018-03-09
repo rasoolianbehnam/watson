@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.16)  14 DEC 2017 10:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.16)  8 MAR 2018 18:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1050,7 +1050,7 @@ line 56.
 File: ot1mathkerncmss.fd 2013/03/27 Fontinst v1.933 font definitions for OT1/ma
 thkerncmss.
 )
-<figures/chromosome_3d_structure.png, id=112, 397.485pt x 478.78876pt>
+<figures/chromosome_3d_structure.png, id=104, 397.485pt x 478.78876pt>
 File: figures/chromosome_3d_structure.png Graphic file (type png)
 
 <use figures/chromosome_3d_structure.png>
@@ -1060,7 +1060,7 @@ Package pdftex.def Info: figures/chromosome_3d_structure.png used on input line
  [3
 
  <./figures/chromosome_3d_structure.png>] <figures/original_contact_map_chr14.p
-ng, id=147, 216.81pt x 216.81pt>
+ng, id=137, 216.81pt x 216.81pt>
 File: figures/original_contact_map_chr14.png Graphic file (type png)
 
 <use figures/original_contact_map_chr14.png>
@@ -1069,7 +1069,7 @@ ine 82.
 (pdftex.def)             Requested size: 122.91406pt x 122.9147pt.
  [4
 
- <./figures/original_contact_map_chr14.png>] <figures/loops.png, id=181, 1242.6
+ <./figures/original_contact_map_chr14.png>] <figures/loops.png, id=171, 1242.6
 425pt x 710.655pt>
 File: figures/loops.png Graphic file (type png)
 
@@ -1083,7 +1083,7 @@ Package pdftex.def Info: figures/loops.png used on input line 93.
 ] [7
 
 ]
-<figures/hic_process.png, id=271, 1187.43625pt x 462.72874pt>
+<figures/hic_process.png, id=258, 1187.43625pt x 462.72874pt>
 File: figures/hic_process.png Graphic file (type png)
 
 <use figures/hic_process.png>
@@ -1097,153 +1097,135 @@ Overfull \hbox (30.73085pt too wide) in paragraph at lines 153--153
 [8
 
  <./figures/hic_process.png>]
-<figures/normal-b-cell-all-heatmaps.jpeg, id=301, 572.89032pt x 690.32906pt>
+<figures/grand_scheme_of_things.png, id=288, 812.03375pt x 689.57625pt>
+File: figures/grand_scheme_of_things.png Graphic file (type png)
+
+<use figures/grand_scheme_of_things.png>
+Package pdftex.def Info: figures/grand_scheme_of_things.png used on input line 
+176.
+(pdftex.def)             Requested size: 153.64493pt x 130.4737pt.
+ [9
+
+ <./figures/grand_scheme_of_things.png>]
+File: figures/grand_scheme_of_things.png Graphic file (type png)
+ <use figures/grand_scheme_of_things.png>
+Package pdftex.def Info: figures/grand_scheme_of_things.png used on input line 
+186.
+(pdftex.def)             Requested size: 245.83282pt x 208.75792pt.
+
+Overfull \vbox (29.34866pt too high) detected at line 186
+ []
+
+[10
+
+]
+<figures/normal-b-cell-all-heatmaps.jpeg, id=345, 572.89032pt x 690.32906pt>
 File: figures/normal-b-cell-all-heatmaps.jpeg Graphic file (type jpg)
 
 <use figures/normal-b-cell-all-heatmaps.jpeg>
 Package pdftex.def Info: figures/normal-b-cell-all-heatmaps.jpeg used on input 
-line 176.
-(pdftex.def)             Requested size: 138.2795pt x 166.61984pt.
- [9
+line 195.
+(pdftex.def)             Requested size: 245.83102pt x 200.4747pt.
+ [11
 
- <./figures/normal-b-cell-all-heatmaps.jpeg>] [10
+ <./figures/normal-b-cell-all-heatmaps.jpeg>] [12
 
-] [11
+] [13
 
-] <graphlets.png, id=394, 754.82pt x 422.57875pt>
+] <graphlets.png, id=435, 754.82pt x 422.57875pt>
 File: graphlets.png Graphic file (type png)
 
 <use graphlets.png>
-Package pdftex.def Info: graphlets.png used on input line 207.
+Package pdftex.def Info: graphlets.png used on input line 227.
 (pdftex.def)             Requested size: 301.92265pt x 169.0285pt.
- [12
+ [14
 
  <./graphlets.png>]
-<figures/signature-comparison.png, id=425, 1543.7675pt x 499.8675pt>
+<figures/signature-comparison.png, id=465, 1543.7675pt x 499.8675pt>
 File: figures/signature-comparison.png Graphic file (type png)
 
 <use figures/signature-comparison.png>
-Package pdftex.def Info: figures/signature-comparison.png used on input line 22
+Package pdftex.def Info: figures/signature-comparison.png used on input line 24
 5.
 (pdftex.def)             Requested size: 307.28987pt x 99.49883pt.
 
-Overfull \vbox (7.98962pt too high) detected at line 225
+Overfull \vbox (7.98962pt too high) detected at line 245
  []
 
-[13
+[15
 
- <./figures/signature-comparison.png>] [14
+ <./figures/signature-comparison.png>] [16
 
-] [15
-
-]
-<figures/nd.png, id=518, 1052.93375pt x 318.18875pt>
-File: figures/nd.png Graphic file (type png)
- <use figures/nd.png>
-Package pdftex.def Info: figures/nd.png used on input line 264.
-(pdftex.def)             Requested size: 307.28987pt x 92.85983pt.
-
-[16
-
- <./figures/nd.png>] [17
-
-] [18
+] [17
 
 ]
-<figures/thresholded_adjacency.png, id=608, 661.47125pt x 546.04pt>
-File: figures/thresholded_adjacency.png Graphic file (type png)
+<figures/kernels.png, id=556, 274.02374pt x 164.86594pt>
+File: figures/kernels.png Graphic file (type png)
 
-<use figures/thresholded_adjacency.png>
-Package pdftex.def Info: figures/thresholded_adjacency.png used on input line 3
-18.
-(pdftex.def)             Requested size: 153.64493pt x 126.828pt.
- [19
+<use figures/kernels.png>
+Package pdftex.def Info: figures/kernels.png used on input line 296.
+(pdftex.def)             Requested size: 276.559pt x 166.40508pt.
+ [18
 
- <./figures/thresholded_adjacency.png>] [20
+ <./figures/kernels.png>] [19
 
-] <figures/hist01.png, id=670, 578.16pt x 433.62pt>
-File: figures/hist01.png Graphic file (type png)
+] [20
 
-<use figures/hist01.png>
-Package pdftex.def Info: figures/hist01.png used on input line 340.
-(pdftex.def)             Requested size: 138.2795pt x 103.70702pt.
- <figures/hist02.png, id=671, 578.16pt x 433.62pt>
-File: figures/hist02.png Graphic file (type png)
+]
+<figures/loci_wise_distance.png, id=646, 683.55376pt x 538.01pt>
+File: figures/loci_wise_distance.png Graphic file (type png)
 
-<use figures/hist02.png>
-Package pdftex.def Info: figures/hist02.png used on input line 340.
-(pdftex.def)             Requested size: 138.2795pt x 103.70702pt.
- [21
+<use figures/loci_wise_distance.png>
+Package pdftex.def Info: figures/loci_wise_distance.png used on input line 336.
 
- <./figures/hist01.png> <./figures/hist02.png>]
-<figures/pyr_hist_1mb.png, id=711, 1635.4701pt x 880.2486pt>
-File: figures/pyr_hist_1mb.png Graphic file (type png)
+(pdftex.def)             Requested size: 184.3758pt x 145.11687pt.
 
-<use figures/pyr_hist_1mb.png>
-Package pdftex.def Info: figures/pyr_hist_1mb.png used on input line 349.
-(pdftex.def)             Requested size: 322.65529pt x 173.65579pt.
-
-Overfull \hbox (15.36542pt too wide) in paragraph at lines 349--349
- [] 
+Overfull \vbox (4.90762pt too high) detected at line 336
  []
 
+[21
 
-Overfull \vbox (7.84654pt too high) detected at line 349
+ <./figures/loci_wise_distance.png>]
+<figures/cross_chromosomal_signature_distance.png, id=676, 887.315pt x 552.0625
+pt>
+File: figures/cross_chromosomal_signature_distance.png Graphic file (type png)
+ <use figures/cross_chromosomal_signature_distance.png>
+Package pdftex.def Info: figures/cross_chromosomal_signature_distance.png used 
+on input line 345.
+(pdftex.def)             Requested size: 307.28987pt x 191.1862pt.
+
+Overfull \vbox (11.77695pt too high) detected at line 345
  []
 
 [22
 
- <./figures/pyr_hist_1mb.png>]
-<figures/original_cleaned.png, id=743, 229.85875pt x 230.8625pt>
-File: figures/original_cleaned.png Graphic file (type png)
+ <./figures/cross_chromosomal_signature_distance.png>]
+<figures/cross_chromosomal_signature_distance_separated.png, id=707, 880.28876p
+t x 540.0175pt>
+File: figures/cross_chromosomal_signature_distance_separated.png Graphic file (
+type png)
 
-<use figures/original_cleaned.png>
-Package pdftex.def Info: figures/original_cleaned.png used on input line 387.
-(pdftex.def)             Requested size: 76.82246pt x 77.1571pt.
+<use figures/cross_chromosomal_signature_distance_separated.png>
+Package pdftex.def Info: figures/cross_chromosomal_signature_distance_separated
+.png used on input line 354.
+(pdftex.def)             Requested size: 307.28987pt x 188.50632pt.
 
-<figures/pearson.png, id=744, 231.86626pt x 229.85875pt>
-File: figures/pearson.png Graphic file (type png)
-
-<use figures/pearson.png>
-Package pdftex.def Info: figures/pearson.png used on input line 387.
-(pdftex.def)             Requested size: 76.82246pt x 76.15875pt.
- <figures/scn.png, id=745, 229.85875pt x 230.8625pt>
-File: figures/scn.png Graphic file (type png)
-
-<use figures/scn.png>
-Package pdftex.def Info: figures/scn.png used on input line 387.
-(pdftex.def)             Requested size: 76.82246pt x 77.1571pt.
- <figures/scn+pearson.png, id=746, 228.855pt x 228.855pt>
-File: figures/scn+pearson.png Graphic file (type png)
-
-<use figures/scn+pearson.png>
-Package pdftex.def Info: figures/scn+pearson.png used on input line 387.
-(pdftex.def)             Requested size: 76.82246pt x 76.82141pt.
-
-<figures/pearson+scn.png, id=747, 230.8625pt x 230.8625pt>
-File: figures/pearson+scn.png Graphic file (type png)
-
-<use figures/pearson+scn.png>
-Package pdftex.def Info: figures/pearson+scn.png used on input line 387.
-(pdftex.def)             Requested size: 76.82246pt x 76.82245pt.
-
-<figures/pyr.png, id=748, 231.86626pt x 234.8775pt>
-File: figures/pyr.png Graphic file (type png)
- <use figures/pyr.png>
-Package pdftex.def Info: figures/pyr.png used on input line 387.
-(pdftex.def)             Requested size: 76.82246pt x 77.82161pt.
-
-Overfull \vbox (26.56946pt too high) detected at line 387
+Overfull \vbox (9.09706pt too high) detected at line 354
  []
 
 [23
 
- <./figures/original_cleaned.png> <./figures/pearson.png> <./figures/scn.png> <
-./figures/scn+pearson.png> <./figures/pearson+scn.png> <./figures/pyr.png>]
-(./presentation.bbl) [24
+ <./figures/cross_chromosomal_signature_distance_separated.png>]
+<figures/orbit_wise_correlation_chr1.png, id=737, 877.2775pt x 260.975pt>
+File: figures/orbit_wise_correlation_chr1.png Graphic file (type png)
 
-] [25
+<use figures/orbit_wise_correlation_chr1.png>
+Package pdftex.def Info: figures/orbit_wise_correlation_chr1.png used on input 
+line 364.
+(pdftex.def)             Requested size: 307.28987pt x 91.41429pt.
+ [24
 
+ <./figures/orbit_wise_correlation_chr1.png>] (./presentation.bbl) [25
 
 ] [26
 
@@ -1258,46 +1240,45 @@ Overfull \vbox (26.56946pt too high) detected at line 387
 \tf@snm=\write8
 \openout8 = `presentation.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 394.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 394.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 371.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 371.
  (./presentation.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 394.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 394.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 371.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 371.
 Package rerunfilecheck Info: File `presentation.out' has not changed.
-(rerunfilecheck)             Checksum: 1ACFEFD3202A8C91072725E3F74DC8E4;152.
+(rerunfilecheck)             Checksum: 3E888E3DF51BE0F5C69AC33DFE6B8594;101.
 
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 1.0pt have occurred.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 394.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 371.
  ) 
 Here is how much of TeX's memory you used:
- 19842 strings out of 493029
- 375518 string characters out of 6136233
- 469042 words of memory out of 5000000
- 22827 multiletter control sequences out of 15000+600000
- 16666 words of font info for 60 fonts, out of 8000000 for 9000
+ 19748 strings out of 493029
+ 374203 string characters out of 6136233
+ 469814 words of memory out of 5000000
+ 22758 multiletter control sequences out of 15000+600000
+ 16834 words of font info for 61 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  56i,16n,57p,938b,816s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/share/texlive/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmss9.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmssbx10.pfb></usr/share/texlive/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmssi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmssi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmsy8.pfb>
-Output written on presentation.pdf (26 pages, 2975870 bytes).
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmss9.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmssbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmssi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmssi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+sy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb
+></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on presentation.pdf (26 pages, 2487336 bytes).
 PDF statistics:
- 940 PDF objects out of 1000 (max. 8388607)
- 841 compressed objects within 9 object streams
- 78 named destinations out of 1000 (max. 500000)
- 205 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 884 PDF objects out of 1000 (max. 8388607)
+ 793 compressed objects within 8 object streams
+ 56 named destinations out of 1000 (max. 500000)
+ 172 words of extra memory for PDF output out of 10000 (max. 10000000)
 

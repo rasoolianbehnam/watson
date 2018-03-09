@@ -6,3 +6,8 @@ virt/*
 *.out
 logs/*.log
 papers/*.log
+papers/*.toc
+papers/*.blg
+papers/*.snm
+papers/*.nav
+papers/*.bbl

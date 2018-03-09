@@ -187,6 +187,18 @@ def pearson(a, b=None):
     else:
         return pearson_sym(a)
 
+def row_wise_pearson(a, b):
+    n1, m1 = a.shape
+    n2, m2 = b.shape
+    n = np.min([n1, n2])
+    m = np.min([m1, m2])
+    a = a[:n, :m]
+    b = b[:n, :m]
+    counter2 = np.zeros(n)
+    for i in range(n):
+        counter2[i] = pearsonr(a[i, :], b[i, :])[0]
+    return counter2
+
 def setDiagonals(mat, depth, value):
     n, m  = mat.shape
     if n != m:
@@ -420,7 +432,7 @@ def graphlet_distance(g1, g2):
     out = np.linalg.norm(pairwise_distance, axis=1) 
     return out
 
-def graphlet_correlational_distance(g1, g2):
+def full_graphlet_distance(g1, g2):
     """
     -------------------------------------------------------
     Function
@@ -445,6 +457,33 @@ def graphlet_correlational_distance(g1, g2):
     for i in range(n1):
         for j in range(n2):
             out[i, j] = graphlet_distance(g1[i, :], g2[j, :])
+    return out
+
+def row_wise_graphlet_distance(g1, g2):
+    """
+    -------------------------------------------------------
+    Function
+    ------------------------------------------------------
+    Calculate correlation between two matrices of graphlets
+    -------------------------------------------------------
+    Inputs:
+    -------------------------------------------------------
+    - g1, g2 : N * O matrices
+    -------------------------------------------------------
+    Returns:
+    -------------------------------------------------------
+
+    - out: an N * N matrix where each cell 
+    out[i, j] is the graphlet DISSIMILARITY between
+    orbit i in g1 and orbit j in g2.
+    """
+    n1, o1 = g1.shape
+    n2, o2 = g2.shape
+    n = np.min([n1, n2])
+    o = np.min([o1, o2])
+    out = np.zeros(n)
+    for i in range(n):
+        out[i] = graphlet_distance(g1[i, :], g2[i, :])
     return out
 
 def pair_orbits(graphlets, chromosome, delimiter=','):
@@ -488,20 +527,16 @@ def get_mic_from_file(file_name, delimiter=','):
         f2.append(content[1])
         mic.append(float(content[2]))
     return f1, f2, mic
+
 def log(image):
     return np.where(out > 0, np.log(out), 0)
 
-def pearsonII(image):
-    out = pearson(image)
-    out[np.where(out <= 0)] = 0
-    return out
-
 def print_statistics(m1, text = "", print_results=True):
-    max = np.max(m1)
-    min = np.min(m1)
-    mean = m1.mean()
+    max = np.nanmax(m1)
+    min = np.nanmin(m1)
+    mean = np.nanmean(m1)
     median = np.percentile(m1, 50)
-    std = m1.std()
+    std = np.nanstd(m1)
     if (print_results):
         print("#-----------------------------------------------------------------------#")
         print("Stats for %s: "% text)
@@ -574,16 +609,42 @@ def svd_reconstruct(mat, k, u='empty', sig='empty', v='empty'):
         b += sig[i] * np.outer(u[:, i], v[i, :])
     return b, u, sig, v
 
-def local_threshold(mat, k=1, method='max', t=1):
+def local_threshold(mat, k=1, method='max', t=1, params=None):
     mat2 = np.zeros_like(mat)
     n, m = mat.shape
-    for i in range(k, n-k):
-        for j in range(k, m-k):
+    if isinstance(k, tuple):
+        if len(k) == 2:
+            k11, k21 = k
+            k12, k22 = k
+        else:
+            k11, k12, k21, k22 = k
+    else:
+        k11 = k12 = k21 = k22 = k
+    print(k11, k12, k21, k22)
+    for i in range(0, n):
+        i_low = np.max([i - k11, 0])
+        i_high = np.min([i + k12+1, n])
+        for j in range(0, m):
+            j_low = np.max([j - k21, 0])
+            j_high = np.min([j + k22+1, m])
+            temp = mat[i_low:i_high, j_low:j_high]
+            temp = temp[np.where(temp > 0)]
             if method == 'max':
-                condition = mat[i, j] == np.max(mat[i-k:i+k, j-k:j+k])
+                condition = mat[i, j] == np.max(temp)
             elif method=='normal':
-                temp = mat[i-k:i+k, j-k:j+k]
                 condition = mat[i, j] >= np.mean(temp) + t * np.std(temp)
             if condition:
                 mat2[i, j] = 1
+    if isinstance(params, tuple):
+        mat3 = mat2 * 1.
+        k = params[0]
+        s = params[1]
+        for i in range(0, n):
+            i_low = np.max([i - k, 0])
+            i_high = np.min([i + k + 1, n])
+            for j in range(0, m):
+                j_low = np.max([j - k+1, 0])
+                j_high = np.min([j + k+1, m])
+                if np.sum(mat3[i_low:i_high, j_low:j_high]) < s:
+                    mat2[i, j] = 0
     return mat2
