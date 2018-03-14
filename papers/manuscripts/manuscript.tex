@@ -1,0 +1,165 @@
+\documentclass[a4,center,fleqn]{NAR}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{csquotes}
+\usepackage{amsmath}
+\usepackage{setspace}
+\usepackage{float}
+\usepackage{caption}
+
+\begin{document}
+\section{Abstract}
+
+In this study, we plan to find dissimilarities between normal cells and cancerous cells,
+through investigating HiC contact maps. 
+We suspect that there are systematic differences between how chromosomes are structured
+between normal cells and cancerous cells.
+we 
+Ideally, it is desirable to compare 3D structures of 
+cell in order to make such comparisons.
+However, the main challenge that we face is that 
+3D structure of a cell is not readily available. Based on
+\cite{adhikari2016chromosome3d}, fluorescence in situ hybridizaiton
+(FISH) is used for investigating 3D configuration of chromosomes.
+However, this method can only be used locally and cannot map
+the whole structure of the chromosomes.
+In orther to find dissimilarities in the 3D structure of 
+chromosomes, we used HiC dataset.
+The HiC method, which was developed by \cite{lieberman2009comprehensive}, captures interactions between 
+chromosomal fragments in kilobase resolution. Based on HiC data, an
+\textit{interaction frequency (IF) } matrix can be developed between \textit{loci} at a desired resolution.
+A cell $IF_{ij}$ in an interaction frequency matrix captures the number of interaction detected
+in HiC dataset between locus $i$ and locus $j$ in the genome.
+An interaction matrix can be used to develop both inter- and intra-chromosomal interaction matrices.
+We believe differences in interaction matrices can be found between normal cells and cancerous ones.
+
+\section{Introduction}
+
+Graphlet comparison is a novel method used to compare large networks in order to
+find local similarities in them.
+Authors of \cite{prvzulj2007biological} provide a new measure of PPI
+network comparison
+based on 73 constraints. This is used in order to compare two large
+networks in order to detect similarities.
+
+\cite{milenkoviae2008uncovering} 
+ provide heuristics to compare two nodes based on some feature
+(or signature) vectors, which is a 73-dimensional vector
+$\mathbf{s}^T
+= [s_0, s_2, ..., s_{72}]$ where $s_i$ denotes the number of nodes in
+the network that are part of an orbit $i$. \\
+\textit{Important Result}: Proteins with similar surroundings perform
+similar functions.
+
+In \cite{milenkovic2010cancer}, the same author investigates 
+cancer-causing genes to find similarities in their signatures. After
+clustering the genes based on \textit{signature similarity} criteria,
+some clusters contain a lot of cancerous genes.
+They use 4 different clustering methods with varying parameters to cluster
+the proteins. They then predict the cancer-relatedness of a protein 
+$i$ using
+an enrichment criteria $\frac{k}{|C_i|}$ where $C_i$ is the cluster
+where protein $i$ belongs and $k$ is the number of cancer-causing
+proteins in $C_i$ and $|C_i|$ is the size of $C_i$.
+
+Implementations of algorithms of extracting graphlets: \\
+\begin{itemize}
+    \item GraphCrunch: 
+        \url{http://www0.cs.ucl.ac.uk/staff/natasa/graphcrunch2/usage.html}
+    \item PGD: \url{http://nesreenahmed.com/graphlets/}
+    \item ORCA: Graphlet and orbit counting algorithm \\
+        \url{ https://CRAN.R-project.org/package=orca} \\
+        This package is in R. In order to install it, type
+        \texttt{install.packages("orca")}.
+        
+\end{itemize}
+
+The authors of \cite{di2010fast} generalized the idea of graphlets to 
+ordered graphs were the nodes are labeled in ascending order.
+These graphlets are illustrated in Figure \ref{fig:ordered_graphlets}.
+As can be viewed, there are a total of 14 orbits for graphlets of size
+2 and 3 since the label of graphlets is also included in toplogy.
+In the new definition, $d_v^i$ denotes the number of orbit $i$ touches 
+node $v$. Each node, is then assigned a vector of length 14 
+\footnote{number of orbits in graphlets of size 2 and 3}
+$(d_v^1, d_v^2, ..., d_v^{14})$ 
+and similarity of two nodes in two contact maps can be compared by
+how geometrically close their corresponding vectors are.
+\section{Materials and Methods}
+\subsection{Thresholding contact maps}
+In order to be able to extract graphlets, HiC contact maps should be modeled as
+unweighted graphs where the nodes represent the loci and an edge between two 
+nodes represent a \textit{significant} interaction between the loci the nodes
+represent.
+
+Thresholding is achieved by thresholding the contact maps. The result
+of the thresholding procedure would be a binary matrix which also can serve as
+an adjacency matrix for an unweighted, undirected graph. The graph can then be
+used for orbit extraction.
+
+In order to go about the process of thresholding, it is necessary to make sure
+that both global and local features are maintained. We could consider 
+thresholding the contact maps by simply setting values above a fixed value to
+one and the rest to zero. However, in practice, this proved result in graphs
+that capture the local structure of the contact maps poorly. This is because
+intensities follow an exponential distribution with a mean close to zero and
+some very larges values that correspond t interactions along and close to 
+the main diagonal of the contact maps.
+Thus, picking relatively large numbers would result in ignoring interactions
+that are far from the main diagonal and picking small numbers will lead to
+capturing too many \textit{insignificant} interactions.
+
+In order to threshold the matrix so that both global and local patterns are
+kept, we borrowed the concept of \textit{adaptive thresholding} from image 
+processing context. In this method, in order to be set, a pixel should have
+an intensity that is larger than the average of non-zero intensities in its
+\textit{neighborhood}. The neighborhood is defined by an sliding kernel 
+that passes through the contact map with a pixel at its middle at 
+each step.
+
+
+
+
+\section{Resources}
+\textbf{Publications related to Hi-C:}
+\begin{enumerate}
+    \item \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2858594/}
+    \item \url{http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0058793 }
+    \item \url{http://nar.oxfordjournals.org/content/42/7/e52.full}
+    \item \url{http://bioinformatics.oxfordjournals.org/content/early/2015/12/31/bioinformatics.btv754.abstract?keytype=ref&ijkey=A97WhKqBiEIcuzd}
+    \item \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4417147/}
+    \item \url{http://www.pnas.org/content/112/47/E6456.full}
+    \item \url{http://www.pnas.org/content/113/12/E1663.full}
+\end{enumerate}
+\textbf{Hi-C Datasets:}
+\begin{enumerate}
+    \item Original Datasets: \url{https://bcm.app.box.com/v/aidenlab/folder/11234760671}
+    \item Including cancerous cells: \url{http://sysbio.rnet.missouri.edu/T0510/tmp_download/link_to_download_genome_data/}
+    \item Chromosome3D project: \url{http://sysbio.rnet.missouri.edu/bdm_download/chromosome3d/}
+\end{enumerate}
+\textbf{Contact Matrix Analysis:}
+\begin{enumerate}
+    \item \url{https://omictools.com/contact-matrix-normalization-category}
+    \item \url{http://hifive.docs.taylorlab.org/en/latest/}
+\end{enumerate}
+
+\textbf{Labs working on 3D Human Genome:}
+
+\begin{enumerate}
+    \item \url{http://mirnylab.mit.edu}
+    \item \url{http://dostielab.biochem.mcgill.ca}
+    \item \url{http://www.aidenlab.org/}
+    \item \url{http://web.cmb.usc.edu/people/alber/index.htm}
+    \item \url{http://calla.rnet.missouri.edu/cheng/nsf_career.html}
+\end{enumerate}
+\textbf{Resources related to Graphlet:}
+
+\begin{enumerate}
+    \item \url{https://en.wikipedia.org/wiki/Graphlets}
+    \item \url{https://academic.oup.com/bioinformatics/article/23/2/e177/202080/Biological-network-comparison-using-graphlet}
+    \item \url{http://www0.cs.ucl.ac.uk/staff/N.Przulj/index.html}
+\end{enumerate}
+
+\bibliography{lit}
+\bibliographystyle{unsrt}
+\end{document}

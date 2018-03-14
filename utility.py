@@ -68,14 +68,63 @@ def pyrProcess(original):
     original = cv2.pyrUp(original)
     return scale(original)
 
-def scale(m):
-    min = np.min(m) + 1e-5
+def scale(m, epsilon=1e-5):
+    """
+    Function:
+    ---------
+    Takes a matrix and scales int so that all values
+    fall between epsilon and 1.
+
+    Parameters:
+    -----------
+    mat : ndarray(m, n) 
+        The input ndarray
+
+    epsilon: 
+        The lower bound for values. In some applicatons,
+        values of 0 will result in numerical problems so
+        epsilon is defaulted to zero to prevent such
+        problems.
+
+    delimiter: string
+        the delimiter that separates the cells in
+        each row.
+
+    Output:
+        n: The thresholded numpy ndarray
+    """
+    min = np.min(m) + epsilon
     max = np.max(m)
     n = (1. * m - min) / (max - min) 
     return n
 
 #used to be simple read
 def readMat(fileName, delimiter="\t", ignoreHeader=False, remove_blanks=False):
+    """
+    Function:
+    --------- 
+    Reads a file and parses it into a numpy ndarray
+
+    Parameters:
+    -----------
+    fileName
+
+    delimiter
+
+    ignoreHeader:
+        ignore the first line of the file. Used when the
+        columns have titles.
+
+    remove_blanks:
+        if True, calls 'removeBlankRowsAndColumns' to the
+        matrix so as to remove rows and column that 
+        cosist of all zero values.
+
+    Output:
+    ---------
+    observed
+
+    """
     print "file directory:", fileName
     if not os.path.isfile(fileName):
         print "File %s does not exist"%fileName
@@ -97,6 +146,17 @@ def readMat(fileName, delimiter="\t", ignoreHeader=False, remove_blanks=False):
     return observed
 
 def readYamlIntensities(filename, res, delimiter="\t", remove_blanks=False):
+    """
+    Function:
+    --------- 
+
+    Parameters:
+    -----------
+
+    Output:
+    -----------
+
+    """
     file = open(filename, 'r')
     n = 0
     lines = []
@@ -247,7 +307,7 @@ def showImages(imageList, rows, color_bar=False, titles=None, ax_labels=None):
     cols = (len(imageList) + rows - 1) / rows
     print "Number of columnts:", cols
     fig, axes = plt.subplots(nrows=rows, ncols=cols)
-    plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=0.03, hspace=.3)
+    plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=0.03, hspace=.01)
     count = 0
     for image in imageList:
         if rows * cols == 1:
