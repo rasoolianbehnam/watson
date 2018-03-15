@@ -62,21 +62,9 @@ an enrichment criteria $\frac{k}{|C_i|}$ where $C_i$ is the cluster
 where protein $i$ belongs and $k$ is the number of cancer-causing
 proteins in $C_i$ and $|C_i|$ is the size of $C_i$.
 
-Implementations of algorithms of extracting graphlets: \\
-\begin{itemize}
-    \item GraphCrunch: 
-        \url{http://www0.cs.ucl.ac.uk/staff/natasa/graphcrunch2/usage.html}
-    \item PGD: \url{http://nesreenahmed.com/graphlets/}
-    \item ORCA: Graphlet and orbit counting algorithm \\
-        \url{ https://CRAN.R-project.org/package=orca} \\
-        This package is in R. In order to install it, type
-        \texttt{install.packages("orca")}.
-        
-\end{itemize}
 
 The authors of \cite{di2010fast} generalized the idea of graphlets to 
 ordered graphs were the nodes are labeled in ascending order.
-These graphlets are illustrated in Figure \ref{fig:ordered_graphlets}.
 As can be viewed, there are a total of 14 orbits for graphlets of size
 2 and 3 since the label of graphlets is also included in toplogy.
 In the new definition, $d_v^i$ denotes the number of orbit $i$ touches 
@@ -115,50 +103,147 @@ processing context. In this method, in order to be set, a pixel should have
 an intensity that is larger than the average of non-zero intensities in its
 \textit{neighborhood}. The neighborhood is defined by an sliding kernel 
 that passes through the contact map with a pixel at its middle at 
-each step.
+each step. Figure \ref{local_thresholded_chr1_chr1} demonstrates result of 
+this thresholding approach for interchromosomal contact map of chromosome 1.
+Refer to supplementary material for all 23 interchromosomal thresholding
+results.
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=\textwidth]{figures/local_thresholded_chr1_chr1.png}
+    \caption{Result of thresholding interchromosomal contact map of chromosome 1
+    using a kernels of size $5 \times 5$. The first row shows the thresholded
+    maps. Second and third rows demonstrate pair-wisesimilarities and 
+    differences between contact maps respectively.}
+    \label{local_thresholded_chr1_chr1}
+\end{figure*}
+
+\subsection{Orbit Extraction}
+Once the thresholded contact maps are obtained, graphlets and orbits can be 
+extracted. We used the \texttt{orca} package in \texttt{R} programming 
+language to extract the graphlets. As a result of graphlet extraction, 
+For each loci in each contact map, a \textit{signature vector} of size
+73 is created.
+
+We divied the task of graphlet comparison into two parts: first we compare
+graphlets from each contact map in normal cell lines (MIT) with the 
+same contact maps in the other three Leukemic cells. Second we compare 
+contact maps in a similar way but this time only between leukemic cells.
+In the former case, the null hypothesis is that there is no difference
+between contact maps of normal cells and leukemic celss and in the later
+case, the null hypotheis is that there is no difference between 
+different leukemic cells.
+
+We consider two measures of \textit{difference} when comparing contact
+map graphlets. The first measure is the distance between signature vectors
+of a loci in two cell lines. If $S^A_{k}$  and $S^B_{k}$ are 
+signature vectors corresponding to loci $k$ in contact maps A and B 
+respectively, then we can caclulate the distance between the two loci 
+using the following formula from \cite{prvzulj2007biological}:
+
+\begin{equation}
+    d_{ki} = w_i \times \frac{log(S^A_{ki}+1) - log(S^B_{ki}+1)}{log(max(S^A_{ki}, S^B_{ki}) + 2)}
+\end{equation}
+The distance between $S$ and $S'$ can be calculated as follows:
+\begin{equation}
+    D(S^A_k, S^B_k) = \sqrt{\sum_{0}^{72}{d_{ki}^2}}
+\end{equation}
 
 
+Using this distance measure, we can quantify how two loci are close to
+each other in terms of local neighborhood between the two contact maps.
 
+The second measure of comparison that we use captures how 
+similar two orbits are in terms of their frequencies across loci
+between the two contact maps. For each contact map, we can calculate
+similarity between orbit distributions by calculating pearso's r 
+correlation. However, pearson's r might not be able to capture
+non-functional relationships between distributions. As a result, we
+also used Maximal Information Coefficient (MIC) 
+\cite{reshef2011detecting} in order to compare
+correlations. MIC calculates mutual information (MI) between two
+distributions, but utilizes dynamic programming in order adjust
+bin sizes and numbers in order to achieve highest MI.
+MIC values between two variables fall between 0 and 1,
+with 0 meaning that the two variables are completely independent
+and 1 meaning they are totally correlated.
+We used both Pearson's r and MI in order to compare orbit
+frequencies. Although results from both approaches were more
+or less consistent, MIC showed higher robustness than Pearson's 
+r method.
 
-\section{Resources}
-\textbf{Publications related to Hi-C:}
+\subsection{Hypotheses}
+\subsubsection{terminology}
+We denote the set of all contact maps of normal (MIT) cell line with
+$CM$. In the same manner we denote $CA$, $CR$ and $CC$ as the set of all
+contact maps corresponding to ALL, RL and CALL4 cell lines.
+We denote a member of any of the aforementioned sets using small
+letters of the set name. For example, we denote any member of $CA$ with
+$ca$.
+
+We denote a contact map by $C^{\{cell_{\{chr1\}\{chr2\}}\}}$, where the
+superscript denotes the cell type and the subscripts in the superscripts
+determines the pair of chromosomes the contact map is about. For 
+example $C^{MIT_{1,14}}$ denotes the contact map between chromosomes
+1 and 14 in MIT (Normal) dataset. In such a manner $C^{MIT_{1,14}}_{ij}$
+denotes the interaction between loci $i$ and $j$ in the aforementioned
+contact map.
+
+We denote $S^C_i$ as the extracted 
+signature vector of locus $i$ in contact map $C$. 
+Also $P^C_k$ denotes
+the frequency distribution of orbital $k$ in contact map $C$.
+
+With regard to the two aforementioned comparison methods, we define
+our two null hypotheses as the following:
+
 \begin{enumerate}
-    \item \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2858594/}
-    \item \url{http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0058793 }
-    \item \url{http://nar.oxfordjournals.org/content/42/7/e52.full}
-    \item \url{http://bioinformatics.oxfordjournals.org/content/early/2015/12/31/bioinformatics.btv754.abstract?keytype=ref&ijkey=A97WhKqBiEIcuzd}
-    \item \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4417147/}
-    \item \url{http://www.pnas.org/content/112/47/E6456.full}
-    \item \url{http://www.pnas.org/content/113/12/E1663.full}
+    \item For a locus in a contact map in MIT cell type, its distance
+        from the same locus in the same contact map of the other three
+        cell types are equal to $0$.
+            \begin{align}
+                \begin{split}
+                    H_0: D(sm, sa) = 0  \\
+                \hspace{.5cm} \forall cm \in CM \quad\&\quad ca \in CA
+                \end{split} \\
+                \begin{split}
+                    H_0: D(sm, sr) = 0   \\
+                \hspace{.5cm} \forall cm \in CM\quad \&\quad cr \in CR
+                \end{split} \\
+                \begin{split}
+                    H_0: D(sm, sc) = 0   \\
+                \hspace{.5cm} \forall cm \in CM\quad \&\quad cc \in CC
+                \end{split}
+            \end{align}
+    \item For an orbit extracted from a contact map of MIT cell, the 
+        Pearson's r correlation between its frequency and the frequency
+        of the same orbit extracted from the same contact map in 
+        the other three cell types in equal to 1.
+        \begin{align}
+            H_0: Corr(P^CM_k, P^CA_k) = 1 \\
+            H_0: Corr(P^CM_k, P^CR_k) = 1 \\
+            H_0: Corr(P^CM_k, P^CC_k) = 1
+        \end{align}
+
+        or
+
+        For an orbit extracted from a contact map of MIT cell, the 
+        MIC between its frequency and the frequency
+        of the same orbit extracted from the same contact map in 
+        the other three cell types in equal to 1.
 \end{enumerate}
+
+
+
+\newpage
+\section{Resources}
 \textbf{Hi-C Datasets:}
 \begin{enumerate}
-    \item Original Datasets: \url{https://bcm.app.box.com/v/aidenlab/folder/11234760671}
-    \item Including cancerous cells: \url{http://sysbio.rnet.missouri.edu/T0510/tmp_download/link_to_download_genome_data/}
-    \item Chromosome3D project: \url{http://sysbio.rnet.missouri.edu/bdm_download/chromosome3d/}
-\end{enumerate}
-\textbf{Contact Matrix Analysis:}
-\begin{enumerate}
-    \item \url{https://omictools.com/contact-matrix-normalization-category}
-    \item \url{http://hifive.docs.taylorlab.org/en/latest/}
+    \item \href{https://github.com/rasoolianbehnam/watson}{Code base for this article}
+    \item \href{http://sysbio.rnet.missouri.edu/T0510/tmp_download/link_to_download_genome_data/}
+        {Datasets including cancerous cells}
+    \item \href{https://bcm.app.box.com/v/aidenlab/folder/11234760671}{Original Datasets}
 \end{enumerate}
 
-\textbf{Labs working on 3D Human Genome:}
-
-\begin{enumerate}
-    \item \url{http://mirnylab.mit.edu}
-    \item \url{http://dostielab.biochem.mcgill.ca}
-    \item \url{http://www.aidenlab.org/}
-    \item \url{http://web.cmb.usc.edu/people/alber/index.htm}
-    \item \url{http://calla.rnet.missouri.edu/cheng/nsf_career.html}
-\end{enumerate}
-\textbf{Resources related to Graphlet:}
-
-\begin{enumerate}
-    \item \url{https://en.wikipedia.org/wiki/Graphlets}
-    \item \url{https://academic.oup.com/bioinformatics/article/23/2/e177/202080/Biological-network-comparison-using-graphlet}
-    \item \url{http://www0.cs.ucl.ac.uk/staff/N.Przulj/index.html}
-\end{enumerate}
 
 \bibliography{lit}
 \bibliographystyle{unsrt}

@@ -27,7 +27,6 @@ def eigendecompose(a):
 
 def writeMatToImage(mat, fileName):
     scipy.misc.imsave(fileName, mat)
-
 def writeMatToFile(mat, fileName, delimiter=','):
     """
     Function:
@@ -303,11 +302,17 @@ def scn(a, minDiff=1e-3, numIterations=1000):
 def gaussian_normalize(heatmap):
     return (heatmap - np.mean(heatmap) ) / np.std(heatmap)
 
-def showImages(imageList, rows, color_bar=False, titles=None, ax_labels=None):
-    cols = (len(imageList) + rows - 1) / rows
-    print "Number of columnts:", cols
+def _showImages(imageList, rows=None, cols=None, color_bar=False, titles=None, ax_labels=None):
+    if rows == None and cols == None:
+        rows = 1
+        cols = (len(imageList) + rows - 1) / rows
+    elif cols == None:
+        cols = (len(imageList) + rows - 1) / rows
+    elif rows == None:
+        rows = (len(imageList) + cols - 1) / cols
+    print "Number of rows and columns: %d, %d"%(rows, cols)
     fig, axes = plt.subplots(nrows=rows, ncols=cols)
-    plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=0.03, hspace=.01)
+    plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=0.1, hspace=.1)
     count = 0
     for image in imageList:
         if rows * cols == 1:
@@ -328,6 +333,20 @@ def showImages(imageList, rows, color_bar=False, titles=None, ax_labels=None):
         cax = divider.append_axes("right", size="2%", pad=0.05)
         cb = fig.colorbar(m, cax=cax)
     plt.show()
+
+def showImages(imageList, rows=None, cols=None, color_bar=False, titles=None, ax_labels=None):
+    if isinstance(imageList, dict):
+        images = []
+        titles = []
+        for key in imageList:
+            images.append(imageList[key])
+            titles.append(key)
+        _showImages(images, rows=rows, cols=cols, \
+                color_bar=color_bar, titles=titles, ax_labels=ax_labels)
+    else:
+        _showImages(imageList, rows=rows, cols=cols, \
+                color_bar=color_bar, titles=titles, ax_labels=ax_labels)
+
 
 def cvShowImages(imageList):
     count = 1
@@ -674,7 +693,9 @@ def svd_reconstruct(mat, k, u='empty', sig='empty', v='empty'):
         b += sig[i] * np.outer(u[:, i], v[i, :])
     return b, u, sig, v
 
-def local_threshold(mat, k=1, method='max', t=1, params=None, ignore_zeros=True, symmetric=False):
+def local_threshold(mat, k=1, method='max', t=1, \
+                params=None, ignore_zeros=True, symmetric=False\
+                , epsilon=1e-3):
     mat2 = np.zeros_like(mat)
     n, m = mat.shape
     if isinstance(k, tuple):
@@ -699,10 +720,12 @@ def local_threshold(mat, k=1, method='max', t=1, params=None, ignore_zeros=True,
             #print(temp)
             if ignore_zeros:
                 temp = temp[np.where(temp > 0)]
+            if np.sum(temp) < epsilon:
+                continue
             if method == 'max':
                 condition = mat[i, j] == np.max(temp)
             elif method=='normal':
-                condition = mat[i, j] >= np.mean(temp) + t * np.std(temp)
+                condition = mat[i, j] > np.mean(temp) + t * np.std(temp)
             if condition:
                 mat2[i, j] = condition
                 if symmetric:
