@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.16)  15 MAR 2018 16:45
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.16)  19 MAR 2018 13:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -537,42 +537,53 @@ Package caption Info: hyperref package is loaded.
 Package caption Info: rotating package is loaded.
 Package caption Info: wrapfig package is loaded.
 )
+(/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2016/02/20 v1.1-142 Sub-captions (AR)
+\c@subfigure=\count140
+\c@subtable=\count141
+)
+(/usr/share/texlive/texmf-dist/tex/generic/genmisc/nth.sty
+Package: nth 2002/02/27
+)
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... none found.
+ (./manuscript.aux
 
-(./manuscript.aux)
+LaTeX Warning: Label `eq:correlation' multiply defined.
+
+)
 \openout1 = `manuscript.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 10.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 20.
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count140
+\scratchcounter=\count142
 \scratchdimen=\dimen189
 \scratchbox=\box59
-\nofMPsegments=\count141
-\nofMParguments=\count142
+\nofMPsegments=\count143
+\nofMParguments=\count144
 \everyMPshowfont=\toks39
-\MPscratchCnt=\count143
+\MPscratchCnt=\count145
 \MPscratchDim=\dimen190
-\MPnumerator=\count144
-\makeMPintoPDFobject=\count145
+\MPnumerator=\count146
+\makeMPintoPDFobject=\count147
 \everyMPtoPDFconversion=\toks40
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
@@ -589,11 +600,11 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Package crop Info: requested driver: `' on input line 10.
-Package crop Info: detected driver: `pdftex' on input line 10.
-Package crop Info: using `pdftex' graphics driver on input line 10.
+Package crop Info: requested driver: `' on input line 20.
+Package crop Info: detected driver: `pdftex' on input line 20.
+Package crop Info: using `pdftex' graphics driver on input line 20.
 \AtBeginShipoutBox=\box60
-Package hyperref Info: Link coloring OFF on input line 10.
+Package hyperref Info: Link coloring OFF on input line 20.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -601,11 +612,11 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count146
+\c@section@level=\count148
 )
-LaTeX Info: Redefining \ref on input line 10.
-LaTeX Info: Redefining \pageref on input line 10.
-LaTeX Info: Redefining \nameref on input line 10.
+LaTeX Info: Redefining \ref on input line 20.
+LaTeX Info: Redefining \pageref on input line 20.
+LaTeX Info: Redefining \nameref on input line 20.
 
 (./manuscript.out) (./manuscript.out)
 \@outlinefile=\write4
@@ -613,73 +624,334 @@ LaTeX Info: Redefining \nameref on input line 10.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Try loading font information for OT1+phv on input line 11.
 
+
+Package hyperref Warning: bookmark level for unknown article defaults to 0.
+
+LaTeX Font Info:    Try loading font information for OT1+phv on input line 42.
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1phv.fd
 File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 31.
+LaTeX Font Info:    Try loading font information for U+msa on input line 42.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 31.
+LaTeX Font Info:    Try loading font information for U+msb on input line 42.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+lasy on input line 31.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 42.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
-Underfull \hbox (badness 2269) in paragraph at lines 13--35
-\OT1/ptm/m/n/10 maps. We suspect that there are systematic differences
+
+LaTeX Font Warning: Font shape `OT1/phv/n/n' undefined
+(Font)              using `OT1/phv/m/n' instead on input line 42.
+
+
+Overfull \hbox (267.0pt too wide) in paragraph at lines 42--42
+[][] 
+ []
+
+LaTeX Font Info:    Font shape `OT1/phv/b/it' in size <10> not available
+(Font)              Font shape `OT1/phv/b/sl' tried instead on input line 62.
+
+Underfull \hbox (badness 2503) in paragraph at lines 45--68
+[]\OT1/phv/b/n/10 In this study, we plan to find dissimilarities
  []
 
 
-Underfull \hbox (badness 1400) in paragraph at lines 13--35
-\OT1/ptm/m/n/10 of the chromosomes. In orther to find dissimilarities in
+Underfull \hbox (badness 4193) in paragraph at lines 45--68
+\OT1/phv/b/n/10 there are systematic differences between how
  []
 
 
-Underfull \hbox (badness 1616) in paragraph at lines 13--35
-\OT1/ptm/m/n/10 interactions between chromosomal fragments in kilobase
+Underfull \hbox (badness 1694) in paragraph at lines 45--68
+\OT1/phv/b/n/10 readily available. Based on ([]), fluorescence in
  []
 
-<figures/local_thresholded_chr1_chr1.png, id=32, 811.03pt x 538.01pt>
+
+Underfull \hbox (badness 3281) in paragraph at lines 45--68
+\OT1/phv/b/n/10 method can only be used locally and cannot
+ []
+
+
+Underfull \hbox (badness 1946) in paragraph at lines 45--68
+\OT1/phv/b/n/10 method, which was developed by ([]), captures
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 45--68
+\OT1/phv/b/n/10 interactions between chromosomal fragments
+ []
+
+
+Underfull \hbox (badness 2293) in paragraph at lines 45--68
+\OT1/phv/b/n/10 in kilobase resolution. Based on HiC data, an
+ []
+
+
+Underfull \hbox (badness 2103) in paragraph at lines 45--68
+\OT1/phv/b/n/10 of interaction detected in HiC dataset between
+ []
+
+
+Underfull \hbox (badness 1292) in paragraph at lines 45--68
+\OT1/phv/b/n/10 matrix can be used to develop both inter- and
+ []
+
+
+Underfull \hbox (badness 2221) in paragraph at lines 143--150
+\OT1/ptm/m/n/10 a \OT1/ptm/m/it/10 significant \OT1/ptm/m/n/10 interaction betw
+een the loci. This can be
+ []
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 150.
+LaTeX Font Info:    Calculating math sizes for size <7.5> on input line 150.
+
+LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <7.5> not available
+(Font)              size <7> substituted on input line 150.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <3.75> not available
+(Font)              size <5> substituted on input line 150.
+
+
+LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <7.5> not available
+(Font)              size <7> substituted on input line 150.
+
+
+LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <3.75> not available
+(Font)              size <5> substituted on input line 150.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <7.5> not available
+(Font)              size <7> substituted on input line 150.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <3.75> not available
+(Font)              size <5> substituted on input line 150.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <7.5> not available
+(Font)              size <7> substituted on input line 150.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <3.75> not available
+(Font)              size <5> substituted on input line 150.
+
+
+LaTeX Font Warning: Font shape `U/lasy/m/n' in size <7.5> not available
+(Font)              size <7> substituted on input line 150.
+
+
+LaTeX Font Warning: Font shape `U/lasy/m/n' in size <3.75> not available
+(Font)              size <5> substituted on input line 150.
+
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 150.
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsptm.fd
+File: omsptm.fd 
+)
+LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <7.5> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 150.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <7.5> not available
+(Font)              size <7> substituted on input line 150.
+
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+
+
+]
+Underfull \hbox (badness 1184) in paragraph at lines 151--162
+\OT1/ptm/m/n/10 could consider thresholding the contact maps by simply
+ []
+
+<figures/local_thresholded_chr1_chr1.png, id=72, 1084.05pt x 1445.4pt>
 File: figures/local_thresholded_chr1_chr1.png Graphic file (type png)
 
 <use figures/local_thresholded_chr1_chr1.png>
 Package pdftex.def Info: figures/local_thresholded_chr1_chr1.png used on input 
-line 112.
-(pdftex.def)             Requested size: 514.0pt x 340.9758pt.
+line 175.
+(pdftex.def)             Requested size: 257.0pt x 342.66853pt.
 
-Underfull \hbox (badness 1436) in paragraph at lines 100--119
-\OT1/ptm/m/n/10 is larger than the average of non-zero intensities in its
+Overfull \hbox (10.0pt too wide) in paragraph at lines 175--180
+ [][] 
  []
 
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 122.
+
+Underfull \hbox (badness 5316) in paragraph at lines 180--180
+[]\OT1/ptm/b/n/8 Figure 1. \OT1/ptm/m/n/8 Result of thresholding interchromosom
+al contact map of
+ []
+
+
+Underfull \hbox (badness 1194) in paragraph at lines 163--183
+\OT1/ptm/m/it/10 adaptive thresholding \OT1/ptm/m/n/10 from image processing co
+ntext. In
+ []
+
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 186.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 145.
+<figures/graphlet_extraction.png, id=75, 794.97pt x 614.295pt>
+File: figures/graphlet_extraction.png Graphic file (type png)
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+<use figures/graphlet_extraction.png>
+Package pdftex.def Info: figures/graphlet_extraction.png used on input line 197
+.
+(pdftex.def)             Requested size: 257.0pt x 198.59369pt.
 
- [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
-
-]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [2 <./figures/local_thresholded_chr1_chr1.png>]
-Underfull \hbox (badness 4805) in paragraph at lines 196--198
-[]\OT1/ptm/m/n/10 With regard to the two aforementioned comparison
+Overfull \hbox (10.0pt too wide) in paragraph at lines 197--203
+ [][] 
  []
 
-(./manuscript.bbl
+<figures/graphlet_distance_schema.png, id=76, 794.97pt x 614.295pt>
+File: figures/graphlet_distance_schema.png Graphic file (type png)
+
+<use figures/graphlet_distance_schema.png>
+Package pdftex.def Info: figures/graphlet_distance_schema.png used on input lin
+e 215.
+(pdftex.def)             Requested size: 257.0pt x 198.59369pt.
+
+Overfull \hbox (10.0pt too wide) in paragraph at lines 215--223
+ [][] 
+ []
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 223.
+<figures/graphlet_correlation_schema.png, id=79, 794.97pt x 614.295pt>
+File: figures/graphlet_correlation_schema.png Graphic file (type png)
+
+<use figures/graphlet_correlation_schema.png>
+Package pdftex.def Info: figures/graphlet_correlation_schema.png used on input 
+line 228.
+(pdftex.def)             Requested size: 257.0pt x 198.59369pt.
+
+Overfull \hbox (10.0pt too wide) in paragraph at lines 228--239
+ [][] 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 267.
+
+Underfull \hbox (badness 1292) in paragraph at lines 280--289
+\OT1/ptm/m/n/10 of orbits throughout the contact map $\OML/cmm/m/it/10 C[]$\OT1
+/ptm/m/n/10 . We can find
+ []
+
+
+Underfull \hbox (badness 1783) in paragraph at lines 280--289
+\OT1/ptm/m/n/10 how similar these distributions are to each other using
+ []
+
+[2 <./figures/local_thresholded_chr1_chr1.png>]
+Underfull \hbox (badness 3386) in paragraph at lines 299--316
+[]\OT1/ptm/m/n/10 For each contact map, calculated similarity between
+ []
+
+
+Underfull \hbox (badness 2237) in paragraph at lines 299--316
+\OT1/ptm/m/n/10 be able to capture non-functional relationships between
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 336--338
+[]\OT1/ptm/m/n/10 where $\OT1/cmr/bx/n/10 d[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/1
+0 D\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 S[]; S[]\OT1/cmr/m/n/10 )$ \OT1/ptm/m/n/10
+ and $\OML/cmm/m/it/10 L \OMS/cmsy/m/n/10 2
+ []
+
+[3 <./figures/graphlet_extraction.png> <./figures/graphlet_distance_schema.png>
+ <./figures/graphlet_correlation_schema.png>]
+Underfull \hbox (badness 3838) in paragraph at lines 358--362
+[]\OT1/ptm/m/n/10 Average orbit correlations of MIT cell and
+ []
+
+<figures/orbit-distances_all.png, id=118, 1470.49374pt x 566.115pt>
+File: figures/orbit-distances_all.png Graphic file (type png)
+
+<use figures/orbit-distances_all.png>
+Package pdftex.def Info: figures/orbit-distances_all.png used on input line 383
+.
+(pdftex.def)             Requested size: 514.0pt x 197.88406pt.
+
+<figures/orbit-distances_intra.png, id=119, 1470.49374pt x 566.115pt>
+File: figures/orbit-distances_intra.png Graphic file (type png)
+
+<use figures/orbit-distances_intra.png>
+Package pdftex.def Info: figures/orbit-distances_intra.png used on input line 3
+89.
+(pdftex.def)             Requested size: 514.0pt x 197.88406pt.
+
+<figures/contact_maps_correlations_all.png, id=130, 1463.4675pt x 549.05125pt>
+File: figures/contact_maps_correlations_all.png Graphic file (type png)
+
+<use figures/contact_maps_correlations_all.png>
+Package pdftex.def Info: figures/contact_maps_correlations_all.png used on inpu
+t line 445.
+(pdftex.def)             Requested size: 514.0pt x 192.84103pt.
+
+<figures/contact_maps_correlations_intra.png, id=131, 1463.4675pt x 549.05125pt
+>
+File: figures/contact_maps_correlations_intra.png Graphic file (type png)
+ <use figures/contact_maps_correlations_intra.png>
+Package pdftex.def Info: figures/contact_maps_correlations_intra.png used on in
+put line 450.
+(pdftex.def)             Requested size: 514.0pt x 192.84103pt.
+
+<figures/orbits_correlations_all.png, id=132, 1440.38126pt x 525.965pt>
+File: figures/orbits_correlations_all.png Graphic file (type png)
+
+<use figures/orbits_correlations_all.png>
+Package pdftex.def Info: figures/orbits_correlations_all.png used on input line
+ 467.
+(pdftex.def)             Requested size: 513.98732pt x 158.99454pt.
+
+<figures/orbits_correlations_intra.png, id=133, 1440.38126pt x 525.965pt>
+File: figures/orbits_correlations_intra.png Graphic file (type png)
+
+<use figures/orbits_correlations_intra.png>
+Package pdftex.def Info: figures/orbits_correlations_intra.png used on input li
+ne 472.
+(pdftex.def)             Requested size: 513.98732pt x 158.99454pt.
+
+<figures/orbit-distances_intra_cancer.png, id=142, 880.28876pt x 540.0175pt>
+File: figures/orbit-distances_intra_cancer.png Graphic file (type png)
+
+<use figures/orbit-distances_intra_cancer.png>
+Package pdftex.def Info: figures/orbit-distances_intra_cancer.png used on input
+ line 498.
+(pdftex.def)             Requested size: 514.0pt x 315.32803pt.
+
+<figures/orbits_correlations_intra_cancer.png, id=143, 1440.38126pt x 525.965pt
+>
+File: figures/orbits_correlations_intra_cancer.png Graphic file (type png)
+ <use figures/orbits_correlations_intra_cancer.png>
+Package pdftex.def Info: figures/orbits_correlations_intra_cancer.png used on i
+nput line 503.
+(pdftex.def)             Requested size: 514.0pt x 187.68596pt.
+
+Underfull \hbox (badness 1102) in paragraph at lines 511--517
+\OT1/ptm/m/n/10 We also conducted the same comparison with the same
+ []
+
+
+Underfull \hbox (badness 4595) in paragraph at lines 511--517
+\OT1/ptm/m/n/10 hypothesis among cancer cells. The results for intra-
+ []
+
+[4] (./manuscript.bbl
 Underfull \hbox (badness 1824) in paragraph at lines 4--9
 []\OT1/ptm/m/n/8 Badri Adhikari, Tuan Trieu, and Jianlin Cheng.  Chromosome3d:
  []
@@ -691,35 +963,53 @@ c
  []
 
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 250.
- [3]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 250.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 531.
+ [5 <./figures/orbit-distances_all.png> <./figures/orbit-distances_intra.png>] 
+[6 <./figures/contact_maps_correlations_all.png> <./figures/contact_maps_correl
+ations_intra.png>] [7 <./figures/orbits_correlations_all.png> <./figures/orbits
+_correlations_intra.png>] [8 <./figures/orbit-distances_intra_cancer.png> <./fi
+gures/orbits_correlations_intra_cancer.png>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 531.
  (./manuscript.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 250.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 250.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 531.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 531.
 Package rerunfilecheck Info: File `manuscript.out' has not changed.
-(rerunfilecheck)             Checksum: 6C61160045A345127FB3B325EF22DE5A;241.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 250.
+(rerunfilecheck)             Checksum: 15C92FE4F7D2DC681C753D74A3AF2206;428.
+
+
+LaTeX Font Warning: Size substitutions with differences
+(Font)              up to 1.25pt have occurred.
+
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 531.
  ) 
 Here is how much of TeX's memory you used:
- 9524 strings out of 493029
- 138425 string characters out of 6136233
- 256449 words of memory out of 5000000
- 12820 multiletter control sequences out of 15000+600000
- 27865 words of font info for 65 fonts, out of 8000000 for 9000
+ 9773 strings out of 493029
+ 143849 string characters out of 6136233
+ 264832 words of memory out of 5000000
+ 13018 multiletter control sequences out of 15000+600000
+ 42955 words of font info for 96 fonts, out of 8000000 for 9000
  1150 hyphenation exceptions out of 8191
- 37i,13n,38p,935b,385s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 37i,18n,39p,935b,480s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exi
 st, replaced by a fixed one
 
-pdfTeX warning (dest): name{section*.10} has been referenced but does not exist
+pdfTeX warning (dest): name{section*.21} has been referenced but does not exist
 , replaced by a fixed one
 
-pdfTeX warning (dest): name{section*.9} has been referenced but does not exist,
- replaced by a fixed one
+pdfTeX warning (dest): name{section*.20} has been referenced but does not exist
+, replaced by a fixed one
 
-pdfTeX warning (dest): name{section*.3} has been referenced but does not exist,
- replaced by a fixed one
+pdfTeX warning (dest): name{section*.19} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{section*.11} has been referenced but does not exist
+, replaced by a fixed one
 
 pdfTeX warning (dest): name{section*.2} has been referenced but does not exist,
  replaced by a fixed one
@@ -734,20 +1024,23 @@ onts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/t
 ype1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
 blic/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
 sfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.
-pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></
-usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/latxfont/lcircle1.pfb></usr/share/te
+cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy1
+0.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/tex
+live/texmf-dist/fonts/type1/public/amsfonts/latxfont/lcircle1.pfb></usr/share/t
+exlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/te
 xlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-d
 ist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/ty
-pe1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/u
-tmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on manuscript.pdf (3 pages, 219253 bytes).
+pe1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/hel
+vetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-d
+ist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on manuscript.pdf (8 pages, 1279267 bytes).
 PDF statistics:
- 172 PDF objects out of 1000 (max. 8388607)
- 145 compressed objects within 2 object streams
- 40 named destinations out of 1000 (max. 500000)
- 46 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 280 PDF objects out of 1000 (max. 8388607)
+ 216 compressed objects within 3 object streams
+ 58 named destinations out of 1000 (max. 500000)
+ 117 words of extra memory for PDF output out of 10000 (max. 10000000)
 

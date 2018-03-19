@@ -6,9 +6,41 @@
 \usepackage{setspace}
 \usepackage{float}
 \usepackage{caption}
+\usepackage{subcaption}
+\usepackage[super]{nth}
+% Enter dates of publication
+\copyrightyear{2017}
+\pubdate{18 March 2017}
+\pubyear{2017}
+\jvolume{37}
+\jissue{12}
+
+%\articlesubtype{This is the article type (optional)}
 
 \begin{document}
-\section{Abstract}
+\title{HiC Contact Map Comaprison Using Graphlet Approach}
+
+\author{%
+    Behnam Rasoolian\,$^{1,*}$,
+    Debswapna Bhattacharya\,$^{1}$
+    \footnote{
+    Tel: +1 334 5212814; Email: bzr0014@auburn.edu}}
+
+    \address{%
+        $^{1}$ Auburn University
+        }
+        % Affiliation must include:
+        % Department name, institution name, full road and district address,
+        % state, Zip or postal code, country
+
+%        \history{%
+%            Received January 1, 2009;
+%            Revised February 1, 2009;
+%            Accepted March 1, 2009}
+
+            \maketitle
+
+\begin{abstract}
 
 In this study, we plan to find dissimilarities between normal cells and cancerous cells,
 through investigating HiC contact maps. 
@@ -32,7 +64,7 @@ A cell $IF_{ij}$ in an interaction frequency matrix captures the number of inter
 in HiC dataset between locus $i$ and locus $j$ in the genome.
 An interaction matrix can be used to develop both inter- and intra-chromosomal interaction matrices.
 We believe differences in interaction matrices can be found between normal cells and cancerous ones.
-
+\end{abstract}
 \section{Introduction}
 
 Graphlet comparison is a novel method used to compare large networks in order to
@@ -74,89 +106,200 @@ $(d_v^1, d_v^2, ..., d_v^{14})$
 and similarity of two nodes in two contact maps can be compared by
 how geometrically close their corresponding vectors are.
 \section{Materials and Methods}
+\subsubsection{Notations}
+In this paper, matrices and vectors are represented as bold
+capital and bold small letters respectively.
+matrix rows and columns are represented by a \textit{dot}
+notation. For example, the $i$th row of matrix $M$ is
+denoted by $M_{i.}$ and its $j$th column is represented
+by $M_{.j}$.
+
+We denote the set of all contact maps in cell line $T$ with 
+$\mathbb{C}^T$. If no particular cell line is addressed, the
+subscripts are dropped.
+Any arbitrary member of $\mathbb{C}$ is denoted by 
+$C_{ij}$, where $i$ and $j$ ($j \ge i$) represent the two chromosomes involved. 
+In human cells this set contains a total of 276 contact maps,
+23 of which are intra-chromosomal and the rest are inter-chromosomal.
+For ease of representations, intra-chromosomal contact maps are
+distinguished by a single superscript, so we have $C_{i,i} =
+C_i$.
+
+We denote the number of loci in a chromosome $i$ by $N_i$.
+The set of all loci involved in contact map $C_{ij}$ is denoted 
+by $V_{ij}$.
+In intra-chromosomal contact maps, $V_{i,i}$ containts only the 
+loci of that particular chromosome ($|V_i| = N_i$), while in 
+inter-chromosomal contact maps $V_{ij}$ contains the loci in
+the both of chromosomes involved ($|V_{ij}| = N_i + N_j$).
+
+% **************************************************************
+% Keep this command to avoid text of first page running into the
+% first page footnotes
+\enlargethispage{-65.1pt}
+% **************************************************************
+
 \subsection{Thresholding contact maps}
 In order to be able to extract graphlets, HiC contact maps should be modeled as
 unweighted graphs where the nodes represent the loci and an edge between two 
-nodes represent a \textit{significant} interaction between the loci the nodes
-represent.
-
-Thresholding is achieved by thresholding the contact maps. The result
-of the thresholding procedure would be a binary matrix which also can serve as
+nodes represent a \textit{significant} interaction between the loci.
+This can be achieved by thresholding the contact maps. The result
+of the thresholding procedure is a binary matrix which also can serve as
 an adjacency matrix for an unweighted, undirected graph. The graph can then be
 used for orbit extraction.
 
-In order to go about the process of thresholding, it is necessary to make sure
+When thresholding contact maps, it is necessary to make sure
 that both global and local features are maintained. We could consider 
 thresholding the contact maps by simply setting values above a fixed value to
-one and the rest to zero. However, in practice, this proved result in graphs
+one and the rest to zero; However, in practice, this method resulted in graphs
 that capture the local structure of the contact maps poorly. This is because
-intensities follow an exponential distribution with a mean close to zero and
-some very larges values that correspond t interactions along and close to 
-the main diagonal of the contact maps.
+intensities follow an exponential distribution with a mean close to zero
+with a few very larges values that correspond to interactions along 
+or close to the main diagonal of the contact maps.
 Thus, picking relatively large numbers would result in ignoring interactions
-that are far from the main diagonal and picking small numbers will lead to
-capturing too many \textit{insignificant} interactions.
+that are far from the main diagonal while picking small values will lead to
+capturing too many (insignificant) interactions.
 
 In order to threshold the matrix so that both global and local patterns are
-kept, we borrowed the concept of \textit{adaptive thresholding} from image 
+captured, we borrowed the concept of \textit{adaptive thresholding} from image 
 processing context. In this method, in order to be set, a pixel should have
-an intensity that is larger than the average of non-zero intensities in its
-\textit{neighborhood}. The neighborhood is defined by an sliding kernel 
-that passes through the contact map with a pixel at its middle at 
+an intensity larger than the average of non-zero intensities in its
+\textit{neighborhood}. The neighborhood is defined by a sliding kernel 
+that passes through the contact map with the pixel at its middle at 
 each step. Figure \ref{local_thresholded_chr1_chr1} demonstrates result of 
-this thresholding approach for interchromosomal contact map of chromosome 1.
+this thresholding approach for intra-chromosomal contact maps of chromosome 1.
 Refer to supplementary material for all 23 interchromosomal thresholding
 results.
-\begin{figure*}[t]
+\begin{figure}[t]
     \centering
-    \includegraphics[width=\textwidth]{figures/local_thresholded_chr1_chr1.png}
+    \includegraphics[width=.5\textwidth]{figures/local_thresholded_chr1_chr1.png}
     \caption{Result of thresholding interchromosomal contact map of chromosome 1
-    using a kernels of size $5 \times 5$. The first row shows the thresholded
-    maps. Second and third rows demonstrate pair-wisesimilarities and 
+    using a kernels of size $5 \times 5$ for all cell lines. 
+    The first row shows the thresholded
+    maps. Second and third rows demonstrate pair-wise similarities and 
     differences between contact maps respectively.}
     \label{local_thresholded_chr1_chr1}
-\end{figure*}
+\end{figure}
 
 \subsection{Orbit Extraction}
 Once the thresholded contact maps are obtained, graphlets and orbits can be 
 extracted. We used the \texttt{orca} package in \texttt{R} programming 
 language to extract the graphlets. As a result of graphlet extraction, 
 For each loci in each contact map, a \textit{signature vector} of size
-73 is created.
+73 is created. Thus for each cell line, we would have 276 
+\textit{signature matrices} of
+size $|V^{ij}|\times 73$, where $V^{ij}$ is the number of loci
+involved in contact map between chromosomes $i$ and $j$. Figure
+\ref{fig:graphlet_extraction} illustrates the process and results
+of signature matrix extraction schematically.
+\begin{figure}
+    \centering
+    \includegraphics[width=.5\textwidth]{figures/graphlet_extraction.png}
+    \caption{Graphlet extraction for the four cell lines. For each
+    loci in each contact map between chromosomes $i$ and $j$, 
+    the signature vectors of length 73 are extracted, resulting 
+    in a \textit{signature matrix} of size $|V^{ij}| \times 73$,
+    where $V^{ij}$ 
+    is the number of loci involved.}
+    \label{fig:graphlet_extraction}
+\end{figure}
 
-We divied the task of graphlet comparison into two parts: first we compare
+For a particular
+$\mathbf{C}_{ij}$, we denote $\mathbf{S}_{ij}$ as its \textit{signature 
+matrix}. Each cell $S_{ijlo}$ in $\mathbf{S}_{ij}$ captures how many
+times loci $l$ in $\mathbf{C}_{ij}$ occured as part of orbit $o$.
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=.5\textwidth]{figures/graphlet_distance_schema.png}
+    \caption{Calculating pair-wise loci distances. For each loci (row) 
+    in each
+    contact map in MIT cell line, its distance is calculated based on
+    equation \ref{eq:distance_total} with the corresponding loci in
+    leukemic cells. The result of this process is a 
+    \textit{signature distance vector} of size
+    $|V^{ij}| = N_i+N_j$ for each contact map.
+    }
+    \label{graphlet_distance_schema}
+\end{figure}
+\begin{figure}
+    \centering
+    \includegraphics[width=.5\textwidth]{figures/graphlet_correlation_schema.png}
+    \caption{Calulating pair-wise orbit correlations. For each orbit (column)
+    in each contact map in MIT cell line, its correlation with the
+    same orbit in the same contact map 
+    in leukemic cells is calculated. The result of
+    this process is a \textit{signature correlation} vector of size
+    73 which captures how similar frequencies of two orbits are.
+    In order to test our second hypothesis, we calculated averages
+    across contact maps (along the vertical red arrow) to test 
+    hypothesis \ref{eq:h2a}
+    and across orbits
+    (along the horizontal red arrows) to test hypothesis \ref{eq:h2b}.}
+    \label{graphlet_correlation_schema}
+\end{figure}
+
+We divided the task of graphlet comparison into two parts: first we compare
 graphlets from each contact map in normal cell lines (MIT) with the 
 same contact maps in the other three Leukemic cells. Second we compare 
 contact maps in a similar way but this time only between leukemic cells.
 In the former case, the null hypothesis is that there is no difference
-between contact maps of normal cells and leukemic celss and in the later
+between contact maps of normal cells and leukemic cells and in the latter
 case, the null hypotheis is that there is no difference between 
 different leukemic cells.
 
 We consider two measures of \textit{difference} when comparing contact
-map graphlets. The first measure is the distance between signature vectors
-of a loci in two cell lines. If $S^A_{k}$  and $S^B_{k}$ are 
-signature vectors corresponding to loci $k$ in contact maps A and B 
-respectively, then we can caclulate the distance between the two loci 
+map graphlets across cell lines. 
+The first measure is \textit{signature distance vectors} between
+each contact map of two cell lines. 
+Let  $\mathbf{S}^A_{ij}$  and $\mathbf{S}^B_{ij}$ be
+signature matrices corresponding  to cells A and B
+respectively, then we can caclulate the 
+distance between each
+loci (row) $l$ in $S^A$ and the the same loci in $S^B$
 using the following formula from \cite{prvzulj2007biological}:
 
 \begin{equation}
-    d_{ki} = w_i \times \frac{log(S^A_{ki}+1) - log(S^B_{ki}+1)}{log(max(S^A_{ki}, S^B_{ki}) + 2)}
+    D(\mathbf{S}^A_{ij}, \mathbf{S}^B_{ij}) = 
+    \frac{1}{73}\sqrt{\sum_{o=0}^{72}{\mathbf{D}_{.o}^2}}
+    \label{eq:distance_total}
 \end{equation}
-The distance between $S$ and $S'$ can be calculated as follows:
+where elements of $\mathbf{D}$ can be calculated as follows:
 \begin{equation}
-    D(S^A_k, S^B_k) = \sqrt{\sum_{0}^{72}{d_{ki}^2}}
+    D_{lo} = w_o \times 
+        \frac{log(S_{ijlo}^A+1) - log(S_{ijlo}^B+1)}
+             {log(max(S_{ijlo}^A, S_{ijlo}^B) + 2)}
+    \label{eq:distance_single}
 \end{equation}
 
-
+This process is illustrated in Figure \ref{graphlet_distance_schema}.
 Using this distance measure, we can quantify how two loci are close to
 each other in terms of local neighborhood between the two contact maps.
 
 The second measure of comparison that we use captures how 
-similar two orbits are in terms of their frequencies across loci
-between the two contact maps. For each contact map, we can calculate
-similarity between orbit distributions by calculating pearso's r 
-correlation. However, pearson's r might not be able to capture
+similar two orbits are in terms of their count 
+frequencies across loci between two contact maps. 
+Each column in $S_{ij}$ can provide information
+regarding the \textit{frequency distribution} of orbits throughout
+the contact map $C_{ij}$. 
+We can find how similar these distributions are to each other using
+correlation measures.
+These correlations can be calculated as the following:
+\begin{equation}
+    Corr(\mathbf{S}^A_{ij}, \mathbf{S}^B{ij}) = \mathbf{c}_{ij}
+    \label{eq:correlation}
+\end{equation}
+where each element of $\mathbf{c}$ is calculated as below:
+\begin{equation}
+    c_{ijo} = Corr(\mathbf{S}^A_{ij.o}, \mathbf{S}^B_{ij.o})
+    \label{eq:correlation}
+\end{equation}
+
+For each contact map,  calculated
+similarity between orbit distributions using Pearson's r 
+correlation, which is computationally efficient.
+However, pearson's r might not be able to capture
 non-functional relationships between distributions. As a result, we
 also used Maximal Information Coefficient (MIC) 
 \cite{reshef2011detecting} in order to compare
@@ -164,76 +307,214 @@ correlations. MIC calculates mutual information (MI) between two
 distributions, but utilizes dynamic programming in order adjust
 bin sizes and numbers in order to achieve highest MI.
 MIC values between two variables fall between 0 and 1,
-with 0 meaning that the two variables are completely independent
-and 1 meaning they are totally correlated.
+with 0 meaning the two variables are completely independent
+and 1 meaning one is dependant on the other.
 We used both Pearson's r and MI in order to compare orbit
 frequencies. Although results from both approaches were more
 or less consistent, MIC showed higher robustness than Pearson's 
 r method.
 
 \subsection{Hypotheses}
-\subsubsection{terminology}
-We denote the set of all contact maps of normal (MIT) cell line with
-$CM$. In the same manner we denote $CA$, $CR$ and $CC$ as the set of all
-contact maps corresponding to ALL, RL and CALL4 cell lines.
-We denote a member of any of the aforementioned sets using small
-letters of the set name. For example, we denote any member of $CA$ with
-$ca$.
-
-We denote a contact map by $C^{\{cell_{\{chr1\}\{chr2\}}\}}$, where the
-superscript denotes the cell type and the subscripts in the superscripts
-determines the pair of chromosomes the contact map is about. For 
-example $C^{MIT_{1,14}}$ denotes the contact map between chromosomes
-1 and 14 in MIT (Normal) dataset. In such a manner $C^{MIT_{1,14}}_{ij}$
-denotes the interaction between loci $i$ and $j$ in the aforementioned
-contact map.
-
-We denote $S^C_i$ as the extracted 
-signature vector of locus $i$ in contact map $C$. 
-Also $P^C_k$ denotes
-the frequency distribution of orbital $k$ in contact map $C$.
 
 With regard to the two aforementioned comparison methods, we define
 our two null hypotheses as the following:
 
 \begin{enumerate}
-    \item For a locus in a contact map in MIT cell type, its distance
-        from the same locus in the same contact map of the other three
-        cell types are equal to $0$.
-            \begin{align}
-                \begin{split}
-                    H_0: D(sm, sa) = 0  \\
-                \hspace{.5cm} \forall cm \in CM \quad\&\quad ca \in CA
-                \end{split} \\
-                \begin{split}
-                    H_0: D(sm, sr) = 0   \\
-                \hspace{.5cm} \forall cm \in CM\quad \&\quad cr \in CR
-                \end{split} \\
-                \begin{split}
-                    H_0: D(sm, sc) = 0   \\
-                \hspace{.5cm} \forall cm \in CM\quad \&\quad cc \in CC
-                \end{split}
-            \end{align}
-    \item For an orbit extracted from a contact map of MIT cell, the 
-        Pearson's r correlation between its frequency and the frequency
-        of the same orbit extracted from the same contact map in 
-        the other three cell types in equal to 1.
+    \item Average signature vector distance between each 
+        contact map of MIT cells and
+        their counterparts in the three leukemic cells
+        are equal to $0$. In mathematical terms:
+        $\forall i,j \in \{1, 2 ..., 24\}$
         \begin{align}
-            H_0: Corr(P^CM_k, P^CA_k) = 1 \\
-            H_0: Corr(P^CM_k, P^CR_k) = 1 \\
-            H_0: Corr(P^CM_k, P^CC_k) = 1
+            \begin{split}
+                H_0&: \frac{1}{|V_{ij}|}\sum_{l=0}^{|V_{ij}|}{d_{ijl}} = 0 \\
+                H_1&: \frac{1}{|V_{ij}|}\sum_{l=0}^{|V_{ij}|}{d_{ijl}} > 0
+            \end{split}
+            \label{eq:h1}
         \end{align}
 
-        or
+        where 
+        $\mathbf{d}_{ij} = D(S^{MIT}_{ij}, S^L_{ij})$ and $L \in \{ALL, RL, CALL4\}$.
 
-        For an orbit extracted from a contact map of MIT cell, the 
-        MIC between its frequency and the frequency
-        of the same orbit extracted from the same contact map in 
-        the other three cell types in equal to 1.
+        \item 
+            \begin{enumerate}
+                \item Average orbit correlations within a contact map of MIT cell, 
+                    and its counterpart in leukemic cells is equal to 1
+                    for each contact map.
+                Again in mathematical terms:
+                $\forall i,j \in \{1, 2 ..., 24\}$
+                \begin{align}
+                    \begin{split}
+                        H_0&: \frac{1}{73}\sum_{o=0}^{72}{c_{ijo}} = 1 \\
+                        H_1&: \frac{1}{73}\sum_{o=0}^{72}{c_{ijo}} < 1
+                    \end{split}
+                    \label{eq:h2b}
+                \end{align}
+                        where $\mathbf{c}_{ij} = Corr(S^{MIT}_{ij}, S^L_{ij})$, $L$ 
+                        is the same as above and $N$ 
+                        is the total number of contact maps which 
+                        is equal to $275$ in our case.
+
+                \item Average orbit correlations  of MIT cell
+                    and leukemic cells across contact maps is equal to 1
+                    for each orbit.
+                Again in mathematical terms:
+
+                        \smallskip
+
+                    $\forall o \in \{0, 1 ... 72\}$
+                \begin{align}
+                    \begin{split}
+                        H_0&: \frac{1}{N}\sum_{i=1}^{23}{\sum_{j=i}^{23}{c_{ijo}}} = 1 \\
+                        H_1&: \frac{1}{N}\sum_{i=1}^{23}{\sum_{j=i}^{23}{c_{ijo}}} < 1
+                    \end{split}
+                    \label{eq:h2a}
+                \end{align}
+                        $L$ and $\mathbf{c}_{ij}$ are the same as above.
+
+            \end{enumerate}
 \end{enumerate}
+\section{results}
 
+\subsection{Hypothesis 1: Orbit Distance Comparison}
+\begin{figure*}[t]
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{figures/orbit-distances_all.png}
+        \caption{}
+        \label{fig:orbit-distances_all}
+    \end{subfigure}
 
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{figures/orbit-distances_intra.png}
+        \caption{}
+        \label{fig:orbit-distances_intra}
+    \end{subfigure}
+    \caption{   Pair-wise graphlet signature difference for
+                (a) all 276 contact maps.
+                (b) only the 23 intra-chromosomal contact maps.
+                Each point on a graph is the result of averaging all
+                the distances acroos all loci of that contact map.
+                As can be viewd, although inter-chromosomal graphlets 
+                do not show significant differences, RL's inter-chromosomal
+                graphlets seem to be closer to MIT's. Also in some contact
+                maps ALL graphlets show greater distance from MIT graphlets
+                than the other two cell lines.
+             }
+    \label{fig:orbit-distances}
+\end{figure*}
+Result of pair-wise contact map graphlet distances can is
+demonstrated in Figure \ref{fig:orbit-distances}.
+Each point on the graph is the
+average distance between signature vector of two same loci 
+in the two cell lines as in Equation \ref{eq:h1}.
+in order to test hypothesis \ref{eq:h1} a one sided t-test
+was conducted. The resulting p-values showed highly significant differeces
+between graphlets extracted from all contact maps. Refer to supplementary
+material for results of all hypotheis tests.
 
+\subsection{Hypothesis 2: Orbit distribution comparison}
+We caclulated pair-wise Pearson's r correlation for each orbit in each of the 276
+contact maps from MIT data and ALL, RL and CALL4 data separately. 
+Figure \ref{fig:contact_maps_correlations}
+shows average orbit correlations across all contact maps
+(average along the red \textit{vertical} arrow in figure 
+\ref{graphlet_correlation_schema}), while
+figure \ref{fig:orbits_correlations} 
+demonstrates average correlations across all 72 orbits within each  contact map
+(average along the red \textit{horizontal} arrows in figure 
+\ref{graphlet_correlation_schema}).
+It is worth mentioning that \textit{interchromosomal} thresholded contact maps 
+represent
+a biparticde graph with the loci from each chromosome on one side. Due to this
+bipartide nature of the graphs in inter-chromosomal maps,
+count of certain orbits is always 0, resulting in
+a correlation values of 0 for them as well.
+We ignored these values  when we calculated averages across orbits 
+in figure \ref{fig:contact_maps_correlations_all} since they
+would result in a bias towards zero in averages. You can see the bias in 
+figure \ref{fig:orbits_correlations_all} where average correlations of obits
+3, 9, 10-14, 20-34, 39-48, and 51-72 are close to zero. In fact all correlations
+corresponding to these orbits are 0 except for the ones between the same 
+chromosomes which are illustrated in Figure 
+\ref{fig:orbits_correlations_intra}.
+
+\begin{figure*}[t]
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{figures/contact_maps_correlations_all.png}
+        \caption{}
+        \label{fig:contact_maps_correlations_all}
+    \end{subfigure}
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{figures/contact_maps_correlations_intra.png}
+        \caption{}
+        \label{fig:contact_maps_correlations_intra}
+    \end{subfigure}
+    \caption{pair-wise average contact map orbit correlations
+             (a) for all contact maps
+             (b) only for intra-chromosomal contact maps
+             These values are calculated by averaging over 
+             pairwise correlations of all orbits in a 
+             contact map.
+             }
+    \label{fig:contact_maps_correlations}
+\end{figure*}
+
+\begin{figure*}[t]
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth, height=.2\paperheight]{figures/orbits_correlations_all.png}
+        \caption{}
+        \label{fig:orbits_correlations_all}
+    \end{subfigure}
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth, height=.2\paperheight]{figures/orbits_correlations_intra.png}
+        \caption{}
+        \label{fig:orbits_correlations_intra}
+    \end{subfigure}
+    \caption{pair-wise average orbit correlations.
+             In figure \ref{fig:orbits_correlations_all}, each point
+             in the graph is the result of averaging pair-wise
+             orbit correlations over all contact maps, while
+             each point in figure \ref{fig:orbits_correlations_intra}
+             are averaged only over intra-chromosomal contact maps.
+             Counts for certain orbits are always zero in inter-chromosomal
+             maps, leading to average value close to zero in 
+             \ref{fig:orbits_correlations_all}.
+             }
+    \label{fig:orbits_correlations}
+\end{figure*}
+We have conducted one-sided
+t-test in order to test whether the average correlations across
+contact maps is equal to 1 (Equation \ref{eq:h2a}) and whether the average 
+correlations across orbits is equal to 1 (Equation \ref{eq:h2b}). The results
+for both test showed that all values are significantly less than 1.
+Please refer to supplementary material for result of the t-tests.
+\subsection{Comparing Cancer cells}
+\begin{figure*}[t]
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{figures/orbit-distances_intra_cancer.png}
+        \caption{}
+        \label{fig:orbit_distances_intra_cancer}
+    \end{subfigure}
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{figures/orbits_correlations_intra_cancer.png}
+        \caption{}
+        \label{fig:orbits_correlations_intra_cancer}
+    \end{subfigure}
+    \caption{}
+    \label{fig:orbits_cancer_intra}
+\end{figure*}
+
+We also conducted the same comparison with the same hypothesis among cancer cells.
+The results for intra-chromosomal distances and correlations can be found in
+figure \ref{fig:orbits_cancer_intra}. As can be noticed, CALL4 and RL cell
+line exhibit a significantly higher average correlations for the majority of
+the chromosomes (figure \ref{fig:orbit_distances_intra_cancer}) and almost in
+all orbits (figure \ref{fig:orbits_correlations_intra_cancer}).
+\section{discussion}
 \newpage
 \section{Resources}
 \textbf{Hi-C Datasets:}
