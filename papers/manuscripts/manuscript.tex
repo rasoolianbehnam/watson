@@ -240,38 +240,47 @@ times loci $l$ in $\mathbf{C}_{ij}$ occured as part of orbit $o$.
     \label{graphlet_correlation_schema}
 \end{figure}
 
-We divided the task of graphlet comparison into two parts: first we compare
-graphlets from each contact map in normal cell lines (MIT) with the 
-same contact maps in the other three Leukemic cells. Second we compare 
-contact maps in a similar way but this time only between leukemic cells.
-In the former case, the null hypothesis is that there is no difference
-between contact maps of normal cells and leukemic cells and in the latter
-case, the null hypotheis is that there is no difference between 
-different leukemic cells.
+%We divided the task of graphlet comparison into two parts: first we compare
+%graphlets from each contact map in normal cell lines (MIT) with the 
+%same contact maps in the other three Leukemic cells. Second we compare 
+%contact maps in a similar way but this time only between leukemic cells.
+%In the former case, the null hypothesis is that there is no difference
+%between contact maps of normal cells and leukemic cells and in the latter
+%case, the null hypotheis is that there is no difference between 
+%different leukemic cells.
 
 We consider two measures of \textit{difference} when comparing contact
 map graphlets across cell lines. 
 The first measure is \textit{signature distance vectors} between
 each contact map of two cell lines. 
-Let  $\mathbf{S}^A_{ij}$  and $\mathbf{S}^B_{ij}$ be
-signature matrices corresponding  to cells A and B
-respectively, then we can caclulate the 
-distance between each
-loci (row) $l$ in $S^A$ and the the same loci in $S^B$
-using the following formula from \cite{prvzulj2007biological}:
+For a pair of cells A and B, let 
+$\mathbf{S}^A_{ij}$  and $\mathbf{S}^B_{ij}$ be their
+signature matrices. The \textit{signature distance} of
+contact map $\mathbf{C}_{i,j}$ between A and B is denoted
+by $\mathbf{d}^{A,B}_{ij}$. $\mathbf{d}^{A,B}_{ij}$ 
+is a vector of size $|V_{i,j}|$
+and its elements $d^{A,B}_{i,j,l}$ are
+calculated using the following formula from \cite{prvzulj2007biological}:
 
 \begin{equation}
-    D(\mathbf{S}^A_{ij}, \mathbf{S}^B_{ij}) = 
-    \frac{1}{73}\sqrt{\sum_{o=0}^{72}{\mathbf{D}_{.o}^2}}
+    d^{A,B}_{i,j,l} = 
+    \frac{1}{73}\sqrt{\sum_{o=0}^{72}{t_{lo}^2}}
     \label{eq:distance_total}
 \end{equation}
-where elements of $\mathbf{D}$ can be calculated as follows:
+
+where elements of $t_{i,j,l,o}$ is the
+distance between each
+loci (row) $l$ in $\mathbf{S}^A$ and the the same loci in 
+$\mathbf{S}^B$ for
+orbit $o$ as is calculated as below:
+
 \begin{equation}
-    D_{lo} = w_o \times 
-        \frac{log(S_{ijlo}^A+1) - log(S_{ijlo}^B+1)}
-             {log(max(S_{ijlo}^A, S_{ijlo}^B) + 2)}
+    t_{lo} = w_o \times 
+    \frac{log(S_{ijlo}^A+1) - log(S_{ijlo}^B+1)}
+    {log(max(S_{ijlo}^A, S_{ijlo}^B) + 2)}
     \label{eq:distance_single}
 \end{equation}
+
 
 This process is illustrated in Figure \ref{graphlet_distance_schema}.
 Using this distance measure, we can quantify how two loci are close to
@@ -285,23 +294,10 @@ regarding the \textit{frequency distribution} of orbits throughout
 the contact map $C_{ij}$. 
 We can find how similar these distributions are to each other using
 correlation measures.
-These correlations can be calculated as the following:
-\begin{equation}
-    Corr(\mathbf{S}^A_{ij}, \mathbf{S}^B{ij}) = \mathbf{c}_{ij}
-    \label{eq:correlation}
-\end{equation}
-where each element of $\mathbf{c}$ is calculated as below:
-\begin{equation}
-    c_{ijo} = Pearson(\mathbf{S}^A_{ij.o}, \mathbf{S}^B_{ij.o})
-    \label{eq:pearson}
-\end{equation}
-Alternatively, if we use MIC criterion we would have:
-\begin{equation}
-    c_{ijo} = MIC(\mathbf{S}^A_{ij.o}, \mathbf{S}^B_{ij.o})
-    \label{eq:mic}
-\end{equation}
-
-For each contact map,  calculated
+These correlations are denoted by $\mathbf{m}^{A,B}_{i,j}$ and
+can be calculate using
+any plausible correlation measure. 
+In this study, for each contact map,  we calculated
 similarity between orbit distributions using Pearson's r 
 correlation, which is computationally efficient.
 However, pearson's r might not be able to capture
@@ -319,69 +315,50 @@ frequencies. Although results from both approaches were more
 or less consistent, MIC showed higher robustness than Pearson's 
 r method.
 
-\subsection{Hypotheses}
+If MIC is used as correlation measure, each element of 
+ $\mathbf{c}$ is calculated as below:
+\begin{equation}
+    m^{A,B}_{ijo} = MIC(\mathbf{S}^A_{ij.o}, \mathbf{S}^B_{ij.o})
+    \label{eq:mic}
+\end{equation}
+Alternatively, if we use Pearson criterion we would have:
+\begin{equation}
+    m^{A,B}_{ijo} = Pearson(\mathbf{S}^A_{ij.o}, \mathbf{S}^B_{ij.o})
+    \label{eq:pearson}
+\end{equation}
 
-With regard to the two aforementioned comparison methods, we define
-our two null hypotheses as the following:
-
-\begin{enumerate}
-    \item Average signature vector distance between each 
-        contact map of MIT cells and
-        their counterparts in the three leukemic cells
-        are equal to $0$. In mathematical terms:
-        $\forall i,j \in \{1, 2 ..., 24\}$
-        \begin{align}
-            \begin{split}
-                H_0&: \frac{1}{|V_{ij}|}\sum_{l=0}^{|V_{ij}|}{d_{ijl}} = 0 \\
-                H_1&: \frac{1}{|V_{ij}|}\sum_{l=0}^{|V_{ij}|}{d_{ijl}} > 0
-            \end{split}
-            \label{eq:h1}
-        \end{align}
-
-        where 
-        $\mathbf{d}_{ij} = D(S^{MIT}_{ij}, S^L_{ij})$ and $L \in \{ALL, RL, CALL4\}$.
-
-        \item 
-            \begin{enumerate}
-                \item Average orbit correlations within a contact map of MIT cell, 
-                    and its counterpart in leukemic cells is equal to 1
-                    for each contact map.
-                Again in mathematical terms:
-                $\forall i,j \in \{1, 2 ..., 24\}$
-                \begin{align}
-                    \begin{split}
-                        H_0&: \frac{1}{73}\sum_{o=0}^{72}{c_{ijo}} = 1 \\
-                        H_1&: \frac{1}{73}\sum_{o=0}^{72}{c_{ijo}} < 1
-                    \end{split}
-                    \label{eq:h2b}
-                \end{align}
-                        where $\mathbf{c}_{ij} = Corr(S^{MIT}_{ij}, S^L_{ij})$, $L$ 
-                        is the same as above and $N$ 
-                        is the total number of contact maps which 
-                        is equal to $275$ in our case.
-
-                \item Average orbit correlations  of MIT cell
-                    and leukemic cells across contact maps is equal to 1
-                    for each orbit.
-                Again in mathematical terms:
-
-                        \smallskip
-
-                    $\forall o \in \{0, 1 ... 72\}$
-                \begin{align}
-                    \begin{split}
-                        H_0&: \frac{1}{N}\sum_{i=1}^{23}{\sum_{j=i}^{23}{c_{ijo}}} = 1 \\
-                        H_1&: \frac{1}{N}\sum_{i=1}^{23}{\sum_{j=i}^{23}{c_{ijo}}} < 1
-                    \end{split}
-                    \label{eq:h2a}
-                \end{align}
-                        $L$ and $\mathbf{c}_{ij}$ are the same as above.
-
-            \end{enumerate}
-\end{enumerate}
 \section{results}
 
-\subsection{Hypothesis 1: Orbit Distance Comparison}
+Result of pair-wise contact map graphlet distances can is
+illustrated in Figure \ref{fig:orbit-distances}.
+Each point on the graph is the
+average of the graphlet distance vector 
+($\bar{\mathbf{d}}^{A,B}_{i,j}$)
+of the two cell lines specified in the legend.
+ A one sided paired t-test
+was conducted . The resulting p-values showed highly 
+significant differeces from zero for all pairs of
+cells. Detailed results of t-tests for each
+contact map can be fount in supplementary materials.
+For each contact map, each pair of cells are
+order based on whether they are statistially
+larger that the other or not. For example
+for contact map $C_{i,j}$, the results 
+of t-test is as follows:\\
+\smallskip
+{
+    \small
+zero  $<$  call4-mit  $<$     all-rl  $<$     mit-rl  $<$   call4-rl  $<$    all-mit  $=$  all-call4
+}\\
+\smallskip
+which means that $\mathbf{d}^{\scriptscriptstyle CALL4, MIT}_{1,1}$ is statistically larger than 0,
+but less than $\mathbf{d}^{\scriptscriptstyle ALL, RL}_{1,1}$ 
+and so forth. We can also conclude that $\mathbf{d}^{\scriptscriptstyle ALL, CALL4}_{1,1}$ is not
+statistically different from $\mathbf{d}^{\scriptscriptstyle ALL, MIT}_{1,1}$
+between graphlets extracted from all contact maps. 
+Refer to supplementary
+material for results of all hypotheis tests.
+
 \begin{figure*}[t]
     \centering
     \begin{subfigure}[b]{\textwidth}
@@ -395,9 +372,16 @@ our two null hypotheses as the following:
         \caption{}
         \label{fig:orbit-distances_intra}
     \end{subfigure}
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{figures/orbit-distances_intra_separate.png}
+        \caption{}
+        \label{fig:orbit-distances_intra_separate}
+    \end{subfigure}
     \caption{   Pair-wise graphlet signature difference for
                 (a) all 276 contact maps.
                 (b) only the 23 intra-chromosomal contact maps.
+                (c) all 276 contact maps as well as corresponding
+                standard errors.
                 Each point on a graph is the result of averaging all
                 the distances acroos all loci of that contact map.
                 As can be viewd, although inter-chromosomal graphlets 
@@ -408,22 +392,12 @@ our two null hypotheses as the following:
              }
     \label{fig:orbit-distances}
 \end{figure*}
-Result of pair-wise contact map graphlet distances can is
-demonstrated in Figure \ref{fig:orbit-distances}.
-Each point on the graph is the
-average distance between signature vector of two same loci 
-in the two cell lines as in Equation \ref{eq:h1}.
-in order to test hypothesis \ref{eq:h1} a one sided t-test
-was conducted. The resulting p-values showed highly significant differeces
-between graphlets extracted from all contact maps. Refer to supplementary
-material for results of all hypotheis tests.
 
-\subsection{Hypothesis 2: Orbit distribution comparison}
-We caclulated pair-wise Pearson's r correlation for each orbit in each of the 276
+We caclulated pair-wise MIC for each orbit in each of the 276
 contact maps from MIT data and ALL, RL and CALL4 data separately. 
 Figure \ref{fig:contact_maps_correlations}
 shows average orbit correlations across all contact maps
-(average along the red \textit{vertical} arrow in figure 
+($\bar{\mathbf{c}}^{\scriptscriptstyle A,B}_{i,j}$: average along the red \textit{vertical} arrow in figure 
 \ref{graphlet_correlation_schema}), while
 figure \ref{fig:orbits_correlations} 
 demonstrates average correlations across all 72 orbits within each  contact map
