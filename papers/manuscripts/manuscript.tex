@@ -292,8 +292,13 @@ These correlations can be calculated as the following:
 \end{equation}
 where each element of $\mathbf{c}$ is calculated as below:
 \begin{equation}
-    c_{ijo} = Corr(\mathbf{S}^A_{ij.o}, \mathbf{S}^B_{ij.o})
-    \label{eq:correlation}
+    c_{ijo} = Pearson(\mathbf{S}^A_{ij.o}, \mathbf{S}^B_{ij.o})
+    \label{eq:pearson}
+\end{equation}
+Alternatively, if we use MIC criterion we would have:
+\begin{equation}
+    c_{ijo} = MIC(\mathbf{S}^A_{ij.o}, \mathbf{S}^B_{ij.o})
+    \label{eq:mic}
 \end{equation}
 
 For each contact map,  calculated

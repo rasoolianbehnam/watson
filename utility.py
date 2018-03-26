@@ -21,7 +21,7 @@ def eigendecompose(a):
     t = np.max([min, max])
     w = w / t
     v = v * t * t
-    print "result of multiplying eigenvalues and eigenvectors:"
+    print("result of multiplying eigenvalues and eigenvectors:")
     print v.dot(np.diag(w)).dot(np.linalg.inv(v))*t
     return w, v/t/t
 
@@ -98,7 +98,7 @@ def scale(m, epsilon=1e-5):
     return n
 
 #used to be simple read
-def readMat(fileName, delimiter="\t", ignoreHeader=False, remove_blanks=False):
+def readMat(fileName, delimiter="\t", ignoreHeader=False, remove_blanks=False, verbose=False):
     """
     Function:
     --------- 
@@ -124,7 +124,8 @@ def readMat(fileName, delimiter="\t", ignoreHeader=False, remove_blanks=False):
     observed
 
     """
-    print "file directory:", fileName
+    if verbose:
+        print "file directory:", fileName
     if not os.path.isfile(fileName):
         print "File %s does not exist"%fileName
         sys.exit(2)
@@ -246,7 +247,7 @@ def pearson(a, b=None):
     else:
         return pearson_sym(a)
 
-def row_wise_pearson(a, b):
+def row_wise_pearson(a, b, check_for_zeros=True):
     n1, m1 = a.shape
     n2, m2 = b.shape
     n = np.min([n1, n2])
@@ -255,6 +256,11 @@ def row_wise_pearson(a, b):
     b = b[:n, :m]
     counter2 = np.zeros(n)
     for i in range(n):
+        if check_for_zeros:
+            if np.sum(a[i, :]) == 0:
+                continue
+            if np.sum(b[i, :]) == 0:
+                continue
         counter2[i] = pearsonr(a[i, :], b[i, :])[0]
     return counter2
 
@@ -302,7 +308,7 @@ def scn(a, minDiff=1e-3, numIterations=1000):
 def gaussian_normalize(heatmap):
     return (heatmap - np.mean(heatmap) ) / np.std(heatmap)
 
-def _showImages(imageList, rows=None, cols=None, color_bar=False, titles=None, ax_labels=None):
+def _showImages(imageList, rows=None, cols=None, color_bar=False, titles=None, ax_labels=None, cmap=None, save_dir=None):
     if rows == None and cols == None:
         rows = 1
         cols = (len(imageList) + rows - 1) / rows
@@ -312,7 +318,7 @@ def _showImages(imageList, rows=None, cols=None, color_bar=False, titles=None, a
         rows = (len(imageList) + cols - 1) / cols
     print "Number of rows and columns: %d, %d"%(rows, cols)
     fig, axes = plt.subplots(nrows=rows, ncols=cols)
-    plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=0.1, hspace=.1)
+    plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=0.1, hspace=.6)
     count = 0
     for image in imageList:
         if rows * cols == 1:
@@ -321,20 +327,22 @@ def _showImages(imageList, rows=None, cols=None, color_bar=False, titles=None, a
             ax = axes[count]
         else:
             ax = axes[count // cols, count % cols]
-        m = ax.imshow(image, cmap="RdBu_r", norm=colors.SymLogNorm(1))
+        m = ax.imshow(image, cmap=cmap, norm=colors.SymLogNorm(1))
         if titles != None:
             ax.title.set_text(titles[count])
         if ax_labels != None:
-            ax.set(xlabel=ax_labels[1][count], ylabel=ax_labels[0][count])
+            ax.set(xlabel=ax_labels['x'][count], ylabel=ax_labels['y'][count])
         count += 1
     if color_bar:
         from mpl_toolkits.axes_grid1 import make_axes_locatable
         divider = make_axes_locatable(ax)
         cax = divider.append_axes("right", size="2%", pad=0.05)
         cb = fig.colorbar(m, cax=cax)
+    if save_dir != None:
+        plt.savefig(save_dir)
     plt.show()
 
-def showImages(imageList, rows=None, cols=None, color_bar=False, titles=None, ax_labels=None):
+def showImages(imageList, rows=None, cols=None, color_bar=False, titles=None, ax_labels=None, cmap="RdBu_r", save_dir=None):
     if isinstance(imageList, dict):
         images = []
         titles = []
@@ -342,10 +350,12 @@ def showImages(imageList, rows=None, cols=None, color_bar=False, titles=None, ax
             images.append(imageList[key])
             titles.append(key)
         _showImages(images, rows=rows, cols=cols, \
-                color_bar=color_bar, titles=titles, ax_labels=ax_labels)
+                color_bar=color_bar, titles=titles, ax_labels=ax_labels, cmap=cmap \
+                , save_dir=save_dir)
     else:
         _showImages(imageList, rows=rows, cols=cols, \
-                color_bar=color_bar, titles=titles, ax_labels=ax_labels)
+                color_bar=color_bar, titles=titles, ax_labels=ax_labels, cmap=cmap \
+                , save_dir=save_dir)
 
 
 def cvShowImages(imageList):
@@ -355,7 +365,7 @@ def cvShowImages(imageList):
         count += 1
     cv2.waitKey()
 
-def convertBinaryMatToOrcaReadable(image, outputFileName=None):
+def convertBinaryMatToOrcaReadable(image, outputFileName=None, x_beg=0, y_beg=0):
     """
     function: prints the indices i+1, j+1 of the
     positive cells in the image image[i, j] > 0
@@ -380,9 +390,9 @@ def convertBinaryMatToOrcaReadable(image, outputFileName=None):
          j = positives[1][index]
          if i < j:
              if outputFileName != None:
-                 file.write("%d, %d\n"%(i+1, j+1))
+                 file.write("%d, %d\n"%(i+1+x_beg, j+1+y_beg))
              else:
-                 print i+1, j+1
+                 print i+1+x_beg, j+1+y_beg
 
 
 def readYaml(fileName, delimiter ="\t", symmetric=False, remove_blank=False):
@@ -543,7 +553,7 @@ def full_graphlet_distance(g1, g2):
             out[i, j] = graphlet_distance(g1[i, :], g2[j, :])
     return out
 
-def row_wise_graphlet_distance(g1, g2):
+def row_wise_graphlet_distance(g1, g2, check_for_zeros=True):
     """
     -------------------------------------------------------
     Function
@@ -567,6 +577,11 @@ def row_wise_graphlet_distance(g1, g2):
     o = np.min([o1, o2])
     out = np.zeros(n)
     for i in range(n):
+        if check_for_zeros:
+            if np.sum(g1[i, :]) == 0:
+                continue
+            if np.sum(g2[i, :]) == 0:
+                continue
         out[i] = graphlet_distance(g1[i, :], g2[i, :])
     return out
 
@@ -628,16 +643,75 @@ def print_statistics(m1, text = "", print_results=True):
         print("#-----------------------------------------------------------------------#")
     return max, min, mean, std
 
-def t_test(m1, m2=None):
+def t_test(m1, m2=None, one_sided=False):
     if m2 == None:
         diff = m1.reshape(1, -1)
     else:
         diff = (m1 - m2).reshape(1, -1)
     n = diff.shape[0] * diff.shape[1]
-    std = np.sqrt(np.sum(diff * diff) / (n - 1))
+    #std = np.sqrt(np.sum(diff * diff) / (n - 1))
+    std = np.std(diff, ddof=1)
     t0 = diff.mean() * np.sqrt(n) / std
-    return t0
+    if one_sided:
+        t0 = t0 / 2.
+    return t0, scipy.stats.t.cdf(t0, n-1)
 
+def is_larger(a, b, alpha=.01):
+    if a.ndim == 1:
+        m = 1
+        n1 = len(a)
+        n2 = len(b)
+        n = np.min([n1, n2])
+        a = a[:n]
+        b = b[:n]
+    else:
+        m1, n1 = a.shape
+        m2, n2 = b.shape
+
+        m = np.min([m1, m2])
+        n = np.min([n1, n2])
+        
+        a = a[:m, :n]
+        b = b[:m, :n]
+
+    d = a - b
+    sd = np.std(d, ddof=1)
+    avg = np.mean(d)
+    t = avg / sd * np.sqrt(m*n)
+    p_value = scipy.stats.t.cdf(t, n*m-1)
+    if p_value < alpha:
+        return -1
+    p_value = scipy.stats.t.cdf(-t, n*m-1)
+    if p_value < alpha:
+        return 1
+    return 0
+
+def compare_pairwise(a, comparator=is_larger, labels=None):
+    n = len(a)
+    out = np.zeros((n, n))
+    for i in range(n):
+        for j in range(i+1, n):
+            out[i, j] = comparator(a[i], a[j])
+            out[j, i] = -comparator(a[i], a[j])
+    if labels != None:
+        ordered = [None for i in range(n)]
+        sign = np.zeros(n, dtype='uint8')
+        for i in range(n):
+            position = np.sum(np.where(out > 0, 1, 0)[i])
+            while ordered[position] != None:
+                sign[position] = 1
+                position += 1
+            ordered[position] = labels[i]
+        output_text = ""
+        for i in range(n-1):
+            letter = '<'
+            if sign[i]:
+                letter = '='
+            output_text = "%s %10s %2s"%(output_text, ordered[i], letter)
+        output_text = "%s %10s"%(output_text, ordered[n-1])
+        out = (out, output_text)
+    return out
+            
 def threshold_within_std(m1, k):
     min, max, mean, std = print_statistics(m1, print_results=False)
     return (m1 > mean - k * std) * (m1 < mean + k * std)
