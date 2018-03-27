@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.11.3)  26 MAR 2018 23:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.11.3)  27 MAR 2018 06:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -545,43 +545,447 @@ Package: subcaption 2016/02/20 v1.1-142 Sub-captions (AR)
 (/usr/share/texlive/texmf-dist/tex/generic/genmisc/nth.sty
 Package: nth 2002/02/27
 )
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
+\pgfutil@everybye=\toks39
+\pgfutil@tempdima=\dimen189
+\pgfutil@tempdimb=\dimen190
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-lists.t
+ex)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
+\pgfutil@abb=\box59
+(/usr/share/texlive/texmf-dist/tex/latex/ms/everyshi.sty
+Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
+Package: pgfrcs 2015/08/07 v3.0.1a (rcs-revision 1.31)
+))
+Package: pgf 2015/08/07 v3.0.1a (rcs-revision 1.15)
+
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+Package: pgfsys 2014/07/09 v3.0.1a (rcs-revision 1.48)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks40
+\pgfkeys@temptoks=\toks41
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.code.t
+ex
+\pgfkeys@tmptoks=\toks42
+))
+\pgf@x=\dimen191
+\pgf@y=\dimen192
+\pgf@xa=\dimen193
+\pgf@ya=\dimen194
+\pgf@xb=\dimen195
+\pgf@yb=\dimen196
+\pgf@xc=\dimen197
+\pgf@yc=\dimen198
+\w@pgf@writea=\write4
+\r@pgf@reada=\read1
+\c@pgf@counta=\count142
+\c@pgf@countb=\count143
+\c@pgf@countc=\count144
+\c@pgf@countd=\count145
+\t@pgf@toka=\toks43
+\t@pgf@tokb=\toks44
+\t@pgf@tokc=\toks45
+ (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
+File: pgf.cfg 2008/05/14  (rcs-revision 1.7)
+)
+Driver file for pgf: pgfsys-pdftex.def
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
+File: pgfsys-pdftex.def 2014/10/11  (rcs-revision 1.35)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.de
+f
+File: pgfsys-common-pdf.def 2013/10/10  (rcs-revision 1.13)
+)))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.
+tex
+File: pgfsyssoftpath.code.tex 2013/09/09  (rcs-revision 1.9)
+\pgfsyssoftpath@smallbuffer@items=\count146
+\pgfsyssoftpath@bigbuffer@items=\count147
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.
+tex
+File: pgfsysprotocol.code.tex 2006/10/16  (rcs-revision 1.4)
+)) (/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+LaTeX Info: Redefining \color on input line 702.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1337.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1341.
+Package xcolor Info: Model `RGB' extended on input line 1353.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1355.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1356.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1357.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1358.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+Package: pgfcore 2010/04/11 v3.0.1a (rcs-revision 1.7)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
+\pgfmath@dimen=\dimen199
+\pgfmath@count=\count148
+\pgfmath@box=\box60
+\pgfmath@toks=\toks46
+\pgfmath@stack@operand=\toks47
+\pgfmath@stack@operation=\toks48
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code
+.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonomet
+ric.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.cod
+e.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison
+.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code
+.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerari
+thmetics.code.tex)))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count149
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.te
+x
+File: pgfcorepoints.code.tex 2013/10/07  (rcs-revision 1.27)
+\pgf@picminx=\dimen256
+\pgf@picmaxx=\dimen257
+\pgf@picminy=\dimen258
+\pgf@picmaxy=\dimen259
+\pgf@pathminx=\dimen260
+\pgf@pathmaxx=\dimen261
+\pgf@pathminy=\dimen262
+\pgf@pathmaxy=\dimen263
+\pgf@xx=\dimen264
+\pgf@xy=\dimen265
+\pgf@yx=\dimen266
+\pgf@yy=\dimen267
+\pgf@zx=\dimen268
+\pgf@zy=\dimen269
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.
+code.tex
+File: pgfcorepathconstruct.code.tex 2013/10/07  (rcs-revision 1.29)
+\pgf@path@lastx=\dimen270
+\pgf@path@lasty=\dimen271
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code
+.tex
+File: pgfcorepathusage.code.tex 2014/11/02  (rcs-revision 1.24)
+\pgf@shorten@end@additional=\dimen272
+\pgf@shorten@start@additional=\dimen273
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.te
+x
+File: pgfcorescopes.code.tex 2015/05/08  (rcs-revision 1.46)
+\pgfpic=\box61
+\pgf@hbox=\box62
+\pgf@layerbox@main=\box63
+\pgf@picture@serial@count=\count150
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.c
+ode.tex
+File: pgfcoregraphicstate.code.tex 2014/11/02  (rcs-revision 1.12)
+\pgflinewidth=\dimen274
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformation
+s.code.tex
+File: pgfcoretransformations.code.tex 2015/08/07  (rcs-revision 1.20)
+\pgf@pt@x=\dimen275
+\pgf@pt@y=\dimen276
+\pgf@pt@temp=\dimen277
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
+File: pgfcorequick.code.tex 2008/10/09  (rcs-revision 1.3)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.t
+ex
+File: pgfcoreobjects.code.tex 2006/10/11  (rcs-revision 1.2)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing
+.code.tex
+File: pgfcorepathprocessing.code.tex 2013/09/09  (rcs-revision 1.9)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.te
+x
+File: pgfcorearrows.code.tex 2015/05/14  (rcs-revision 1.43)
+\pgfarrowsep=\dimen278
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
+File: pgfcoreshade.code.tex 2013/07/15  (rcs-revision 1.15)
+\pgf@max=\dimen279
+\pgf@sys@shading@range@num=\count151
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+File: pgfcoreimage.code.tex 2013/07/15  (rcs-revision 1.18)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.
+tex
+File: pgfcoreexternal.code.tex 2014/07/09  (rcs-revision 1.21)
+\pgfexternal@startupbox=\box64
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.te
+x
+File: pgfcorelayers.code.tex 2013/07/18  (rcs-revision 1.7)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.c
+ode.tex
+File: pgfcoretransparency.code.tex 2013/09/30  (rcs-revision 1.5)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.
+tex
+File: pgfcorepatterns.code.tex 2013/11/07  (rcs-revision 1.5)
+)))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
+File: pgfmoduleshapes.code.tex 2014/03/21  (rcs-revision 1.35)
+\pgfnodeparttextbox=\box65
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
+File: pgfmoduleplot.code.tex 2015/08/03  (rcs-revision 1.13)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65
+.sty
+Package: pgfcomp-version-0-65 2007/07/03 v3.0.1a (rcs-revision 1.7)
+\pgf@nodesepstart=\dimen280
+\pgf@nodesepend=\dimen281
+)
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18
+.sty
+Package: pgfcomp-version-1-18 2007/07/23 v3.0.1a (rcs-revision 1.1)
+)) (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex))
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/math/pgfmath.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
+Package: pgffor 2013/12/13 v3.0.1a (rcs-revision 1.25)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)
+\pgffor@iter=\dimen282
+\pgffor@skip=\dimen283
+\pgffor@stack=\toks49
+\pgffor@toks=\toks50
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+Package: tikz 2015/08/07 v3.0.1a (rcs-revision 1.151)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers
+.code.tex
+File: pgflibraryplothandlers.code.tex 2013/08/31 v3.0.1a (rcs-revision 1.20)
+\pgf@plot@mark@count=\count152
+\pgfplotmarksize=\dimen284
+)
+\tikz@lastx=\dimen285
+\tikz@lasty=\dimen286
+\tikz@lastxsaved=\dimen287
+\tikz@lastysaved=\dimen288
+\tikzleveldistance=\dimen289
+\tikzsiblingdistance=\dimen290
+\tikz@figbox=\box66
+\tikz@figbox@bg=\box67
+\tikz@tempbox=\box68
+\tikz@tempbox@bg=\box69
+\tikztreelevel=\count153
+\tikznumberofchildren=\count154
+\tikznumberofcurrentchild=\count155
+\tikz@fig@count=\count156
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
+File: pgfmodulematrix.code.tex 2013/09/17  (rcs-revision 1.8)
+\pgfmatrixcurrentrow=\count157
+\pgfmatrixcurrentcolumn=\count158
+\pgf@matrix@numberofcolumns=\count159
+)
+\tikz@expandcount=\count160
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibrarytopaths.code.tex
+File: tikzlibrarytopaths.code.tex 2008/06/17 v3.0.1a (rcs-revision 1.2)
+)))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibraryshapes.code.tex
+File: tikzlibraryshapes.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibraryshapes.geometric.code.tex
+File: tikzlibraryshapes.geometric.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1
+)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshape
+s.geometric.code.tex
+File: pgflibraryshapes.geometric.code.tex 2008/06/26 v3.0.1a (rcs-revision 1.1)
+
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibraryshapes.misc.code.tex
+File: tikzlibraryshapes.misc.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshape
+s.misc.code.tex
+File: pgflibraryshapes.misc.code.tex 2013/07/18 v3.0.1a (rcs-revision 1.5)
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibraryshapes.symbols.code.tex
+File: tikzlibraryshapes.symbols.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshape
+s.symbols.code.tex
+File: pgflibraryshapes.symbols.code.tex 2013/09/11 v3.0.1a (rcs-revision 1.6)
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibraryshapes.arrows.code.tex
+File: tikzlibraryshapes.arrows.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshape
+s.arrows.code.tex
+File: pgflibraryshapes.arrows.code.tex 2008/06/26 v3.0.1a (rcs-revision 1.1)
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibraryshapes.callouts.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshape
+s.callouts.code.tex))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibraryshapes.multipart.code.tex
+File: tikzlibraryshapes.multipart.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1
+)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshape
+s.multipart.code.tex
+File: pgflibraryshapes.multipart.code.tex 2010/01/07 v3.0.1a (rcs-revision 1.2)
+
+\pgfnodepartlowerbox=\box70
+\pgfnodeparttwobox=\box71
+\pgfnodepartthreebox=\box72
+\pgfnodepartfourbox=\box73
+\pgfnodeparttwentybox=\box74
+\pgfnodepartnineteenbox=\box75
+\pgfnodeparteighteenbox=\box76
+\pgfnodepartseventeenbox=\box77
+\pgfnodepartsixteenbox=\box78
+\pgfnodepartfifteenbox=\box79
+\pgfnodepartfourteenbox=\box80
+\pgfnodepartthirteenbox=\box81
+\pgfnodeparttwelvebox=\box82
+\pgfnodepartelevenbox=\box83
+\pgfnodeparttenbox=\box84
+\pgfnodepartninebox=\box85
+\pgfnodeparteightbox=\box86
+\pgfnodepartsevenbox=\box87
+\pgfnodepartsixbox=\box88
+\pgfnodepartfivebox=\box89
+)))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibrarypositioning.code.tex
+File: tikzlibrarypositioning.code.tex 2008/10/06 v3.0.1a (rcs-revision 1.7)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibraryarrows.code.tex
+File: tikzlibraryarrows.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.code.
+tex
+File: pgflibraryarrows.code.tex 2013/09/23 v3.0.1a (rcs-revision 1.16)
+\arrowsize=\dimen291
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibraryfit.code.tex
+File: tikzlibraryfit.code.tex 2013/07/12 v3.0.1a (rcs-revision 1.5)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibrarydecorations.pathreplacing.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibrarydecorations.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduledecorations.cod
+e.tex
+\pgfdecoratedcompleteddistance=\dimen292
+\pgfdecoratedremainingdistance=\dimen293
+\pgfdecoratedinputsegmentcompleteddistance=\dimen294
+\pgfdecoratedinputsegmentremainingdistance=\dimen295
+\pgf@decorate@distancetomove=\dimen296
+\pgf@decorate@repeatstate=\count161
+\pgfdecorationsegmentamplitude=\dimen297
+\pgfdecorationsegmentlength=\dimen298
+)
+\tikz@lib@dec@box=\box90
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrary
+decorations.pathreplacing.code.tex))
+(/usr/share/texlive/texmf-dist/tex/latex/pgf-blur/tikzlibraryshadows.blur.code.
+tex  v1.01, 2012/04/24
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibraryshadows.code.tex
+File: tikzlibraryshadows.code.tex 2008/01/13 v3.0.1a (rcs-revision 1.3)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibraryfadings.code.tex
+File: tikzlibraryfadings.code.tex 2009/11/15 v3.0.1a (rcs-revision 1.2)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryfadings.code
+.tex
+File: pgflibraryfadings.code.tex 2008/02/07 v3.0.1a (rcs-revision 1.3)
+)))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibrarycalc.code.tex
+File: tikzlibrarycalc.code.tex 2013/07/15 v3.0.1a (rcs-revision 1.9)
+))
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... none found.
  (./manuscript.aux)
 \openout1 = `manuscript.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 20.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 29.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count142
-\scratchdimen=\dimen189
-\scratchbox=\box59
-\nofMPsegments=\count143
-\nofMParguments=\count144
-\everyMPshowfont=\toks39
-\MPscratchCnt=\count145
-\MPscratchDim=\dimen190
-\MPnumerator=\count146
-\makeMPintoPDFobject=\count147
-\everyMPtoPDFconversion=\toks40
+\scratchcounter=\count162
+\scratchdimen=\dimen299
+\scratchbox=\box91
+\nofMPsegments=\count163
+\nofMParguments=\count164
+\everyMPshowfont=\toks51
+\MPscratchCnt=\count165
+\MPscratchDim=\dimen300
+\MPnumerator=\count166
+\makeMPintoPDFobject=\count167
+\everyMPtoPDFconversion=\toks52
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
 
@@ -597,11 +1001,11 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Package crop Info: requested driver: `' on input line 20.
-Package crop Info: detected driver: `pdftex' on input line 20.
-Package crop Info: using `pdftex' graphics driver on input line 20.
-\AtBeginShipoutBox=\box60
-Package hyperref Info: Link coloring OFF on input line 20.
+Package crop Info: requested driver: `' on input line 29.
+Package crop Info: detected driver: `pdftex' on input line 29.
+Package crop Info: using `pdftex' graphics driver on input line 29.
+\AtBeginShipoutBox=\box92
+Package hyperref Info: Link coloring OFF on input line 29.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -609,338 +1013,338 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count148
+\c@section@level=\count168
 )
-LaTeX Info: Redefining \ref on input line 20.
-LaTeX Info: Redefining \pageref on input line 20.
-LaTeX Info: Redefining \nameref on input line 20.
+LaTeX Info: Redefining \ref on input line 29.
+LaTeX Info: Redefining \pageref on input line 29.
+LaTeX Info: Redefining \nameref on input line 29.
 
 (./manuscript.out) (./manuscript.out)
-\@outlinefile=\write4
-\openout4 = `manuscript.out'.
+\@outlinefile=\write5
+\openout5 = `manuscript.out'.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-
+ ABD: EveryShipout initializing macros
 
 Package hyperref Warning: bookmark level for unknown article defaults to 0.
 
-LaTeX Font Info:    Try loading font information for OT1+phv on input line 42.
+LaTeX Font Info:    Try loading font information for OT1+phv on input line 51.
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1phv.fd
 File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 42.
+LaTeX Font Info:    Try loading font information for U+msa on input line 51.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 42.
+LaTeX Font Info:    Try loading font information for U+msb on input line 51.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+lasy on input line 42.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 51.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
 
 LaTeX Font Warning: Font shape `OT1/phv/n/n' undefined
-(Font)              using `OT1/phv/m/n' instead on input line 42.
+(Font)              using `OT1/phv/m/n' instead on input line 51.
 
 
-Overfull \hbox (267.0pt too wide) in paragraph at lines 42--42
+Overfull \hbox (267.0pt too wide) in paragraph at lines 51--51
 [][] 
  []
 
 LaTeX Font Info:    Font shape `OT1/phv/b/it' in size <10> not available
-(Font)              Font shape `OT1/phv/b/sl' tried instead on input line 62.
+(Font)              Font shape `OT1/phv/b/sl' tried instead on input line 71.
 
-Underfull \hbox (badness 2503) in paragraph at lines 45--68
+Underfull \hbox (badness 2503) in paragraph at lines 54--77
 []\OT1/phv/b/n/10 In this study, we plan to find dissimilarities
  []
 
 
-Underfull \hbox (badness 4193) in paragraph at lines 45--68
+Underfull \hbox (badness 4193) in paragraph at lines 54--77
 \OT1/phv/b/n/10 there are systematic differences between how
  []
 
 
-Underfull \hbox (badness 1694) in paragraph at lines 45--68
+Underfull \hbox (badness 1694) in paragraph at lines 54--77
 \OT1/phv/b/n/10 readily available. Based on ([]), fluorescence in
  []
 
 
-Underfull \hbox (badness 3281) in paragraph at lines 45--68
+Underfull \hbox (badness 3281) in paragraph at lines 54--77
 \OT1/phv/b/n/10 method can only be used locally and cannot
  []
 
 
-Underfull \hbox (badness 1946) in paragraph at lines 45--68
+Underfull \hbox (badness 1946) in paragraph at lines 54--77
 \OT1/phv/b/n/10 method, which was developed by ([]), captures
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 45--68
+Underfull \hbox (badness 10000) in paragraph at lines 54--77
 \OT1/phv/b/n/10 interactions between chromosomal fragments
  []
 
 
-Underfull \hbox (badness 2293) in paragraph at lines 45--68
+Underfull \hbox (badness 2293) in paragraph at lines 54--77
 \OT1/phv/b/n/10 in kilobase resolution. Based on HiC data, an
  []
 
 
-Underfull \hbox (badness 2103) in paragraph at lines 45--68
+Underfull \hbox (badness 2103) in paragraph at lines 54--77
 \OT1/phv/b/n/10 of interaction detected in HiC dataset between
  []
 
 
-Underfull \hbox (badness 1292) in paragraph at lines 45--68
+Underfull \hbox (badness 1292) in paragraph at lines 54--77
 \OT1/phv/b/n/10 matrix can be used to develop both inter- and
  []
 
 
-Underfull \hbox (badness 2221) in paragraph at lines 143--150
+Underfull \hbox (badness 2221) in paragraph at lines 152--159
 \OT1/ptm/m/n/10 a \OT1/ptm/m/it/10 significant \OT1/ptm/m/n/10 interaction betw
 een the loci. This can be
  []
 
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 150.
-LaTeX Font Info:    Calculating math sizes for size <7.5> on input line 150.
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 159.
+LaTeX Font Info:    Calculating math sizes for size <7.5> on input line 159.
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <7.5> not available
-(Font)              size <7> substituted on input line 150.
+(Font)              size <7> substituted on input line 159.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <3.75> not available
-(Font)              size <5> substituted on input line 150.
+(Font)              size <5> substituted on input line 159.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <7.5> not available
-(Font)              size <7> substituted on input line 150.
+(Font)              size <7> substituted on input line 159.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <3.75> not available
-(Font)              size <5> substituted on input line 150.
+(Font)              size <5> substituted on input line 159.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <7.5> not available
-(Font)              size <7> substituted on input line 150.
+(Font)              size <7> substituted on input line 159.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <3.75> not available
-(Font)              size <5> substituted on input line 150.
+(Font)              size <5> substituted on input line 159.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <7.5> not available
-(Font)              size <7> substituted on input line 150.
+(Font)              size <7> substituted on input line 159.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <3.75> not available
-(Font)              size <5> substituted on input line 150.
+(Font)              size <5> substituted on input line 159.
 
 
 LaTeX Font Warning: Font shape `U/lasy/m/n' in size <7.5> not available
-(Font)              size <7> substituted on input line 150.
+(Font)              size <7> substituted on input line 159.
 
 
 LaTeX Font Warning: Font shape `U/lasy/m/n' in size <3.75> not available
-(Font)              size <5> substituted on input line 150.
+(Font)              size <5> substituted on input line 159.
 
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 150.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 159.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <7.5> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 150.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 159.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <7.5> not available
-(Font)              size <7> substituted on input line 150.
+(Font)              size <7> substituted on input line 159.
 
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 
 ]
-Underfull \hbox (badness 1184) in paragraph at lines 151--162
+Underfull \hbox (badness 1184) in paragraph at lines 160--171
 \OT1/ptm/m/n/10 could consider thresholding the contact maps by simply
  []
 
-<figures/local_thresholded_chr1_chr1.png, id=72, 1084.05pt x 1445.4pt>
+<figures/local_thresholded_chr1_chr1.png, id=99, 1084.05pt x 1445.4pt>
 File: figures/local_thresholded_chr1_chr1.png Graphic file (type png)
 
 <use figures/local_thresholded_chr1_chr1.png>
 Package pdftex.def Info: figures/local_thresholded_chr1_chr1.png used on input 
-line 175.
+line 184.
 (pdftex.def)             Requested size: 257.0pt x 342.66853pt.
 
-Overfull \hbox (10.0pt too wide) in paragraph at lines 175--180
+Overfull \hbox (10.0pt too wide) in paragraph at lines 184--189
  [][] 
  []
 
 
-Underfull \hbox (badness 5316) in paragraph at lines 180--180
+Underfull \hbox (badness 5316) in paragraph at lines 189--189
 []\OT1/ptm/b/n/8 Figure 1. \OT1/ptm/m/n/8 Result of thresholding interchromosom
 al contact map of
  []
 
 
-Underfull \hbox (badness 1194) in paragraph at lines 163--183
+Underfull \hbox (badness 1194) in paragraph at lines 172--192
 \OT1/ptm/m/it/10 adaptive thresholding \OT1/ptm/m/n/10 from image processing co
 ntext. In
  []
 
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 186.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 195.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-<figures/graphlet_extraction.png, id=75, 794.97pt x 614.295pt>
+<figures/graphlet_extraction.png, id=102, 794.97pt x 614.295pt>
 File: figures/graphlet_extraction.png Graphic file (type png)
 
 <use figures/graphlet_extraction.png>
-Package pdftex.def Info: figures/graphlet_extraction.png used on input line 197
+Package pdftex.def Info: figures/graphlet_extraction.png used on input line 206
 .
 (pdftex.def)             Requested size: 257.0pt x 198.59369pt.
 
-Overfull \hbox (10.0pt too wide) in paragraph at lines 197--203
+Overfull \hbox (10.0pt too wide) in paragraph at lines 206--212
  [][] 
  []
 
-<figures/graphlet_distance_schema.png, id=76, 837.1275pt x 789.95125pt>
+<figures/graphlet_distance_schema.png, id=103, 837.1275pt x 789.95125pt>
 File: figures/graphlet_distance_schema.png Graphic file (type png)
 
 <use figures/graphlet_distance_schema.png>
 Package pdftex.def Info: figures/graphlet_distance_schema.png used on input lin
-e 215.
+e 224.
 (pdftex.def)             Requested size: 257.0pt x 242.50778pt.
 
-Overfull \hbox (10.0pt too wide) in paragraph at lines 215--223
+Overfull \hbox (10.0pt too wide) in paragraph at lines 224--232
  [][] 
  []
 
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 223.
-<figures/graphlet_correlation_schema.png, id=79, 794.97pt x 613.8pt>
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 232.
+<figures/graphlet_correlation_schema.png, id=106, 794.97pt x 613.8pt>
 File: figures/graphlet_correlation_schema.png Graphic file (type png)
 
 <use figures/graphlet_correlation_schema.png>
 Package pdftex.def Info: figures/graphlet_correlation_schema.png used on input 
-line 228.
+line 237.
 (pdftex.def)             Requested size: 257.0pt x 198.43365pt.
 
-Overfull \hbox (10.0pt too wide) in paragraph at lines 228--239
+Overfull \hbox (10.0pt too wide) in paragraph at lines 237--248
  [][] 
  []
 
 
-LaTeX Warning: Reference `eq:h2a' on page 2 undefined on input line 239.
+LaTeX Warning: Reference `eq:h2a' on page 2 undefined on input line 248.
 
 
-LaTeX Warning: Reference `eq:h2b' on page 2 undefined on input line 239.
+LaTeX Warning: Reference `eq:h2b' on page 2 undefined on input line 248.
 
 
-LaTeX Warning: Reference `eq:h2a' on page 2 undefined on input line 239.
+LaTeX Warning: Reference `eq:h2a' on page 2 undefined on input line 248.
 
 
-LaTeX Warning: Reference `eq:h2b' on page 2 undefined on input line 239.
+LaTeX Warning: Reference `eq:h2b' on page 2 undefined on input line 248.
 
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 269.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 278.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-Underfull \hbox (badness 1342) in paragraph at lines 289--317
+Underfull \hbox (badness 1342) in paragraph at lines 298--326
 \OT1/ptm/m/n/10 be calculate using any plausible correlation measure. In
  []
 
 
-Underfull \hbox (badness 1237) in paragraph at lines 289--317
+Underfull \hbox (badness 1237) in paragraph at lines 298--326
 \OT1/ptm/m/n/10 between orbit distributions using Pearson's r correlation,
  []
 
 [2 <./figures/local_thresholded_chr1_chr1.png>]
-Underfull \hbox (badness 1394) in paragraph at lines 332--360
+Underfull \hbox (badness 1394) in paragraph at lines 341--369
 \OT1/ptm/m/n/10 illustrated in Figure []5[]. Each point on the graph is the
  []
 
 
-Underfull \hbox (badness 1354) in paragraph at lines 332--360
+Underfull \hbox (badness 1354) in paragraph at lines 341--369
 \OT1/ptm/m/n/9 is not statistically different from $\OT1/cmr/bx/n/9 d[]$ \OT1/p
 tm/m/n/9 between graphlets
  []
 
 [3 <./figures/graphlet_extraction.png> <./figures/graphlet_distance_schema.png>
  <./figures/graphlet_correlation_schema.png>]
-<figures/orbit-distances_all.png, id=112, 1461.46pt x 540.0175pt>
+<figures/orbit-distances_all.png, id=139, 1461.46pt x 540.0175pt>
 File: figures/orbit-distances_all.png Graphic file (type png)
 
 <use figures/orbit-distances_all.png>
-Package pdftex.def Info: figures/orbit-distances_all.png used on input line 364
+Package pdftex.def Info: figures/orbit-distances_all.png used on input line 373
 .
 (pdftex.def)             Requested size: 514.0pt x 189.92358pt.
 
-<figures/orbit-distances_intra.png, id=113, 1447.4075pt x 525.965pt>
+<figures/orbit-distances_intra.png, id=140, 1447.4075pt x 525.965pt>
 File: figures/orbit-distances_intra.png Graphic file (type png)
 
 <use figures/orbit-distances_intra.png>
 Package pdftex.def Info: figures/orbit-distances_intra.png used on input line 3
-70.
+79.
 (pdftex.def)             Requested size: 514.0pt x 186.77907pt.
 
-<figures/orbit-distances_intra_separate.png, id=114, 1431.3475pt x 549.05125pt>
+<figures/orbit-distances_intra_separate.png, id=141, 1431.3475pt x 549.05125pt>
 File: figures/orbit-distances_intra_separate.png Graphic file (type png)
 <use figures/orbit-distances_intra_separate.png>
 Package pdftex.def Info: figures/orbit-distances_intra_separate.png used on inp
-ut line 375.
+ut line 384.
 (pdftex.def)             Requested size: 514.0pt x 197.164pt.
 
 
-LaTeX Warning: Float too large for page by 16.25154pt on input line 396.
+LaTeX Warning: Float too large for page by 16.25154pt on input line 405.
 
 
-Underfull \hbox (badness 1092) in paragraph at lines 398--419
+Underfull \hbox (badness 1092) in paragraph at lines 407--428
 []\OT1/ptm/m/n/9 We caclulated pair-wise MIC for each orbit in each of the
  []
 
 
-<figures/contact_maps_correlations_all.png, id=120, 1463.4675pt x 549.05125pt>
+<figures/contact_maps_correlations_all.png, id=147, 1463.4675pt x 549.05125pt>
 File: figures/contact_maps_correlations_all.png Graphic file (type png)
 
 <use figures/contact_maps_correlations_all.png>
 Package pdftex.def Info: figures/contact_maps_correlations_all.png used on inpu
-t line 423.
+t line 432.
 (pdftex.def)             Requested size: 514.0pt x 192.84103pt.
 
-<figures/contact_maps_correlations_intra.png, id=121, 910.40125pt x 549.05125pt
+<figures/contact_maps_correlations_intra.png, id=148, 910.40125pt x 549.05125pt
 >
 File: figures/contact_maps_correlations_intra.png Graphic file (type png)
  <use figures/contact_maps_correlations_intra.png>
 Package pdftex.def Info: figures/contact_maps_correlations_intra.png used on in
-put line 428.
+put line 437.
 (pdftex.def)             Requested size: 514.0pt x 309.98833pt.
 
-<figures/orbits_correlations_all.png, id=124, 880.28876pt x 525.965pt>
+<figures/orbits_correlations_all.png, id=151, 1440.38126pt x 908.39375pt>
 File: figures/orbits_correlations_all.png Graphic file (type png)
 
 <use figures/orbits_correlations_all.png>
 Package pdftex.def Info: figures/orbits_correlations_all.png used on input line
- 450.
-(pdftex.def)             Requested size: 514.01988pt x 158.99454pt.
+ 459.
+(pdftex.def)             Requested size: 513.98732pt x 158.98514pt.
 
-<figures/orbits_correlations_intra.png, id=125, 880.28876pt x 525.965pt>
+<figures/orbits_correlations_intra.png, id=152, 1447.4075pt x 907.39pt>
 File: figures/orbits_correlations_intra.png Graphic file (type png)
 
 <use figures/orbits_correlations_intra.png>
 Package pdftex.def Info: figures/orbits_correlations_intra.png used on input li
-ne 455.
-(pdftex.def)             Requested size: 514.01988pt x 158.99454pt.
+ne 464.
+(pdftex.def)             Requested size: 513.99892pt x 158.98946pt.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 489.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 498.
  (./manuscript.bbl
 Underfull \hbox (badness 1824) in paragraph at lines 4--9
 []\OT1/ptm/m/n/8 Badri Adhikari, Tuan Trieu, and Jianlin Cheng.  Chromosome3d:
@@ -952,17 +1356,17 @@ Underfull \hbox (badness 4805) in paragraph at lines 4--9
 c
  []
 
-)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 500.
- [4] [5 <./figures/orbit-distances_all.png> <./figures/orbit-distances_intra.pn
-g> <./figures/orbit-distances_intra_separate.png>] [6 <./figures/contact_maps_c
-orrelations_all.png> <./figures/contact_maps_correlations_intra.png>] [7 <./fig
-ures/orbits_correlations_all.png> <./figures/orbits_correlations_intra.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 500.
+) [4]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 520.
+ [5 <./figures/orbit-distances_all.png> <./figures/orbit-distances_intra.png> <
+./figures/orbit-distances_intra_separate.png>] [6 <./figures/contact_maps_corre
+lations_all.png> <./figures/contact_maps_correlations_intra.png>] [7 <./figures
+/orbits_correlations_all.png> <./figures/orbits_correlations_intra.png>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 520.
 
 (./manuscript.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 500.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 500.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 520.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 520.
 Package rerunfilecheck Info: File `manuscript.out' has not changed.
 (rerunfilecheck)             Checksum: 585640CC019B64754035B7C7FD34BD62;428.
 
@@ -976,16 +1380,16 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 500.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 520.
  ) 
 Here is how much of TeX's memory you used:
- 9781 strings out of 493029
- 143730 string characters out of 6136234
- 263198 words of memory out of 5000000
- 13032 multiletter control sequences out of 15000+600000
+ 22649 strings out of 493029
+ 445105 string characters out of 6136234
+ 555715 words of memory out of 5000000
+ 25611 multiletter control sequences out of 15000+600000
  49880 words of font info for 113 fonts, out of 8000000 for 9000
  1150 hyphenation exceptions out of 8191
- 37i,18n,39p,1048b,477s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,18n,89p,1048b,477s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exi
 st, replaced by a fixed one
 
@@ -1035,10 +1439,10 @@ onts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8
 a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/sha
 re/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on manuscript.pdf (7 pages, 1552611 bytes).
+Output written on manuscript.pdf (7 pages, 2085289 bytes).
 PDF statistics:
- 287 PDF objects out of 1000 (max. 8388607)
- 217 compressed objects within 3 object streams
+ 314 PDF objects out of 1000 (max. 8388607)
+ 228 compressed objects within 3 object streams
  45 named destinations out of 1000 (max. 500000)
- 112 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 220 words of extra memory for PDF output out of 10000 (max. 10000000)
 
