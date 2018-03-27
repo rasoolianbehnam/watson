@@ -51,29 +51,15 @@
 
 \begin{abstract}
 
-In this study, we plan to find dissimilarities between normal cells and cancerous cells,
-through investigating HiC contact maps. 
-We suspect that there are systematic differences between how chromosomes are structured
-between normal cells and cancerous cells.
-we 
-Ideally, it is desirable to compare 3D structures of 
-cell in order to make such comparisons.
-However, the main challenge that we face is that 
-3D structure of a cell is not readily available. Based on
-\cite{adhikari2016chromosome3d}, fluorescence in situ hybridizaiton
-(FISH) is used for investigating 3D configuration of chromosomes.
-However, this method can only be used locally and cannot map
-the whole structure of the chromosomes.
-In orther to find dissimilarities in the 3D structure of 
-chromosomes, we used HiC dataset.
-The HiC method, which was developed by \cite{lieberman2009comprehensive}, captures interactions between 
-chromosomal fragments in kilobase resolution. Based on HiC data, an
-\textit{interaction frequency (IF) } matrix can be developed between \textit{loci} at a desired resolution.
-A cell $IF_{ij}$ in an interaction frequency matrix captures the number of interaction detected
-in HiC dataset between locus $i$ and locus $j$ in the genome.
-An interaction matrix can be used to develop both inter- and intra-chromosomal interaction matrices.
-We believe differences in interaction matrices can be found between normal cells and cancerous ones.
+In this study, we investigated
+dissimilarities between normal cells and cancerous cells,
+through analyzing HiC contact maps. 
+Our results show that certain orbit distributions
+have significanly higher correlation 
+between Leukemic cells.
+
 \end{abstract}
+
 \section{Introduction}
 
 Graphlet comparison is a novel method used to compare large networks in order to
@@ -114,7 +100,7 @@ node $v$. Each node, is then assigned a vector of length 14
 $(d_v^1, d_v^2, ..., d_v^{14})$ 
 and similarity of two nodes in two contact maps can be compared by
 how geometrically close their corresponding vectors are.
-\section{Materials and Methods}
+
 \subsubsection{Notations}
 In this paper, matrices and vectors are represented with bold
 capital and bold small letters respectively.
@@ -147,6 +133,26 @@ the both of chromosomes involved ($|\mathbb{V}_{ij}| = N_i + N_j$).
 % first page footnotes
 \enlargethispage{-65.1pt}
 % **************************************************************
+
+\section{Materials and Methods}
+We re-used Leukemic Hi-C libraries 
+created in \cite{wang2013properties}
+These libraries we sequenced 
+for cases of primary human B-acute
+lymphoblastic leukemia (B-ALL or ALL), 
+the MHH-CALL-4 B-ALL cell
+line (CALL4), 
+and the follicular lymphoma cell-line (RL).
+Just as \cite{wang2013properties}, 
+we used normal B-cell line (GM068990)
+from \cite{lieberman2009comprehensive} 
+for our comparisons.
+We created contact maps of resolution
+500kb and normalized it using 
+the \texttt{iced} package in python
+developed by \cite{servant2015hic}.
+
+
 
 \subsection{Thresholding contact maps}
 In order to be able to extract graphlets, HiC contact maps should be modeled as
@@ -319,7 +325,7 @@ bin sizes and numbers in order to achieve highest MI.
 MIC values between two variables fall between 0 and 1,
 with 0 meaning the two variables are completely independent
 and 1 meaning one is dependant on the other.
-We used both Pearson's r and MI in order to compare orbit
+We used both Pearson's r and MIC in order to compare orbit
 frequencies. Although results from both approaches were more
 or less consistent, MIC showed higher robustness than Pearson's 
 r method.
@@ -336,81 +342,50 @@ Alternatively, if we use Pearson criterion we would have:
     \label{eq:pearson}
 \end{equation}
 
-\section{results}
+\section{results and discussions}
 
 Result of pair-wise contact map graphlet distances can is
-illustrated in Figure \ref{fig:orbit-distances}.
+illustrated in Figure \ref{fig:orbit-distances_all}.
 Each point on the graph is the
 average of the graphlet distance vector 
 ($\bar{\mathbf{d}}^{\scriptscriptstyle A,B}_{i,j}$)
 of the two cell lines specified in the legend.
  A one sided paired t-test
-was conducted . The resulting p-values showed highly 
+was conducted in order to compare distances to
+zero and also to each other. 
+The resulting p-values showed highly 
 significant differeces from zero for all pairs of
 cells. Detailed results of t-tests for each
-contact map can be fount in supplementary materials.
+contact map can be found in supplementary materials.
 For each contact map, each pair of cells are
-order based on whether they are statistially
+ordered based on whether they are statistially
 larger that the other or not. For example
-for contact map $C_{i,j}$, the results 
+for contact map $C_{1,1}$, the results 
 of t-test is as follows:
 \vspace{.2cm}\\
 \small{
 zero  $<$  call4-mit  $<$     all-rl  $<$     mit-rl  $<$   call4-rl  $<$    all-mit  $=$  all-call4
 }
 \vspace{.2cm}\\
-which means that $\mathbf{d}^{\scriptscriptstyle CALL4, MIT}_{1,1}$ is statistically larger than 0,
+which means that 
+$\mathbf{d}^{\scriptscriptstyle CALL4, MIT}_{1,1}$ 
+is statistically larger than 0,
 but less than $\mathbf{d}^{\scriptscriptstyle ALL, RL}_{1,1}$ 
-and so forth. We can also conclude that $\mathbf{d}^{\scriptscriptstyle ALL, CALL4}_{1,1}$ is not
-statistically different from $\mathbf{d}^{\scriptscriptstyle ALL, MIT}_{1,1}$
+and so forth. We can also conclude that 
+$\mathbf{d}^{\scriptscriptstyle ALL, CALL4}_{1,1}$ is not
+statistically different from 
+$\mathbf{d}^{\scriptscriptstyle ALL, MIT}_{1,1}$
 between graphlets extracted from all contact maps. 
 Refer to supplementary
 material for results of all hypotheis tests.
 
-\begin{figure*}[t]
-    \centering
-    \begin{subfigure}[b]{\textwidth}
-        \includegraphics[width=\textwidth]{figures/orbit-distances_all.png}
-        \caption{}
-        \label{fig:orbit-distances_all}
-    \end{subfigure}
-
-    \begin{subfigure}[b]{\textwidth}
-        \includegraphics[width=\textwidth]{figures/orbit-distances_intra.png}
-        \caption{}
-        \label{fig:orbit-distances_intra}
-    \end{subfigure}
-    \begin{subfigure}[b]{\textwidth}
-        \includegraphics[width=\textwidth]{figures/orbit-distances_intra_separate.png}
-        \caption{}
-        \label{fig:orbit-distances_intra_separate}
-    \end{subfigure}
-    \caption{   Pair-wise graphlet signature difference for
-                (\textbf{a}) all 276 contact maps
-                ($\bar{\mathbf{d}}^{\scriptscriptstyle A,B}_{i,j} \quad
-                \forall i,j \in \{1 ... 23\} \quad \& \quad j \ge i$).
-                (\textbf{b}) only the 23 intra-chromosomal contact maps
-                ($\bar{\mathbf{d}}^{\scriptscriptstyle A,B}_{i,i}$).
-                (\textbf{c}) all 276 contact maps as well as corresponding
-                standard errors.
-                Each point on a graph is the result of averaging all
-                the distances acroos all loci of that contact map.
-                As can be viewd, although inter-chromosomal graphlets 
-                do not show significant differences, RL's inter-chromosomal
-                graphlets seem to be closer to MIT's. Also in some contact
-                maps ALL graphlets show greater distance from MIT graphlets
-                than the other two cell lines.
-             }
-    \label{fig:orbit-distances}
-\end{figure*}
-
 We caclulated pair-wise MIC for each orbit in each of the 276
 contact maps from MIT data and ALL, RL and CALL4 data separately. 
-Figure \ref{fig:contact_maps_correlations}
+Figure \ref{fig:contact_maps_correlations_all}
 shows average orbit correlations across all contact maps, while
-figure \ref{fig:orbits_correlations} 
+figure \ref{fig:orbits_correlations_all} 
 demonstrates average correlations across all 72 orbits within each  contact map.
-It is worth mentioning that \textit{interchromosomal} thresholded contact maps 
+It is worth mentioning that interchromosomal thresholded contact maps 
 represent
 a bipartide graph with the loci from each chromosome on one side. Due to this
 bipartide nature of the graphs in inter-chromosomal maps,
@@ -423,76 +398,75 @@ figure \ref{fig:orbits_correlations_all} where average correlations of orbits
 $\mathbb{Q} = \{3, 9, 10{\text -}14, 20{\text -}34, 39{\text -}48, 51{\text -}72\}$ 
 are close to zero. In fact all correlations
 corresponding to these orbits are 0 except for the ones between the same 
-chromosomes which are illustrated in Figure 
-\ref{fig:orbits_correlations_intra}.
+chromosomes.
 
-\begin{figure*}[t]
+Figure \ref{fig:orbits_correlations_all} clearly illustrates certain
+orbits of Leukemic have higher correlation to each other than to the
+normal MIT cell. In fact our statistical analysis shows that 
+\textit {for orbits in $\mathbb{Q}$, 
+intra-leukemic orbit correlations are significantly higher
+than leukemic-normal orbit correlations}. This implies
+there are significant differences between normal and
+leukemic cells in terms of their local structure.
+\begin{figure}
     \centering
-    \begin{subfigure}[b]{\textwidth}
+    \begin{subfigure}[b]{.5\textwidth}
+        \includegraphics[width=\textwidth]{figures/orbit-distances_all.png}
+        \caption{}
+        \label{fig:orbit-distances_all}
+    \end{subfigure}
+    \begin{subfigure}[b]{.5\textwidth}
         \includegraphics[width=\textwidth]{figures/contact_maps_correlations_all.png}
         \caption{}
         \label{fig:contact_maps_correlations_all}
     \end{subfigure}
-    \begin{subfigure}[b]{\textwidth}
-        \includegraphics[width=\textwidth]{figures/contact_maps_correlations_intra.png}
-        \caption{}
-        \label{fig:contact_maps_correlations_intra}
-    \end{subfigure}
-    \caption{pair-wise average contact map orbit correlations
-             (a) for all contact maps($\bar{\mathbf{m}}^{\scriptscriptstyle \scriptscriptstyle A,B}_{i,j} 
-            \quad \forall i,j \in \{1 ... 23\} \quad \& \quad j \ge i$,
-            average along the red \textit{vertical} arrow in figure 
-            \ref{graphlet_correlation_schema})
-             (b) only for intra-chromosomal contact maps
-            ($\bar{\mathbf{m}}^{\scriptscriptstyle \scriptscriptstyle A,B}_{i,i} 
-            \quad \forall i \in \{1 ... 23\} $)
-             These values are calculated by averaging over 
-             pairwise correlations of all orbits in a 
-             contact map.
-             }
-    \label{fig:contact_maps_correlations}
-\end{figure*}
-
-\begin{figure*}[t]
-    \centering
-    \begin{subfigure}[b]{\textwidth}
-        \includegraphics[width=\textwidth, height=.2\paperheight]{figures/orbits_correlations_all.png}
+    \begin{subfigure}[b]{.5\textwidth}
+        \includegraphics[width=\textwidth]{figures/orbits_correlations_all.png}
         \caption{}
         \label{fig:orbits_correlations_all}
     \end{subfigure}
-    \begin{subfigure}[b]{\textwidth}
-        \includegraphics[width=\textwidth, height=.2\paperheight]{figures/orbits_correlations_intra.png}
-        \caption{}
-        \label{fig:orbits_correlations_intra}
-    \end{subfigure}
-    \caption{pair-wise average orbit correlations.
-             In figure \ref{fig:orbits_correlations_all}, each point
-             in the graph is the result of averaging pair-wise
-             orbit correlations over all contact maps
-             ($\frac{1}{276}\sum_{i=0}^{23}\sum_{j=i}^{23}{
-             m^{\scriptscriptstyle \scriptscriptstyle A,B}_{i,j, o}} \quad 
-             \forall o \in \{0, 1, ..., 72\}$,
-             average along the red \textit{horizontal} arrows in figure 
-             \ref{graphlet_correlation_schema}), while
-             each point in figure \ref{fig:orbits_correlations_intra}
-             are averaged only over intra-chromosomal contact maps
-             ($\frac{1}{23}\sum_{i=0}^{23}{
-             m^{\scriptscriptstyle \scriptscriptstyle A,B}_{i,i, o}} \quad 
-         \forall o \in \{0, 1, ..., 72\}$).
-             Counts for certain orbits are always zero in inter-chromosomal
-             maps, leading to average value close to zero in 
-             \ref{fig:orbits_correlations_all}.
-             }
-    \label{fig:orbits_correlations}
-\end{figure*}
+    \caption{   
+        \textbf{(a) Pair-wise graphlet signature difference for
+        all 276 contact maps:}
+        Each point on a graph is the result of averaging all
+        the distances across all loci of that contact map.
+        ($\bar{\mathbf{d}}^{\scriptscriptstyle A,B}_{i,j} \quad
+        \forall i,j \in \{1 ... 23\} \quad \& \quad j \ge i$).  
+        \vspace{.1cm} \\
+        \textbf{(b) pair-wise average contact map orbit correlations
+         for all contact maps:}
+        ($\bar{\mathbf{m}}^{\scriptscriptstyle \scriptscriptstyle A,B}_{i,j} 
+        \quad \forall i,j \in \{1 ... 23\} \quad \& \quad j \ge i$:
+        average along the red \textit{vertical} arrow in figure 
+        \ref{graphlet_correlation_schema}).
+        These values are calculated by averaging over 
+        pairwise correlations of orbits of
+        $\mathbb{Q}$ in a contact map.
+        \vspace{.1cm} \\
+        \textbf{(c) pair-wise average orbit correlations:}
+        In figure \ref{fig:orbits_correlations_all}, each point
+        in the graph is the result of averaging pair-wise
+        orbit correlations over all contact maps
+        ($\frac{1}{276}\sum_{i=0}^{23}\sum_{j=i}^{23}{
+        m^{\scriptscriptstyle \scriptscriptstyle A,B}_{i,j, o}} \quad 
+        \forall o \in \{0, 1, ..., 72\}$:
+        average along the red \textit{horizontal} arrows in figure 
+        \ref{graphlet_correlation_schema}).
+        Counts for certain orbits are always zero in inter-chromosomal
+        maps, leading to average value close to zero in 
+        Figure \ref{fig:orbits_correlations_all}.
+     }
+    \label{fig:results_all}
+\end{figure}
+
 We have conducted one-sided
 t-test in order to test whether the average correlations across
 contact maps is equal to 1  and whether the average 
 correlations across orbits is equal to 1. The results
 for both test showed that all values are significantly less than 1.
-Please refer to supplementary material for result of the t-tests.
+Please refer to supplementary material for result of the 
+full list of t-test results.
 
-\section{discussion}
 \newpage
 \section{Resources}
 \textbf{Hi-C Datasets:}
