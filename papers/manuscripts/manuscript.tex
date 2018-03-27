@@ -257,13 +257,13 @@ For a pair of cells A and B, let
 $\mathbf{S}^A_{ij}$  and $\mathbf{S}^B_{ij}$ be their
 signature matrices. The \textit{signature distance} of
 contact map $\mathbf{C}_{i,j}$ between A and B is denoted
-by $\mathbf{d}^{A,B}_{ij}$. $\mathbf{d}^{A,B}_{ij}$ 
+by $\mathbf{d}^{\scriptscriptstyle A,B}_{ij}$. $\mathbf{d}^{\scriptscriptstyle A,B}_{ij}$ 
 is a vector of size $|V_{i,j}|$
-and its elements $d^{A,B}_{i,j,l}$ are
+and its elements $d^{\scriptscriptstyle A,B}_{i,j,l}$ are
 calculated using the following formula from \cite{prvzulj2007biological}:
 
 \begin{equation}
-    d^{A,B}_{i,j,l} = 
+    d^{\scriptscriptstyle A,B}_{i,j,l} = 
     \frac{1}{73}\sqrt{\sum_{o=0}^{72}{t_{lo}^2}}
     \label{eq:distance_total}
 \end{equation}
@@ -294,7 +294,7 @@ regarding the \textit{frequency distribution} of orbits throughout
 the contact map $C_{ij}$. 
 We can find how similar these distributions are to each other using
 correlation measures.
-These correlations are denoted by $\mathbf{m}^{A,B}_{i,j}$ and
+These correlations are denoted by $\mathbf{m}^{\scriptscriptstyle A,B}_{i,j}$ and
 can be calculate using
 any plausible correlation measure. 
 In this study, for each contact map,  we calculated
@@ -318,12 +318,12 @@ r method.
 If MIC is used as correlation measure, each element of 
  $\mathbf{c}$ is calculated as below:
 \begin{equation}
-    m^{A,B}_{ijo} = MIC(\mathbf{S}^A_{ij.o}, \mathbf{S}^B_{ij.o})
+    m^{\scriptscriptstyle A,B}_{ijo} = MIC(\mathbf{S}^A_{ij.o}, \mathbf{S}^B_{ij.o})
     \label{eq:mic}
 \end{equation}
 Alternatively, if we use Pearson criterion we would have:
 \begin{equation}
-    m^{A,B}_{ijo} = Pearson(\mathbf{S}^A_{ij.o}, \mathbf{S}^B_{ij.o})
+    m^{\scriptscriptstyle A,B}_{ijo} = Pearson(\mathbf{S}^A_{ij.o}, \mathbf{S}^B_{ij.o})
     \label{eq:pearson}
 \end{equation}
 
@@ -333,7 +333,7 @@ Result of pair-wise contact map graphlet distances can is
 illustrated in Figure \ref{fig:orbit-distances}.
 Each point on the graph is the
 average of the graphlet distance vector 
-($\bar{\mathbf{d}}^{A,B}_{i,j}$)
+($\bar{\mathbf{d}}^{\scriptscriptstyle A,B}_{i,j}$)
 of the two cell lines specified in the legend.
  A one sided paired t-test
 was conducted . The resulting p-values showed highly 
@@ -344,13 +344,12 @@ For each contact map, each pair of cells are
 order based on whether they are statistially
 larger that the other or not. For example
 for contact map $C_{i,j}$, the results 
-of t-test is as follows:\\
-\smallskip
-{
-    \small
+of t-test is as follows:
+\vspace{.2cm}\\
+\small{
 zero  $<$  call4-mit  $<$     all-rl  $<$     mit-rl  $<$   call4-rl  $<$    all-mit  $=$  all-call4
-}\\
-\smallskip
+}
+\vspace{.2cm}\\
 which means that $\mathbf{d}^{\scriptscriptstyle CALL4, MIT}_{1,1}$ is statistically larger than 0,
 but less than $\mathbf{d}^{\scriptscriptstyle ALL, RL}_{1,1}$ 
 and so forth. We can also conclude that $\mathbf{d}^{\scriptscriptstyle ALL, CALL4}_{1,1}$ is not
@@ -378,9 +377,12 @@ material for results of all hypotheis tests.
         \label{fig:orbit-distances_intra_separate}
     \end{subfigure}
     \caption{   Pair-wise graphlet signature difference for
-                (a) all 276 contact maps.
-                (b) only the 23 intra-chromosomal contact maps.
-                (c) all 276 contact maps as well as corresponding
+                (\textbf{a}) all 276 contact maps
+                ($\bar{\mathbf{d}}^{\scriptscriptstyle A,B}_{i,j} \quad
+                \forall i,j \in \{1 ... 23\} \quad \& \quad j \ge i$).
+                (\textbf{b}) only the 23 intra-chromosomal contact maps
+                ($\bar{\mathbf{d}}^{\scriptscriptstyle A,B}_{i,i}$).
+                (\textbf{c}) all 276 contact maps as well as corresponding
                 standard errors.
                 Each point on a graph is the result of averaging all
                 the distances acroos all loci of that contact map.
@@ -396,28 +398,21 @@ material for results of all hypotheis tests.
 We caclulated pair-wise MIC for each orbit in each of the 276
 contact maps from MIT data and ALL, RL and CALL4 data separately. 
 Figure \ref{fig:contact_maps_correlations}
-shows average orbit correlations across all contact maps
-($\bar{\mathbf{c}}^{\scriptscriptstyle A,B}_{i,j} 
-\quad \forall i,j \in {1 ... 23} \quad \& \quad j \le i$,
-average along the red \textit{vertical} arrow in figure 
-\ref{graphlet_correlation_schema}), while
+shows average orbit correlations across all contact maps, while
 figure \ref{fig:orbits_correlations} 
-demonstrates average correlations across all 72 orbits within each  contact map
-($\frac{1}{276}\sum_{i=0}^{23}\sum_{j=i}^{23}{
-    c^{\scriptscriptstyle A,B}_{i,j}}$,
-average along the red \textit{horizontal} arrows in figure 
-\ref{graphlet_correlation_schema}).
+demonstrates average correlations across all 72 orbits within each  contact map.
 It is worth mentioning that \textit{interchromosomal} thresholded contact maps 
 represent
-a biparticde graph with the loci from each chromosome on one side. Due to this
+a bipartide graph with the loci from each chromosome on one side. Due to this
 bipartide nature of the graphs in inter-chromosomal maps,
 count of certain orbits is always 0, resulting in
 a correlation values of 0 for them as well.
 We ignored these values  when we calculated averages across orbits 
 in figure \ref{fig:contact_maps_correlations_all} since they
 would result in a bias towards zero in averages. You can see the bias in 
-figure \ref{fig:orbits_correlations_all} where average correlations of obits
-3, 9, 10-14, 20-34, 39-48, and 51-72 are close to zero. In fact all correlations
+figure \ref{fig:orbits_correlations_all} where average correlations of orbits
+$\mathbb{Q} = \{3, 9, 10{\text -}14, 20{\text -}34, 39{\text -}48, 51{\text -}72\}$ 
+are close to zero. In fact all correlations
 corresponding to these orbits are 0 except for the ones between the same 
 chromosomes which are illustrated in Figure 
 \ref{fig:orbits_correlations_intra}.
@@ -435,8 +430,13 @@ chromosomes which are illustrated in Figure
         \label{fig:contact_maps_correlations_intra}
     \end{subfigure}
     \caption{pair-wise average contact map orbit correlations
-             (a) for all contact maps
+             (a) for all contact maps($\bar{\mathbf{m}}^{\scriptscriptstyle \scriptscriptstyle A,B}_{i,j} 
+            \quad \forall i,j \in \{1 ... 23\} \quad \& \quad j \ge i$,
+            average along the red \textit{vertical} arrow in figure 
+            \ref{graphlet_correlation_schema})
              (b) only for intra-chromosomal contact maps
+            ($\bar{\mathbf{m}}^{\scriptscriptstyle \scriptscriptstyle A,B}_{i,i} 
+            \quad \forall i \in \{1 ... 23\} $)
              These values are calculated by averaging over 
              pairwise correlations of all orbits in a 
              contact map.
@@ -459,9 +459,17 @@ chromosomes which are illustrated in Figure
     \caption{pair-wise average orbit correlations.
              In figure \ref{fig:orbits_correlations_all}, each point
              in the graph is the result of averaging pair-wise
-             orbit correlations over all contact maps, while
+             orbit correlations over all contact maps
+             ($\frac{1}{276}\sum_{i=0}^{23}\sum_{j=i}^{23}{
+             m^{\scriptscriptstyle \scriptscriptstyle A,B}_{i,j, o}} \quad 
+             \forall o \in \{0, 1, ..., 72\}$,
+             average along the red \textit{horizontal} arrows in figure 
+             \ref{graphlet_correlation_schema}), while
              each point in figure \ref{fig:orbits_correlations_intra}
-             are averaged only over intra-chromosomal contact maps.
+             are averaged only over intra-chromosomal contact maps
+             ($\frac{1}{23}\sum_{i=0}^{23}{
+             m^{\scriptscriptstyle \scriptscriptstyle A,B}_{i,i, o}} \quad 
+         \forall o \in \{0, 1, ..., 72\}$).
              Counts for certain orbits are always zero in inter-chromosomal
              maps, leading to average value close to zero in 
              \ref{fig:orbits_correlations_all}.
@@ -470,33 +478,11 @@ chromosomes which are illustrated in Figure
 \end{figure*}
 We have conducted one-sided
 t-test in order to test whether the average correlations across
-contact maps is equal to 1 (Equation \ref{eq:h2a}) and whether the average 
-correlations across orbits is equal to 1 (Equation \ref{eq:h2b}). The results
+contact maps is equal to 1  and whether the average 
+correlations across orbits is equal to 1. The results
 for both test showed that all values are significantly less than 1.
 Please refer to supplementary material for result of the t-tests.
-\subsection{Comparing Cancer cells}
-\begin{figure*}[t]
-    \centering
-    \begin{subfigure}[b]{\textwidth}
-        \includegraphics[width=\textwidth]{figures/orbit-distances_intra_cancer.png}
-        \caption{}
-        \label{fig:orbit_distances_intra_cancer}
-    \end{subfigure}
-    \begin{subfigure}[b]{\textwidth}
-        \includegraphics[width=\textwidth]{figures/orbits_correlations_intra_cancer.png}
-        \caption{}
-        \label{fig:orbits_correlations_intra_cancer}
-    \end{subfigure}
-    \caption{}
-    \label{fig:orbits_cancer_intra}
-\end{figure*}
 
-We also conducted the same comparison with the same hypothesis among cancer cells.
-The results for intra-chromosomal distances and correlations can be found in
-figure \ref{fig:orbits_cancer_intra}. As can be noticed, CALL4 and RL cell
-line exhibit a significantly higher average correlations for the majority of
-the chromosomes (figure \ref{fig:orbit_distances_intra_cancer}) and almost in
-all orbits (figure \ref{fig:orbits_correlations_intra_cancer}).
 \section{discussion}
 \newpage
 \section{Resources}
