@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.16)  26 MAR 2018 17:38
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.11.3)  26 MAR 2018 18:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -898,9 +898,10 @@ ut line 376.
 LaTeX Warning: Float too large for page by 11.99858pt on input line 394.
 
 
-Underfull \hbox (badness 1259) in paragraph at lines 396--420
-\OT1/ptm/m/n/10 arrow in figure []4[]), while figure []7[] demonstrates average
-
+Underfull \hbox (badness 4752) in paragraph at lines 396--424
+\OT1/ptm/m/n/10 across all contact maps ($[] \OMS/cmsy/m/n/10 8\OML/cmm/m/it/10
+ i; j \OMS/cmsy/m/n/10 2 [] \OT1/cmr/m/n/10 & \OML/cmm/m/it/10 j \OMS/cmsy/m/n/
+10 ^^T \OML/cmm/m/it/10 i$\OT1/ptm/m/n/10 ,
  []
 
 
@@ -909,7 +910,7 @@ File: figures/contact_maps_correlations_all.png Graphic file (type png)
 
 <use figures/contact_maps_correlations_all.png>
 Package pdftex.def Info: figures/contact_maps_correlations_all.png used on inpu
-t line 424.
+t line 428.
 (pdftex.def)             Requested size: 514.0pt x 192.84103pt.
 
 <figures/contact_maps_correlations_intra.png, id=123, 1463.4675pt x 549.05125pt
@@ -917,7 +918,7 @@ t line 424.
 File: figures/contact_maps_correlations_intra.png Graphic file (type png)
  <use figures/contact_maps_correlations_intra.png>
 Package pdftex.def Info: figures/contact_maps_correlations_intra.png used on in
-put line 429.
+put line 433.
 (pdftex.def)             Requested size: 514.0pt x 192.84103pt.
 
 <figures/orbits_correlations_all.png, id=124, 1440.38126pt x 525.965pt>
@@ -925,7 +926,7 @@ File: figures/orbits_correlations_all.png Graphic file (type png)
 
 <use figures/orbits_correlations_all.png>
 Package pdftex.def Info: figures/orbits_correlations_all.png used on input line
- 446.
+ 450.
 (pdftex.def)             Requested size: 513.98732pt x 158.99454pt.
 
 <figures/orbits_correlations_intra.png, id=125, 1440.38126pt x 525.965pt>
@@ -933,21 +934,21 @@ File: figures/orbits_correlations_intra.png Graphic file (type png)
 
 <use figures/orbits_correlations_intra.png>
 Package pdftex.def Info: figures/orbits_correlations_intra.png used on input li
-ne 451.
+ne 455.
 (pdftex.def)             Requested size: 513.98732pt x 158.99454pt.
 
 
-LaTeX Warning: Reference `eq:h2a' on page 4 undefined on input line 469.
+LaTeX Warning: Reference `eq:h2a' on page 4 undefined on input line 473.
 
 
-LaTeX Warning: Reference `eq:h2b' on page 4 undefined on input line 470.
+LaTeX Warning: Reference `eq:h2b' on page 4 undefined on input line 474.
 
 <figures/orbit-distances_intra_cancer.png, id=132, 880.28876pt x 540.0175pt>
 File: figures/orbit-distances_intra_cancer.png Graphic file (type png)
 
 <use figures/orbit-distances_intra_cancer.png>
 Package pdftex.def Info: figures/orbit-distances_intra_cancer.png used on input
- line 477.
+ line 481.
 (pdftex.def)             Requested size: 514.0pt x 315.32803pt.
 
 <figures/orbits_correlations_intra_cancer.png, id=133, 1440.38126pt x 525.965pt
@@ -955,15 +956,15 @@ Package pdftex.def Info: figures/orbit-distances_intra_cancer.png used on input
 File: figures/orbits_correlations_intra_cancer.png Graphic file (type png)
  <use figures/orbits_correlations_intra_cancer.png>
 Package pdftex.def Info: figures/orbits_correlations_intra_cancer.png used on i
-nput line 482.
+nput line 486.
 (pdftex.def)             Requested size: 514.0pt x 187.68596pt.
 
-Underfull \hbox (badness 1102) in paragraph at lines 490--496
+Underfull \hbox (badness 1102) in paragraph at lines 494--500
 \OT1/ptm/m/n/10 We also conducted the same comparison with the same
  []
 
 
-Underfull \hbox (badness 4595) in paragraph at lines 490--496
+Underfull \hbox (badness 4595) in paragraph at lines 494--500
 \OT1/ptm/m/n/10 hypothesis among cancer cells. The results for intra-
  []
 
@@ -979,17 +980,17 @@ c
  []
 
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 510.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 514.
  [4] [5 <./figures/orbit-distances_all.png> <./figures/orbit-distances_intra.pn
 g> <./figures/orbit-distances_intra_separate.png>] [6 <./figures/contact_maps_c
 orrelations_all.png> <./figures/contact_maps_correlations_intra.png>] [7 <./fig
 ures/orbits_correlations_all.png> <./figures/orbits_correlations_intra.png>]
 [8 <./figures/orbit-distances_intra_cancer.png> <./figures/orbits_correlations_
 intra_cancer.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 510.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 514.
  (./manuscript.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 510.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 510.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 514.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 514.
 Package rerunfilecheck Info: File `manuscript.out' has not changed.
 (rerunfilecheck)             Checksum: A3424C40BC2DEAEAEC8B30BBE9A2CF40;428.
 
@@ -1003,11 +1004,11 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 510.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 514.
  ) 
 Here is how much of TeX's memory you used:
  9792 strings out of 493029
- 144301 string characters out of 6136233
+ 144301 string characters out of 6136234
  262865 words of memory out of 5000000
  13040 multiletter control sequences out of 15000+600000
  45556 words of font info for 107 fonts, out of 8000000 for 9000
@@ -1057,7 +1058,7 @@ share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/t
 exmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/font
 s/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/tim
 es/utmri8a.pfb>
-Output written on manuscript.pdf (8 pages, 1741551 bytes).
+Output written on manuscript.pdf (8 pages, 1743116 bytes).
 PDF statistics:
  274 PDF objects out of 1000 (max. 8388607)
  207 compressed objects within 3 object streams

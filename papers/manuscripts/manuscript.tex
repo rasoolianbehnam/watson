@@ -397,11 +397,15 @@ We caclulated pair-wise MIC for each orbit in each of the 276
 contact maps from MIT data and ALL, RL and CALL4 data separately. 
 Figure \ref{fig:contact_maps_correlations}
 shows average orbit correlations across all contact maps
-($\bar{\mathbf{c}}^{\scriptscriptstyle A,B}_{i,j}$: average along the red \textit{vertical} arrow in figure 
+($\bar{\mathbf{c}}^{\scriptscriptstyle A,B}_{i,j} 
+\quad \forall i,j \in {1 ... 23} \quad \& \quad j \le i$,
+average along the red \textit{vertical} arrow in figure 
 \ref{graphlet_correlation_schema}), while
 figure \ref{fig:orbits_correlations} 
 demonstrates average correlations across all 72 orbits within each  contact map
-(average along the red \textit{horizontal} arrows in figure 
+($\frac{1}{276}\sum_{i=0}^{23}\sum_{j=i}^{23}{
+    c^{\scriptscriptstyle A,B}_{i,j}}$,
+average along the red \textit{horizontal} arrows in figure 
 \ref{graphlet_correlation_schema}).
 It is worth mentioning that \textit{interchromosomal} thresholded contact maps 
 represent
