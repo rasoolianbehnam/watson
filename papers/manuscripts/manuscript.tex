@@ -466,7 +466,30 @@ correlations across orbits is equal to 1. The results
 for both test showed that all values are significantly less than 1.
 Please refer to supplementary material for result of the 
 full list of t-test results.
-
+\begin{table}[]
+    \centering
+    \resizebox{.5\textwidth}{!}{
+    \begin{tabular}{l|ccccccc}
+        \rule{0pt}{25pt}
+                  & One       & MIT-RL       & ALL-RL       & ALL-MIT      & ALL-CALL4    & CALL4-MIT    & CALL4-RL     \\ \hline
+        \rule{0pt}{25pt}
+        One       & -         & \textgreater & \textgreater & \textgreater & \textgreater & \textgreater & \textgreater \\
+        \rule{0pt}{25pt}
+        MIT-RL    & \textless & -            & \textless    & \textless    & \textless    & \textless    & \textless    \\
+        \rule{0pt}{25pt}
+        ALL-RL    & \textless & \textgreater & -            & \textless    & \textless    & \textless    & \textless    \\
+        \rule{0pt}{25pt}
+        ALL-MIT   & \textless & \textgreater & \textgreater & -            & =            & =            & =            \\
+        \rule{0pt}{25pt}
+        ALL-CALL4 & \textless & \textgreater & \textgreater & =            & -            & =            & =            \\
+        \rule{0pt}{25pt}
+        CALL4-MIT & \textless & \textgreater & \textgreater & =            & =            & -            &              \\
+        CALL4-RL  & \textless & \textgreater & =            & =            & =            & =            & -           
+        \rule{0pt}{25pt}
+    \end{tabular}}
+    \caption{}
+    \label{tab:t-test}
+\end{table}
 \newpage
 \section{Resources}
 \textbf{Hi-C Datasets:}
