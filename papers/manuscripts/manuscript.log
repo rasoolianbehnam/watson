@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.11.3)  28 MAR 2018 22:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.16)  29 MAR 2018 16:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -951,11 +951,7 @@ File: tikzlibrarycalc.code.tex 2013/07/15 v3.0.1a (rcs-revision 1.9)
 ))
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... none found.
- (./manuscript.aux
-
-LaTeX Warning: Label `tab:t-test' multiply defined.
-
-)
+ (./manuscript.aux)
 \openout1 = `manuscript.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 30.
@@ -973,7 +969,8 @@ LaTeX Font Info:    ... okay on input line 30.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 30.
 LaTeX Font Info:    ... okay on input line 30.
 LaTeX Font Info:    Try loading font information for OT1+ptm on input line 30.
- (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
@@ -1189,13 +1186,13 @@ Overfull \hbox (10.0pt too wide) in paragraph at lines 231--239
 
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 239.
-<figures/graphlet_correlation_schema.png, id=107, 3179.88pt x 2457.18pt>
+<figures/graphlet_correlation_schema.png, id=107, 794.97pt x 614.295pt>
 File: figures/graphlet_correlation_schema.png Graphic file (type png)
 
 <use figures/graphlet_correlation_schema.png>
 Package pdftex.def Info: figures/graphlet_correlation_schema.png used on input 
 line 244.
-(pdftex.def)             Requested size: 257.0pt x 198.56557pt.
+(pdftex.def)             Requested size: 257.0pt x 198.59369pt.
 
 Overfull \hbox (10.0pt too wide) in paragraph at lines 244--255
  [][] 
@@ -1216,120 +1213,95 @@ LaTeX Warning: Reference `eq:h2b' on page 2 undefined on input line 255.
 [2 <./figures/local_thresholded_chr1_chr1.png> <./figures/graphlet_extraction.p
 ng> <./figures/graphlet_distance_schema.png>]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 285.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 325.
 
-Underfull \hbox (badness 1342) in paragraph at lines 305--333
+Underfull \hbox (badness 1342) in paragraph at lines 345--373
 \OT1/ptm/m/n/10 be calculate using any plausible correlation measure. In
  []
 
 
-Underfull \hbox (badness 1237) in paragraph at lines 305--333
+Underfull \hbox (badness 1237) in paragraph at lines 345--373
 \OT1/ptm/m/n/10 between orbit distributions using Pearson's r correlation,
  []
 
 
-Underfull \hbox (badness 1354) in paragraph at lines 348--382
-\OT1/ptm/m/n/9 is not statistically different from $\OT1/cmr/bx/n/9 d[]$ \OT1/p
-tm/m/n/9 between graphlets
- []
-
-
-Underfull \hbox (badness 1092) in paragraph at lines 383--403
-[]\OT1/ptm/m/n/9 We caclulated pair-wise MIC for each orbit in each of the
- []
-
-[3 <./figures/graphlet_correlation_schema.png
-
-pdfTeX warning: pdflatex (file ./figures/graphlet_correlation_schema.png): larg
-e interlaced PNG might cause out of memory (use non-interlaced PNG to fix this)
-
->] <figures/orbit-distances_all.png, id=147, 1461.46pt x 540.0175pt>
-File: figures/orbit-distances_all.png Graphic file (type png)
-
-<use figures/orbit-distances_all.png>
-Package pdftex.def Info: figures/orbit-distances_all.png used on input line 415
-.
-(pdftex.def)             Requested size: 257.0pt x 94.95767pt.
-
-<figures/contact_maps_correlations_all.png, id=148, 1463.4675pt x 549.05125pt>
-File: figures/contact_maps_correlations_all.png Graphic file (type png)
-
-<use figures/contact_maps_correlations_all.png>
-Package pdftex.def Info: figures/contact_maps_correlations_all.png used on inpu
-t line 420.
-(pdftex.def)             Requested size: 257.0pt x 96.42052pt.
-
-<figures/orbits_correlations_all.png, id=149, 1463.4675pt x 549.05125pt>
-File: figures/orbits_correlations_all.png Graphic file (type png)
-
-<use figures/orbits_correlations_all.png>
-Package pdftex.def Info: figures/orbits_correlations_all.png used on input line
- 425.
-(pdftex.def)             Requested size: 257.0pt x 96.42052pt.
-
-Overfull \hbox (10.0pt too wide) in paragraph at lines 414--459
- [][] 
- []
-
-
-Overfull \hbox (10.0pt too wide) in paragraph at lines 414--459
- [] 
- []
-
-
-Overfull \hbox (10.0pt too wide) in paragraph at lines 414--459
- [] 
- []
-
-
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 470.
+               Default added (so using `tbp') on input line 407.
 
-LaTeX Font Info:    Try loading font information for OML+ptm on input line 490.
+LaTeX Font Info:    Try loading font information for OML+ptm on input line 427.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omlptm.fd
 File: omlptm.fd 
 )
 LaTeX Font Info:    Font shape `OML/ptm/m/n' in size <10> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 490.
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 427.
 
-Overfull \hbox (9.9993pt too wide) in paragraph at lines 472--491
- [][] 
- []
-
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 496.
-
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 516.
-
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <20.74> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 637.
-
-Overfull \hbox (9.99875pt too wide) in paragraph at lines 518--638
+Overfull \hbox (9.9993pt too wide) in paragraph at lines 409--441
  [][] 
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [4 <./figures/orbit-distances_all.png> <./figures/contact_maps_correlations_al
-l.png> <./figures/orbits_correlations_all.png>] (./manuscript.bbl
-Overfull \hbox (19.99506pt too wide) in paragraph at lines 644--1
-[][] 
+Underfull \hbox (badness 4156) in paragraph at lines 388--444
+\OT1/ptm/m/n/10 Result of pair-wise contact map graphlet distances is
  []
 
-)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 756.
+
+Underfull \hbox (badness 1997) in paragraph at lines 446--466
+\OT1/ptm/m/n/10 contact maps represent a bipartide graph with the loci
+ []
+
+[3 <./figures/graphlet_correlation_schema.png>]
+<figures/orbit-distances_all.png, id=148, 1461.46pt x 540.0175pt>
+File: figures/orbit-distances_all.png Graphic file (type png)
+
+<use figures/orbit-distances_all.png>
+Package pdftex.def Info: figures/orbit-distances_all.png used on input line 478
+.
+(pdftex.def)             Requested size: 257.0pt x 94.95767pt.
+
+<figures/contact_maps_correlations_all.png, id=149, 1463.4675pt x 549.05125pt>
+File: figures/contact_maps_correlations_all.png Graphic file (type png)
+
+<use figures/contact_maps_correlations_all.png>
+Package pdftex.def Info: figures/contact_maps_correlations_all.png used on inpu
+t line 483.
+(pdftex.def)             Requested size: 257.0pt x 96.42052pt.
+
+<figures/orbits_correlations_all.png, id=150, 1463.4675pt x 549.05125pt>
+File: figures/orbits_correlations_all.png Graphic file (type png)
+
+<use figures/orbits_correlations_all.png>
+Package pdftex.def Info: figures/orbits_correlations_all.png used on input line
+ 488.
+(pdftex.def)             Requested size: 257.0pt x 96.42052pt.
+
+Overfull \hbox (10.0pt too wide) in paragraph at lines 477--522
+ [][] 
+ []
+
+
+Overfull \hbox (10.0pt too wide) in paragraph at lines 477--522
+ [] 
+ []
+
+
+Overfull \hbox (10.0pt too wide) in paragraph at lines 477--522
+ [] 
+ []
+
+(./manuscript.bbl [4 <./figures/orbit-distances_all.png> <./figures/contact_map
+s_correlations_all.png> <./figures/orbits_correlations_all.png>])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 547.
  [5
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 756.
- (./manuscript.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 756.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 756.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 547.
+
+(./manuscript.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 547.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 547.
 Package rerunfilecheck Info: File `manuscript.out' has not changed.
-(rerunfilecheck)             Checksum: 7A5593CF0D600CE205D7861855B63943;388.
+(rerunfilecheck)             Checksum: 2401838B83EAB0D83A43D8A28C764AAF;388.
 
 
 LaTeX Font Warning: Size substitutions with differences
@@ -1341,23 +1313,20 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: There were multiply-defined labels.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 756.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 547.
  ) 
 Here is how much of TeX's memory you used:
- 22835 strings out of 493029
- 447404 string characters out of 6136234
- 585846 words of memory out of 5000000
- 25799 multiletter control sequences out of 15000+600000
- 55556 words of font info for 132 fonts, out of 8000000 for 9000
+ 22602 strings out of 493029
+ 443853 string characters out of 6136233
+ 556228 words of memory out of 5000000
+ 25579 multiletter control sequences out of 15000+600000
+ 41196 words of font info for 94 fonts, out of 8000000 for 9000
  1150 hyphenation exceptions out of 8191
- 55i,20n,89p,1653b,671s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,18n,89p,1653b,496s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exi
 st, replaced by a fixed one
 
-pdfTeX warning (dest): name{section*.15} has been referenced but does not exist
+pdfTeX warning (dest): name{section*.14} has been referenced but does not exist
 , replaced by a fixed one
 
 pdfTeX warning (dest): name{section*.13} has been referenced but does not exist
@@ -1375,36 +1344,31 @@ pdfTeX warning (dest): name{section*.1} has been referenced but does not exist,
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-
 dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
-lic/amsfonts/cmextra/cmex8.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
-c/amsfonts/cmextra/cmex9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.p
-fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share
-/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
-msy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pf
-b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr
-/share/texlive/texmf-dist/fonts/type1/public/amsfonts/latxfont/lcircle1.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texli
-ve/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type
-1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utm
-bi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on manuscript.pdf (5 pages, 1588537 bytes).
+nts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cmextra/cmex8.pfb></usr/share/texlive/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/latxfont/lcircle1.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw
+/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhv
+b8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/t
+imes/utmri8a.pfb>
+Output written on manuscript.pdf (5 pages, 1310320 bytes).
 PDF statistics:
- 295 PDF objects out of 1000 (max. 8388607)
- 219 compressed objects within 3 object streams
- 42 named destinations out of 1000 (max. 500000)
+ 271 PDF objects out of 1000 (max. 8388607)
+ 201 compressed objects within 3 object streams
+ 41 named destinations out of 1000 (max. 500000)
  192 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -255,6 +255,46 @@ times loci $l$ in $\mathbf{C}_{ij}$ occured as part of orbit $o$.
     (along the horizontal red arrows) to test hypothesis \ref{eq:h2b}.}
     \label{graphlet_correlation_schema}
 \end{figure}
+%$
+%\begin{pmatrix}
+%    {S}^A_{\scriptscriptstyle i,j,1,1}         &
+%    \cdots                                     &    
+%    {S}^A_{\scriptscriptstyle i,j,1,72}        \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%    \vdots                                     &                
+%                                               &      
+%    \vdots                                     \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   {S}^A_{\scriptscriptstyle i,j,N_1,1}    &
+%   \ddots                                            &    
+%   {S}^A_{\scriptscriptstyle i,j,N_1, 72} \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%    \vdots                                     &                
+%                                               &      
+%    \vdots                                     \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   {S}^A_{\scriptscriptstyle i,j,N_1+N_2,1}   &
+%    \cdots                                &
+%   {S}^A_{\scriptscriptstyle i,j,N_1+N_2, 72}
+%\end{pmatrix}
+%$
+%
+%$
+%\begin{pmatrix}
+%    {C}^A_{\scriptscriptstyle i,j,1,1}     &
+%    \cdots    &
+%    {C}^A_{\scriptscriptstyle i,j,1,N_1} \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%    \vdots                             &
+%    \ddots&
+%    \vdots                             \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%    {C}^A_{\scriptscriptstyle i,j,N_1,1}   &
+%    \cdots&                  
+%    S^A_{\scriptscriptstyle i,j,N_1, N_1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\end{pmatrix}
+%$
 
 %We divided the task of graphlet comparison into two parts: first we compare
 %graphlets from each contact map in normal cell lines (MIT) with the 
@@ -345,40 +385,63 @@ Alternatively, if we use Pearson criterion we would have:
 
 \section{results and discussions}
 
-Result of pair-wise contact map graphlet distances can is
+Result of pair-wise contact map graphlet distances is
 illustrated in Figure \ref{fig:orbit-distances_all}.
 Each point on the graph is the
 average of the graphlet distance vector 
-($\bar{\mathbf{d}}^{\scriptscriptstyle A,B}_{i,j}$)
-of the two cell lines specified in the legend.
+of the two cell lines specified in the legend
+($\bar{\mathbf{d}}^{\scriptscriptstyle A,B}_{i,j}$).
  A one sided paired t-test
 was conducted in order to compare distances to
 zero and also to each other. 
 The resulting p-values showed highly 
 significant differeces from zero for all pairs of
-cells. Detailed results of t-tests for each
+cells. The results of tests for $C_{1,1}$ 
+is shown in table \ref{tab:t-test}
+Results of all t-tests for each
 contact map can be found in supplementary materials.
 For each contact map, each pair of cells are
 ordered based on whether they are statistially
-larger that the other or not. For example
-for contact map $C_{1,1}$, the results 
-of t-test is as follows:
-\vspace{.2cm}\\
-\small{
-zero  $<$  call4-mit  $<$     all-rl  $<$     mit-rl  $<$   call4-rl  $<$    all-mit  $=$  all-call4
-}
-\vspace{.2cm}\\
-which means that 
-$\mathbf{d}^{\scriptscriptstyle CALL4, MIT}_{1,1}$ 
-is statistically larger than 0,
-but less than $\mathbf{d}^{\scriptscriptstyle ALL, RL}_{1,1}$ 
-and so forth. We can also conclude that 
-$\mathbf{d}^{\scriptscriptstyle ALL, CALL4}_{1,1}$ is not
-statistically different from 
-$\mathbf{d}^{\scriptscriptstyle ALL, MIT}_{1,1}$
-between graphlets extracted from all contact maps. 
-Refer to supplementary
-material for results of all hypotheis tests.
+larger that the other or not with a signifiance
+of $0.01$.
+\begin{table}[]
+    \centering
+    \resizebox{.5\textwidth}{!}{
+    \begin{tabular}{l|ccccccc}
+        \rule{0pt}{25pt}
+                  & One       & MIT-RL       & ALL-RL       & ALL-MIT      & ALL-CALL4    & CALL4-MIT    & CALL4-RL     \\ \hline
+        \rule{0pt}{25pt}
+        One       & -         & \textgreater & \textgreater & \textgreater & \textgreater & \textgreater & \textgreater \\
+        \rule{0pt}{25pt}
+        MIT-RL    & \textless & -            & \textless    & \textless    & \textless    & \textless    & \textless    \\
+        \rule{0pt}{25pt}
+        ALL-RL    & \textless & \textgreater & -            & \textless    & \textless    & \textless    & \textless    \\
+        \rule{0pt}{25pt}
+        ALL-MIT   & \textless & \textgreater & \textgreater & -            & =            & =            & =            \\
+        \rule{0pt}{25pt}
+        ALL-CALL4 & \textless & \textgreater & \textgreater & =            & -            & =            & =            \\
+        \rule{0pt}{25pt}
+        CALL4-MIT & \textless & \textgreater & \textgreater & =            & =            & -            &              \\
+        CALL4-RL  & \textless & \textgreater & =            & =            & =            & =            & -           
+        \rule{0pt}{25pt}
+    \end{tabular}}
+    \caption{
+        Result of one-sided t-test for intrachromosomal
+        contact map of chromosome 1.
+        $\mathbf{d}^{\scriptscriptstyle CALL4, MIT}_{1,1}$ 
+        is statistically larger than 0,
+        but less than $\mathbf{d}^{\scriptscriptstyle ALL, RL}_{1,1}$ 
+        and so forth. We can also conclude that 
+        $\mathbf{d}^{\scriptscriptstyle ALL, CALL4}_{1,1}$ is not
+        statistically different from 
+        $\mathbf{d}^{\scriptscriptstyle ALL, MIT}_{1,1}$
+        between graphlets extracted from all contact maps. 
+        Refer to supplementary
+        material for results of all hypotheis tests.
+    }
+    \label{tab:t-test}
+\end{table}
+
 
 We caclulated pair-wise MIC for each orbit in each of the 276
 contact maps from MIT data and ALL, RL and CALL4 data separately. 
@@ -467,30 +530,6 @@ correlations across orbits is equal to 1. The results
 for both test showed that all values are significantly less than 1.
 Please refer to supplementary material for result of the 
 full list of t-test results.
-\begin{table}[]
-    \centering
-    \resizebox{.5\textwidth}{!}{
-    \begin{tabular}{l|ccccccc}
-        \rule{0pt}{25pt}
-                  & One       & MIT-RL       & ALL-RL       & ALL-MIT      & ALL-CALL4    & CALL4-MIT    & CALL4-RL     \\ \hline
-        \rule{0pt}{25pt}
-        One       & -         & \textgreater & \textgreater & \textgreater & \textgreater & \textgreater & \textgreater \\
-        \rule{0pt}{25pt}
-        MIT-RL    & \textless & -            & \textless    & \textless    & \textless    & \textless    & \textless    \\
-        \rule{0pt}{25pt}
-        ALL-RL    & \textless & \textgreater & -            & \textless    & \textless    & \textless    & \textless    \\
-        \rule{0pt}{25pt}
-        ALL-MIT   & \textless & \textgreater & \textgreater & -            & =            & =            & =            \\
-        \rule{0pt}{25pt}
-        ALL-CALL4 & \textless & \textgreater & \textgreater & =            & -            & =            & =            \\
-        \rule{0pt}{25pt}
-        CALL4-MIT & \textless & \textgreater & \textgreater & =            & =            & -            &              \\
-        CALL4-RL  & \textless & \textgreater & =            & =            & =            & =            & -           
-        \rule{0pt}{25pt}
-    \end{tabular}}
-    \caption{}
-    \label{tab:t-test}
-\end{table}
 \newpage
 \section{Resources}
 \textbf{Hi-C Datasets:}
@@ -501,256 +540,8 @@ full list of t-test results.
     \item \href{https://bcm.app.box.com/v/aidenlab/folder/11234760671}{Original Datasets}
 \end{enumerate}
 
-\tikzset{
-    myArrow/.style={
-    single arrow,
-    draw,
-    text width =.3cm,
-    scale=.8,
-    shade, shading=axis, left color=orange, right color=yellow,
-    shading angle=45,
-    blur shadow={shadow blur steps=5,shadow blur extra rounding=1.3pt}
-    }
-}
-
-\begin{table}[]
-    \centering
-    \resizebox{.5\textwidth}{!}{
-        \begin{tabular}{lllllp{1cm}ll}
-            &\multicolumn{1}{c}{\textbf{\huge Cell A graphlets $S^A_{i,j}$}}  & \multicolumn{1}{c}{\textbf{\huge Cell B graphlets $S^B_{i,j}$}} 
-            && \multicolumn{1}{c}{\textbf{\huge Correlation Vector $m^{A,B}_{i,j}$}} 
-            && \multicolumn{1}{c}{\textbf{\huge Correlation Matrix $M^{A,B}_{i,j}$}} \vspace{.5cm} \\
-        &\multicolumn{1}{c}{$N_1$}  & \multicolumn{1}{c}{72} && \multicolumn{1}{c}{72} \vspace{.5cm}\\
-        \rule{0pt}{40pt}
-        $N_1$ &
-        \resizebox{\linewidth}{!}{%
-        $\begin{pmatrix}  
-            C^A_{\scriptscriptstyle 1,1,1,1}     &   C^A_{\scriptscriptstyle 1,1,1,1}  & \cdots    &    C^A_{\scriptscriptstyle 1,1,1,N_1} \\
-            C^A_{\scriptscriptstyle 1,1,2,1}     &                &                  &      \\
-            \vdots                             &                & \ddots           &      \\
-            C^A_{\scriptscriptstyle 1,1,N_1,1}   &                &                  &    C^A_{\scriptscriptstyle 1,1,N_1, N_1} 
-        \end{pmatrix}$} &
-        \resizebox{\linewidth}{!}{%
-        $\begin{pmatrix}  
-            C^B_{\scriptscriptstyle 1,1,1,1}     &   C^B_{\scriptscriptstyle 1,1,1,1}  & \cdots    &    C^B_{\scriptscriptstyle 1,1,1,N_1} \\
-            C^B_{\scriptscriptstyle 1,1,2,1}     &                &                  &      \\
-            \vdots                             &                & \ddots           &      \\
-            C^B_{\scriptscriptstyle 1,1,N_1,1}   &                &                  &    C^B_{\scriptscriptstyle 1,1,N_1, N_1} 
-        \end{pmatrix}$} &
-        \begin{tikzpicture}
-            \draw [->] (0, 0) -> (2, 0);
-        \end{tikzpicture} &
-        \resizebox{\linewidth}{!}{%
-        $\begin{pmatrix}  
-            m_{\scriptscriptstyle 1,1,0}     &   m_{\scriptscriptstyle 1,1,1}  & \cdots    &    m_{\scriptscriptstyle 1,1,72}
-        \end{pmatrix}$} \vspace{1cm}\\
 
 
-        &\multicolumn{1}{c}{$N_2$}  & \multicolumn{1}{c}{72} && \multicolumn{1}{c}{72} \vspace{.5cm}\\
-        \rule{0pt}{45pt}
-        $N_1$ &
-        \resizebox{\linewidth}{!}{%
-        $\begin{pmatrix}  
-            C^A_{\scriptscriptstyle 1,2,1,1}     &   C^A_{\scriptscriptstyle 1,2,1,1}  & \cdots    &    C^A_{\scriptscriptstyle 1,2,1,N_1} \\
-            C^A_{\scriptscriptstyle 1,2,2,1}     &                &                  &      \\
-            \vdots                             &                & \ddots           &      \\
-            C^A_{\scriptscriptstyle 1,2,N_1,1}   &                &                  &    C^A_{\scriptscriptstyle 1,2,N_1, N_1} 
-        \end{pmatrix}$}&
-        \resizebox{\linewidth}{!}{%
-        $\begin{pmatrix}  
-            C^B_{\scriptscriptstyle 1,2,1,1}     &   C^B_{\scriptscriptstyle 1,2,1,1}  & \cdots    &    C^B_{\scriptscriptstyle 1,2,1,N_2} \\
-            C^B_{\scriptscriptstyle 1,2,2,1}     &                &                  &      \\
-            \vdots                             &                & \ddots           &      \\
-            C^B_{\scriptscriptstyle 1,2,N_2,1}   &                &                  &    C^B_{\scriptscriptstyle 1,2,N_1, N_2} 
-        \end{pmatrix}$}&
-        \begin{tikzpicture}
-            \draw [->] (0, 0) -> (2, 0);
-        \end{tikzpicture} &
-        \resizebox{\linewidth}{!}{%
-        $\begin{pmatrix}  
-            m_{\scriptscriptstyle 1,2,0}     &   m_{\scriptscriptstyle 1,2,1}  & \cdots    &    m_{\scriptscriptstyle 1,2,72}
-        \end{pmatrix}$} \vspace{1cm}\\
-
-        &\multicolumn{1}{c}{\Large o}  & \multicolumn{1}{c}{\Large o} && \multicolumn{1}{c}{\Large o} \vspace{1cm}\\
-        &\multicolumn{1}{c}{\Large o}  & \multicolumn{1}{c}{\Large o} && \multicolumn{1}{c}{\Large o} 
-        &&\resizebox{\linewidth}{!}{%
-        $\begin{pmatrix}  
-            m_{\scriptscriptstyle 1,1,0}     &   m_{\scriptscriptstyle 1,1,1}  & \cdots    &    m_{\scriptscriptstyle 1,1,72} \\ 
-            m_{\scriptscriptstyle 1,2,0}     &   m_{\scriptscriptstyle 1,2,1}  & \cdots    &    m_{\scriptscriptstyle 1,2,72} \\ 
-            \vdots & \vdots & \vdots \\
-            m_{\scriptscriptstyle 22,23,0}     &   m_{\scriptscriptstyle 22,23,1}  & \cdots    &    m_{\scriptscriptstyle 22,23,72} \\ 
-            m_{\scriptscriptstyle 22,23,0}     &   m_{\scriptscriptstyle 22,23,1}  & \cdots    &    m_{\scriptscriptstyle 22,23,72}
-        \end{pmatrix}$} \vspace{1cm}\\
-        
-        &\multicolumn{1}{c}{\Large o}  & \multicolumn{1}{c}{\Large o} && \multicolumn{1}{c}{\Large o} \vspace{1cm}\\
-
-        &\multicolumn{1}{c}{$N_{23}$}  & \multicolumn{1}{c}{72} && \multicolumn{1}{c}{72} \vspace{.5cm}\\
-        \rule{0pt}{45pt}
-        $N_{22}$ &
-        \resizebox{\linewidth}{!}{%
-        $\begin{pmatrix}  
-            C^A_{\scriptscriptstyle 22,23,1,1}     &   C^A_{\scriptscriptstyle 22,23,1,1}  & \cdots    &    C^A_{\scriptscriptstyle 22,23,1,N_1} \\
-            C^A_{\scriptscriptstyle 22,23,2,1}     &                &                  &      \\
-            \vdots                             &                & \ddots           &      \\
-            C^A_{\scriptscriptstyle 22,23,N_1,1}   &                &                  &    C^A_{\scriptscriptstyle 22,23,N_1, N_1} 
-        \end{pmatrix}$}&
-        \resizebox{\linewidth}{!}{%
-        $\begin{pmatrix}  
-            C^B_{\scriptscriptstyle 22,23,1,1}     &   C^B_{\scriptscriptstyle 22,23,1,1}  & \cdots    &    C^B_{\scriptscriptstyle 22,23,1,N_2} \\
-            C^B_{\scriptscriptstyle 22,23,2,1}     &                &                  &      \\
-            \vdots                             &                & \ddots           &      \\
-            C^B_{\scriptscriptstyle 22,23,N_2,1}   &                &                  &    C^B_{\scriptscriptstyle 22,23,N_1, N_2} 
-        \end{pmatrix}$}&
-        \begin{tikzpicture}
-            \draw [->] (0, 0) -> (2, 0);
-        \end{tikzpicture} &
-        \resizebox{\linewidth}{!}{%
-        $\begin{pmatrix}  
-            m_{\scriptscriptstyle 22,23,0}     &   m_{\scriptscriptstyle 22,23,1}  & \cdots    &    m_{\scriptscriptstyle 22,23,72}
-        \end{pmatrix}$} \vspace{1cm}\\
-
-        &\multicolumn{1}{c}{$N_{23}$}  & \multicolumn{1}{c}{72} && \multicolumn{1}{c}{72} \vspace{.5cm}\\
-        \rule{0pt}{45pt}
-        $N_{23}$ &
-        \resizebox{\linewidth}{!}{%
-        $\begin{pmatrix}  
-            C^A_{\scriptscriptstyle 22,23,1,1}     &   C^A_{\scriptscriptstyle 22,23,1,1}  & \cdots    &    C^A_{\scriptscriptstyle 22,23,1,N_1} \\
-            C^A_{\scriptscriptstyle 22,23,2,1}     &                &                  &      \\
-            \vdots                             &                & \ddots           &      \\
-            C^A_{\scriptscriptstyle 22,23,N_1,1}   &                &                  &    C^A_{\scriptscriptstyle 22,23,N_1, N_1} 
-        \end{pmatrix}$}&
-        \resizebox{\linewidth}{!}{%
-        $\begin{pmatrix}  
-            C^B_{\scriptscriptstyle 22,23,1,1}     &   C^B_{\scriptscriptstyle 22,23,1,1}  & \cdots    &    C^B_{\scriptscriptstyle 22,23,1,N_2} \\
-            C^B_{\scriptscriptstyle 22,23,2,1}     &                &                  &      \\
-            \vdots                             &                & \ddots           &      \\
-            C^B_{\scriptscriptstyle 22,23,N_2,1}   &                &                  &    C^B_{\scriptscriptstyle 22,23,N_1, N_2} 
-        \end{pmatrix}$}&
-        \begin{tikzpicture}
-            \draw [->] (0, 0) -> (2, 0);
-        \end{tikzpicture} &
-        \resizebox{\linewidth}{!}{%
-        $\begin{pmatrix}  
-            m_{\scriptscriptstyle 22,23,0}     &   m_{\scriptscriptstyle 22,23,1}  & \cdots    &    m_{\scriptscriptstyle 22,23,72}
-        \end{pmatrix}$}\vspace{1cm}
-
-    \end{tabular}}
-    \caption{}
-    \label{tab:t-test}
-\end{table}
-
-
-
-\resizebox{.5\textwidth}{!}{
-\begin{tikzpicture}
-    %First row
-    %first
-    \node [] (a1) at (0, 0) {
-        $\begin{pmatrix}  
-            C^A_{\scriptscriptstyle 1,1,1,1}     &   C^A_{\scriptscriptstyle 1,1,1,1}  & \cdots    &    C^A_{\scriptscriptstyle 1,1,1,N_1} \\
-            C^A_{\scriptscriptstyle 1,1,2,1}     &                &                  &      \\
-            \vdots                             &                & \ddots           &      \\
-            C^A_{\scriptscriptstyle 1,1,N_1,1}   &                &                  &    C^A_{\scriptscriptstyle 1,1,N_1, N_1} 
-        \end{pmatrix}$
-    };
-    \node [] (h11) [left=1pt of a1] {$N_1$};
-    \node [] (w11) [above=1pt of a1] {$N_1$};
-
-    %second
-    \node [] (b1) [right = 1cm of a1] {
-        $\begin{pmatrix}  
-            C^B_{\scriptscriptstyle 1,1,1,1}     &   C^B_{\scriptscriptstyle 1,1,1,1}  & \cdots    &    C^B_{\scriptscriptstyle 1,1,1,N_1} \\
-            C^B_{\scriptscriptstyle 1,1,2,1}     &                &                  &      \\
-            \vdots                             &                & \ddots           &      \\
-            C^B_{\scriptscriptstyle 1,1,N_1,1}   &                &                  &    C^B_{\scriptscriptstyle 1,1,N_1, N_1} 
-        \end{pmatrix}$
-    };
-    \node [] (h12) [left=1pt of b1] {$N_1$};
-    \node [] (w12) [above=1pt of b1] {$73$};
-
-    %third
-    \node [] (c1) [right = 1cm of b1] {
-        $\begin{pmatrix}  
-            m_{\scriptscriptstyle 1,1,0}     &   m_{\scriptscriptstyle 1,1,1}  & \cdots    &    m_{\scriptscriptstyle 1,1,72}
-        \end{pmatrix}$
-    };
-    \node [] (w3) [above=1pt of b1] {$73$};
-    \draw [->] (b1.east) to (c1.west);
-
-    %Second Row
-    %first
-    \node [] (a2) [below=1cm of a1] {
-        $\begin{pmatrix}  
-            C^A_{\scriptscriptstyle 1,2,1,1}     &   C^A_{\scriptscriptstyle 1,2,1,1}  & \cdots    &    C^A_{\scriptscriptstyle 1,2,1,N_1} \\
-            C^A_{\scriptscriptstyle 1,2,2,1}     &                &                  &      \\
-            \vdots                             &                & \ddots           &      \\
-            C^A_{\scriptscriptstyle 1,2,N_1,1}   &                &                  &    C^A_{\scriptscriptstyle 1,2,N_1, N_1} 
-        \end{pmatrix}$
-    };
-    \node [] (h21) [left=1pt of a2] {$N_1$};
-    \node [] (w21) [above=1pt of a2] {$N_2$};
-
-    %second
-    \node [] (b2) [right = 1cm of a2] {
-        $\begin{pmatrix}  
-            C^B_{\scriptscriptstyle 1,2,1,1}     &   C^B_{\scriptscriptstyle 1,2,1,1}  & \cdots    &    C^B_{\scriptscriptstyle 1,2,1,N_2} \\
-            C^B_{\scriptscriptstyle 1,2,2,1}     &                &                  &      \\
-            \vdots                             &                & \ddots           &      \\
-            C^B_{\scriptscriptstyle 1,2,N_2,1}   &                &                  &    C^B_{\scriptscriptstyle 1,2,N_1, N_2} 
-        \end{pmatrix}$
-    };
-    \node [] (h22) [left=-.2cm of b2] {$\scriptstyle N_1 + N_2$};
-    \node [] (w22) [above=1pt of b2] {$73$};
-
-    %third
-    \node [] (c2) [right = 1cm of b2] {
-        $\begin{pmatrix}  
-            m_{\scriptscriptstyle 1,2,0}     &   m_{\scriptscriptstyle 1,2,1}  & \cdots    &    m_{\scriptscriptstyle 1,2,72}
-        \end{pmatrix}$
-    };
-    \node [] (w3) [above=1pt of b2] {$73$};
-    \draw [->] (b1.east) to (c1.west);
-
-    \node [] (transition) [below=1cm of a2] {};
-    
-    %Second Row
-    %first
-    \node [] (a3) [below=1cm of transition] {
-        $\begin{pmatrix}  
-            C^A_{\scriptscriptstyle 22,23,1,1}     &   C^A_{\scriptscriptstyle 22,23,1,1}  & \cdots    &    C^A_{\scriptscriptstyle 22,23,1,N_1} \\
-            C^A_{\scriptscriptstyle 22,23,2,1}     &                &                  &      \\
-            \vdots                             &                & \ddots           &      \\
-            C^A_{\scriptscriptstyle 22,23,N_1,1}   &                &                  &    C^A_{\scriptscriptstyle 22,23,N_1, N_1} 
-        \end{pmatrix}$
-    };
-    \node [] (h31) [left=1pt of a3] {$N_1$};
-    \node [] (w31) [above=1pt of a3] {$N_2$};
-
-    \node [] (transition) [] {};
-
-    %second
-    \node [] (b3) [right = 1cm of a3] {
-        $\begin{pmatrix}  
-            C^B_{\scriptscriptstyle 22,23,1,1}     &   C^B_{\scriptscriptstyle 22,23,1,1}  & \cdots    &    C^B_{\scriptscriptstyle 22,23,1,N_2} \\
-            C^B_{\scriptscriptstyle 22,23,2,1}     &                &                  &      \\
-            \vdots                             &                & \ddots           &      \\
-            C^B_{\scriptscriptstyle 22,23,N_2,1}   &                &                  &    C^B_{\scriptscriptstyle 22,23,N_1, N_2} 
-        \end{pmatrix}$
-    };
-    \node [] (h32) [left=-.2cm of b3] {$\scriptstyle N_1 + N_2$};
-    \node [] (w32) [above=1pt of b3] {$73$};
-
-    %third
-    \node [] (c3) [right = 1cm of b3] {
-        $\begin{pmatrix}  
-            m_{\scriptscriptstyle 22,23,0}     &   m_{\scriptscriptstyle 22,23,1}  & \cdots    &    m_{\scriptscriptstyle 22,23,72}
-        \end{pmatrix}$
-    };
-    \node [] (w3) [above=1pt of b3] {$73$};
-    \draw [->] (b1.east) to (c1.west);
-
-
-\end{tikzpicture}}
 \bibliography{lit}
 \bibliographystyle{unsrt}
 \end{document}
