@@ -1,0 +1,148 @@
+\tikzset{
+    myArrow/.style={
+    single arrow,
+    draw,
+    scale=.8,
+    shade, shading=axis, left color=orange, right color=yellow,
+    shading angle=45,
+    blur shadow={shadow blur steps=5,shadow blur extra rounding=1.3pt},
+    line width = 5pt
+    }
+}\begin{figure*}
+\resizebox{\linewidth}{!}{
+\begin{tikzpicture}
+    \node [] (a) at (0, 0) {
+    \centering
+        \begin{tabular}{lllllp{1cm}ll}
+            &\multicolumn{1}{c}{\textbf
+            {\fontsize{.1\linewidth}{.1\linewidth}\selectfont Sell A graphlets ($\Huge \mathbf{S}^A_{i,j}$)}}  
+            & \multicolumn{1}{c}{\textbf{\fontsize{.1\linewidth}{.1\linewidth}
+            \selectfont Sell B graphlets ($\Huge \mathbf{S}^B_{i,j}$)}} 
+            && \multicolumn{1}{c}{\textbf{\fontsize{.1\linewidth}{.1\linewidth}\selectfont Correlation Vector ($\Huge \mathbf{m}^{A,B}_{i,j}$)}} 
+            &&  \vspace{.5cm} \\
+        &\multicolumn{1}{c}{$N_1$}  & \multicolumn{1}{c}{73} && \multicolumn{1}{c}{73} \vspace{.5cm}\\
+        \rule{0pt}{40pt}
+        $N_1$ &
+        \resizebox{\linewidth}{!}{%
+        $\begin{pmatrix}  
+            S^A_{\scriptscriptstyle 1,1,1,1}     &   S^A_{\scriptscriptstyle 1,1,1,1}  & \cdots    &    S^A_{\scriptscriptstyle 1,1,1,N_1} \\
+            S^A_{\scriptscriptstyle 1,1,2,1}     &                &                  &      \\
+            \vdots                             &                & \ddots           &      \\
+            S^A_{\scriptscriptstyle 1,1,N_1,1}   &                &                  &    S^A_{\scriptscriptstyle 1,1,N_1, N_1} 
+        \end{pmatrix}$} &
+        \resizebox{\linewidth}{!}{%
+        $\begin{pmatrix}  
+            S^B_{\scriptscriptstyle 1,1,1,1}     &   S^B_{\scriptscriptstyle 1,1,1,1}  & \cdots    &    S^B_{\scriptscriptstyle 1,1,1,N_1} \\
+            S^B_{\scriptscriptstyle 1,1,2,1}     &                &                  &      \\
+            \vdots                             &                & \ddots           &      \\
+            S^B_{\scriptscriptstyle 1,1,N_1,1}   &                &                  &    S^B_{\scriptscriptstyle 1,1,N_1, N_1} 
+        \end{pmatrix}$} &
+        \begin{tikzpicture}
+            \draw [->, myArrow] (0, 0) -> (2, 0);
+        \end{tikzpicture} &
+        \resizebox{\linewidth}{!}{%
+        $\begin{pmatrix}  
+            m_{\scriptscriptstyle 1,1,0}     &   m_{\scriptscriptstyle 1,1,1}  & \cdots    &    m_{\scriptscriptstyle 1,1,73}
+        \end{pmatrix}$} \vspace{1cm}\\
+
+
+        &\multicolumn{1}{c}{$N_2$}  & \multicolumn{1}{c}{73} && \multicolumn{1}{c}{73} \vspace{.5cm}\\
+        \rule{0pt}{45pt}
+        $N_1$ &
+        \resizebox{\linewidth}{!}{%
+        $\begin{pmatrix}  
+            S^A_{\scriptscriptstyle 1,2,1,1}     &   S^A_{\scriptscriptstyle 1,2,1,1}  & \cdots    &    S^A_{\scriptscriptstyle 1,2,1,N_1} \\
+            S^A_{\scriptscriptstyle 1,2,2,1}     &                &                  &      \\
+            \vdots                             &                & \ddots           &      \\
+            S^A_{\scriptscriptstyle 1,2,N_1,1}   &                &                  &    S^A_{\scriptscriptstyle 1,2,N_1, N_1} 
+        \end{pmatrix}$}&
+        \resizebox{\linewidth}{!}{%
+        $\begin{pmatrix}  
+            S^B_{\scriptscriptstyle 1,2,1,1}     &   S^B_{\scriptscriptstyle 1,2,1,1}  & \cdots    &    S^B_{\scriptscriptstyle 1,2,1,N_2} \\
+            S^B_{\scriptscriptstyle 1,2,2,1}     &                &                  &      \\
+            \vdots                             &                & \ddots           &      \\
+            S^B_{\scriptscriptstyle 1,2,N_2,1}   &                &                  &    S^B_{\scriptscriptstyle 1,2,N_1, N_2} 
+        \end{pmatrix}$}&
+        \begin{tikzpicture}
+            \draw [->, myArrow] (0, 0) -> (2, 0);
+        \end{tikzpicture} &
+        \resizebox{\linewidth}{!}{%
+        $\begin{pmatrix}  
+            m_{\scriptscriptstyle 1,2,0}     &   m_{\scriptscriptstyle 1,2,1}  & \cdots    &    m_{\scriptscriptstyle 1,2,73}
+        \end{pmatrix}$} \vspace{1cm}\\
+
+        &\multicolumn{1}{c}{\Large o}  & \multicolumn{1}{c}{\Large o} 
+            && \multicolumn{1}{c}{\Large o} \vspace{1cm}
+            && \multicolumn{1}{c}{\textbf{\fontsize{.1\linewidth}{.1\linewidth}\selectfont Sorrelation Matrix ($\mathbf{M}^{A,B}_{i,j}$)}} \\
+            &&&&&&\multicolumn{1}{c}{73}\\
+        &\multicolumn{1}{c}{\Large o}  & \multicolumn{1}{c}{\Large o} && \multicolumn{1}{c}{\Large o} 
+        &&276\resizebox{\linewidth}{!}{%
+        $\begin{pmatrix}  
+            m_{\scriptscriptstyle 1,1,0}     &   m_{\scriptscriptstyle 1,1,1}  & \cdots    &    m_{\scriptscriptstyle 1,1,73} \\ 
+            m_{\scriptscriptstyle 1,2,0}     &   m_{\scriptscriptstyle 1,2,1}  & \cdots    &    m_{\scriptscriptstyle 1,2,73} \\ 
+            \vdots & \vdots & \vdots \\
+            m_{\scriptscriptstyle 22,23,0}     &   m_{\scriptscriptstyle 22,23,1}  & \cdots    &    m_{\scriptscriptstyle 22,23,73} \\ 
+            m_{\scriptscriptstyle 22,23,0}     &   m_{\scriptscriptstyle 22,23,1}  & \cdots    &    m_{\scriptscriptstyle 22,23,73}
+        \end{pmatrix}$} \vspace{1cm}\\
+        
+        &\multicolumn{1}{c}{\Large o}  & \multicolumn{1}{c}{\Large o} && \multicolumn{1}{c}{\Large o} \vspace{1cm}\\
+
+        &\multicolumn{1}{c}{$N_{23}$}  & \multicolumn{1}{c}{73} && \multicolumn{1}{c}{73} \vspace{.5cm}\\
+        \rule{0pt}{45pt}
+        $N_{22}$ &
+        \resizebox{\linewidth}{!}{%
+        $\begin{pmatrix}  
+            S^A_{\scriptscriptstyle 22,23,1,1}     &   S^A_{\scriptscriptstyle 22,23,1,1}  & \cdots    &    S^A_{\scriptscriptstyle 22,23,1,N_1} \\
+            S^A_{\scriptscriptstyle 22,23,2,1}     &                &                  &      \\
+            \vdots                             &                & \ddots           &      \\
+            S^A_{\scriptscriptstyle 22,23,N_1,1}   &                &                  &    S^A_{\scriptscriptstyle 22,23,N_1, N_1} 
+        \end{pmatrix}$}&
+        \resizebox{\linewidth}{!}{%
+        $\begin{pmatrix}  
+            S^B_{\scriptscriptstyle 22,23,1,1}     &   S^B_{\scriptscriptstyle 22,23,1,1}  & \cdots    &    S^B_{\scriptscriptstyle 22,23,1,N_2} \\
+            S^B_{\scriptscriptstyle 22,23,2,1}     &                &                  &      \\
+            \vdots                             &                & \ddots           &      \\
+            S^B_{\scriptscriptstyle 22,23,N_2,1}   &                &                  &    S^B_{\scriptscriptstyle 22,23,N_1, N_2} 
+        \end{pmatrix}$}&
+        \begin{tikzpicture}
+            \draw [->, myArrow] (0, 0) -> (2, 0);
+        \end{tikzpicture} &
+        \resizebox{\linewidth}{!}{%
+        $\begin{pmatrix}  
+            m_{\scriptscriptstyle 22,23,0}     &   m_{\scriptscriptstyle 22,23,1}  & \cdots    &    m_{\scriptscriptstyle 22,23,73}
+        \end{pmatrix}$} \vspace{1cm}\\
+
+        &\multicolumn{1}{c}{$N_{23}$}  & \multicolumn{1}{c}{73} && \multicolumn{1}{c}{73} \vspace{.5cm}\\
+        \rule{0pt}{45pt}
+        $N_{23}$ &
+        \resizebox{\linewidth}{!}{%
+        $\begin{pmatrix}  
+            S^A_{\scriptscriptstyle 22,23,1,1}     &   S^A_{\scriptscriptstyle 22,23,1,1}  & \cdots    &    S^A_{\scriptscriptstyle 22,23,1,N_1} \\
+            S^A_{\scriptscriptstyle 22,23,2,1}     &                &                  &      \\
+            \vdots                             &                & \ddots           &      \\
+            S^A_{\scriptscriptstyle 22,23,N_1,1}   &                &                  &    S^A_{\scriptscriptstyle 22,23,N_1, N_1} 
+        \end{pmatrix}$}&
+        \resizebox{\linewidth}{!}{%
+        $\begin{pmatrix}  
+            S^B_{\scriptscriptstyle 22,23,1,1}     &   S^B_{\scriptscriptstyle 22,23,1,1}  & \cdots    &    S^B_{\scriptscriptstyle 22,23,1,N_2} \\
+            S^B_{\scriptscriptstyle 22,23,2,1}     &                &                  &      \\
+            \vdots                             &                & \ddots           &      \\
+            S^B_{\scriptscriptstyle 22,23,N_2,1}   &                &                  &    S^B_{\scriptscriptstyle 22,23,N_1, N_2} 
+        \end{pmatrix}$}&
+        \begin{tikzpicture}
+            \draw [->, myArrow] (0, 0) -> (2, 0);
+        \end{tikzpicture} &
+        \resizebox{\linewidth}{!}{%
+        $\begin{pmatrix}  
+            m_{\scriptscriptstyle 22,23,0}     &   m_{\scriptscriptstyle 22,23,1}  & \cdots    &    m_{\scriptscriptstyle 22,23,73}
+        \end{pmatrix}$}\vspace{1cm}
+
+    \end{tabular}
+};
+\node [] (b) [above right = 1cm and -1.45\linewidth of a] {};
+\node [] (c) [below right = 1cm and -1.45\linewidth of a] {};
+\draw [line width = 5pt, decorate,decoration={brace,amplitude=50pt},xshift=-6pt,yshift=0pt]
+ (b.south) -- (c.north)  {};
+\end{tikzpicture}}
+\end{figure*}
+
