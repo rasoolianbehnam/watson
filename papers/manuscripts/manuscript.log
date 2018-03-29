@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.16)  28 MAR 2018 13:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.11.3)  28 MAR 2018 22:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -951,26 +951,29 @@ File: tikzlibrarycalc.code.tex 2013/07/15 v3.0.1a (rcs-revision 1.9)
 ))
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... none found.
- (./manuscript.aux)
+ (./manuscript.aux
+
+LaTeX Warning: Label `tab:t-test' multiply defined.
+
+)
 \openout1 = `manuscript.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 29.
-
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 30.
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
@@ -1001,11 +1004,11 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Package crop Info: requested driver: `' on input line 29.
-Package crop Info: detected driver: `pdftex' on input line 29.
-Package crop Info: using `pdftex' graphics driver on input line 29.
+Package crop Info: requested driver: `' on input line 30.
+Package crop Info: detected driver: `pdftex' on input line 30.
+Package crop Info: using `pdftex' graphics driver on input line 30.
 \AtBeginShipoutBox=\box92
-Package hyperref Info: Link coloring OFF on input line 29.
+Package hyperref Info: Link coloring OFF on input line 30.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -1015,9 +1018,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count168
 )
-LaTeX Info: Redefining \ref on input line 29.
-LaTeX Info: Redefining \pageref on input line 29.
-LaTeX Info: Redefining \nameref on input line 29.
+LaTeX Info: Redefining \ref on input line 30.
+LaTeX Info: Redefining \pageref on input line 30.
+LaTeX Info: Redefining \nameref on input line 30.
 
 (./manuscript.out) (./manuscript.out)
 \@outlinefile=\write5
@@ -1029,108 +1032,108 @@ Package caption Info: End \AtBeginDocument code.
 
 Package hyperref Warning: bookmark level for unknown article defaults to 0.
 
-LaTeX Font Info:    Try loading font information for OT1+phv on input line 51.
+LaTeX Font Info:    Try loading font information for OT1+phv on input line 52.
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1phv.fd
 File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 51.
+LaTeX Font Info:    Try loading font information for U+msa on input line 52.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 51.
+LaTeX Font Info:    Try loading font information for U+msb on input line 52.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+lasy on input line 51.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 52.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
 
 LaTeX Font Warning: Font shape `OT1/phv/n/n' undefined
-(Font)              using `OT1/phv/m/n' instead on input line 51.
+(Font)              using `OT1/phv/m/n' instead on input line 52.
 
 
-Overfull \hbox (267.0pt too wide) in paragraph at lines 51--51
+Overfull \hbox (267.0pt too wide) in paragraph at lines 52--52
 [][] 
  []
 
 
-Underfull \hbox (badness 4686) in paragraph at lines 54--60
+Underfull \hbox (badness 4686) in paragraph at lines 55--61
 []\OT1/phv/b/n/10 In this study, we investigated dissimilarities
  []
 
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 152.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 153.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-Underfull \hbox (badness 2221) in paragraph at lines 158--165
+Underfull \hbox (badness 2221) in paragraph at lines 159--166
 \OT1/ptm/m/n/10 a \OT1/ptm/m/it/10 significant \OT1/ptm/m/n/10 interaction betw
 een the loci. This can be
  []
 
 
-Underfull \hbox (badness 1184) in paragraph at lines 166--177
+Underfull \hbox (badness 1184) in paragraph at lines 167--178
 \OT1/ptm/m/n/10 could consider thresholding the contact maps by simply
  []
 
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 177.
-LaTeX Font Info:    Calculating math sizes for size <7.5> on input line 177.
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 178.
+LaTeX Font Info:    Calculating math sizes for size <7.5> on input line 178.
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <7.5> not available
-(Font)              size <7> substituted on input line 177.
+(Font)              size <7> substituted on input line 178.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <3.75> not available
-(Font)              size <5> substituted on input line 177.
+(Font)              size <5> substituted on input line 178.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <7.5> not available
-(Font)              size <7> substituted on input line 177.
+(Font)              size <7> substituted on input line 178.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <3.75> not available
-(Font)              size <5> substituted on input line 177.
+(Font)              size <5> substituted on input line 178.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <7.5> not available
-(Font)              size <7> substituted on input line 177.
+(Font)              size <7> substituted on input line 178.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <3.75> not available
-(Font)              size <5> substituted on input line 177.
+(Font)              size <5> substituted on input line 178.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <7.5> not available
-(Font)              size <7> substituted on input line 177.
+(Font)              size <7> substituted on input line 178.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <3.75> not available
-(Font)              size <5> substituted on input line 177.
+(Font)              size <5> substituted on input line 178.
 
 
 LaTeX Font Warning: Font shape `U/lasy/m/n' in size <7.5> not available
-(Font)              size <7> substituted on input line 177.
+(Font)              size <7> substituted on input line 178.
 
 
 LaTeX Font Warning: Font shape `U/lasy/m/n' in size <3.75> not available
-(Font)              size <5> substituted on input line 177.
+(Font)              size <5> substituted on input line 178.
 
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 177.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 178.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <7.5> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 177.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 178.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <7.5> not available
-(Font)              size <7> substituted on input line 177.
+(Font)              size <7> substituted on input line 178.
 
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
@@ -1141,21 +1144,21 @@ File: figures/local_thresholded_chr1_chr1.png Graphic file (type png)
 
 <use figures/local_thresholded_chr1_chr1.png>
 Package pdftex.def Info: figures/local_thresholded_chr1_chr1.png used on input 
-line 190.
+line 191.
 (pdftex.def)             Requested size: 257.0pt x 342.66853pt.
 
-Overfull \hbox (10.0pt too wide) in paragraph at lines 190--195
+Overfull \hbox (10.0pt too wide) in paragraph at lines 191--196
  [][] 
  []
 
 
-Underfull \hbox (badness 5316) in paragraph at lines 195--195
+Underfull \hbox (badness 5316) in paragraph at lines 196--196
 []\OT1/ptm/b/n/8 Figure 1. \OT1/ptm/m/n/8 Result of thresholding interchromosom
 al contact map of
  []
 
 
-Underfull \hbox (badness 1194) in paragraph at lines 178--198
+Underfull \hbox (badness 1194) in paragraph at lines 179--199
 \OT1/ptm/m/it/10 adaptive thresholding \OT1/ptm/m/n/10 from image processing co
 ntext. In
  []
@@ -1164,11 +1167,11 @@ ntext. In
 File: figures/graphlet_extraction.png Graphic file (type png)
 
 <use figures/graphlet_extraction.png>
-Package pdftex.def Info: figures/graphlet_extraction.png used on input line 212
+Package pdftex.def Info: figures/graphlet_extraction.png used on input line 213
 .
 (pdftex.def)             Requested size: 257.0pt x 198.59369pt.
 
-Overfull \hbox (10.0pt too wide) in paragraph at lines 212--218
+Overfull \hbox (10.0pt too wide) in paragraph at lines 213--219
  [][] 
  []
 
@@ -1177,70 +1180,74 @@ File: figures/graphlet_distance_schema.png Graphic file (type png)
 
 <use figures/graphlet_distance_schema.png>
 Package pdftex.def Info: figures/graphlet_distance_schema.png used on input lin
-e 230.
+e 231.
 (pdftex.def)             Requested size: 257.0pt x 242.50778pt.
 
-Overfull \hbox (10.0pt too wide) in paragraph at lines 230--238
+Overfull \hbox (10.0pt too wide) in paragraph at lines 231--239
  [][] 
  []
 
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 238.
-<figures/graphlet_correlation_schema.png, id=107, 794.97pt x 613.8pt>
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 239.
+<figures/graphlet_correlation_schema.png, id=107, 3179.88pt x 2457.18pt>
 File: figures/graphlet_correlation_schema.png Graphic file (type png)
 
 <use figures/graphlet_correlation_schema.png>
 Package pdftex.def Info: figures/graphlet_correlation_schema.png used on input 
-line 243.
-(pdftex.def)             Requested size: 257.0pt x 198.43365pt.
+line 244.
+(pdftex.def)             Requested size: 257.0pt x 198.56557pt.
 
-Overfull \hbox (10.0pt too wide) in paragraph at lines 243--254
+Overfull \hbox (10.0pt too wide) in paragraph at lines 244--255
  [][] 
  []
 
 
-LaTeX Warning: Reference `eq:h2a' on page 2 undefined on input line 254.
+LaTeX Warning: Reference `eq:h2a' on page 2 undefined on input line 255.
 
 
-LaTeX Warning: Reference `eq:h2b' on page 2 undefined on input line 254.
+LaTeX Warning: Reference `eq:h2b' on page 2 undefined on input line 255.
 
 
-LaTeX Warning: Reference `eq:h2a' on page 2 undefined on input line 254.
+LaTeX Warning: Reference `eq:h2a' on page 2 undefined on input line 255.
 
 
-LaTeX Warning: Reference `eq:h2b' on page 2 undefined on input line 254.
+LaTeX Warning: Reference `eq:h2b' on page 2 undefined on input line 255.
 
 [2 <./figures/local_thresholded_chr1_chr1.png> <./figures/graphlet_extraction.p
 ng> <./figures/graphlet_distance_schema.png>]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 284.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 285.
 
-Underfull \hbox (badness 1342) in paragraph at lines 304--332
+Underfull \hbox (badness 1342) in paragraph at lines 305--333
 \OT1/ptm/m/n/10 be calculate using any plausible correlation measure. In
  []
 
 
-Underfull \hbox (badness 1237) in paragraph at lines 304--332
+Underfull \hbox (badness 1237) in paragraph at lines 305--333
 \OT1/ptm/m/n/10 between orbit distributions using Pearson's r correlation,
  []
 
 
-Underfull \hbox (badness 1354) in paragraph at lines 347--381
+Underfull \hbox (badness 1354) in paragraph at lines 348--382
 \OT1/ptm/m/n/9 is not statistically different from $\OT1/cmr/bx/n/9 d[]$ \OT1/p
 tm/m/n/9 between graphlets
  []
 
 
-Underfull \hbox (badness 1092) in paragraph at lines 382--402
+Underfull \hbox (badness 1092) in paragraph at lines 383--403
 []\OT1/ptm/m/n/9 We caclulated pair-wise MIC for each orbit in each of the
  []
 
-[3 <./figures/graphlet_correlation_schema.png>]
-<figures/orbit-distances_all.png, id=147, 1461.46pt x 540.0175pt>
+[3 <./figures/graphlet_correlation_schema.png
+
+pdfTeX warning: pdflatex (file ./figures/graphlet_correlation_schema.png): larg
+e interlaced PNG might cause out of memory (use non-interlaced PNG to fix this)
+
+>] <figures/orbit-distances_all.png, id=147, 1461.46pt x 540.0175pt>
 File: figures/orbit-distances_all.png Graphic file (type png)
 
 <use figures/orbit-distances_all.png>
-Package pdftex.def Info: figures/orbit-distances_all.png used on input line 414
+Package pdftex.def Info: figures/orbit-distances_all.png used on input line 415
 .
 (pdftex.def)             Requested size: 257.0pt x 94.95767pt.
 
@@ -1249,7 +1256,7 @@ File: figures/contact_maps_correlations_all.png Graphic file (type png)
 
 <use figures/contact_maps_correlations_all.png>
 Package pdftex.def Info: figures/contact_maps_correlations_all.png used on inpu
-t line 419.
+t line 420.
 (pdftex.def)             Requested size: 257.0pt x 96.42052pt.
 
 <figures/orbits_correlations_all.png, id=149, 1463.4675pt x 549.05125pt>
@@ -1257,51 +1264,72 @@ File: figures/orbits_correlations_all.png Graphic file (type png)
 
 <use figures/orbits_correlations_all.png>
 Package pdftex.def Info: figures/orbits_correlations_all.png used on input line
- 424.
+ 425.
 (pdftex.def)             Requested size: 257.0pt x 96.42052pt.
 
-Overfull \hbox (10.0pt too wide) in paragraph at lines 413--458
+Overfull \hbox (10.0pt too wide) in paragraph at lines 414--459
  [][] 
  []
 
 
-Overfull \hbox (10.0pt too wide) in paragraph at lines 413--458
+Overfull \hbox (10.0pt too wide) in paragraph at lines 414--459
  [] 
  []
 
 
-Overfull \hbox (10.0pt too wide) in paragraph at lines 413--458
+Overfull \hbox (10.0pt too wide) in paragraph at lines 414--459
  [] 
  []
 
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 469.
+               Default added (so using `tbp') on input line 470.
 
-LaTeX Font Info:    Try loading font information for OML+ptm on input line 489.
+LaTeX Font Info:    Try loading font information for OML+ptm on input line 490.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omlptm.fd
 File: omlptm.fd 
 )
 LaTeX Font Info:    Font shape `OML/ptm/m/n' in size <10> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 489.
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 490.
 
-Overfull \hbox (9.9993pt too wide) in paragraph at lines 471--490
+Overfull \hbox (9.9993pt too wide) in paragraph at lines 472--491
  [][] 
  []
 
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 495.
-(./manuscript.bbl) [4 <./figures/orbit-distances_all.png> <./figures/contact_ma
-ps_correlations_all.png> <./figures/orbits_correlations_all.png>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 517.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 517.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 496.
 
-(./manuscript.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 517.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 517.
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 516.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <20.74> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 637.
+
+Overfull \hbox (9.99875pt too wide) in paragraph at lines 518--638
+ [][] 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [4 <./figures/orbit-distances_all.png> <./figures/contact_maps_correlations_al
+l.png> <./figures/orbits_correlations_all.png>] (./manuscript.bbl
+Overfull \hbox (19.99506pt too wide) in paragraph at lines 644--1
+[][] 
+ []
+
+)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 756.
+ [5
+
+]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 756.
+ (./manuscript.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 756.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 756.
 Package rerunfilecheck Info: File `manuscript.out' has not changed.
-(rerunfilecheck)             Checksum: 2401838B83EAB0D83A43D8A28C764AAF;388.
+(rerunfilecheck)             Checksum: 7A5593CF0D600CE205D7861855B63943;388.
 
 
 LaTeX Font Warning: Size substitutions with differences
@@ -1313,20 +1341,23 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 517.
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 756.
  ) 
 Here is how much of TeX's memory you used:
- 22630 strings out of 493029
- 444180 string characters out of 6136233
- 554807 words of memory out of 5000000
- 25600 multiletter control sequences out of 15000+600000
- 48121 words of font info for 111 fonts, out of 8000000 for 9000
+ 22835 strings out of 493029
+ 447404 string characters out of 6136234
+ 585846 words of memory out of 5000000
+ 25799 multiletter control sequences out of 15000+600000
+ 55556 words of font info for 132 fonts, out of 8000000 for 9000
  1150 hyphenation exceptions out of 8191
- 55i,18n,89p,1653b,480s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,20n,89p,1653b,671s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exi
 st, replaced by a fixed one
 
-pdfTeX warning (dest): name{section*.14} has been referenced but does not exist
+pdfTeX warning (dest): name{section*.15} has been referenced but does not exist
 , replaced by a fixed one
 
 pdfTeX warning (dest): name{section*.13} has been referenced but does not exist
@@ -1347,31 +1378,33 @@ dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texmf-dist/fonts/typ
 e1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
 lic/amsfonts/cmextra/cmex8.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.
-pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.p
-fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/latxfont/lcircle1
-.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.
-pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/t
-exmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fo
-nts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/t
-imes/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pf
-b></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on manuscript.pdf (4 pages, 1353050 bytes).
+c/amsfonts/cmextra/cmex9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.p
+fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
+msy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr
+/share/texlive/texmf-dist/fonts/type1/public/amsfonts/latxfont/lcircle1.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type
+1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utm
+bi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on manuscript.pdf (5 pages, 1588537 bytes).
 PDF statistics:
- 282 PDF objects out of 1000 (max. 8388607)
- 209 compressed objects within 3 object streams
- 40 named destinations out of 1000 (max. 500000)
+ 295 PDF objects out of 1000 (max. 8388607)
+ 219 compressed objects within 3 object streams
+ 42 named destinations out of 1000 (max. 500000)
  192 words of extra memory for PDF output out of 10000 (max. 10000000)
 
