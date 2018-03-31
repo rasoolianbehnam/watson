@@ -145,7 +145,7 @@ def readMat(fileName, delimiter="\t", ignoreHeader=False, remove_blanks=False, v
         observed, a, b = removeBlankRowsAndColumns(observed)
     return observed
 
-def readYamlIntensities(filename, res, delimiter="\t", remove_blanks=False):
+def readYamlIntensities(filename, res, delimiter="\t", remove_blanks=False, symmetric=False):
     """
     Function:
     --------- 
@@ -174,7 +174,8 @@ def readYamlIntensities(filename, res, delimiter="\t", remove_blanks=False):
     for line in lines:
         #print line
         img[line[0], line[1]] = line[2]
-        img[line[1], line[0]] = line[2]
+        if symmetric:
+            img[line[1], line[0]] = line[2]
     if remove_blanks:
         img, a, b  = removeBlankRowsAndColumns(img)
     return img
@@ -817,3 +818,59 @@ def local_threshold(mat, k=1, method='max', t=1, \
                 if np.sum(mat3[i_low:i_high, j_low:j_high]) < s:
                     mat2[i, j] = 0
     return mat2
+
+def _fromLowToHigh(i, l1, l2):
+    k1 = 1
+    while k1 < len(l1) and i > l1[k1, 0]:
+                k1 += 1
+    k1 -= 1
+    if k1 > 1:
+                remi = i % l1[k1, 0]
+    else:
+                remi = i
+    
+    if remi > l1[k1, 1]:
+                print -1
+    return l2[k1, 0] + remi
+
+def _convertIndices(i, j):
+        return (fromLowToHigh(i, nss_low, nss_high), fromLowToHigh(j, nss_low, nss_high))
+def loadData(halfSize=11, root="data/"):
+    nss_low = np.load("length_low_res.npy")
+    nss_high = np.load("length_high_res.npy")
+    mit_low = np.load("mit_low_res.npy")
+    mit_high = np.load("mit_high_res.npy")   
+    halfSize = 11
+    n_low = mit_low.shape[0]
+    n_high = mit_high.shape[0] 
+    print(n_low, n_high)
+    XXX = []
+    YYY = []
+    for chr1 in range(1, 24):
+        for chr2 in range(chr1, 24):
+            n1 = nss_low[chr1, 1]
+            n2 = nss_high[chr1, 1]
+            n = np.min([n1, n2])
+            m1 = nss_low[chr2, 1]
+            m2 = nss_high[chr2, 1]
+            m = np.min([m1, m2])       
+            beg_x_low = nss_low[chr1, 0]
+            beg_y_low = nss_low[chr2, 0]
+            beg_x_high = nss_high[chr1, 0]
+            beg_y_high = nss_high[chr2, 0]       
+            for i in range(n):
+                for j in range(m):
+                    xLow = beg_x_low+i
+                    yLow = beg_y_low+j
+                    xHigh = beg_x_high+i
+                    yHigh = beg_y_high+j
+                    if xLow < yLow:
+                                                continue
+                    #print(chr1, chr2, xLow, yLow, xHigh, yHigh)
+                    X = mit_low[xLow-halfSize:xLow+halfSize+1, yLow-halfSize:yLow+halfSize+1]
+                    Y = mit_high[xLow, yLow]
+                    if X.shape[0] != 2*halfSize+1 or X.shape[1] != 2*halfSize+1:
+                                                continue
+                    XXX.append(X)
+                    YYY.append(Y)
+    return XXX, YYY
