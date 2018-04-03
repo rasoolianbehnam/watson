@@ -22,7 +22,7 @@ def eigendecompose(a):
     w = w / t
     v = v * t * t
     print("result of multiplying eigenvalues and eigenvectors:")
-    print v.dot(np.diag(w)).dot(np.linalg.inv(v))*t
+    print(v.dot(np.diag(w)).dot(np.linalg.inv(v))*t)
     return w, v/t/t
 
 def writeMatToImage(mat, fileName):
@@ -125,9 +125,9 @@ def readMat(fileName, delimiter="\t", ignoreHeader=False, remove_blanks=False, v
 
     """
     if verbose:
-        print "file directory:", fileName
+        print("file directory:", fileName)
     if not os.path.isfile(fileName):
-        print "File %s does not exist"%fileName
+        print("File %s does not exist"%fileName)
         sys.exit(2)
     file = open(fileName, 'r')
     if ignoreHeader:
@@ -192,7 +192,7 @@ def getBlankRowsAndColumns(mat, thresh=1):
     return blankRows, blankCols
 
 def removeRowsAndColumns(mat, blankRows, blankCols):
-    print "size of old matrix:", mat.shape
+    print("size of old matrix:", mat.shape)
     blankRows = sorted(blankRows, reverse=True)
     blankCols = sorted(blankCols, reverse=True)
     matrixWithRowAndColumnsRemoved = mat
@@ -200,11 +200,11 @@ def removeRowsAndColumns(mat, blankRows, blankCols):
         matrixWithRowAndColumnsRemoved = np.delete(matrixWithRowAndColumnsRemoved, i, 0)
     for i in blankCols:
         matrixWithRowAndColumnsRemoved = np.delete(matrixWithRowAndColumnsRemoved, i, 1)
-    print "size of new matrix:", matrixWithRowAndColumnsRemoved.shape
+    print("size of new matrix:", matrixWithRowAndColumnsRemoved.shape)
     return matrixWithRowAndColumnsRemoved
 
 def removeBlankRowsAndColumns(mat, thresh=1):
-    print "size of old matrix:", mat.shape
+    print("size of old matrix:", mat.shape)
     n, m = mat.shape
     blankRows, blankCols = getBlankRowsAndColumns(mat, thresh=thresh)
     symmetric = True
@@ -215,7 +215,7 @@ def removeBlankRowsAndColumns(mat, thresh=1):
         blankRows.update(blankCols)
         blankCols = blankRows
     matrixWithRowAndColumnsRemoved = removeRowsAndColumns(mat, blankRows, blankCols)
-    print "size of new matrix:", matrixWithRowAndColumnsRemoved.shape
+    print("size of new matrix:", matrixWithRowAndColumnsRemoved.shape)
     return matrixWithRowAndColumnsRemoved, Set(blankRows), Set(blankCols)
 
 def pearson_nonsym(a, b):
@@ -835,11 +835,11 @@ def _fromLowToHigh(i, l1, l2):
 
 def _convertIndices(i, j):
         return (fromLowToHigh(i, nss_low, nss_high), fromLowToHigh(j, nss_low, nss_high))
-def loadData(halfSize=11, root="data/"):
-    nss_low = np.load("length_low_res.npy")
-    nss_high = np.load("length_high_res.npy")
-    mit_low = np.load("mit_low_res.npy")
-    mit_high = np.load("mit_high_res.npy")   
+def loadData(halfSize=11, root="./"):
+    nss_low = np.load("%s/length_low_res.npy"%root)
+    nss_high = np.load("%s/length_high_res.npy"%root)
+    mit_low = np.load("%s/mit_low_res.npy"%root)
+    mit_high = np.load("%s/mit_high_res.npy"%root)   
     halfSize = 11
     n_low = mit_low.shape[0]
     n_high = mit_high.shape[0] 
