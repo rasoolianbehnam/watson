@@ -11,3 +11,4 @@ papers/*.blg
 papers/*.snm
 papers/*.nav
 papers/*.bbl
+*.npy
