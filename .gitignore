@@ -6,3 +6,4 @@ virt
 *.out
 *.npy
 iced
+data
