@@ -1,15 +1,8 @@
-virt/*
+virt
 *.pyc
 *.swp
 *.swo
 *.aux
 *.out
-logs/*.log
-papers/*.log
-papers/*.toc
-papers/*.blg
-papers/*.snm
-papers/*.nav
-papers/*.bbl
 *.npy
-iced/
+iced
