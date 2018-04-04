@@ -12,3 +12,4 @@ papers/*.snm
 papers/*.nav
 papers/*.bbl
 *.npy
+iced/

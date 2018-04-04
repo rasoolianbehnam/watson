@@ -1,13 +1,13 @@
 import csv
 import numpy as np
 import os, errno
-import cv2
+#import cv2
 import sys
 import scipy.misc
 from scipy.stats.stats import pearsonr   
 import matplotlib.pyplot as plt
 from matplotlib import colors
-from sets import Set
+#from sets import Set
 
 def rel_error(x, y):
     """ returns relative error """
@@ -317,7 +317,7 @@ def _showImages(imageList, rows=None, cols=None, color_bar=False, titles=None, a
         cols = (len(imageList) + rows - 1) / rows
     elif rows == None:
         rows = (len(imageList) + cols - 1) / cols
-    print "Number of rows and columns: %d, %d"%(rows, cols)
+    print("Number of rows and columns: %d, %d"%(rows, cols))
     fig, axes = plt.subplots(nrows=rows, ncols=cols)
     plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=0.1, hspace=.6)
     count = 0
@@ -393,11 +393,11 @@ def convertBinaryMatToOrcaReadable(image, outputFileName=None, x_beg=0, y_beg=0)
              if outputFileName != None:
                  file.write("%d, %d\n"%(i+1+x_beg, j+1+y_beg))
              else:
-                 print i+1+x_beg, j+1+y_beg
+                 print(i+1+x_beg, j+1+y_beg)
 
 
 def readYaml(fileName, delimiter ="\t", symmetric=False, remove_blank=False):
-    print "file name =", fileName
+    print("file name =", fileName)
     file = open(fileName, 'r')
     lines = []
     min_rows = 1000000000
@@ -421,8 +421,8 @@ def readYaml(fileName, delimiter ="\t", symmetric=False, remove_blank=False):
             #print spl
         except:
             continue
-    print "min_rows = %d, max_rows = %d" %(min_rows, max_rows)
-    print "min_cols = %d, max_cols = %d"%( min_cols, max_cols)
+    print("min_rows = %d, max_rows = %d" %(min_rows, max_rows))
+    print("min_cols = %d, max_cols = %d"%( min_cols, max_cols))
     if symmetric:
         print("Symmetric on")
     
@@ -835,11 +835,15 @@ def _fromLowToHigh(i, l1, l2):
 
 def _convertIndices(i, j):
         return (fromLowToHigh(i, nss_low, nss_high), fromLowToHigh(j, nss_low, nss_high))
-def loadData(halfSize=11, root="./"):
+def loadData(halfSize=11, root="./", log_convert=False):
+    print("Starting to load data...")
     nss_low = np.load("%s/length_low_res.npy"%root)
     nss_high = np.load("%s/length_high_res.npy"%root)
     mit_low = np.load("%s/mit_low_res.npy"%root)
     mit_high = np.load("%s/mit_high_res.npy"%root)   
+    if log_convert:
+        mit_low = np.log(mit_low + 1)
+        mit_high = np.log(mit_high + 1)
     halfSize = 11
     n_low = mit_low.shape[0]
     n_high = mit_high.shape[0] 
@@ -873,4 +877,5 @@ def loadData(halfSize=11, root="./"):
                                                 continue
                     XXX.append(X)
                     YYY.append(Y)
+    print("Finished loading data.")
     return XXX, YYY
