@@ -1,0 +1,13 @@
+virt/*
+*.pyc
+*.swp
+*.swo
+*.aux
+*.out
+*.log
+*.toc
+*.blg
+*.snm
+*.nav
+*.bbl
+*.npy
