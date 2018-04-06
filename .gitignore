@@ -7,3 +7,5 @@ virt
 *.npy
 iced
 data
+.ipynp_checkpoints/
+.jupyter/
