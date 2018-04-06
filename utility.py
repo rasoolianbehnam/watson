@@ -312,11 +312,11 @@ def gaussian_normalize(heatmap):
 def _showImages(imageList, rows=None, cols=None, color_bar=False, titles=None, ax_labels=None, cmap=None, save_dir=None):
     if rows == None and cols == None:
         rows = 1
-        cols = (len(imageList) + rows - 1) / rows
+        cols = (len(imageList) + rows - 1) // rows
     elif cols == None:
-        cols = (len(imageList) + rows - 1) / rows
+        cols = (len(imageList) + rows - 1) // rows
     elif rows == None:
-        rows = (len(imageList) + cols - 1) / cols
+        rows = (len(imageList) + cols - 1) // cols
     print("Number of rows and columns: %d, %d"%(rows, cols))
     fig, axes = plt.subplots(nrows=rows, ncols=cols)
     plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=0.1, hspace=.6)
@@ -835,8 +835,9 @@ def _fromLowToHigh(i, l1, l2):
 
 def _convertIndices(i, j):
         return (fromLowToHigh(i, nss_low, nss_high), fromLowToHigh(j, nss_low, nss_high))
-def loadData(halfSize=11, root="./", log_convert=False):
+def loadDataOld(halfSize=11, root="./", log_convert=False):
     print("Starting to load data...")
+    map = {}
     nss_low = np.load("%s/length_low_res.npy"%root)
     nss_high = np.load("%s/length_high_res.npy"%root)
     mit_low = np.load("%s/mit_low_res.npy"%root)
@@ -875,7 +876,114 @@ def loadData(halfSize=11, root="./", log_convert=False):
                     Y = mit_high[xLow, yLow]
                     if X.shape[0] != 2*halfSize+1 or X.shape[1] != 2*halfSize+1:
                                                 continue
+                    map[(chr1, chr2, i, j)] = len(XXX)
                     XXX.append(X)
                     YYY.append(Y)
     print("Finished loading data.")
-    return XXX, YYY
+    return XXX, YYY, map
+def extractContactMapFromLargeMatrix(mit_low, nss_low, chr1, chr2):
+    begLowRow = nss_low[chr1, 0]
+    begLowCol = nss_low[chr2, 0]
+    n = nss_low[chr1, 1]
+    m = nss_low[chr2, 1]
+    return mit_low[begLowRow:begLowRow+n, begLowCol:begLowCol+m]
+
+def cropToSameSize(mat1, mat2):
+    n1, m1 = mat1.shape
+    n2, m2 = mat2.shape
+    n = np.min([n1, n2])
+    m = np.min([m1, m2])
+    return mat1[:n, :m], mat2[:n, :m]
+    
+def extractNeighborhood(origin, target, halfSize=11, cropToMin=True):
+    n1, m1 = origin.shape
+    n2, m2 = target.shape
+    n = n1
+    m = m1
+    if cropToMin:
+        print("Cropping to mininmum size ...")
+        n = np.min([n1, n2])
+        m = np.min([m1, m2])
+        print("n = %d ; m = %d"%(n, m))
+    else:
+        assert n1 == n2
+        assert m1 == m2
+    Xout = []
+    yOut = []
+    pixelCache = []
+    for i in range(halfSize, n-halfSize):
+        for j in range(halfSize, m-halfSize):
+            Xout.append(origin[i-halfSize:i+halfSize+1, j-halfSize:j+halfSize+1])
+            yOut.append(target[i, j])
+            pixelCache.append((i, j))
+    numRows = n - 2 * halfSize
+    numCols = m - 2 * halfSize
+    #Xout = np.array(Xout).reshape(numRows, numCols, 2*halfSize+1, 2*halfSize+1, 1)
+    #yOut = np.array(yOut).reshape(numRows, numCols)
+    return Xout, yOut, pixelCache
+            
+def loadData(halfSize=11, root="./", log_convert=False):
+    print("Starting to load data...")
+    nss_low = np.load("%s/length_low_res.npy"%root)
+    nss_high = np.load("%s/length_high_res.npy"%root)
+    mit_low = np.load("%s/mit_low_res.npy"%root)
+    mit_high = np.load("%s/mit_high_res.npy"%root)   
+    if log_convert:
+        mit_low = np.log(mit_low + 1)
+        mit_high = np.log(mit_high + 1)
+    XX = []
+    YY = []
+    chrCache = []
+    pixelCaches = []
+    for chr1 in range(1, 24):
+        for chr2 in range(chr1, chr1+1):
+            lowConMap = extractContactMapFromLargeMatrix(mit_low, nss_low, chr1, chr2)
+            highConMap = extractContactMapFromLargeMatrix(mit_high, nss_high, chr1, chr2)
+            lowConMap, highConMap = cropToSameSize(lowConMap, highConMap) 
+            Xout, yOut, pixelCache = extractNeighborhood(lowConMap, highConMap, halfSize=halfSize)
+            #print(Xout.shape)
+            #row, col, *rest = Xout.shape
+            #map.append((row, col))
+            #XXX.append(Xout.reshape(-1, 2*halfSize+1, 2*halfSize+1, 1))
+            #YYY.append(yOut.reshape(-1))
+            XX.append(Xout)
+            YY.append(yOut)
+            chrCache.append((chr1, chr2))
+            pixelCaches.append(pixelCache)
+    XXX = []
+    YYY = []
+    totalCache = []
+    count = 0
+    for i in range(len(XX)):
+        for j in range(len(XX[i])):
+            XXX.append(XX[i][j])
+            YYY.append(YY[i][j])
+            totalCache.append(chrCache[i] + pixelCaches[i][j])
+    XXX = np.array(XXX).reshape(-1, 2*halfSize+1, 2*halfSize+1, 1)
+    YYY = np.array(YYY)
+    print("Finished loading data.")
+    return XXX, YYY, (totalCache, nss_low, nss_high)
+
+def reconstructFromPredictions(XXX, YYY, cache, chr1NotInclude=[], \
+        chr2NotInclude=[], beg = 0, end=None):
+    if end == None:
+        end = len(XXX)
+    reconstructed = {}
+    cache, nss_low, nss_high = cache
+    for i in range(beg, end):
+        c1, c2, x, y = cache[i]
+        if c1 in chr1NotInclude or c2 in chr2NotInclude:
+            continue
+        images = reconstructed.get((c1, c2), None)
+        if images == None:
+            nLow = nss_low[c1, 1]
+            mLow = nss_low[c2, 1]
+            nHigh = nss_high[c1, 1]
+            mHigh = nss_high[c2, 1]
+            n = np.min([nLow, nHigh])
+            m = np.min([mLow, mHigh])        
+            images = ((np.zeros((n, m)), np.zeros((n, m))))
+        images[0][x, y] = XXX[i-beg, 11, 11, 0]
+        images[1][x, y] = YYY[i-beg]
+        reconstructed[(c1, c2)] = images
+    return reconstructed
