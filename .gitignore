@@ -6,6 +6,5 @@ virt
 *.out
 *.npy
 iced
-data
 .ipynb_checkpoints/
 .jupyter/
