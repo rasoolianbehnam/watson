@@ -931,6 +931,8 @@ def loadData(halfSize=11, root="./", log_convert=False):
     if log_convert:
         mit_low = np.log(mit_low + 1)
         mit_high = np.log(mit_high + 1)
+    mit_low = (mit_low - mit_low.mean()) / mit_low.std()
+    mit_high = (mit_high - mit_high.mean()) / mit_high.std()
     XX = []
     YY = []
     chrCache = []
