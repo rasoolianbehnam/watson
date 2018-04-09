@@ -922,7 +922,7 @@ def extractNeighborhood(origin, target, halfSize=11, cropToMin=True):
     #yOut = np.array(yOut).reshape(numRows, numCols)
     return Xout, yOut, pixelCache
             
-def loadData(halfSize=11, root="./", log_convert=False):
+def loadDataOld(halfSize=11, root="./", log_convert=False):
     print("Starting to load data...")
     nss_low = np.load("%s/length_low_res.npy"%root)
     nss_high = np.load("%s/length_high_res.npy"%root)
@@ -966,6 +966,9 @@ def loadData(halfSize=11, root="./", log_convert=False):
     print("Finished loading data.")
     return XXX, YYY, (totalCache, nss_low, nss_high)
 
+
+
+
 def reconstructFromPredictions(XXX, YYY, cache, chr1NotInclude=[], \
         chr2NotInclude=[], beg = 0, end=None):
     if end == None:
@@ -989,3 +992,122 @@ def reconstructFromPredictions(XXX, YYY, cache, chr1NotInclude=[], \
         images[1][x, y] = YYY[i-beg]
         reconstructed[(c1, c2)] = images
     return reconstructed
+
+def findPixelNeighbor(px, py, nx, ny, image):
+    halfSizeX = nx // 2
+    xRemainder = nx % 2
+    halfSizeY = ny // 2
+    yRemainder = ny % 2
+    w, h = image.shape
+
+    extraXbefore = halfSizeX - px
+    if extraXbefore < 0:
+        extraXbefore = 0
+
+    extraXafter = (px+halfSizeX+xRemainder) - (w-1)
+    if extraXafter < 0:
+        extraXafter = 0
+
+    extraYbefore = halfSizeY - py
+    if extraYbefore < 0:
+        extraYbefore = 0
+
+    extraYafter = (py+halfSizeY+yRemainder) - (h-1)
+    if extraYafter < 0:
+        extraYafter = 0
+    
+    #print(extraXbefore, extraXafter, extraYbefore, extraYafter)
+    if extraYbefore + extraXbefore + extraYafter + extraXafter == 0:
+        return image[px-halfSizeX:px+halfSizeX+xRemainder, py-halfSizeY:py+halfSizeY+yRemainder]
+    else:
+        #print("index out of bound")
+        out = np.zeros((nx, ny))
+        #print(px-halfSizeX+extraXbefore,px+halfSizeX+xRemainder-extraXafter, py-halfSizeY+extraYbefore,py+halfSizeY+yRemainder-extraYafter)
+        cropped = image[px-halfSizeX+extraXbefore:px+halfSizeX+xRemainder-extraXafter, py-halfSizeY+extraYbefore:py+halfSizeY+yRemainder-extraYafter]
+        #print(cropped.shape)
+        out[extraXbefore:nx-extraXafter,extraYbefore:ny-extraYafter] = cropped
+        return out
+
+def cropNeighbors(image, nx, ny, sx, sy):
+    halfSizeX = nx // 2
+    xRemainder = nx % 2
+    halfSizeY = ny // 2
+    yRemainder = ny % 2
+    w, h = image.shape
+    out = []
+    for px in np.arange(halfSizeX, w-halfSizeX-xRemainder, sx):
+        for py in np.arange(halfSizeY, h-halfSizeY-yRemainder, sy):
+            out.append(findPixelNeighbor(px, py, nx, ny, image))
+
+    cache = (w, h, nx, ny, sx, sy, px+halfSizeX+xRemainder, py+halfSizeY+yRemainder)
+    return out, cache
+
+def reconstruct(cropped, cache):
+    w, h, nx, ny, sx, sy,lpx,lpy = cache
+    halfSizeX = nx // 2
+    xRemainder = nx % 2
+    halfSizeY = ny // 2
+    yRemainder = ny % 2
+    out = np.zeros((w, h))
+    count = 0
+    for px in np.arange(halfSizeX, w-halfSizeX-xRemainder, sx):
+        for py in np.arange(halfSizeY, h-halfSizeY-yRemainder, sy):
+            extraXbefore = halfSizeX - px
+            if extraXbefore < 0:
+                extraXbefore = 0
+
+            extraXafter = (px+halfSizeX+xRemainder) - (w-1)
+            if extraXafter < 0:
+                extraXafter = 0
+
+            extraYbefore = halfSizeY - py
+            if extraYbefore < 0:
+                extraYbefore = 0
+
+            extraYafter = (py+halfSizeY+yRemainder) - (h-1)
+            if extraYafter < 0:
+                extraYafter = 0
+
+            if extraYbefore + extraXbefore + extraYafter + extraXafter == 0:
+                out[px-halfSizeX:px+halfSizeX+xRemainder, py-halfSizeY:py+halfSizeY+yRemainder] = cropped[count]
+            else:
+                #print("index out of bound")
+                out = np.zeros((nx, ny))
+                #print(px-halfSizeX+extraXbefore,px+halfSizeX+xRemainder-extraXafter, py-halfSizeY+extraYbefore,py+halfSizeY+yRemainder-extraYafter)
+                out[px-halfSizeX+extraXbefore:px+halfSizeX+xRemainder-extraXafter, py-halfSizeY+extraYbefore:py+halfSizeY+yRemainder-extraYafter] = \
+                    cropped[count][extraXbefore:nx-extraXafter,extraYbefore:ny-extraYafter]
+            count += 1
+    return out, lpx, lpy
+
+
+def loadData(nx, ny, sx, sy, root="./", log_convert=False):
+    print("Starting to load data...")
+    nss_low = np.load("%s/length_low_res.npy"%root)
+    nss_high = np.load("%s/length_high_res.npy"%root)
+    mit_low = np.load("%s/mit_low_res.npy"%root)
+    mit_high = np.load("%s/mit_high_res.npy"%root)   
+    if log_convert:
+        mit_low = np.log(mit_low + 1)
+        mit_high = np.log(mit_high + 1)
+    mit_low = (mit_low - mit_low.mean()) / mit_low.std()
+    mit_high = (mit_high - mit_high.mean()) / mit_high.std()
+    out_low = []
+    out_high = []
+    cache = []
+    for chr1 in range(1, 24):
+        for chr2 in range(chr1, chr1+1):
+            lowConMap = extractContactMapFromLargeMatrix(mit_low, nss_low, chr1, chr2)
+            highConMap = extractContactMapFromLargeMatrix(mit_high, nss_high, chr1, chr2)
+            lowConMap, highConMap = cropToSameSize(lowConMap, highConMap) 
+            low_features, cache_low = cropNeighbors(lowConMap, nx, ny, sx, sy)
+            high_features, cache_high = cropNeighbors(highConMap, nx, ny, sx, sy)
+            cache.append((len(low_features), cache_low, cache_high))
+            #print(len(low_features))
+            #print(len(high_features))
+            #print("****")
+            out_low.extend(low_features)
+            out_high.extend(high_features)
+    out_low = np.array(out_low)
+    out_high = np.array(out_high)
+    print("finished loading data")
+    return out_low, out_high, cache
