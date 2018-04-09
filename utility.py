@@ -1034,16 +1034,22 @@ def cropNeighbors(image, nx, ny, sx, sy):
     halfSizeY = ny // 2
     yRemainder = ny % 2
     w, h = image.shape
+    print("expected: ", (w - nx) // sx + 1, (h - ny) // sy + 1)
     out = []
-    for px in np.arange(halfSizeX, w-halfSizeX-xRemainder, sx):
-        for py in np.arange(halfSizeY, h-halfSizeY-yRemainder, sy):
+    c1 = 0
+    for px in np.arange(halfSizeX, w-halfSizeX-xRemainder+1, sx):
+        c1 += 1
+        c2 = 0
+        for py in np.arange(halfSizeY, h-halfSizeY-yRemainder+1, sy):
+            c2 += 1
             out.append(findPixelNeighbor(px, py, nx, ny, image))
 
-    cache = (w, h, nx, ny, sx, sy, px+halfSizeX+xRemainder, py+halfSizeY+yRemainder)
+    cache = (w, h, nx, ny, sx, sy, px+halfSizeX+xRemainder, py+halfSizeY+yRemainder, c1, c2)
+    print("actual:", c1, c2, len(out))
     return out, cache
 
 def reconstruct(cropped, cache):
-    w, h, nx, ny, sx, sy,lpx,lpy = cache
+    w, h, nx, ny, sx, sy,lpx,lpy,c1,c2 = cache
     halfSizeX = nx // 2
     xRemainder = nx % 2
     halfSizeY = ny // 2
@@ -1077,7 +1083,7 @@ def reconstruct(cropped, cache):
                 out[px-halfSizeX+extraXbefore:px+halfSizeX+xRemainder-extraXafter, py-halfSizeY+extraYbefore:py+halfSizeY+yRemainder-extraYafter] = \
                     cropped[count][extraXbefore:nx-extraXafter,extraYbefore:ny-extraYafter]
             count += 1
-    return out, lpx, lpy
+    return out, cache
 
 
 def loadData(nx, ny, sx, sy, root="./", log_convert=False):
