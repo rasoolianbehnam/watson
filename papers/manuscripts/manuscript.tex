@@ -63,6 +63,49 @@ between Leukemic cells.
 
 \section{Introduction}
 
+Ideally, it is desirable to compare 3D structures of 
+cell in order to make such comparisons.
+However, the main challenge is that 
+3D structure of a cell is not readily available. Based on
+\cite{adhikari2016chromosome3d}, fluorescence in situ hybridizaiton
+(FISH) is used for investigating 3D configuration of chromosomes.
+However, this method can only be used locally and cannot map
+the whole structure of the chromosomes.
+In orther to find dissimilarities in the 3D structure of 
+chromosomes, we used HiC dataset.
+The HiC method, which was developed by 
+\cite{lieberman2009comprehensive}, captures interactions between 
+chromosomal fragments in kilobase resolution. Based on HiC data, an
+\textit{interaction frequency (IF) } matrix can be developed between \textit{loci} at a desired resolution.
+A cell $IF_{ij}$ in an interaction frequency matrix captures the number of interaction detected
+in HiC dataset between locus $i$ and locus $j$ in the genome.
+An interaction matrix can be used to develop both inter- and intra-chromosomal interaction matrices.
+We believe differences in interaction matrices can be found between normal cells and cancerous ones.
+
+
+In this study, we plan to find dissimilarities between normal cells and cancerous cells,
+through investigating HiC contact maps. 
+We suspect that there are systematic differences between how chromosomes are structured
+between normal cells and cancerous cells.
+we 
+Ideally, it is desirable to compare 3D structures of 
+cell in order to make such comparisons.
+However, the main challenge that we face is that 
+3D structure of a cell is not readily available. Based on
+\cite{adhikari2016chromosome3d}, fluorescence in situ hybridizaiton
+(FISH) is used for investigating 3D configuration of chromosomes.
+However, this method can only be used locally and cannot map
+the whole structure of the chromosomes.
+In orther to find dissimilarities in the 3D structure of 
+chromosomes, we used HiC dataset.
+The HiC method, which was developed by \cite{lieberman2009comprehensive}, captures interactions between 
+chromosomal fragments in kilobase resolution. Based on HiC data, an
+\textit{interaction frequency (IF) } matrix can be developed between \textit{loci} at a desired resolution.
+A cell $IF_{ij}$ in an interaction frequency matrix captures the number of interaction detected
+in HiC dataset between locus $i$ and locus $j$ in the genome.
+An interaction matrix can be used to develop both inter- and intra-chromosomal interaction matrices.
+We believe differences in interaction matrices can be found between normal cells and cancerous ones.
+
 Graphlet comparison is a novel method used to compare large networks in order to
 find local similarities in them.
 Authors of \cite{prvzulj2007biological} provide a new measure of PPI
@@ -76,7 +119,7 @@ networks in order to detect similarities.
 $\mathbf{s}^T
 = [s_0, s_2, ..., s_{72}]$ where $s_i$ denotes the number of nodes in
 the network that are part of an orbit $i$. \\
-\textit{Important Result}: Proteins with similar surroundings perform
+They concluded that proteins with similar surroundings perform
 similar functions.
 
 In \cite{milenkovic2010cancer}, the same author investigates 
@@ -176,7 +219,20 @@ Thus, picking relatively large numbers would result in ignoring interactions
 that are far from the main diagonal while picking small values will lead to
 capturing too many (insignificant) interactions.
 
-In order to threshold the matrix so that both global and local patterns are
+To the best of our knowledge, little work has dealt with the task of
+thresholding HiC contact maps. There has been some statistical approaches
+developed on similar data in other fields. 
+For example, authors of \cite{ginestet2011statistical} developed 
+Statistical Network (SPN) analysis
+where the choice of thresholding value is made by statistical inference.
+This method, although very robust, works within the framework of 
+design of experiments where the same
+network can be extracted for different 
+individuals under different treatments. Thus a relatively large
+set of different contact maps need to be available in order for
+this method to be applicable towards our end.
+
+Instead, in order to threshold the matrix so that both global and local patterns are
 captured, we borrowed the concept of \textit{adaptive thresholding} from image 
 processing context. In this method, in order to be set, a pixel should have
 an intensity larger than the average of non-zero intensities in its
@@ -539,69 +595,59 @@ leukemic cells in terms of their local structure.
 
 
 \subsection{Statistical Analysis}
-A one sided paired t-test
-was conducted in order to compare pair-wise distances to
-zero and also to each other. 
-The resulting p-values showed highly 
-significant differeces from zero for all pairs of
-cells. The results of tests for $C_{1,1}$ 
-is shown in table \ref{tab:t-test}
-Results of all t-tests for each
-contact map can be found in supplementary materials.
-For each contact map, each pair of cells are
-compared based on whether they are statistially
-larger that the other or not with a signifiance
-of $0.01$.
-
-\begin{table}[]
-    \centering
-    \resizebox{.5\textwidth}{!}{
-    \begin{tabular}{l|ccccccc}
-        \rule{0pt}{25pt}
-                  & One       & MIT-RL       & ALL-RL       & ALL-MIT      & ALL-CALL4    & CALL4-MIT    & CALL4-RL     \\ \hline
-        \rule{0pt}{25pt}
-        One       & -         & \textgreater & \textgreater & \textgreater & \textgreater & \textgreater & \textgreater \\
-        \rule{0pt}{25pt}
-        MIT-RL    & \textless & -            & \textless    & \textless    & \textless    & \textless    & \textless    \\
-        \rule{0pt}{25pt}
-        ALL-RL    & \textless & \textgreater & -            & \textless    & \textless    & \textless    & \textless    \\
-        \rule{0pt}{25pt}
-        ALL-MIT   & \textless & \textgreater & \textgreater & -            & =            & =            & =            \\
-        \rule{0pt}{25pt}
-        ALL-CALL4 & \textless & \textgreater & \textgreater & =            & -            & =            & =            \\
-        \rule{0pt}{25pt}
-        CALL4-MIT & \textless & \textgreater & \textgreater & =            & =            & -            &              \\
-        CALL4-RL  & \textless & \textgreater & =            & =            & =            & =            & -           
-        \rule{0pt}{25pt}
-    \end{tabular}}
-    \caption{
-        Result of one-sided t-test 
-        with significance $\alpha = 0.01$
-        for intrachromosomal
-        contact map of chromosome 1.
-        As an example interpretation,
-        $\mathbf{d}^{\scriptscriptstyle CALL4, MIT}_{1,1}$ 
-        is statistically larger than 0,
-        but less than $\mathbf{d}^{\scriptscriptstyle ALL, RL}_{1,1}$ . 
-        An equal sign actually means that the two vectors are
-        not statistically different from each other.
-        We can also conclude that 
-        $\mathbf{d}^{\scriptscriptstyle ALL, CALL4}_{1,1}$ is not
-        statistically different from 
-        $\mathbf{d}^{\scriptscriptstyle ALL, MIT}_{1,1}$
-        between graphlets extracted from all contact maps. 
-        Refer to supplementary
-        material for results of all hypotheis tests.
-    }
-    \label{tab:t-test}
-\end{table}
-We have conducted one-sided
-t-test in order to test whether the average correlations across
-contact maps is equal to 1  and whether the average 
-correlations across orbits is equal to 1. The results
-for both test showed that all values are significantly less than 1.
+In order to quntify our results, we have conducted one-sided
+t-test in order to test whether the average pair-wise
+MIC values across orbits are significantly different from 
+each other and also from 1. 
+however, pairwise correlation of cancer cells for
+orbits in $\mathbb{Q}$ were significantly higher than
+correlation between cancer cells and normal cells.
+The results
+for this test showed that all values are significantly less than 1;
+A summary of can be found in
+table \ref{tab:t-test}.
+We have also conducted t-tests for 
+pair-wise orbit signature vector distances across contact maps.
 Please refer to supplementary material for result of the 
 full list of t-test results.
+\begin{table}[H]
+    \resizebox{.5\textwidth}{!}{
+\begin{tabular}{c|ccccccc}
+    & $MIC_{\scriptscriptstyle MIT-CALL4}$ & $MIC_{\scriptscriptstyle MIT-RL}$ & $MIC_{\scriptscriptstyle MIT-ALL}$ & $MIC_{\scriptscriptstyle ALL-CALL4}$ & $MIC_{\scriptscriptstyle CAll4-RL}$ & $MIC_{\scriptscriptstyle ALL-RL}$ & 1   \\
+              \rule{0pt}{1pt} \\ \hline \rule{0pt}{15pt}
+              $MIC_{\scriptscriptstyle MIT-CALL4}$ & -         & $\mathbf{<}$    & $\mathbf{<}$     & $\mathbf{<}$       & $\mathbf{<}$      & $\mathbf{<}$    & $\mathbf{<}$ \\
+              \rule{0pt}{20pt}
+              $MIC_{\scriptscriptstyle MIT-RL}$    & $\mathbf{>}$       &   -    & $\mathbf{<}$     & $\mathbf{<}$       & $\mathbf{<}$      & $\mathbf{<}$    & $\mathbf{<}$ \\
+              \rule{0pt}{20pt}
+              $MIC_{\scriptscriptstyle MIT-ALL}$   & $\mathbf{>}$       & $\mathbf{>}$    &    -    & $\mathbf{<}$       & $\mathbf{<}$      & $\mathbf{<}$    & $\mathbf{<}$ \\
+              \rule{0pt}{20pt}
+              $MIC_{\scriptscriptstyle ALL-CALL4}$ & $\mathbf{>}$       & $\mathbf{>}$    & $\mathbf{>}$     &       -   & $\mathbf{<}$      & $\mathbf{<}$    & $\mathbf{<}$ \\
+              \rule{0pt}{20pt}
+              $MIC_{\scriptscriptstyle CAll4-RL}$  & $\mathbf{>}$       & $\mathbf{>}$    & $\mathbf{>}$     & $\mathbf{>}$       &    -     & $\mathbf{<}$    & $\mathbf{<}$ \\
+              \rule{0pt}{20pt}
+              $MIC_{\scriptscriptstyle ALL-RL}$    & $\mathbf{>}$       & $\mathbf{>}$    & $\mathbf{>}$     & $\mathbf{>}$       & $\mathbf{>}$      &   -    & $\mathbf{<}$ \\
+              \rule{0pt}{20pt}
+              1         & $\mathbf{>}$       & $\mathbf{>}$    & $\mathbf{>}$     & $\mathbf{>}$       & $\mathbf{>}$      & $\mathbf{>}$    &    -
+\end{tabular}}
+    \caption{
+        Result of one-sided t-test 
+        comparison of MIC results 
+        with significance $\alpha = 0.01$
+        for orbits of $\mathbb{Q}$.
+        A $<$ sign means that the value in the corresponding
+        row is significantly smaller that the value in 
+        corresponding column; and a $>$ sign means the opposite.
+        An $=$ sign would have meant the values are not 
+        statistically different.
+        As can be seen, all MIC values are significantly smaller that 1,
+        meaning non on them are exactly the same; 
+        however, all Cancer vs Cancer MIC values are statistically
+        larger than Cancer vs Normal, implying that 
+        spatial positioning of loci are more similar between cancer cells.
+    }
+    \label{tab:t-test}
+
+\end{table}
 
 \section{Resources}
 \textbf{Hi-C Datasets:}
