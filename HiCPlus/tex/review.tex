@@ -51,19 +51,16 @@
 \section{Introduction}
 The cell of a eukaryotic species forms a multi-granularity genome structure
 in order to compactly store a very long genomic 
-DNA sequence in its small nucleus. The following describes the genome
-structure in the order of decreasing granularity
-\cite{wang2013properties}:
-\begin{enumerate*}
-\item[(1)] A \textbf{nucelotide} is the building block of
+DNA sequence in its small nucleus. 
+A \textbf{nucelotide} is the building block of
 DNA. There are 4 types of nucleotides: 
 C, G, A and T. 
-\item[(2)] Each pair of nucleotides in the DNA are called a \textbf{base}.
+Each pair of nucleotides in the DNA are called a \textbf{base}.
 A kilo-base is a group of 1000 bases.
-\item[(3)] thousands of bases join together to form \textbf{gene loci}.
-\item[(4)] A number of loci then fold into a large
-independent physical structure called \textbf{chromosome}.
-\end{enumerate*}
+thousands of bases join together to form \textbf{gene loci}.
+A number of loci then fold into a large
+independent physical structure called \textbf{chromosome}
+        (\cite{wang2013properties}).
 
 Study of spatial conformation of chromosomes is
 of high importance in the field of (computational)
@@ -86,6 +83,10 @@ high-throughput chromosome conformation capture
 (Hi-C) has emerged as
 a powerfull method for studying the
 3D organization of chromosomes in space.
+The HiC method, which was developed by 
+\cite{lieberman2009comprehensive}, 
+captures interactions between
+chromosomal fragments.
 In this method, a chromosome is divided into
 very small equally sized
 sections called \textit{loci}
@@ -225,7 +226,7 @@ figure \ref{fig:modelDesign}.
     connected layers in the model.}
     \label{fig:modelDesign}
 \end{figure}
-\subsubsection{Loss Function}
+\subsection{Loss Function}
 We used mean squre of
 differences as the loss function. As can be
 seen in table \ref{tab:modelDesign} and 
@@ -244,6 +245,13 @@ sub-patch. The loss function is formulated as follows:
 where $\hat{y}$ denotes the output of the model and
 $y$ denotes the actual high-resolution sub-patch.
 \section{Results}
+\textbf{Platforms:}
+The original model was developed in \texttt{theano}
+and used package \texttt{lasagne} for model development.
+We implemented our model in \texttt{tensorflow}. Our 
+results can be found in the following git repository:\\
+\url{https://github.com/rasoolianbehnam/watson/tree/master/HiCPlus}\\
+
 We trained the model using low-resolution 
  GM06990 and high-resolution
  GM12878 data. We then used the other threed
@@ -252,7 +260,16 @@ We trained the model using low-resolution
  improve contrast.
 \section{Strengths and Weaknesses and Future Work}
 This method can be considered as a noise reduction method
-for Hi-C contact matrices. Just as all currently available
+for Hi-C contact matrices. 
+For example Balance Network Deconvolution,
+proposed by \cite{feizi2013network}
+assumes that the observed graph $G_{obs}$ is a summation of its
+direct graph $G_{dir}$ and some indirect terms as follows:
+\begin{equation}
+        \label{indirect_effects}
+            G_{obs} = G_{dir} + G_{dir}^2 + G_{dir} + ...
+\end{equation}
+Just as all currently available
 normalization and noise reduction approaches this method
 also relies on assumptions. The major assumption of this
 approach is that CNNs can predict values in high-resolution
