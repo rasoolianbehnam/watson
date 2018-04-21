@@ -9,6 +9,7 @@
 \usepackage[pagebackref=true]{hyperref}
 \usepackage[nolist,nohyperlinks]{acronym}
 \usepackage{float}
+\usepackage[inline]{enumitem}
 
 %% Import general packages
 \usepackage{
@@ -48,6 +49,22 @@
 \maketitle
 \section{Abstract}
 \section{Introduction}
+The cell of a eukaryotic species forms a multi-granularity genome structure
+in order to compactly store a very long genomic 
+DNA sequence in its small nucleus. The following describes the genome
+structure in the order of decreasing granularity
+\cite{wang2013properties}:
+\begin{enumerate*}
+\item[(1)] A \textbf{nucelotide} is the building block of
+DNA. There are 4 types of nucleotides: 
+C, G, A and T. 
+\item[(2)] Each pair of nucleotides in the DNA are called a \textbf{base}.
+A kilo-base is a group of 1000 bases.
+\item[(3)] thousands of bases join together to form \textbf{gene loci}.
+\item[(4)] A number of loci then fold into a large
+independent physical structure called \textbf{chromosome}.
+\end{enumerate*}
+
 Study of spatial conformation of chromosomes is
 of high importance in the field of (computational)
 biology. Although all cell is a living being
@@ -72,7 +89,7 @@ a powerfull method for studying the
 In this method, a chromosome is divided into
 very small equally sized
 sections called \textit{loci}
-which is composed of 1K to 1000K genes.
+which is composed of 1K to 1M bases.
 this method then
 measures all pair-wise interaction frequencies 
 across all chromosomes. 
@@ -114,13 +131,18 @@ successfully used to predict DNA methylation
 or gene expression patterns.
 
 \section{The Model}
-In \cite{zhang2018enhancing}, a model was
-proposes as HiCPlus, that uses CNNs
+In this project, we are building upon
+HiCPlus, a model proposed in 
+\cite{zhang2018enhancing}, which
+uses CNNs
 to predict a high resolution contact
 matrix from a down-sampled matrix.
-In this project, we have used HiCPlus
-model to enhance the contrast for 
-our own data. 
+
+In this project, however,
+we used HiCPlus
+model to enhance the contrast of our
+low resolution data by training on
+a high resolution data.
 
 In our research, we have Hi-C data of
 4 cell lines. One of which is sequenced
@@ -137,6 +159,15 @@ with low depth, resulting in relatively
 low resolution. Therefore, we used the
 HiCPlus model in \cite{zhang2018enhancing}
 to enhace the contrast of our data.
+We also have access to a high-resolution
+data with much higher resolution which
+is sequenced from exactly the same cell
+as the normal low-resolution data that
+we have. Our purpose to train the model
+by using the low- and high-resolution data
+of normal cell and then apply it on the 
+other three cells in order to improve
+their contrast.
 
 \subsection{Overview of HiCPlus framework}
 The inputs to the model are a low-resolution
@@ -175,13 +206,23 @@ figure \ref{fig:modelDesign}.
         3        & conv2d3        & 5           & 1              & 1       & $1\times28\times28$    \\[5pt]
         4        & output\_layer  &     -       &   -            &   -     & $1\times784$     \\[30pt]
     \end{tabular}
-    \caption{My caption}
+    \caption{Desciption the CNN layers used in
+    our project. The model is composed of three
+    convolutional layers. The input is of shape
+    $1\times40\times40$ and the output has a
+    shape of $1\times784$. There are not deeply
+    connected layers in the model.}
     \label{tab:modelDesign}
 \end{table}
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{model.jpg}
-    \caption{}
+    \caption{Illustration of the CNN layers used in
+    our project. The model is composed of three
+    convolutional layers. The input is of shape
+    $1\times40\times40$ and the output has a
+    shape of $1\times784$. There are not deeply
+    connected layers in the model.}
     \label{fig:modelDesign}
 \end{figure}
 \subsubsection{Loss Function}
@@ -197,16 +238,32 @@ it. It then calculates the mean square of differneces
 between the output of the model and the high-resolution
 sub-patch. The loss function is formulated as follows:
 \begin{equation}
-    \mathbb{L} = \sum_{i=1}^{784}{\hat{y}_i - y_i}
+    \mathbb{L} = 
+    \frac{1}{784}\sum_{i=1}^{784}{\hat{y}_i - y_i}
 \end{equation}
 where $\hat{y}$ denotes the output of the model and
 $y$ denotes the actual high-resolution sub-patch.
-
-\section{Strengths and Weaknesses}
-
-\section{Future Work}
-
-\section{Questions \& Answers}
+\section{Results}
+We trained the model using low-resolution 
+ GM06990 and high-resolution
+ GM12878 data. We then used the other threed
+ data that we have (corresponding to three
+ cancerous cells) as input to the model to 
+ improve contrast.
+\section{Strengths and Weaknesses and Future Work}
+This method can be considered as a noise reduction method
+for Hi-C contact matrices. Just as all currently available
+normalization and noise reduction approaches this method
+also relies on assumptions. The major assumption of this
+approach is that CNNs can predict values in high-resolution
+matrix from the surrounding neighborhood in low-resolution
+matrix. The difference of this assumption from other 
+approaches is that it is easier to put the asumption to
+statistical tests. Authors of \cite{zhang2018enhancing}
+came to the conclusion that the assumption holds true for
+a down-sampled version of high-resolution data. Whether
+this is the case for an independent low-resolution data
+remains to be investigated in future works.
 
 % MARK: bibliography
 \bibliographystyle{my-unsrtnat}
