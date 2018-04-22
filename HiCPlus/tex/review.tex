@@ -66,7 +66,7 @@ Study of spatial conformation of chromosomes is
 of high importance in the field of (computational)
 biology. Although all cell is a living being
 have the same sequence of genes, it is the 
-3D positioning of these genese in space that
+3D positioning of these genes in space that
 determines how the cell functions.
 Roughly said,
 if two genes are close to each other in
@@ -81,7 +81,7 @@ can not be observed through traditional
 microscopy. As an alternative,
 high-throughput chromosome conformation capture
 (Hi-C) has emerged as
-a powerfull method for studying the
+a powerful method for studying the
 3D organization of chromosomes in space.
 The HiC method, which was developed by 
 \cite{lieberman2009comprehensive}, 
@@ -111,12 +111,12 @@ resolution can range from 1 kb to 1 Mb.
 \textit{sequencing depth} is the most
 important factor that determines the resolution
 of data. A higher sequencing depth results in
-capturing interactions between samller loci,
+capturing interactions between smaller loci,
 thus improving the resolution of the data.
 the sequencing process is costly and 
-linewar increase of resolution requires
+linear increase of resolution requires
 quadratic increase of sequencing reads.
-thus, most of the Hi-C data availabe have
+thus, most of the Hi-C data available have
 low resolutions.
 
 Therefore, it is required that a computational
@@ -182,6 +182,32 @@ cavers 979.4M bases while the latter
 covers 85.1G bases, that is, the resolution
 of GM12878 data is roughly 87 times higher
 than the GM06990 data.
+As to malignant cells,
+we re-used Leukemic Hi-C libraries 
+created in \cite{wang2013properties}
+These libraries were sequenced 
+for cases of primary human B-acute
+lymphoblastic leukemia (B-ALL or ALL), 
+the MHH-CALL-4 B-ALL cell
+line (CALL4), 
+and the follicular lymphoma cell-line (RL).
+Just as \cite{wang2013properties}, 
+we used normal B-cell line (GM068990)
+from \cite{lieberman2009comprehensive} 
+for our comparisons.
+\begin{table}[]
+    \centering
+    \begin{tabular}{llcl}
+        Data                           & Short & Resolution & Used …                     \\ \hline\hline\\
+        Normal B-cell(GM12878)         & RAO   & high       & As response in training    \\[5pt]\\
+        Normal B-cell(GM06990)         & MIT   & low        & As feature in training     \\[5pt]\\
+        B-acute lymphoblastic leukemia & ALL   & low        & To predict high resolution \\[5pt]\\
+        Follicular lymphoma cell-line  & RL    & low        & To predict high resolution \\[5pt]\\
+        MHH-CALL-4                     & CALL4 & low        & To predict high resolution \\[10pt]
+    \end{tabular}
+    \caption{Data description}
+    \label{tab:data}
+\end{table}
 We then fit the ConvNet model using values at 
 each position in the high-resolution matrix as 
 the response variable and using its 
@@ -227,15 +253,15 @@ figure \ref{fig:modelDesign}.
     \label{fig:modelDesign}
 \end{figure}
 \subsection{Loss Function}
-We used mean squre of
+We used mean square of
 differences as the loss function. As can be
 seen in table \ref{tab:modelDesign} and 
 \ref{fig:modelDesign}, the output of
 the model hase a shape of $1 \times 784$.
 In order to calculate loss function,
-the model picks the middle 28 rows and colums of the
-corresponing high-resolution patch and flattens
-it. It then calculates the mean square of differneces
+the model picks the middle 28 rows and columns of the
+corresponding high-resolution patch and flattens
+it. It then calculates the mean square of differeneces
 between the output of the model and the high-resolution
 sub-patch. The loss function is formulated as follows:
 \begin{equation}
@@ -252,33 +278,36 @@ $y$ denotes the actual high-resolution sub-patch.
 \end{figure}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{all.png}
-    \caption{}
-\end{figure}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{rl.png}
-    \caption{}
-\end{figure}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{call4.png}
+        Malignant Cell 1: B-ALL
+        \includegraphics[width=\textwidth]{all.png}
+        \vspace{10pt}
+        Malignant Cell 2: RL
+        \includegraphics[width=\textwidth]{rl.png}
+        \vspace{10pt}
+        Malignant Cell 3: CALL4
+        \includegraphics[width=\textwidth]{call4.png}
     \caption{}
 \end{figure}
 
 \textbf{Platforms:}
-The original model was developed in \texttt{theano}
-and used package \texttt{lasagne} for model development.
-We implemented our model in \texttt{tensorflow}. Our 
-results can be found in the following git repository:\\
-\url{https://github.com/rasoolianbehnam/watson/tree/master/HiCPlus}\\
+The original model was developed in \texttt{theano} 
+framework.
+The package \texttt{lasagne} was used 
+for model development. Although we made some experiments
+with tensorflow, conducted our final traning via the
+orginal model.
+Our results can be found in a git repository (refer to
+resources section).
 
 We trained the model using low-resolution 
  GM06990 and high-resolution
- GM12878 data. We then used the other threed
+ GM12878 data, both of which are sequence from
+ the same cell. We then used the other three
  data that we have (corresponding to three
  cancerous cells) as input to the model to 
  improve contrast.
+The data that we uses is described in table
+\ref{tab:data}
 \section{Strengths and Weaknesses and Future Work}
 This method can be considered as a noise reduction method
 for Hi-C contact matrices. 
@@ -296,12 +325,19 @@ also relies on assumptions. The major assumption of this
 approach is that CNNs can predict values in high-resolution
 matrix from the surrounding neighborhood in low-resolution
 matrix. The difference of this assumption from other 
-approaches is that it is easier to put the asumption to
+approaches is that it is easier to put the assumption to
 statistical tests. Authors of \cite{zhang2018enhancing}
 came to the conclusion that the assumption holds true for
 a down-sampled version of high-resolution data. Whether
 this is the case for an independent low-resolution data
 remains to be investigated in future works.
+\section{Resources}
+\textbf{Source code for the project:}\\
+\url{https://github.com/rasoolianbehnam/watson/tree/master/HiCPlus}\\
+\textbf{Link to the low-resolution Hi-C datasets:}\\
+\url{http://sysbio.rnet.missouri.edu/T0510/tmp_download/link_to_download_genome_data/contact_file/}\\
+\textbf{Link to high-resolution Hi-C dataset:}\\
+\url{https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE63525}
 
 % MARK: bibliography
 \bibliographystyle{my-unsrtnat}
