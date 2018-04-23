@@ -9,8 +9,8 @@
 \usepackage[pagebackref=true]{hyperref}
 \usepackage[nolist,nohyperlinks]{acronym}
 \usepackage{float}
-\usepackage[inline]{enumitem}
-
+\usepackage{graphicx}
+\usepackage[caption = false]{subfig}
 %% Import general packages
 \usepackage{
   amsmath, amssymb, amsfonts, nicefrac,
@@ -145,30 +145,44 @@ model to enhance the contrast of our
 low resolution data by training on
 a high resolution data.
 
-In our research, we have Hi-C data of
-4 cell lines. One of which is sequenced
-from a normal cell line and the other
-three sequenced from cells afflicted
-with three different malignancies.
-Our purpose is to
-compare them in terms of spatial
+Our final purpose is to be able to
+compare the three leukemic
+cells with a normal cell
+in terms of spatial
 structure and find whether there is 
 any difference in their 3D conformation
 or not.
-All 4 data that we have are sequenced
+In our research, we have 5 Hi-C data sets,
+belonging to
+4 cell lines. Two data sets are  sequenced
+from a normal cell line, one 
+with high resolution (GM12878) and the
+other with low resolution (GM06990)
+The other three data sets are
+sequenced from the same
+cell lines with with three different
+type of leukemia.
+
+As mentioned above, four of the data 
+sets we have are sequenced
 with low depth, resulting in relatively
-low resolution. Therefore, we used the
-HiCPlus model in \cite{zhang2018enhancing}
-to enhace the contrast of our data.
+low resolution. 
 We also have access to a high-resolution
 data with much higher resolution which
 is sequenced from exactly the same cell
 as the normal low-resolution data that
-we have. Our purpose to train the model
+we have. 
+Therefore, we used the
+HiCPlus model in \cite{zhang2018enhancing}
+to enhace the contrast of our data.
+We trained  the model
 by using the low- and high-resolution data
-of normal cell and then apply it on the 
+of normal cells and then applied it to the 
 other three cells in order to improve
 their contrast.
+A summary of the data and how
+they are used can be 
+found in table \ref{tab:data}.
 
 \subsection{Overview of HiCPlus framework}
 The inputs to the model are a low-resolution
@@ -266,27 +280,43 @@ between the output of the model and the high-resolution
 sub-patch. The loss function is formulated as follows:
 \begin{equation}
     \mathbb{L} = 
-    \frac{1}{784}\sum_{i=1}^{784}{\hat{y}_i - y_i}
+    \frac{1}{784}\sum_{i=1}^{784}({\hat{y}_i - y_i})^2
 \end{equation}
 where $\hat{y}$ denotes the output of the model and
 $y$ denotes the actual high-resolution sub-patch.
+
+We used simple gradient descent optimizer with learning
+rate of \texttt{1e-5} to train the model. The choise of
+optimizer did not make a great difference in the results.
+Our results from using Adam optimizier also were the same
+as SGD.
+
 \section{Results}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{mit.png}
-    \caption{}
+
+\begin{figure}
+        \includegraphics[width= 6in]{mit.png}
+        \caption{Results of training the data on
+        Normal cells. There is a total of almost
+        6000 loci in a contact matrix. For the
+        sake of demonstration, we only show the
+        firt 500 loci. The left contact matrix is the 
+        original low-resolution data. The middle one 
+        is the high resolution data. and the rightmost
+        picture is the result of training the model.}
+        \label{fig:train}
 \end{figure}
-\begin{figure}[H]
-    \centering
-        Malignant Cell 1: B-ALL
-        \includegraphics[width=\textwidth]{all.png}
-        \vspace{10pt}
-        Malignant Cell 2: RL
-        \includegraphics[width=\textwidth]{rl.png}
-        \vspace{10pt}
-        Malignant Cell 3: CALL4
-        \includegraphics[width=\textwidth]{call4.png}
-    \caption{}
+\begin{figure}
+        \subfloat[]{\includegraphics[width= 4in]{all.png}}\\
+        \subfloat[]{\includegraphics[width= 3.9in]{rl.png}}\\
+        \subfloat[]{\includegraphics[width= 4in]{call4.png}}\\
+        \caption{Results of running the model on
+        cancer cells. For the
+        sake of demonstration, we only show the
+        firt 500 loci. The left contact matrices 
+        are the 
+        original low-resolution data and the rightmost
+        pictures are the result of model predictions.}
+        \label{fig:predict}
 \end{figure}
 
 \textbf{Platforms:}
@@ -308,20 +338,31 @@ We trained the model using low-resolution
  improve contrast.
 The data that we uses is described in table
 \ref{tab:data}
+
+The model was ran for 30 epochs. 
+The results of training can be found in figure
+\ref{fig:train}. As can be seen the results
+are smoother and demonstrate higher contrast
+than the original model.
+Figure \ref{fig:predict} show prediction results
+from the model for the three cancer cells. The
+results also demonstrat higher contrast compared
+to original contact matrices.
+
+
+
 \section{Strengths and Weaknesses and Future Work}
 This method can be considered as a noise reduction method
 for Hi-C contact matrices. 
+Just as all currently available
+normalization and noise reduction approaches this method
+also relies on assumptions. 
 For example Balance Network Deconvolution,
 proposed by \cite{feizi2013network}
 assumes that the observed graph $G_{obs}$ is a summation of its
-direct graph $G_{dir}$ and some indirect terms as follows:
-\begin{equation}
-        \label{indirect_effects}
-            G_{obs} = G_{dir} + G_{dir}^2 + G_{dir} + ...
-\end{equation}
-Just as all currently available
-normalization and noise reduction approaches this method
-also relies on assumptions. The major assumption of this
+direct graph $G_{dir}$ and some indirect terms 
+$G_{obs} = G_{dir} + G_{dir}^2 + G_{dir} + ...$ .
+The major assumption of this
 approach is that CNNs can predict values in high-resolution
 matrix from the surrounding neighborhood in low-resolution
 matrix. The difference of this assumption from other 
