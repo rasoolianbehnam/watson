@@ -1117,3 +1117,37 @@ def loadData(nx, ny, sx, sy, root="./", log_convert=False):
     out_high = np.array(out_high)
     print("finished loading data")
     return out_low, out_high, cache
+
+def manova(data):
+    D = -1
+    M = len(data)
+    for cell in data:
+        assert D < 0 or data[cell].shape[1] == D
+        D = data[cell].shape[1]
+    averages = np.zeros((M, D))
+    counts = np.zeros((M, 1))
+    count = 0
+    for cell in data:
+        averages[count] = np.mean(data[cell], axis=0)
+        counts[count, 0] = data[cell].shape[0]
+        count += 1
+    mu = np.mean(averages, axis=0, keepdims=True)
+    T = np.zeros((D, D))
+    for cell in data:
+        diff = data[cell] - mu
+        T += diff.T.dot(diff)
+    #print("T:", T)
+    diff = averages - mu
+    H = diff.T.dot(diff * counts)
+    #print("H:", H)
+    E = T - H
+    #print("E:", E)
+    detE = np.linalg.det(E)
+    detH = np.linalg.det(H)
+    #print(tmp)
+    print(detE, detH)
+    print('Wilk\'s: ',  detE / (detE+detH))
+    print('Hotelling: ', np.trace(H.dot(np.linalg.inv(E))))
+    print('Pillai-Bartlett: ', np.trace(H.dot(np.linalg.inv(H+E))))
+
+

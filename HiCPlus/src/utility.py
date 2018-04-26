@@ -926,7 +926,7 @@ def loadDataOld(halfSize=11, root="./", log_convert=False):
     print("Starting to load data...")
     nss_low = np.load("%s/length_low_res.npy"%root)
     nss_high = np.load("%s/length_high_res.npy"%root)
-    mit_low = np.load("%s/mit_low_res.npy"%root)
+    mit_low = np.load("%s/rl_low_res.npy"%root)
     mit_high = np.load("%s/mit_high_res.npy"%root)   
     if log_convert:
         mit_low = np.log(mit_low + 1)
