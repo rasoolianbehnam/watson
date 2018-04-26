@@ -427,31 +427,14 @@ Alternatively, if we use Pearson criterion we would have:
     \centering
     \begin{subfigure}[b]{\textwidth}
         \includegraphics[width=\textwidth]{figures/orbit-distances_chr14.png}
-        \caption{}
-        \label{fig:orbit-distances_chr14}
-    \end{subfigure}
-    \begin{subfigure}[b]{\textwidth}
-        \includegraphics[width=\textwidth]{figures/contact_maps_correlations_chr14.png}
-        \caption{}
-        \label{fig:contact_maps_correlations_chr14}
     \end{subfigure}
     \caption{   
-        \textbf{(a) Pair-wise graphlet signature difference for
+        \textbf{Pair-wise graphlet signature difference for
         all 276 contact maps:}
         Each point on a graph is the result of averaging all
         the distances across all loci of that contact map.
         ($\bar{\mathbf{d}}^{\scriptscriptstyle A,B}_{i,j} \quad
         \forall i,j \in \{1 ... 23\} \quad \& \quad j \ge i$).  
-        \vspace{.1cm} \\
-        \textbf{(b) pair-wise average contact map orbit correlations
-         for all contact maps:}
-        ($\bar{\mathbf{m}}^{\scriptscriptstyle \scriptscriptstyle A,B}_{i,j} 
-        \quad \forall i,j \in \{1 ... 23\} \quad \& \quad j \ge i$:
-        average along the red \textit{vertical} arrow in figure 
-        \ref{graphlet_correlation_schema}).
-        These values are calculated by averaging over 
-        pairwise correlations of orbits of
-        $\mathbb{Q}$ in a contact map.
      }
     \label{fig:results_all}
 \end{figure*}
@@ -549,10 +532,36 @@ intra-leukemic orbit correlations are significantly higher
 than leukemic-normal orbit correlations}. This implies
 there are significant differences between normal and
 leukemic cells in terms of their local structure.
+\begin{figure*}
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{figures/contact_maps_correlations_cancer_vs_normal.png}
+    \end{subfigure}
+    \caption{
+        \textbf{Pair-wise 
+        average contact map orbit correlations
+        for all contact maps:}
+        ($\bar{\mathbf{m}}^{\scriptscriptstyle \scriptscriptstyle A,B}_{i,j} 
+        \quad \forall i,j \in \{1 ... 23\} \quad \& \quad j \ge i$:
+        average along the 
+        red \textit{vertical} arrow in figure 
+        \ref{graphlet_correlation_schema}).
+        These values are calculated by averaging over 
+        pairwise correlations of orbits of
+        $\mathbb{Q}$ in a contact map.
+}
+    \label{fig:contact_map_correlations_all}
+\end{figure*}
+
 
 \begin{figure*}
     \centering
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{figures/orbits_correlations_cancer_vs_normal.png}
+    \end{subfigure}
+    \begin{subfigure}[b]{\textwidth}
     \includegraphics[width=\textwidth]{figures/orbits_correlations_all.png}
+    \end{subfigure}
     \caption{
         \textbf{Pair-wise average orbit correlations:}
         In figure \ref{fig:orbits_correlations_all}, each point

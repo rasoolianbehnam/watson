@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.16)  24 APR 2018 08:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.4.26)  26 APR 2018 15:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -615,7 +615,7 @@ File: pgfsyssoftpath.code.tex 2013/09/09  (rcs-revision 1.9)
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.
 tex
 File: pgfsysprotocol.code.tex 2006/10/16  (rcs-revision 1.4)
-)) (/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+)) (/usr/share/texmf/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
 
 (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/color.cfg
@@ -1063,97 +1063,97 @@ Underfull \hbox (badness 4686) in paragraph at lines 55--61
  []
 
 
-Underfull \hbox (badness 1616) in paragraph at lines 66--86
+Underfull \hbox (badness 1616) in paragraph at lines 66--88
 \OT1/ptm/m/n/10 interactions between chromosomal fragments in kilobase
  []
 
 
-Underfull \hbox (badness 1365) in paragraph at lines 87--93
+Underfull \hbox (badness 1365) in paragraph at lines 89--97
 \OT1/ptm/m/n/10 Authors of ([]) provide a new measure of PPI network
  []
 
 
-Underfull \hbox (badness 1484) in paragraph at lines 94--102
+Underfull \hbox (badness 1484) in paragraph at lines 98--106
 []\OT1/ptm/m/n/10 In ([]) the authors provide heuristics to compare two
  []
 
 
-Underfull \hbox (badness 2269) in paragraph at lines 94--102
+Underfull \hbox (badness 2269) in paragraph at lines 98--106
 \OT1/ptm/m/n/10 They concluded that proteins with similar surroundings
  []
 
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 174.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 178.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 176.
-LaTeX Font Info:    Calculating math sizes for size <7.5> on input line 176.
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 180.
+LaTeX Font Info:    Calculating math sizes for size <7.5> on input line 180.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <7.5> not available
-(Font)              size <7> substituted on input line 176.
+(Font)              size <7> substituted on input line 180.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <3.75> not available
-(Font)              size <5> substituted on input line 176.
+(Font)              size <5> substituted on input line 180.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <7.5> not available
-(Font)              size <7> substituted on input line 176.
+(Font)              size <7> substituted on input line 180.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <3.75> not available
-(Font)              size <5> substituted on input line 176.
+(Font)              size <5> substituted on input line 180.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <7.5> not available
-(Font)              size <7> substituted on input line 176.
+(Font)              size <7> substituted on input line 180.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <3.75> not available
-(Font)              size <5> substituted on input line 176.
+(Font)              size <5> substituted on input line 180.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <7.5> not available
-(Font)              size <7> substituted on input line 176.
+(Font)              size <7> substituted on input line 180.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <3.75> not available
-(Font)              size <5> substituted on input line 176.
+(Font)              size <5> substituted on input line 180.
 
 
 LaTeX Font Warning: Font shape `U/lasy/m/n' in size <7.5> not available
-(Font)              size <7> substituted on input line 176.
+(Font)              size <7> substituted on input line 180.
 
 
 LaTeX Font Warning: Font shape `U/lasy/m/n' in size <3.75> not available
-(Font)              size <5> substituted on input line 176.
+(Font)              size <5> substituted on input line 180.
 
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 176.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 180.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <7.5> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 176.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 180.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <7.5> not available
-(Font)              size <7> substituted on input line 176.
+(Font)              size <7> substituted on input line 180.
 
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 
 ]
-Underfull \hbox (badness 2221) in paragraph at lines 180--187
+Underfull \hbox (badness 2221) in paragraph at lines 184--191
 \OT1/ptm/m/n/10 a \OT1/ptm/m/it/10 significant \OT1/ptm/m/n/10 interaction betw
 een the loci. This can be
  []
 
 
-Underfull \hbox (badness 1184) in paragraph at lines 188--199
+Underfull \hbox (badness 1184) in paragraph at lines 192--203
 \OT1/ptm/m/n/10 could consider thresholding the contact maps by simply
  []
 
@@ -1162,15 +1162,15 @@ File: figures/local_thresholded_chr1_chr1.png Graphic file (type png)
 
 <use figures/local_thresholded_chr1_chr1.png>
 Package pdftex.def Info: figures/local_thresholded_chr1_chr1.png used on input 
-line 225.
+line 229.
 (pdftex.def)             Requested size: 257.0pt x 342.66853pt.
 
-Overfull \hbox (10.0pt too wide) in paragraph at lines 225--230
+Overfull \hbox (10.0pt too wide) in paragraph at lines 229--234
  [][] 
  []
 
 
-Underfull \hbox (badness 5316) in paragraph at lines 230--230
+Underfull \hbox (badness 5316) in paragraph at lines 234--234
 []\OT1/ptm/b/n/8 Figure 1. \OT1/ptm/m/n/8 Result of thresholding interchromosom
 al contact map of
  []
@@ -1179,11 +1179,11 @@ al contact map of
 File: figures/graphlet_extraction.png Graphic file (type png)
 
 <use figures/graphlet_extraction.png>
-Package pdftex.def Info: figures/graphlet_extraction.png used on input line 247
+Package pdftex.def Info: figures/graphlet_extraction.png used on input line 251
 .
 (pdftex.def)             Requested size: 257.0pt x 198.59369pt.
 
-Overfull \hbox (10.0pt too wide) in paragraph at lines 247--253
+Overfull \hbox (10.0pt too wide) in paragraph at lines 251--257
  [][] 
  []
 
@@ -1192,51 +1192,51 @@ File: figures/graphlet_distance_schema.png Graphic file (type png)
 
 <use figures/graphlet_distance_schema.png>
 Package pdftex.def Info: figures/graphlet_distance_schema.png used on input lin
-e 265.
+e 269.
 (pdftex.def)             Requested size: 257.0pt x 242.50778pt.
 
-Overfull \hbox (10.0pt too wide) in paragraph at lines 265--273
+Overfull \hbox (10.0pt too wide) in paragraph at lines 269--277
  [][] 
  []
 
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 273.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 277.
 <figures/graphlet_correlation_schema.png, id=107, 794.97pt x 614.295pt>
 File: figures/graphlet_correlation_schema.png Graphic file (type png)
 
 <use figures/graphlet_correlation_schema.png>
 Package pdftex.def Info: figures/graphlet_correlation_schema.png used on input 
-line 278.
+line 282.
 (pdftex.def)             Requested size: 257.0pt x 198.59369pt.
 
-Overfull \hbox (10.0pt too wide) in paragraph at lines 278--289
+Overfull \hbox (10.0pt too wide) in paragraph at lines 282--293
  [][] 
  []
 
 
-LaTeX Warning: Reference `eq:h2a' on page 2 undefined on input line 289.
+LaTeX Warning: Reference `eq:h2a' on page 2 undefined on input line 293.
 
 
-LaTeX Warning: Reference `eq:h2b' on page 2 undefined on input line 289.
+LaTeX Warning: Reference `eq:h2b' on page 2 undefined on input line 293.
 
 
-LaTeX Warning: Reference `eq:h2a' on page 2 undefined on input line 289.
+LaTeX Warning: Reference `eq:h2a' on page 2 undefined on input line 293.
 
 
-LaTeX Warning: Reference `eq:h2b' on page 2 undefined on input line 289.
+LaTeX Warning: Reference `eq:h2b' on page 2 undefined on input line 293.
 
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 359.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 363.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [2 <./figures/local_thresholded_chr1_chr1.png>]
-Underfull \hbox (badness 1342) in paragraph at lines 379--407
+Underfull \hbox (badness 1342) in paragraph at lines 383--411
 \OT1/ptm/m/n/10 be calculate using any plausible correlation measure. In
  []
 
 
-Underfull \hbox (badness 1237) in paragraph at lines 379--407
+Underfull \hbox (badness 1237) in paragraph at lines 383--411
 \OT1/ptm/m/n/10 between orbit distributions using Pearson's r correlation,
  []
 
@@ -1250,62 +1250,83 @@ File: figures/orbit-distances_chr14.png Graphic file (type png)
 
 <use figures/orbit-distances_chr14.png>
 Package pdftex.def Info: figures/orbit-distances_chr14.png used on input line 4
-25.
+29.
 (pdftex.def)             Requested size: 514.0pt x 193.93585pt.
 
-<figures/contact_maps_correlations_chr14.png, id=139, 1468.48625pt x 554.07pt>
-File: figures/contact_maps_correlations_chr14.png Graphic file (type png)
 
-<use figures/contact_maps_correlations_chr14.png>
-Package pdftex.def Info: figures/contact_maps_correlations_chr14.png used on in
-put line 430.
-(pdftex.def)             Requested size: 514.0pt x 193.93585pt.
+LaTeX Warning: Reference `fig:orbit-distances_chr14' on page 4 undefined on inp
+ut line 446.
 
-Underfull \hbox (badness 4156) in paragraph at lines 455--464
+
+Underfull \hbox (badness 4156) in paragraph at lines 442--451
 \OT1/ptm/m/n/10 Result of pair-wise contact map graphlet distances is
  []
 
 
+LaTeX Warning: Reference `fig:orbit-distances_chr14' on page 4 undefined on inp
+ut line 463.
+
+
 LaTeX Warning: Reference `fig:orbit_distances_chr14' on page 4 undefined on inp
-ut line 484.
+ut line 471.
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+LaTeX Warning: Reference `fig:contact_maps_correlations_chr14' on page 4 undefi
+ned on input line 494.
 
- [4 <./figures/orbit-distances_chr14.png> <./figures/contact_maps_correlations_
-chr14.png>]
-Underfull \hbox (badness 3428) in paragraph at lines 503--529
+
+LaTeX Warning: Reference `fig:contact_maps_correlations_chr14' on page 4 undefi
+ned on input line 509.
+
+
+Underfull \hbox (badness 3428) in paragraph at lines 490--516
 \OT1/ptm/m/n/10 material for statistical tests) orbit correlations between
  []
 
 
-Underfull \hbox (badness 3291) in paragraph at lines 530--548
+<figures/contact_maps_correlations_cancer_vs_normal.png, id=142, 1478.52374pt x
+ 549.05125pt>
+File: figures/contact_maps_correlations_cancer_vs_normal.png Graphic file (type
+ png)
+ <use figures/contact_maps_correlations_cancer_vs_normal.png>
+Package pdftex.def Info: figures/contact_maps_correlations_cancer_vs_normal.png
+ used on input line 538.
+(pdftex.def)             Requested size: 514.0pt x 190.87225pt.
+
+Underfull \hbox (badness 3291) in paragraph at lines 517--555
 []\OT1/ptm/m/n/10 This approach also allows for comparison of orbits
  []
 
-<figures/orbits_correlations_all.png, id=160, 1468.48625pt x 554.07pt>
+
+<figures/orbits_correlations_cancer_vs_normal.png, id=145, 1478.52374pt x 549.0
+5125pt>
+File: figures/orbits_correlations_cancer_vs_normal.png Graphic file (type png)
+ <use figures/orbits_correlations_cancer_vs_normal.png>
+Package pdftex.def Info: figures/orbits_correlations_cancer_vs_normal.png used 
+on input line 560.
+(pdftex.def)             Requested size: 514.0pt x 190.87225pt.
+
+<figures/orbits_correlations_all.png, id=146, 1478.52374pt x 549.05125pt>
 File: figures/orbits_correlations_all.png Graphic file (type png)
 
 <use figures/orbits_correlations_all.png>
 Package pdftex.def Info: figures/orbits_correlations_all.png used on input line
- 551.
-(pdftex.def)             Requested size: 514.0pt x 193.93585pt.
+ 563.
+(pdftex.def)             Requested size: 514.0pt x 190.87225pt.
 
-Overfull \hbox (10.00427pt too wide) in paragraph at lines 592--625
+Overfull \hbox (10.00427pt too wide) in paragraph at lines 605--638
 [][] 
  []
 
 
-Underfull \hbox (badness 2538) in paragraph at lines 625--625
+Underfull \hbox (badness 2538) in paragraph at lines 638--638
 []\OT1/ptm/b/n/8 Table 1. \OT1/ptm/m/n/8 Result of one-sided t-test comparison 
 of MIC results with
  []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-(./manuscript.bbl
+[4 <./figures/orbit-distances_chr14.png>] [5 <./figures/contact_maps_correlatio
+ns_cancer_vs_normal.png> <./figures/orbits_correlations_cancer_vs_normal.png> <
+./figures/orbits_correlations_all.png>] (./manuscript.bbl
 Underfull \hbox (badness 1199) in paragraph at lines 4--9
 []\OT1/ptm/m/n/8 Badri Adhikari, Tuan Trieu, and Jianlin Cheng.  Chromosome3d:
  []
@@ -1326,15 +1347,14 @@ Underfull \hbox (badness 1831) in paragraph at lines 63--68
 []\OT1/ptm/m/n/8 David N Reshef, Yakir A Reshef, Hilary K Finucane, Sharon R
  []
 
-) [5]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 641.
- [6 <./figures/orbits_correlations_all.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 641.
+) [6]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 654.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 654.
  (./manuscript.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 641.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 641.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 654.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 654.
 Package rerunfilecheck Info: File `manuscript.out' has not changed.
-(rerunfilecheck)             Checksum: 6E9D4AA9AA353957D9113155C62BFF69;388.
+(rerunfilecheck)             Checksum: 363E6C6B49837B20580CA25EAFDF7961;388.
 
 
 LaTeX Font Warning: Size substitutions with differences
@@ -1346,26 +1366,23 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 641.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 654.
  ) 
 Here is how much of TeX's memory you used:
- 22593 strings out of 493029
- 443737 string characters out of 6136233
- 559623 words of memory out of 5000000
- 25568 multiletter control sequences out of 15000+600000
- 41196 words of font info for 94 fonts, out of 8000000 for 9000
+ 22595 strings out of 493029
+ 443950 string characters out of 6136234
+ 561508 words of memory out of 5000000
+ 25569 multiletter control sequences out of 15000+600000
+ 39611 words of font info for 92 fonts, out of 8000000 for 9000
  1150 hyphenation exceptions out of 8191
- 55i,18n,89p,1011b,480s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,18n,89p,1011b,417s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exi
 st, replaced by a fixed one
 
-pdfTeX warning (dest): name{section*.16} has been referenced but does not exist
+pdfTeX warning (dest): name{section*.17} has been referenced but does not exist
 , replaced by a fixed one
 
-pdfTeX warning (dest): name{section*.15} has been referenced but does not exist
+pdfTeX warning (dest): name{section*.16} has been referenced but does not exist
 , replaced by a fixed one
 
 pdfTeX warning (dest): name{section*.10} has been referenced but does not exist
@@ -1400,10 +1417,10 @@ pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf
 -dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/typ
 e1/urw/times/utmri8a.pfb>
-Output written on manuscript.pdf (6 pages, 934462 bytes).
+Output written on manuscript.pdf (6 pages, 1006676 bytes).
 PDF statistics:
- 280 PDF objects out of 1000 (max. 8388607)
- 210 compressed objects within 3 object streams
- 46 named destinations out of 1000 (max. 500000)
- 192 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 279 PDF objects out of 1000 (max. 8388607)
+ 207 compressed objects within 3 object streams
+ 47 named destinations out of 1000 (max. 500000)
+ 197 words of extra memory for PDF output out of 10000 (max. 10000000)
 
