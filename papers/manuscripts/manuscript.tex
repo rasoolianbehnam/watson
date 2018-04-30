@@ -66,11 +66,7 @@ between Leukemic cells.
 Ideally, it is desirable to compare 3D structures of 
 cell in order to make such comparisons.
 However, the main challenge is that 
-3D structure of a cell is not readily available. Based on
-\cite{adhikari2016chromosome3d}, fluorescence in situ hybridizaiton
-(FISH) is used for investigating 3D configuration of chromosomes.
-However, this method can only be used locally and cannot map
-the whole structure of the chromosomes.
+3D structure of a cell is not readily available. 
 In orther to find dissimilarities in the 3D structure of 
 chromosomes, we used HiC dataset.
 The HiC method, which was developed by 
@@ -85,6 +81,29 @@ An interaction matrix can be used to develop both
 inter- and intra-chromosomal interaction matrices.
 We believe differences in interaction matrices can 
 be found between normal cells and cancerous ones.
+
+Recently, there has been many efforts at predicting the 3D conformation
+of chromosomes using HiC data. 
+\cite{noble2011three, rousseau2011three, hu2013bayesian, varoquaux2014statistical, trieu2014large, zhang20133d, lesne20143d, bau2011three, adhikari2016chromosome3d}.
+These efforts, although different in
+approach, usually translate 
+interaction frequencies in contact maps as an inverse measure of 
+distance. In particular \cite{adhikari2016chromosome3d} developed
+a method, Chromosome3D which uses
+distance geometry simulated annealing (DGSA) in order to
+reconstruct genome structure. These reconstructed 3D 
+structures could be used in order to compare normal and malignant
+cell lines. However, the main obstacle to doing so is that the
+process of reconstruction is computationally
+expensive. Almost all reconstruction methods rely on either 
+deterministic or heuristic optimization in order to find the best
+confomation that matches contact maps. Also, there is no real 
+way of verifying whether the reconstruction results are accurate.
+Fluorescence in situ hybridizaiton
+(FISH) is used for investigating 3D configuration of chromosomes.
+\cite{gasser2002visualizing, lanctot2007dynamic, mateos2009spatially}
+However, this method can only be used locally and cannot map
+the whole structure of the chromosomes.
 
 Graphlet comparison is a novel method used to compare 
 large networks in order to
@@ -177,6 +196,10 @@ We created contact maps of resolution
 500kb and normalized it using 
 the \texttt{iced} package in python
 developed by \cite{servant2015hic}.
+We also performed and extra normalization by
+performing network deconvolution \cite{feizi2013network}
+in order to remove
+the effect of indirect interactions.
 
 
 
@@ -423,31 +446,42 @@ Alternatively, if we use Pearson criterion we would have:
 
 \section{results and discussions}
 \subsection{Contact Map Orbit Vector Distance}
-\begin{figure*}
+\begin{figure}
     \centering
-    \begin{subfigure}[b]{\textwidth}
+    \begin{subfigure}[b]{.5\textwidth}
+        \includegraphics[width=\textwidth]{figures/orbit_distances_normal_vs_cancer.png}
+        \caption{}
+        \label{fig:orbit_distances_all_a}
+    \end{subfigure}
+
+    \begin{subfigure}[b]{.5\textwidth}
+        \includegraphics[width=\textwidth]{figures/orbit_distances_cells.png}
+        \caption{}
+        \label{fig:orbit_distances_all_b}
+    \end{subfigure}
+
+    \caption{   
+        \textbf{Average Pair-wise graphlet signature difference 
+        over all 276 contact maps:}
+        Each point on a graph is the result of averaging all
+        the distances across all loci of all contact maps for 
+        each pair of cells. A 0.1 standard deviation error
+        bar is also plotted for each point.
+        ($\bar{\mathbf{d}}^{\scriptscriptstyle A,B}$).  
+     }
+    \label{fig:orbit_distances_all}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{.5\textwidth}
         \includegraphics[width=\textwidth]{figures/orbit-distances_chr14.png}
     \end{subfigure}
     \caption{   
-        \textbf{Pair-wise graphlet signature difference for
-        all 276 contact maps:}
-        Each point on a graph is the result of averaging all
-        the distances across all loci of that contact map.
-        ($\bar{\mathbf{d}}^{\scriptscriptstyle A,B}_{i,j} \quad
-        \forall i,j \in \{1 ... 23\} \quad \& \quad j \ge i$).  
      }
-    \label{fig:results_all}
-\end{figure*}
+    \label{fig:orbit_distances_chr14}
+\end{figure}
 
-Result of pair-wise contact map graphlet distances is
-illustrated in supplementary materials. 
-As an example, we plotted average
-distances only for chromosome 
-14 in Figure \ref{fig:orbit-distances_chr14}.
-Each point on the graph is the
-average of the graphlet distance vector 
-of the two cell lines specified in the legend
-($\bar{\mathbf{d}}^{\scriptscriptstyle A,B}_{i,j}$).
 
 By comparing signature distance vectors, one can find
 how contact maps
@@ -459,50 +493,53 @@ signature vectors of two loci are close,
  it can be inferred that they have 
 similar spatial neighborhood.
 
-As is shown in
-figure \ref{fig:orbit-distances_chr14} as well as t-test results
-(to be discussed next in this paper),
-we can compare pairs of contact maps in terms of their closeness
+We can compare pairs of contact maps in terms of their closeness
 to each other. 
-As an example, our results show that
-for most inter-chromosomal contact maps, ALL
-and RL cell lines are closer to each other than to other
-cell lines. as  shown in 
-\ref{fig:orbit_distances_chr14}, this observation is
-true for the first 13 inter-chromosomal 
-contact maps of chromosome 14 as well as it intra-chromosomal
-contact map.
-Although comparisons can be made for each contact map as to
-whether which contact maps are more similar to each other,
-no global pattern has been observed from graphlet distances.
+As an example, in figure
+\ref{fig:orbit_distances_chr14}, all pairs of cells are
+compared to each other in terms of their distance for contact
+maps involving chromosome 14. We can se that 
+for the first 13 inter-chromosomal 
+contact maps, ALL and RL cell lines are closer to each other
+than to other cell lines.
 
-It is worth mentioning that interchromosomal 
-thresholded contact maps 
-represent
-a bipartide graph with the loci from each chromosome 
-on one side. Due to this
-bipartide nature of the graphs in inter-chromosomal maps,
-count of certain orbits is always 0, resulting in
-a correlation values of 0 for them as well.
-We ignored these values  when we calculated averages across orbits 
-in figure \ref{fig:contact_maps_correlations_chr14} since they
-would result in a bias towards zero in 
-averages. You can see the bias in 
-figure \ref{fig:orbits_correlations_all} where 
-average correlations of orbits
-$\mathbb{Q} = \{3, 9, 10{\text -}14, 20{\text -}34, 39{\text -}48, 51{\text -}72\}$ 
-are close to zero. In fact all correlations
-corresponding to these orbits are 0 except for the ones between the same 
-chromosomes.
+We performed one-way ANOVA statistical test to 
+see if there are significant 
+difference between cancer-normal and cancer-cancer pairs.
+We found that the difference statistically significant difference.
+($F(1, 1654) = 20.49, p < 0.0001$).
+As illustrated in figure \ref{fig:orbit_distances_all_a},
+we can see that normal-cancer cells have higher distance
+from each other than cancer-cancer pairs.
+
+We then continued to investigate each pair separately to
+see if there is any significant difference between them.
+Again, our statistical tests (ANOVA) showed significant difference
+between pairs of cells.
+The results are shown in figure \ref{fig:orbit_distances_all_b}.
+We can see that ALL-RL pair are closest to each other while
+ALL-MIT and MIT-RL are most distant. We found statistcally
+significant difference for difference between individual
+pairs except for ALL-CALL4 and CALL4-RL as well as
+MIT-RL and ALL-MIT. The results of thse tests 
+can be found in supplementary material.
+
+The results in figure \ref{fig:orbit_distances_all_b} is also
+in keeping with what we see in figure \ref{fig:orbit_distances_chr14}. For example, as mentioned earlier, our results show that
+on average, ALL
+and RL cell lines are closer to each other than to other
+cell lines, which is also the case in figure
+\ref{fig:orbit_distances_chr14} for majority of contact maps.
 
 \subsection{MIC Comparison}
+
 \begin{figure*}
     \centering
-    \begin{subfigure}[b]{\textwidth}
-        \includegraphics[width=\textwidth]{figures/contact_maps_correlations_cancer_vs_normal.png}
-    \caption{}
-    \label{fig:contact_map_correlations_all}
-    \end{subfigure}
+%    \begin{subfigure}[b]{\textwidth}
+%        \includegraphics[width=\textwidth]{figures/contact_maps_correlations_cancer_vs_normal.png}
+%    \caption{}
+%    \label{fig:contact_map_correlations_all}
+%    \end{subfigure}
 
     \begin{subfigure}[b]{\textwidth}
         \includegraphics[width=\textwidth]{figures/orbits_correlations_cancer_vs_normal.png}
@@ -547,44 +584,56 @@ chromosomes.
     \label{fig:orbits_correlations}
 \end{figure*}
 
-In addition to simple graphlet distance comparison,
-we can compare graphlets by calculating
-how often certain graphlets occur in them. By doing so
-we measure the frequency distribution
-of certain spatial structures in
-each contact map. As a result of this approach
-we can compare contact maps by calculating the 
-correlation between their orbit distributions.
-A higher correlation would mean higher similarity
-in terms of spatial structure between the loci
-involved.
+In addition to comparing cells in terms of their
+orbit distances, we can compare them by measuring how
+often certain graphlets occur in their contact maps. By
+doing so, we measure the frequency distribution of the spatial
+structures represented by orbits in each contact map. In order
+to see how closely such structures are distributed, we can
+compare contact maps by calculating the correlation between
+their orbit distributions. A higher correlation for certain orbits
+would mean higher similarity in terms of that particular spatial
+structure between the loci involved.
 
-This approach also allows for comparison of orbits
-themsleves. By comparing average oribit correlations
-across all contact maps of two cell lines, we can
-have a measure of how similar certain orbits are
-between cell lines. This can give us a 
-\textit{global} measure
-of how similar two cell lines are in terms of 
-\textit{local} spatial positionings.
+Before going on with the results,
+it is worth mentioning that interchromosomal 
+thresholded contact maps 
+represent
+a bipartide graph with the loci from each chromosome 
+on one side. Due to this
+bipartide nature of the graphs in inter-chromosomal maps,
+count of certain orbits is always 0, resulting in
+a correlation values of 0 for them as well.
+You can see the bias in 
+figure \ref{fig:orbits_correlations} where 
+average correlations of orbits
+$\mathbb{Q} = \{3, 9, 10{\text -}14, 20{\text -}34, 39{\text -}48, 51{\text -}72\}$ 
+are close to zero. In fact all correlations
+corresponding to these orbits are 0 except for the ones between 
+the same 
+chromosomes.
 
 We caclulated pair-wise MIC values 
 for each orbit in each of the 276
 contact maps from MIT, ALL, RL, and CALL4 data separately. 
 We found statistically significant difference between
-normal vs cancer and cancer vs cancer correlations.
-The results of staistical tests are shown in table
-\ref{tab:statistical_results}. The difference
-between the two cells are also illustrated in figure
-\ref{fig:orbits_correlations}, which showes corrected
-mean difference of MIC values. Figure 
-\ref{fig:contact_map_correlations_all} shows the difference
-between average pairwise
-correlations. For most of the contact maps, correlation
-between normal and cancer cells are smaller
-than the correlation between cancer cells. This is corroborated
+cancer-cancer and normal-cancer correlations.
+($F(73, 1582)=6.29$, $p < 0.00001$, Wilk's $\Lambda = 0.775$)
+ The difference  is also illustrated in figure
+\ref{fig:orbits_correlations_normal_vs_cancer},
+which plots corrected
+mean difference of MIC values for cance-cancer and 
+normal-cancer correlations.  
+We performed statistical test to see if there is a 
+significant difference correlation between individual pairs
+of cells. Figure \ref{fig:orbits_correlations_all} demonstrate
+such difference.
+Average correlation over all contac maps
+for normal-cancer pairs are smaller
+than cancer-cancer pairs. This is corroborated
 by the results of statical test which verify that such difference
-is if fact signifcant.
+is in fact signifcant.($F(365, 7882) = 3.91$, $p < 0.00001$, 
+Wilk's $\Lambda = 0456$)
 Figures \ref{fig:orbits_correlations_normal_vs_cancer} and
 \ref{fig:orbits_correlations_all} both show more details about
 this difference in correlation. As can be observed, for obits
@@ -596,29 +645,12 @@ Figure \ref{fig:orbits_correlations} demonstrates that certain
 orbits of Leukemic have higher correlation to each other 
 than to the
 normal MIT cell. In fact our statistical analysis shows that 
-\textit {for orbits in $\mathbb{Q}$, 
+\textit {for orbits NOT in $\mathbb{Q}$, 
 intra-leukemic orbit correlations are significantly higher
 than leukemic-normal orbit correlations}. This implies
 there are significant differences between normal and
 leukemic cells in terms of their local structure.
 
-
-\subsection{Statistical Analysis}
-In order to qauntify our results, we have conducted one-sided
-t-test in order to test whether the average pair-wise
-MIC values across orbits are significantly different from 
-each other and also from 1. 
-However, pairwise correlation of cancer cells for
-orbits in $\mathbb{Q}$ were significantly higher than
-correlation between cancer cells and normal cells.
-The results
-for this test showed that all values are significantly less than 1;
-A summary of can be found in
-table \ref{tab:t-test}.
-We have also conducted t-tests for 
-pair-wise orbit signature vector distances across contact maps.
-Please refer to supplementary material for result of the 
-full list of t-test results.
 
 \section{Resources}
 \textbf{Hi-C Datasets:}
