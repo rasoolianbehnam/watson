@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.16)  23 MAY 2018 11:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.16)  23 MAY 2018 11:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1384,17 +1384,17 @@ Underfull \hbox (badness 1019) in paragraph at lines 33--37
  []
 
 
-Underfull \hbox (badness 2426) in paragraph at lines 112--117
+Underfull \hbox (badness 2426) in paragraph at lines 105--110
 []\OT1/ptm/m/n/8 Zheng Wang, Renzhi Cao, Kristen Taylor, Aaron Briley, Charles
  []
 
 
-Underfull \hbox (badness 2334) in paragraph at lines 125--129
+Underfull \hbox (badness 2334) in paragraph at lines 118--122
 \OT1/ptm/m/n/8 Network deconvolution as a general method to distinguish direct
  []
 
 
-Underfull \hbox (badness 1831) in paragraph at lines 137--142
+Underfull \hbox (badness 1831) in paragraph at lines 130--135
 []\OT1/ptm/m/n/8 David N Reshef, Yakir A Reshef, Hilary K Finucane, Sharon R
  []
 
@@ -1414,16 +1414,13 @@ LaTeX Font Warning: Size substitutions with differences
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 695.
  ) 
 Here is how much of TeX's memory you used:
- 22624 strings out of 493029
- 444690 string characters out of 6136233
- 555488 words of memory out of 5000000
- 25587 multiletter control sequences out of 15000+600000
+ 22622 strings out of 493029
+ 444663 string characters out of 6136233
+ 555479 words of memory out of 5000000
+ 25586 multiletter control sequences out of 15000+600000
  38026 words of font info for 90 fonts, out of 8000000 for 9000
  1150 hyphenation exceptions out of 8191
  55i,18n,89p,1484b,482s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1465,10 +1462,10 @@ pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf
 -dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/typ
 e1/urw/times/utmri8a.pfb>
-Output written on manuscript.pdf (6 pages, 964539 bytes).
+Output written on manuscript.pdf (6 pages, 964362 bytes).
 PDF statistics:
- 313 PDF objects out of 1000 (max. 8388607)
- 239 compressed objects within 3 object streams
- 58 named destinations out of 1000 (max. 500000)
+ 312 PDF objects out of 1000 (max. 8388607)
+ 238 compressed objects within 3 object streams
+ 57 named destinations out of 1000 (max. 500000)
  202 words of extra memory for PDF output out of 10000 (max. 10000000)
 
