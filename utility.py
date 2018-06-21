@@ -1118,7 +1118,7 @@ def loadData(nx, ny, sx, sy, root="./", log_convert=False):
     print("finished loading data")
     return out_low, out_high, cache
 
-def manova(data):
+def manova(data, alpha=.05, method='wilk'):
     D = -1
     M = len(data)
     for cell in data:
@@ -1142,12 +1142,60 @@ def manova(data):
     #print("H:", H)
     E = T - H
     #print("E:", E)
-    detE = np.linalg.det(E)
-    detH = np.linalg.det(H)
-    #print(tmp)
-    print(detE, detH)
-    print('Wilk\'s: ',  detE / (detE+detH))
-    print('Hotelling: ', np.trace(H.dot(np.linalg.inv(E))))
-    print('Pillai-Bartlett: ', np.trace(H.dot(np.linalg.inv(H+E))))
 
-
+    print("Method Used: %s"%method.upper())
+    n = np.sum(counts)
+    k = D
+    m = len(data)
+    print("n: ", n)
+    print("k: ", k)
+    print("m: ", m)
+    vals = np.real(np.linalg.eigvals(H.dot(np.linalg.inv(E))))
+    if method.lower() == 'wilk':
+        detE = np.linalg.det(E)
+        detEH = np.linalg.det(E+H)
+        #print(tmp)
+        #print(detE, detEH)
+        gamma = np.prod(1 / (1+vals))
+        a = n - m - (k-m+2.)/2.
+        b_num = k**2*(m-1)**2-4.
+        b_denom = k**2+(m-1)**2-5.
+        if b_denom <= 0:
+            b = 1
+        else:
+            b = np.sqrt(b_num / b_denom)
+        c = (k * (m-1)-2) / 2.
+        df1 = k*(m-1)
+        df2 = a*b - c
+        F = (gamma**(-1./b) - 1) * df2 / df1
+        print("a: ", a)
+        print("b_num", b_num)
+        print("b_denom", b_denom)
+        print("b: ", b)
+        print("c: ", c)
+        print("gamma: ", gamma)
+    s = np.min([k, m-1])
+    t = (np.abs(k-m+1)-1) / 2.
+    u = (n-m-k-1)/2.
+    print('s', s)
+    print('t', t)
+    print('u', u)
+    if method.lower() == 'hotelling':
+        df1 = s*(2*t+s+1)
+        df2 = 2*(s*u+1)
+        T20 = np.abs(np.trace(H.dot(np.linalg.inv(E))))
+        T20 = np.sum(vals)
+        F = (T20 * df2 * 1.) / (s * df1)
+        print('T20: ', T20)
+    if method.lower() == 'pillai':
+        df1 = s * (2*t+s+1)
+        df2 = s * (2*u+s+1)
+        V = np.sum(vals / (1+vals))
+        print('V: ', V)
+        F = (V * df2) / ((s-V) * df1)
+    print("df1", df1)
+    print("df2", df2)
+    print("F", F)
+    print("alpha:", alpha)
+    print("F-crit:", scipy.stats.f.ppf(1-alpha, df1, df2))
+    print("p-value:", scipy.stats.f.sf(F, df1, df2))
