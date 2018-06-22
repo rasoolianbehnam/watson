@@ -1,4 +1,0 @@
-theano==0.8.0
-https://github.com/Lasagne/Lasagne/archive/v0.1.zip
-https://github.com/dnouri/nolearn/archive/0.6.0.zip
-

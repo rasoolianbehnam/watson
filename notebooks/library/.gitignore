@@ -1,0 +1,10 @@
+virt
+*.pyc
+*.swp
+*.swo
+*.aux
+*.out
+*.npy
+iced
+.ipynb_checkpoints/
+.jupyter/
