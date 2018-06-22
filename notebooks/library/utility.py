@@ -7,7 +7,7 @@ import scipy.misc
 from scipy.stats.stats import pearsonr   
 import matplotlib.pyplot as plt
 from matplotlib import colors
-#from sets import Set
+from sets import Set
 
 def rel_error(x, y):
     """ returns relative error """
@@ -339,6 +339,11 @@ def _showImages(imageList, rows=None, cols=None, color_bar=False, titles=None, a
         divider = make_axes_locatable(ax)
         cax = divider.append_axes("right", size="2%", pad=0.05)
         cb = fig.colorbar(m, cax=cax)
+    print(len(imageList), count)
+    while count < cols * rows:
+        ax = axes[count // cols, count % cols]
+        ax.axis('off')
+        count += 1
     if save_dir != None:
         plt.savefig(save_dir)
     plt.show()
