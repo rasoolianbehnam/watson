@@ -9,6 +9,16 @@ import matplotlib.pyplot as plt
 from matplotlib import colors
 from sets import Set
 
+def get_contact_map(full_matrix, lengths, chr1, chr2=None):
+    if chr2 == None:
+        chr2 = chr1
+    chr1_beg = lengths[chr1, 0]
+    chr1_end = lengths[chr1, 0] + lengths[chr1, 1]
+    chr2_beg = lengths[chr2, 0]
+    chr2_end = lengths[chr2, 0] + lengths[chr2, 1]
+    return full_matrix[chr1_beg:chr1_end, chr2_beg:chr2_end]
+
+
 def rel_error(x, y):
     """ returns relative error """
     return np.max(np.abs(x - y) / (np.maximum(1e-8, np.abs(x) + np.abs(y))))
