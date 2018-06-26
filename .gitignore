@@ -1,4 +1,5 @@
 virt
+data
 *.pyc
 *.swp
 *.swo
