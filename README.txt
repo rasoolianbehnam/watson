@@ -5,14 +5,14 @@ DIRECTORY STRUCTURE:
 data: 
 ----
 This is were all data are stored/saved.
+run get_data.sh in order to automatically
+download and extract data needed in order
+to start the project. 
 These data include:
-    - contact_maps: The raw full
-      contact maps
-    - edges: contact results of thresholding 
-      contact maps.
+    - contact_maps: The raw full contact maps
+    - edges: contact results of thresholding contact maps.
     - graphlets: extracted orbits from edges.
-    - orbits: orbits ordered so they can be
-      served as input for correlation procedures
+    - orbits: orbits ordered so they can be served as input for correlation procedures
     - loci
 -------
 external:
@@ -36,3 +36,7 @@ requirements.txt
 ----------------
 run 'pip -r requirements.txt' in order to
 install all pre-requisite packages in python.
+Also, you need to install iced package 
+manually in python, which can be downloaded
+from here:
+https://graphiclet.localtunnel.me/secret/iced.zip
