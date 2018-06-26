@@ -5,6 +5,8 @@ virt
 *.aux
 *.out
 *.npy
+.RData
+.Rhistory
 iced
 .ipynb_checkpoints/
 .jupyter/
