@@ -51,58 +51,77 @@
             \maketitle
 
 \begin{abstract}
-
-In this study, we investigated
-dissimilarities between normal cells and leukemic cells
-in terms of their three dimensional conformation.
-We first thresholed HiC data corresponding to
-one normal cell line and four leukemic cells lines.
-We then used the thresholded data to extract the 
-first 72 orbits for all loci in each contact map.
-We then measured pairwise graphlet distances as
-well as pairwise graphlet distribution correlations
-for each pair of cells and compared them using 
-statistical methods.
-Our results show that normal-cancer pairs have
-significantly higher dinstances from each other
-than cancer-cancer pairs.
-Also, we concluded that for certain orbits,
-cancer-cancer pairs demonstrate higher correlations
-than normal-cancer pairs in terms of orbit frequency
-distributions.
-
+    Chromosal Conformational Capturing (3C) data,
+    particularly the Hi-C data is widely used for
+    investigating the three-dimensional (3D) 
+    chromatin conformation inside the nucleus and
+    for identifying chromatin interactions as 
+    well as topologically associating domains 
+    (TADs). However, Hi-C based structural analysis
+    for exploring local chromatin conformational 
+    preferences has not been performed yet. 
+    Here, for the first time, we present graphlet
+    based local structural analysis for normal 
+    and malignant human cell types  using chromosal
+    conformational capturing (Hi-C) data. 
+    We first applied thresholding in Hi-C interaction
+    frequency data for one normal cell line and 
+    four leukemic cells lines in order to covert 
+    them into unweighted graphs. We then mined 
+    the unweighted graphs to extract graphlet -based 
+    orbitial frequency distributions? . Subsequently
+    , pairwise graphlet distances as well as 
+    pairwise graphlet distribution correlations 
+    for each pair of cells were computed and 
+    compared using statistical methods namely 
+    ANOVA and multi-variate ANOVA. Our results 
+    demonstrate that normal-cancer pairs have 
+    significantly ($F(1, 1654) = 20.49$, $p-value
+    < 0.0001$) higher difference than cancer-cancer 
+    pairs. Furthermore, for certain orbits cancer-cancer 
+    pairs demonstrated higher correlations 
+    ($F(365, 7882)=391$, $p-value<0.00001$, and 
+    $Wilk's \quad \Lambda=0456$) than normal-cancer pairs 
+    in terms of orbit frequency distributions. 
+    Source code of GrapHiClet 
+    is freely available at 
+    \url{https://github.com/rasoolianbehnam/watson}.
+    Also, the database used for this project can be
+    found at \url{https://graphiclet.localtunnel.me/secret/}
 \end{abstract}
 
 \section{Introduction}
-This reasearch is an effort to compare the three-dimensional
-structure of cell genomes. To the best of our knowledge
-little research has dealt with quantitative comparison
-of spatial conformation of chromosomes.
-Ideally, it is desirable to compare 3D structures of 
-cell in order to make such comparisons.
-However, the main challenge in this regard
-is that 
-3D structure of a cell is not readily available. 
-In order to find dissimilarities in the 3D structure of 
-chromosomes, we used HiC dataset.
-The HiC method, which was developed by 
-\cite{lieberman2009comprehensive}, captures interactions between 
-chromosomal fragments in kilobase resolution. 
-Based on HiC data, a \textit{contact map} or
-\textit{interaction frequency (IF) } matrix can be developed 
-between \textit{loci} at a desired resolution.
-A cell $IF_{ij}$ in an interaction frequency matrix captures 
-the number of interaction detected
-in HiC dataset between locus $i$ and locus $j$ in the genome.
-An interaction matrix can be used to develop both 
-inter- and intra-chromosomal interaction matrices.
-We have found statistically significant
-differences between interaction matrices of
-normal cells and cancerous ones.
+Genome of a eukaryotic cell is organized into a
+complex three-dimensional (3D) structure, which
+leads to a network of chromosomal interactions \cite{dekker2008gene}.
+The spatial organization of genome is one of
+the most important factors in determining its
+function \cite{fraser2007nuclear} via interactions between
+spatially close genes \cite{kagey2010mediator}. Such
+interactions can be modeled using a network approach
+\cite{kagey2010mediator}. However, our knowledge of
+3D conformation of genome is limited. Fluorescent In
+Situ Hybridization (FISH) technology, which can
+capture 3D conformation of multiple loci but cannot
+capture global layout of the genome. In order to
+address this, more advanced techniques of chromosome
+conformation capturing such as 3C \cite{dekker2002capturing},
+4C \cite{simonis2006nuclear} and 5C \cite{dostie2007mapping}
+has been introduced which are based on chromatin fragment
+fixation, using restriction-enzyme digestion and
+intra-molecular ligation. One of the most recent
+versions of chromosome conformation capturing is
+Hi-C \cite{rao20143d, lieberman2009comprehensive},
+which $IF_{ij}$ captures interactions between chromosomal
+fragments resulting in a contact map or interaction frequency
+(IF) matrix, which captures the number of interactions
+detected in Hi-C dataset between each pair of loci.
 
-Recently, HiC data has been mostyly used
-in efforts to predict the 3D conformation
-of chromosomes using HiC data. 
+Recently, Hi-C data has been mostly used to predict
+the 3D structure at the chromosome level by satisfying
+intra-chromosomal interactions or even at the
+full genome by leveraging both inter- and intra-chromosomal
+interactions
 \cite{noble2011three, 
 rousseau2011three, 
 hu2013bayesian, 
@@ -113,78 +132,81 @@ lesne20143d,
 bau2011three, 
 adhikari2016chromosome3d}.
 These efforts, although different in
-approach, usually translate 
-interaction frequencies in contact maps as an inverse measure of 
-distance. For example,  \cite{adhikari2016chromosome3d} developed
-a method, Chromosome3D which uses
-distance geometry simulated annealing (DGSA) in order to
-reconstruct genome structure. These reconstructed 3D 
-structures could be used in order to compare normal and malignant
-cell lines. However, the main obstacle to doing so is that the
-process of reconstruction is computationally
-expensive. Almost all reconstruction methods rely on either 
-deterministic or heuristic optimization approaches
-in order to find the best
-confomation that matches contact maps. Also, there is no real 
-way of verifying whether the reconstruction results are accurate.
-The only method of verifying such results is
-Fluorescence in situ hybridizaiton
-(FISH) which can capture the actual
-3D configuration of chromosomes.
-\cite{gasser2002visualizing, lanctot2007dynamic, mateos2009spatially}
-However, this method can only be used locally and cannot map
-the whole structure of the chromosomes.
-
-Recently, graphlet comparison has emerged
-as a novel method for comparing
-large networks in order to
-find local similarities in them.
-Authors of \cite{prvzulj2007biological} 
-provide a new measure of protein-protein
-interaction (PPI)
-network comparison
-based on 73 constraints. The method
-is used in order to compare two large
-PPI networks in order to detect similarities.
-
-In \cite{milenkoviae2008uncovering} the authors
- provide heuristics to compare two nodes in a graph
-based on signature vectors, which are 73-dimensional vectors
-$\mathbf{s}^T
-= [s_0, s_2, ..., s_{72}]$ where $s_i$ denotes the number of nodes in
-the network that are part of an orbit $i$. \\
-They concluded that proteins with similar surroundings perform
-similar functions.
-
-In \cite{milenkovic2010cancer}, the same author investigates 
-cancer-causing genes to find similarities in their signatures. After
-clustering the genes based on \textit{signature similarity} criteria,
-some clusters contain a lot of cancerous genes.
-They use 4 different clustering methods with varying parameters to cluster
-the proteins. They then predict the cancer-relatedness of a protein 
-$i$ using
-an enrichment criteria $\frac{k}{|C_i|}$ where $C_i$ is the cluster
-where protein $i$ belongs and $k$ is the number of cancer-causing
-proteins in $C_i$ and $|C_i|$ is the size of $C_i$.
-
-In this paper, we applied the same approach of graphlet distance
-and graphlet distribution comparison on HiC data
-in order investigate genome spatial confomations differences
-between normal and leukemic cells.
-
+approach, usually translate interaction frequencies in
+contact maps as simple inverse measures of distance.
+They then try to find the coordinates of the chromosomal
+loci that would result in that particular distance
+matrix using optimization. These methods vary in
+the optimization models and methodologies used.
+Also, efforts has been made recently to learn the
+inverse conversion parameters from contact maps
+to distance matrices \cite{oluwadare2018maximum}.
+The reconstructed 3D structures could be used in
+order to compare normal and malignant cell lines.
+However, the main obstacle to doing so is that
+the process of reconstruction is computationally expensive.
+Almost all reconstruction methods rely on either
+deterministic or heuristic optimization approaches in
+order to find the best conformation that matches contact
+maps. Also, there is no experimental way of evaluating
+the accuracy of the reconstructed 3D conformations.
+One experimental way of partially validating correctness
+of reconstruction process is Fluorescence in
+situ hybridizaiton (FISH) method. However, this
+technique is limited to a few loci and cannot be
+extended to cover the whole structure of the chromosomes.
+Furthermore, the process of reconstructing 3D
+chromatic structure is computationally expensive,
+hindering their applicability at the genome-wide scale.
 % **************************************************************
 % Keep this command to avoid text of first page running into the
 % first page footnotes
 \enlargethispage{-65.1pt}
 % **************************************************************
 
+
+Over the past decade, graphs have been used extensively
+in order to model domain-specific phenomena such
+as computer security, gene regulatory networks and
+social networks. These graphs are usually in
+the form of very large networks. It is often necessary
+to perform statistical analysis between graphs in
+order to compare their structure. Graphlets and
+orbits can be used in order to probe large graphs
+in order to find global and local similarities 
+\cite{shervashidze2009efficient, borgs2006counting,
+bondy1977graph}.
+This can be done by counting the number of occurrences
+of a each graphlet and/or orbits for each node
+in the whole graph and the comparing them \cite{prvzulj2007biological,
+prvzulj2004modeling}
+
+Here, we present local structural analysis between
+4 sets of Hi-C data. All four data sets are sequences
+from the same cell line, with one of them being
+a normal cell and the other three sequenced from
+three types of leukemic cells. In order to achieve
+this, we used graphlets, given their strength in
+capturing information about local structures of
+a graph. We first thresholded Hi-C interaction frequency
+matrices in order to convert in to an unweighted undirected
+graph adjacency matrix. We the extracted counts of
+the first 73 orbits for each node, identifying each
+node with a signature vector of size 73. We then
+applied graphlet distance metrics proposed in
+{prvzulj2007biological} together with statistical methods
+in order to find difference between cell lines.
+Our results show that difference of local structure
+between normal cells and leukemic cells are significantly
+larger that difference between cancer-cancer cells.  
+
 \subsubsection{Notations}
-In this paper, matrices and vectors are represented using bold
-capital and bold small letters respectively.
-Matrix rows and columns are represented by a \textit{dot}
-notation. For example, the $i$th row of matrix $M$ is
-denoted by $M_{i.}$ and its $j$th column is represented
-by $M_{.j}$.
+%In this paper, matrices and vectors are represented using bold
+%capital and bold small letters respectively.
+%Matrix rows and columns are represented by a \textit{dot}
+%notation. For example, the $i$th row of matrix $M$ is
+%denoted by $M_{i.}$ and its $j$th column is represented
+%by $M_{.j}$.
 
 We denote the set of all contact maps in cell line $K$ with 
 $\mathbb{C}^K$. If no particular cell line is addressed, the
@@ -209,26 +231,93 @@ the both of chromosomes involved
 
 
 \section{Materials and Methods}
-We re-used Leukemic Hi-C libraries 
-created in \cite{wang2013properties}
-These libraries were sequenced 
-for cases of primary human B-acute
-lymphoblastic leukemia (B-ALL or ALL), 
-the MHH-CALL-4 B-ALL cell
-line (CALL4), 
-and the follicular lymphoma cell-line (RL).
-As in \cite{wang2013properties}, 
-We used normal B-cell line (GM068990)
-from \cite{lieberman2009comprehensive} 
-for our comparisons.
-We created contact maps of resolution
-500kb and normalized it using 
-the \texttt{iced} package in python
-developed by \cite{servant2015hic}.
+Chromosomes inside the nuclei are made up of
+pairs of nucleotides called a base. As a result of
+the Hi-C process, a database is generated which
+provides interaction counts found by the method between
+a number of such bases. The minimum number of
+bases that can be captured is called the resolution of
+that database. These counts are then binned so
+that counts are aggregated for every equal-sized
+length of the chromosome (e.g. 1 Mb pairs) leading
+to an N * N interaction frequency matrix. Each
+cell (i, j) in the matrix is the aggregate count
+of all interactions found between loci i\textsuperscript{th} and
+j\textsuperscript{th} length.
+We re-used Leukemic Hi-C libraries created in
+\cite{wang2013properties}. These libraries were sequenced
+using Illumina HiSeq 2000 for cases of primary human
+B-acute lymphoblastic leukemia (B-ALL or ALL),
+the MHH-CALL-4 B-ALL cell line (CALL4), and the
+follicular lymphoma cell-line (RL) for which high-quality
+paired-end reados of 39M, 79M and 33M were obtained
+respectively As in \cite{wang2013properties}, We used
+normal B-cell line (GM068990) from as benchmark for
+our comparisons. The three datasets generated in
+\cite{wang2013properties} were valid since 98\% of
+the contact generated in \cite{wang2013properties}
+were identical to that of \cite{lieberman2009comprehensive}
+and 83\% of contacts in \cite{lieberman2009comprehensive}
+were also present in \cite{wang2013properties}. We
+created contact maps with bin sizes of  500 kilo-base
+and normalized them using normalization provided 
+HiC-Pro( \texttt{iced} package in python) developed
+by \cite{servant2015hic}.
+Normalization is necessary since Hi-C data usually
+contains different biases due to GC content,
+mappability and effective fragment length \cite{yaffe2011probabilistic,
+hu2012hicnorm}. The normalization proivdedi in
+the iced package is based on the Sinkhorn-Knopp
+algorithm which is a simple, parameter-free and
+capability to correct unknown biases.  The edges
+in a network usually include indirect dependencies because
+correlations are transitive; that is, if there is
+a strong realationship between nodes 1 and 2,
+and also a strong realationship between nodes 2
+and 3, it is highly likely that nodes relationship between
+nodes 1 and 3 is exaggerated in the network \cite{feizi2013network}.
+In order to remove the effect of indirect interactions,
 We also performed and extra normalization by
-performing network deconvolution \cite{feizi2013network}
-in order to remove
-the effect of indirect interactions.
+performing network deconvolution \cite{feizi2013network},
+which uses eigenvalue decomposition and infinite series
+sums in order to reverse the bias posed by indirect
+relationships.
+
+\subsection{Graphlets and Orbits}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.5\textwidth]{figures/graphlets.png}
+    \caption{}
+    \label{fig_graphlets}
+\end{figure}
+Recently, graphlet comparison has emerged as
+a novel method for comparing large networks in
+order to find local similarities in them. A
+graph G is a pair $(V,E)$, where $V$ is a set of
+vertices and $E \subseteq V\times V$ is a set of
+edges. A connected graph is one where there is
+a path between every pair of vertices.
+Given a graph $G(V, E)$ and $S \subseteq V$,
+then $G'(S, E')$ is a graphlet if and only if
+it is connected $E' = \{(u, v) | u, v \in V \quad \&
+\quad (u, v) \in E \rightarrow (u, v) \in E'\}$. 
+There a total of 30 graphlets
+of size 2, 3, and 5.  Figure \ref{fig_graphlets}
+demonstrates these graphlets. 
+As can be seen there is only one graphlet
+of size 2 which is equivalent to an edge; that
+is, the number of graphlet 1 in a graph is the
+same as the number of edges on the graph. There
+are also a total of 2 graphlets of size 2, 6
+of size 4 and 20 of size 5. The nodes of each graphlet
+can be partitioned into sets of topographically equivalent
+nodes called orbits. For  example, in  Figure 
+\ref{fig_graphlets}, we can see that G3 can be
+partitioned into 2 sets of nodes, the middle ones
+(white) and the outer nodes (black). 
+For the same set of graphlets,
+there are 73 orbits that are also illustrated in
+figure  Figure using nodes of difference shades.
 
 \subsection{Thresholding contact maps}
 In order to be able to extract graphlets, HiC contact maps should be modeled as
@@ -239,30 +328,37 @@ of the thresholding procedure is a binary matrix which also can serve as
 an adjacency matrix for an unweighted, undirected graph. The graph can then be
 used for orbit extraction.
 
-When thresholding contact maps, it is necessary to make sure
-that both global and local features are maintained. We could consider 
-thresholding the contact maps by simply setting values above a fixed value to
-one and the rest to zero; However, in practice, this method resulted in graphs
-that capture the local structure of the contact maps poorly. This is because
-intensities follow an exponential distribution with a mean close to zero
-with a few very larges values that correspond to interactions along 
-or close to the main diagonal of the contact maps.
-Thus, picking relatively large numbers would result in ignoring interactions
-that are far from the main diagonal while picking small values will lead to
-capturing too many (insignificant) interactions.
+When thresholding contact maps, it is necessary to
+make sure that both global and local features are
+maintained. We could consider thresholding the
+contact maps by simply setting values above a
+fixed value to one and the rest to zero; However,
+in practice, this method resulted in graphs that
+capture the local structure of the contact maps
+poorly. This is because intensities follow an
+exponential distribution with a mean close to
+zero with a few very larges values that correspond to
+interactions along or close to the main diagonal of
+the contact maps.  Thus, picking relatively large
+numbers would result in ignoring interactions that
+are far from the main diagonal while picking small
+values will lead to capturing too many (insignificant)
+interactions.
 
-To the best of our knowledge, little work has dealt with the task of
-thresholding HiC contact maps. There has been some statistical approaches
-developed on similar data in other fields. 
-For example, authors of \cite{ginestet2011statistical} developed 
-Statistical Network (SPN) analysis
-where the choice of thresholding value is made by statistical inference.
-This method, although very robust, works within the framework of 
-design of experiments where the same
-network can be extracted for different 
-individuals under different treatments. Thus a relatively large
-set of different contact maps need to be available in order for
-this method to be applicable towards our end.
+To the best of our knowledge, little work has
+dealt with the task of thresholding HiC contact maps.
+There has been some statistical approaches developed
+on similar data in other fields.  For example,
+authors of \cite{ginestet2011statistical} developed
+Statistical Network (SPN) analysis where the
+choice of thresholding value is made by statistical inference.
+This method, although very robust, works within
+the framework of design of experiments where the
+same network can be extracted for different individuals
+under different treatments. Thus a relatively large
+set of different contact maps need to be available
+in order for this method to be applicable towards
+our end.
 
 Instead, in order to threshold the matrix so that both global and local patterns are
 captured, we borrowed the concept of \textit{adaptive thresholding} from image 
