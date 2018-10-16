@@ -45,3 +45,4 @@ six
 terminado
 tornado
 traitlets
+opencv-python

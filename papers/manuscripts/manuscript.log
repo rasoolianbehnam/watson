@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.16)  27 JUN 2018 11:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.16)  13 SEP 2018 10:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1272,87 +1272,85 @@ Underfull \hbox (badness 1442) in paragraph at lines 234--285
 \OT1/ptm/m/n/10 Knopp algorithm which is a simple, parameter-free and
  []
 
-<figures/graphlets.png, id=133, 754.82pt x 422.57875pt>
-File: figures/graphlets.png Graphic file (type png)
+<figures/graphlets.jpg, id=134, 1529.715pt x 894.34125pt>
+File: figures/graphlets.jpg Graphic file (type jpg)
 
-<use figures/graphlets.png>
-Package pdftex.def Info: figures/graphlets.png used on input line 289.
-(pdftex.def)             Requested size: 257.0pt x 143.87476pt.
+<use figures/graphlets.jpg>
+Package pdftex.def Info: figures/graphlets.jpg used on input line 289.
+(pdftex.def)             Requested size: 257.0pt x 150.2483pt.
 
-Overfull \hbox (10.0pt too wide) in paragraph at lines 289--290
+Overfull \hbox (10.0pt too wide) in paragraph at lines 289--292
  [][] 
  []
 
 
-Underfull \hbox (badness 2221) in paragraph at lines 323--330
+Underfull \hbox (badness 2221) in paragraph at lines 325--332
 \OT1/ptm/m/n/10 a \OT1/ptm/m/it/10 significant \OT1/ptm/m/n/10 interaction betw
 een the loci. This can be
  []
 
-[2 <./figures/graphlets.png>]
-Underfull \hbox (badness 1184) in paragraph at lines 331--347
+[2 <./figures/graphlets.jpg>]
+Underfull \hbox (badness 1184) in paragraph at lines 333--349
 \OT1/ptm/m/n/10 could consider thresholding the contact maps by simply
  []
 
-<figures/local_thresholded_chr1_chr1.png, id=163, 1084.05pt x 1445.4pt>
+<figures/local_thresholded_chr1_chr1.png, id=162, 1084.05pt x 1445.4pt>
 File: figures/local_thresholded_chr1_chr1.png Graphic file (type png)
 
 <use figures/local_thresholded_chr1_chr1.png>
 Package pdftex.def Info: figures/local_thresholded_chr1_chr1.png used on input 
-line 375.
+line 377.
 (pdftex.def)             Requested size: 241.58063pt x 322.09122pt.
 
-Underfull \hbox (badness 5316) in paragraph at lines 380--380
+Underfull \hbox (badness 5316) in paragraph at lines 382--382
 []\OT1/ptm/b/n/8 Figure 2. \OT1/ptm/m/n/8 Result of thresholding interchromosom
 al contact map of
  []
 
-<figures/graphlet_extraction.png, id=165, 758.835pt x 816.04875pt>
+<figures/graphlet_extraction.png, id=165, 1055.44313pt x 1228.59pt>
 File: figures/graphlet_extraction.png Graphic file (type png)
 
 <use figures/graphlet_extraction.png>
-Package pdftex.def Info: figures/graphlet_extraction.png used on input line 397
+Package pdftex.def Info: figures/graphlet_extraction.png used on input line 399
 .
-(pdftex.def)             Requested size: 241.58063pt x 259.79613pt.
+(pdftex.def)             Requested size: 241.58063pt x 281.20125pt.
 
-<figures/graphlet_distance_schema.png, id=166, 837.1275pt x 789.95125pt>
+<figures/graphlet_distance_schema.png, id=166, 1489.06313pt x 1330.21968pt>
 File: figures/graphlet_distance_schema.png Graphic file (type png)
 
 <use figures/graphlet_distance_schema.png>
 Package pdftex.def Info: figures/graphlet_distance_schema.png used on input lin
-e 415.
-(pdftex.def)             Requested size: 257.0pt x 242.50778pt.
+e 417.
+(pdftex.def)             Requested size: 257.0pt x 229.58493pt.
 
-Overfull \hbox (10.0pt too wide) in paragraph at lines 415--423
+Overfull \hbox (10.0pt too wide) in paragraph at lines 417--425
  [][] 
  []
 
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 423.
-<figures/graphlet_correlation_schema.png, id=169, 762.85pt x 813.0375pt>
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 425.
+
+<figures/graphlet_correlation_schema.png, id=169, 1705.87312pt x 1226.33156pt>
 File: figures/graphlet_correlation_schema.png Graphic file (type png)
 
 <use figures/graphlet_correlation_schema.png>
 Package pdftex.def Info: figures/graphlet_correlation_schema.png used on input 
-line 428.
-(pdftex.def)             Requested size: 257.0pt x 273.89828pt.
+line 430.
+(pdftex.def)             Requested size: 257.0pt x 184.74641pt.
 
-Overfull \hbox (10.0pt too wide) in paragraph at lines 428--434
+Overfull \hbox (10.0pt too wide) in paragraph at lines 430--436
  [][] 
  []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 504.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 506.
 
-Underfull \hbox (badness 1342) in paragraph at lines 524--552
+Underfull \hbox (badness 1342) in paragraph at lines 526--554
 \OT1/ptm/m/n/10 be calculate using any plausible correlation measure. In
  []
 
 
-Underfull \hbox (badness 1237) in paragraph at lines 524--552
+Underfull \hbox (badness 1237) in paragraph at lines 526--554
 \OT1/ptm/m/n/10 between orbit distributions using Pearson's r correlation,
  []
 
@@ -1362,10 +1360,10 @@ File: figures/orbit_distances_normal_vs_cancer.png Graphic file (type png)
 
 <use figures/orbit_distances_normal_vs_cancer.png>
 Package pdftex.def Info: figures/orbit_distances_normal_vs_cancer.png used on i
-nput line 570.
+nput line 572.
 (pdftex.def)             Requested size: 257.0pt x 59.64038pt.
 
-Overfull \hbox (10.0pt too wide) in paragraph at lines 569--574
+Overfull \hbox (10.0pt too wide) in paragraph at lines 571--576
  [][] 
  []
 
@@ -1374,29 +1372,36 @@ File: figures/orbit_distances_cells.png Graphic file (type png)
 
 <use figures/orbit_distances_cells.png>
 Package pdftex.def Info: figures/orbit_distances_cells.png used on input line 5
-76.
+78.
 (pdftex.def)             Requested size: 257.0pt x 60.86015pt.
 
-Overfull \hbox (10.0pt too wide) in paragraph at lines 575--580
+Overfull \hbox (10.0pt too wide) in paragraph at lines 577--582
  [][] 
  []
 
-[4 <./figures/graphlet_extraction.png> <./figures/graphlet_distance_schema.png>
- <./figures/graphlet_correlation_schema.png>]
-<figures/orbit-distances_chr14.png, id=200, 1463.4675pt x 549.05125pt>
+<figures/orbit-distances_chr14.png, id=189, 1463.4675pt x 549.05125pt>
 File: figures/orbit-distances_chr14.png Graphic file (type png)
 
 <use figures/orbit-distances_chr14.png>
 Package pdftex.def Info: figures/orbit-distances_chr14.png used on input line 5
-96.
+98.
 (pdftex.def)             Requested size: 257.0pt x 96.42052pt.
 
-Overfull \hbox (10.0pt too wide) in paragraph at lines 595--605
+Overfull \hbox (10.0pt too wide) in paragraph at lines 597--607
  [][] 
  []
 
+[4 <./figures/graphlet_extraction.png> <./figures/graphlet_distance_schema.png
 
-Underfull \hbox (badness 1838) in paragraph at lines 630--638
+pdfTeX warning: pdflatex (file ./figures/graphlet_distance_schema.png): large i
+nterlaced PNG might cause out of memory (use non-interlaced PNG to fix this)
+> <./figures/graphlet_correlation_schema.png
+
+pdfTeX warning: pdflatex (file ./figures/graphlet_correlation_schema.png): larg
+e interlaced PNG might cause out of memory (use non-interlaced PNG to fix this)
+
+>]
+Underfull \hbox (badness 1838) in paragraph at lines 632--640
 \OT1/ptm/m/n/10 significant difference. ($\OML/cmm/m/it/10 F\OT1/cmr/m/n/10 (1\
 OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 1654) = 20\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 4
 9\OML/cmm/m/it/10 ; p < \OT1/cmr/m/n/10 0\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 0001
@@ -1404,86 +1409,83 @@ $\OT1/ptm/m/n/10 ). As
  []
 
 
-<figures/orbits_correlations_cancer_vs_normal.png, id=207, 1478.52374pt x 549.0
+<figures/orbits_correlations_cancer_vs_normal.png, id=210, 1478.52374pt x 549.0
 5125pt>
 File: figures/orbits_correlations_cancer_vs_normal.png Graphic file (type png)
  <use figures/orbits_correlations_cancer_vs_normal.png>
 Package pdftex.def Info: figures/orbits_correlations_cancer_vs_normal.png used 
-on input line 669.
+on input line 671.
 (pdftex.def)             Requested size: 514.0pt x 190.87225pt.
 
-<figures/orbits_correlations_all.png, id=208, 1478.52374pt x 549.05125pt>
+<figures/orbits_correlations_all.png, id=211, 1478.52374pt x 549.05125pt>
 File: figures/orbits_correlations_all.png Graphic file (type png)
 
 <use figures/orbits_correlations_all.png>
 Package pdftex.def Info: figures/orbits_correlations_all.png used on input line
- 674.
+ 676.
 (pdftex.def)             Requested size: 514.0pt x 190.87225pt.
 
-Underfull \hbox (badness 1661) in paragraph at lines 711--721
+Underfull \hbox (badness 1661) in paragraph at lines 713--723
 \OT1/ptm/m/n/10 we can compare them by measuring how often certain
  []
 
 
-Underfull \hbox (badness 1043) in paragraph at lines 711--721
+Underfull \hbox (badness 1043) in paragraph at lines 713--723
 \OT1/ptm/m/n/10 graphlets occur in their contact maps. By doing so, we
  []
 
 
-Underfull \hbox (badness 1097) in paragraph at lines 722--739
+Underfull \hbox (badness 1097) in paragraph at lines 724--741
 \OT1/ptm/m/n/10 chromosomal maps, count of certain orbits is always 0,
  []
 
 
-Underfull \hbox (badness 3965) in paragraph at lines 740--767
+Underfull \hbox (badness 3965) in paragraph at lines 742--769
 []\OT1/ptm/m/n/10 We caclulated pair-wise MIC values for each orbit
  []
 
 
-Underfull \hbox (badness 5504) in paragraph at lines 740--767
+Underfull \hbox (badness 5504) in paragraph at lines 742--769
 \OT1/ptm/m/n/10 in each of the 276 contact maps from MIT, ALL,
  []
 
 
-Underfull \hbox (badness 1817) in paragraph at lines 740--767
+Underfull \hbox (badness 1817) in paragraph at lines 742--769
 \OT1/ptm/m/n/10 RL, and CALL4 data separately. We found statistically
  []
 
 
-Underfull \hbox (badness 1337) in paragraph at lines 740--767
+Underfull \hbox (badness 1337) in paragraph at lines 742--769
 \OT1/ptm/m/n/10 significant difference between cancer-cancer and normal-
  []
 
 
-Underfull \hbox (badness 1472) in paragraph at lines 740--767
+Underfull \hbox (badness 1472) in paragraph at lines 742--769
 \OT1/ptm/m/n/10 statistical test to see if there is a significant difference
  []
 
 
-Underfull \hbox (badness 1852) in paragraph at lines 740--767
+Underfull \hbox (badness 1852) in paragraph at lines 742--769
 \OT1/ptm/m/n/10 correlation between individual pairs of cells. Figure []8b[]
  []
 
 
-Underfull \hbox (badness 3557) in paragraph at lines 740--767
+Underfull \hbox (badness 3557) in paragraph at lines 742--769
 \OT1/ptm/m/n/10 contac maps for normal-cancer pairs are smaller than
  []
 
 
-Underfull \hbox (badness 1968) in paragraph at lines 740--767
+Underfull \hbox (badness 1968) in paragraph at lines 742--769
 \OT1/ptm/m/n/10 cancer-cancer pairs. This is corroborated by the results
  []
 
 
-Underfull \hbox (badness 2173) in paragraph at lines 740--767
+Underfull \hbox (badness 2173) in paragraph at lines 742--769
 \OT1/ptm/m/n/10 of statical test which verify that such difference is in
  []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [5 <./figures/orbit_distances_normal_vs_cancer.png> <./figures/orbit_distances
-_cells.png> <./figures/orbit-distances_chr14.png>] (./manuscript.bbl
+[5 <./figures/orbit_distances_normal_vs_cancer.png> <./figures/orbit_distances_
+cells.png> <./figures/orbit-distances_chr14.png>] (./manuscript.bbl
 Underfull \hbox (badness 1320) in paragraph at lines 4--7
 []\OT1/ptm/m/n/8 Job Dekker.  Gene regulation in the third dimension.  \OT1/ptm
 /m/it/8 Science\OT1/ptm/m/n/8 ,
@@ -1552,24 +1554,25 @@ Underfull \hbox (badness 2426) in paragraph at lines 147--152
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
 Underfull \hbox (badness 2334) in paragraph at lines 171--175
 \OT1/ptm/m/n/8 Network deconvolution as a general method to distinguish direct
  []
 
 
-Underfull \hbox (badness 1831) in paragraph at lines 196--201
+Underfull \hbox (badness 1831) in paragraph at lines 183--188
 []\OT1/ptm/m/n/8 David N Reshef, Yakir A Reshef, Hilary K Finucane, Sharon R
  []
 
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
 ) [7]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 791.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 791.
- (./manuscript.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 791.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 791.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 793.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 793.
+
+(./manuscript.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 793.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 793.
 Package rerunfilecheck Info: File `manuscript.out' has not changed.
 (rerunfilecheck)             Checksum: 087F0561D8C4C67F1006CAA17F8B91CF;388.
 
@@ -1580,16 +1583,19 @@ LaTeX Font Warning: Size substitutions with differences
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 791.
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 793.
  ) 
 Here is how much of TeX's memory you used:
- 22653 strings out of 493029
- 445243 string characters out of 6136233
- 557688 words of memory out of 5000000
- 25601 multiletter control sequences out of 15000+600000
+ 22650 strings out of 493029
+ 445145 string characters out of 6136233
+ 557656 words of memory out of 5000000
+ 25599 multiletter control sequences out of 15000+600000
  38231 words of font info for 91 fonts, out of 8000000 for 9000
  1150 hyphenation exceptions out of 8191
- 55i,18n,89p,1484b,500s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,18n,89p,1484b,504s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{section*.19} has been referenced but does not exi
 st, replaced by a fixed one
 
@@ -1629,10 +1635,10 @@ re/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/t
 ype1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/
 utmri8a.pfb>
-Output written on manuscript.pdf (7 pages, 1074163 bytes).
+Output written on manuscript.pdf (7 pages, 1643834 bytes).
 PDF statistics:
- 359 PDF objects out of 1000 (max. 8388607)
- 281 compressed objects within 3 object streams
- 71 named destinations out of 1000 (max. 500000)
+ 357 PDF objects out of 1000 (max. 8388607)
+ 280 compressed objects within 3 object streams
+ 69 named destinations out of 1000 (max. 500000)
  207 words of extra memory for PDF output out of 10000 (max. 10000000)
 
