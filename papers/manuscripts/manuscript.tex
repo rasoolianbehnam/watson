@@ -1,8 +1,10 @@
-\documentclass[a4,center,fleqn]{NAR}
+\documentclass[]{article}
+\usepackage[top=1in, bottom=1.25in, left=1in, right=1in]{geometry}
 \usepackage{hyperref}
 \usepackage{graphicx}
 \usepackage{csquotes}
 \usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{setspace}
 \usepackage{float}
 \usepackage{caption}
@@ -10,11 +12,11 @@
 \usepackage[super]{nth}
 \usepackage{multirow}
 % Enter dates of publication
-\copyrightyear{2017}
-\pubdate{18 March 2017}
-\pubyear{2017}
-\jvolume{37}
-\jissue{12}
+%\copyrightyear{2017}
+%\pubdate{18 March 2017}
+%\pubyear{2017}
+%\jvolume{37}
+%\jissue{12}
 
 \usepackage{tikz}
 \usetikzlibrary{shapes}
@@ -26,29 +28,22 @@
 \usetikzlibrary{shapes.symbols}
 
 %\articlesubtype{This is the article type (optional)}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{authblk}
+
+\title{HiC Contact Map Comaprison Using Graphlet Approach}
+\author[1]{Behnam Rasoolian \thanks{Tel: +1 334 5212814; Email: bzr0014@auburn.edu}}
+\author[1]{Debswapna Bhattacharya}
+\affil[1]{Department of Computer Science and Software Engineering, Auburn University}
+\date{}
+\renewcommand\Authands{ and }
+
+
 
 \begin{document}
-\title{HiC Contact Map Comaprison Using Graphlet Approach}
 
-\author{%
-    Behnam Rasoolian\,$^{1,*}$,
-    Debswapna Bhattacharya\,$^{1}$
-    \footnote{
-    Tel: +1 334 5212814; Email: bzr0014@auburn.edu}}
-
-    \address{%
-        $^{1}$ Auburn University
-        }
-        % Affiliation must include:
-        % Department name, institution name, full road and district address,
-        % state, Zip or postal code, country
-
-%        \history{%
-%            Received January 1, 2009;
-%            Revised February 1, 2009;
-%            Accepted March 1, 2009}
-
-            \maketitle
+\maketitle
 
 \begin{abstract}
     Chromosal Conformational Capturing (3C) data,
@@ -161,7 +156,7 @@ hindering their applicability at the genome-wide scale.
 % **************************************************************
 % Keep this command to avoid text of first page running into the
 % first page footnotes
-\enlargethispage{-65.1pt}
+%\enlargethispage{-65.1pt}
 % **************************************************************
 
 
@@ -284,9 +279,9 @@ sums in order to reverse the bias posed by indirect
 relationships.
 
 \subsection{Graphlets and Orbits}
-\begin{figure}[H]
+\begin{figure}
     \centering
-    \includegraphics[width=.5\textwidth]{figures/graphlets.jpg}
+    \includegraphics[width=\textwidth]{figures/graphlets.jpg}
     %\includegraphics[width=.5\textwidth]{/home/bzr0014/Dropbox/graphlets.png}
     %\includegraphics[width=.5\textwidth]{/home/bzr0014/Dropbox/graphlets.jpg}
     \caption{}
@@ -372,9 +367,9 @@ each step. Figure \ref{local_thresholded_chr1_chr1} demonstrates result of
 this thresholding approach for intra-chromosomal contact maps of chromosome 1.
 Refer to supplementary material for all 23 interchromosomal thresholding
 results.
-\begin{figure}[t]
+\begin{figure}
     \centering
-    \includegraphics[width=.47\textwidth]{figures/local_thresholded_chr1_chr1.png}
+    \includegraphics[width=\textwidth]{figures/local_thresholded_chr1_chr1.png}
     \caption{Result of thresholding interchromosomal contact map of chromosome 1
     using a kernels of size $5 \times 5$ for all cell lines. 
     The first row shows the thresholded
@@ -396,7 +391,7 @@ involved in contact map between chromosomes $i$ and $j$. Figure
 of signature matrix extraction schematically.
 \begin{figure}
     \centering
-    \includegraphics[width=.47\textwidth]{figures/graphlet_extraction.png}
+    \includegraphics[width=\textwidth]{figures/graphlet_extraction.png}
     \caption{Graphlet extraction for the four cell lines. For each
     loci in each contact map between chromosomes $i$ and $j$, 
     the signature vectors of length 73 are extracted, resulting 
@@ -414,7 +409,7 @@ times loci $l$ in $\mathbf{C}_{ij}$ occured as part of orbit $o$.
 
 \begin{figure}
     \centering
-    \includegraphics[width=.5\textwidth]{figures/graphlet_distance_schema.png}
+    \includegraphics[width=\textwidth]{figures/graphlet_distance_schema.png}
     \caption{Calculating pair-wise loci distances. For each loci (row) 
     in each
     contact map in MIT cell line, its distance is calculated based on
@@ -427,7 +422,7 @@ times loci $l$ in $\mathbf{C}_{ij}$ occured as part of orbit $o$.
 \end{figure}
 \begin{figure}
     \centering
-    \includegraphics[width=.5\textwidth]{figures/graphlet_correlation_schema.png}
+    \includegraphics[width=\textwidth]{figures/graphlet_correlation_schema.png}
     \caption{Calulating pair-wise orbit correlations. For each orbit (column)
     in each contact map in MIT cell line, its correlation with the
     same orbit in the same contact map 
@@ -568,13 +563,13 @@ Alternatively, if we use Pearson criterion we would have:
 \subsection{Contact Map Orbit Vector Distance}
 \begin{figure}
     \centering
-    \begin{subfigure}[b]{.5\textwidth}
+    \begin{subfigure}[b]{\textwidth}
         \includegraphics[width=\textwidth]{figures/orbit_distances_normal_vs_cancer.png}
         \caption{}
         \label{fig:orbit_distances_all_a}
     \end{subfigure}
 
-    \begin{subfigure}[b]{.5\textwidth}
+    \begin{subfigure}[b]{\textwidth}
         \includegraphics[width=\textwidth]{figures/orbit_distances_cells.png}
         \caption{}
         \label{fig:orbit_distances_all_b}
@@ -594,7 +589,7 @@ Alternatively, if we use Pearson criterion we would have:
 
 \begin{figure}
     \centering
-    \begin{subfigure}[b]{.5\textwidth}
+    \begin{subfigure}[b]{\textwidth}
         \includegraphics[width=\textwidth]{figures/orbit-distances_chr14.png}
     \end{subfigure}
     \caption{   
@@ -659,7 +654,7 @@ cell lines, which is also the case in figure
 
 \subsection{MIC Comparison}
 
-\begin{figure*}
+\begin{figure}
     \centering
 %    \begin{subfigure}[b]{\textwidth}
 %        \includegraphics[width=\textwidth]{figures/contact_maps_correlations_cancer_vs_normal.png}
@@ -708,7 +703,7 @@ cell lines, which is also the case in figure
         for cancer cells.
     }
     \label{fig:orbits_correlations}
-\end{figure*}
+\end{figure}
 
 In addition to comparing cells in terms of their
 orbit distances, we can compare them by measuring how
@@ -790,4 +785,6 @@ leukemic cells in terms of their local structure.
 
 \bibliography{lit}
 \bibliographystyle{unsrt}
+
+
 \end{document}
